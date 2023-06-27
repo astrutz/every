@@ -97,6 +97,15 @@ dist
 # https://nextjs.org/blog/next-9-1#public-directory-support
 # public
 
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
 # vuepress build output
 .vuepress/dist
 

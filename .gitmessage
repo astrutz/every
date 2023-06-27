@@ -1,0 +1,5 @@
+type(scope)!: Description
+
+Further description, if necessary [optional]
+
+BREAKING CHANGE: reasons for this being a breaking change [optional]

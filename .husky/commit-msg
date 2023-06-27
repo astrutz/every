@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Run commitlint with the provided argument - a path to a temp-file containing the commit-message
+npx --no -- commitlint --edit ${1}
+# Run devmoji to emojify the commit
+npx devmoji -e
