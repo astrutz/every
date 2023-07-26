@@ -1,4 +1,4 @@
-type(scope)!: Description
+type(scope)!: Description, closes #x [optional]
 
 Further description, if necessary [optional]
 
