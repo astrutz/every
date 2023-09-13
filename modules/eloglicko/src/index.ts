@@ -1,1 +1,1 @@
-export * from './lib/eloglicko.module';
+export { EloglickoRouting } from './app/app.routes';

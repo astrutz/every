@@ -1,11 +1,76 @@
 {
   "name": "modules-eloglicko",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "modules/eloglicko/src",
+  "projectType": "application",
   "prefix": "every",
+  "sourceRoot": "modules/eloglicko/src",
   "tags": [],
-  "projectType": "library",
   "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/modules/eloglicko",
+        "index": "modules/eloglicko/src/index.html",
+        "main": "modules/eloglicko/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "modules/eloglicko/tsconfig.app.json",
+        "assets": ["modules/eloglicko/src/favicon.ico", "modules/eloglicko/src/assets"],
+        "styles": ["modules/eloglicko/src/styles.scss"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "modules-eloglicko:build:production"
+        },
+        "development": {
+          "browserTarget": "modules-eloglicko:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "modules-eloglicko:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["modules/eloglicko/**/*.ts", "modules/eloglicko/**/*.html"]
+      }
+    },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
@@ -18,16 +83,6 @@
           "ci": true,
           "codeCoverage": true
         }
-      }
-    },
-    "lint": {
-      "executor": "@nx/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": [
-          "modules/eloglicko/**/*.ts",
-          "modules/eloglicko/**/*.html"
-        ]
       }
     }
   }
