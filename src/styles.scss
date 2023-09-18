@@ -1,7 +1,19 @@
 @use "styles/fonts.scss";
 
 * {
-  background-color: bisque;
   font-family: Barlow, 'sans-serif';
   line-height: 1.4;
+}
+
+body {
+  background-color: bisque;
+  box-sizing: border-box;
+  margin: 0;
+  min-height: 100vh;
+}
+
+.wrapper {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
 }
