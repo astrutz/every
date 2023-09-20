@@ -1,0 +1,26 @@
+.eloglicko {
+  margin: auto;
+  max-inline-size: 140ch;
+
+  .disclaimer {
+    font-weight: 500;
+  }
+
+  .tiles {
+    display: grid;
+    column-gap: 2rem;
+    grid-template-columns: 1fr 2fr;
+
+    .configuration {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+  }
+
+  .card {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 4px;
+  }
+}

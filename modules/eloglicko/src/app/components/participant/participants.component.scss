@@ -1,0 +1,24 @@
+.participants {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 4px;
+
+  section {
+    height: 100%;
+
+    li {
+      list-style: none;
+    }
+  }
+
+  .creation {
+    display: grid;
+    grid-template-columns: 2fr 2fr auto;
+    gap: 0.5rem;
+    margin-top: 2rem;
+
+    input {
+      height: 2rem;
+    }
+  }
+}

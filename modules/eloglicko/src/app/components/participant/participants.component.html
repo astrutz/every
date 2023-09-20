@@ -1,0 +1,18 @@
+<div class="participants">
+  <section class="card">
+    <h3>Turnierteilnehmer</h3>
+    <ng-container *ngIf="_participants.length; else noParticipants">
+      <li *ngFor="let participant of _participants">
+        {{participant.name}} - {{participant.strength}}
+      </li>
+    </ng-container>
+    <ng-template #noParticipants>
+      <p>Füge Teilnehmer hinzu, um sie hier angezeigt zu bekommen.</p>
+    </ng-template>
+    <form class="creation" [formGroup]="_participantForm" (ngSubmit)="_createParticipant()">
+      <input type="text" placeholder="Name" formControlName="name">
+      <input type="number" placeholder="Stärke" min="0" formControlName="strength">
+      <button type="submit">+</button>
+    </form>
+  </section>
+</div>

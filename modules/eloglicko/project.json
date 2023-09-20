@@ -2,7 +2,7 @@
   "name": "modules-eloglicko",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "prefix": "every",
+  "prefix": "eloglicko",
   "sourceRoot": "modules/eloglicko/src",
   "tags": [],
   "targets": {

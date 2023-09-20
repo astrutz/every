@@ -6,7 +6,7 @@
 }
 
 body {
-  background-color: bisque;
+  background-color: #eaeaea;
   box-sizing: border-box;
   margin: 0;
   min-height: 100vh;
@@ -16,4 +16,8 @@ body {
   min-height: 100vh;
   display: grid;
   grid-template-rows: auto auto 1fr auto;
+}
+
+h3 {
+  font-weight: 500;
 }
