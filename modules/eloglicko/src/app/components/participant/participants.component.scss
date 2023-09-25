@@ -6,8 +6,24 @@
   section {
     height: 100%;
 
+    ul {
+      padding: 0;
+    }
+
     li {
       list-style: none;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      margin: 10px 0;
+    }
+
+    .participant {
+      display: grid;
+      grid-template-rows: auto auto;
+
+      span:last-of-type {
+        color: grey;
+      }
     }
   }
 

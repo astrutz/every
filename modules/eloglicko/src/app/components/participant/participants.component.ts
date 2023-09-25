@@ -25,4 +25,8 @@ export class ParticipantsComponent {
       this._participants.push(new Participant(name, strength));
     }
   }
+
+  protected _deleteParticipant(index: number): void {
+    this._participants = this._participants.filter((participant, i) => i !== index);
+  }
 }

@@ -1,11 +1,14 @@
 <div class="participants">
   <section class="card">
     <h3>Turnierteilnehmer</h3>
-    <ng-container *ngIf="_participants.length; else noParticipants">
-      <li *ngFor="let participant of _participants">
-        {{participant.name}} - {{participant.strength}}
+    <ul *ngIf="_participants.length; else noParticipants">
+      <li *ngFor="let participant of _participants; let idx = index">
+        <span class="participant">
+          <span>{{participant.name}}</span><span>Stärke: {{participant.strength}}</span>
+        </span>
+        <button (click)="_deleteParticipant(idx)">Löschen</button>
       </li>
-    </ng-container>
+    </ul>
     <ng-template #noParticipants>
       <p>Füge Teilnehmer hinzu, um sie hier angezeigt zu bekommen.</p>
     </ng-template>
