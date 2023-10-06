@@ -1,24 +1,156 @@
-@use "styles/fonts.scss";
-@import "styles/colors.scss";
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-* {
-  font-family: Barlow, 'sans-serif';
-  line-height: 1.4;
+@layer base {
+  h1 {
+    @apply text-3xl font-bold mt-6 mb-6;
+  }
+
+  h2 {
+    @apply text-xl font-semibold mt-5 mb-5;
+  }
+
+  h3 {
+    @apply text-lg font-medium mt-4 mb-4;
+  }
+
+  p {
+    @apply mt-3 mb-3;
+  }
+
+  a {
+    @apply text-blue-700;
+  }
+
+  @font-face {
+    font-family: Barlow;
+    src: url(./assets/fonts/Barlow-100.ttf) format("truetype");
+    font-weight: 100;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: Barlow;
+    src: url(./assets/fonts/Barlow-100-Italic.ttf) format("truetype");
+    font-weight: 100;
+    font-style: italic;
+  }
+
+  @font-face {
+    font-family: Barlow;
+    src: url(./assets/fonts/Barlow-200.ttf) format("truetype");
+    font-weight: 200;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: Barlow;
+    src: url(./assets/fonts/Barlow-200-Italic.ttf) format("truetype");
+    font-weight: 200;
+    font-style: italic;
+  }
+
+  @font-face {
+    font-family: Barlow;
+    src: url(./assets/fonts/Barlow-300.ttf) format("truetype");
+    font-weight: 300;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: Barlow;
+    src: url(./assets/fonts/Barlow-300-Italic.ttf) format("truetype");
+    font-weight: 300;
+    font-style: italic;
+  }
+
+  @font-face {
+    font-family: Barlow;
+    src: url(./assets/fonts/Barlow-400.ttf) format("truetype");
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: Barlow;
+    src: url(./assets/fonts/Barlow-400-Italic.ttf) format("truetype");
+    font-weight: 400;
+    font-style: italic;
+  }
+
+  @font-face {
+    font-family: Barlow;
+    src: url(./assets/fonts/Barlow-500.ttf) format("truetype");
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: Barlow;
+    src: url(./assets/fonts/Barlow-500-Italic.ttf) format("truetype");
+    font-weight: 500;
+    font-style: italic;
+  }
+
+  @font-face {
+    font-family: Barlow;
+    src: url(./assets/fonts/Barlow-600.ttf) format("truetype");
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: Barlow;
+    src: url(./assets/fonts/Barlow-600-Italic.ttf) format("truetype");
+    font-weight: 600;
+    font-style: italic;
+  }
+
+  @font-face {
+    font-family: Barlow;
+    src: url(./assets/fonts/Barlow-700.ttf) format("truetype");
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: Barlow;
+    src: url(./assets/fonts/Barlow-700-Italic.ttf) format("truetype");
+    font-weight: 700;
+    font-style: italic;
+  }
+
+  @font-face {
+    font-family: Barlow;
+    src: url(./assets/fonts/Barlow-800.ttf) format("truetype");
+    font-weight: 800;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: Barlow;
+    src: url(./assets/fonts/Barlow-800-Italic.ttf) format("truetype");
+    font-weight: 800;
+    font-style: italic;
+  }
+
+  @font-face {
+    font-family: Barlow;
+    src: url(./assets/fonts/Barlow-900.ttf) format("truetype");
+    font-weight: 900;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: Barlow;
+    src: url(./assets/fonts/Barlow-900-Italic.ttf) format("truetype");
+    font-weight: 900;
+    font-style: italic;
+  }
 }
 
 body {
-  background-color: $background;
-  box-sizing: border-box;
-  margin: 0;
-  min-height: 100vh;
-}
-
-.wrapper {
-  min-height: 100vh;
-  display: grid;
-  grid-template-rows: auto auto 1fr auto;
-}
-
-h3 {
-  font-weight: 500;
+  @apply bg-slate-200 min-h-screen font-barlow leading-6
 }
