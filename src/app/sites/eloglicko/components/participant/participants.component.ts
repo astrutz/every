@@ -7,7 +7,6 @@ import { Participant } from '../../dataobjects/participant.dataobject';
   standalone: true,
   selector: 'eloglicko-participant',
   templateUrl: './participants.component.html',
-  styleUrls: ['./participants.component.scss'],
   imports: [CommonModule, ReactiveFormsModule],
 })
 export class ParticipantsComponent {

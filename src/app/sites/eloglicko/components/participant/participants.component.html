@@ -1,0 +1,21 @@
+<div class="bg-white p-4 border-4">
+  <section class="h-full">
+    <h3>Turnierteilnehmer</h3>
+    <ul *ngIf="_participants.length; else noParticipants">
+      <li class="grid grid-cols-[1fr,auto]" *ngFor="let participant of _participants; let idx = index">
+        <span class="grid grid-col-2">
+          <span>{{participant.name}}</span><span class="text-gray-500">Stärke: {{participant.strength}}</span>
+        </span>
+        <button (click)="_deleteParticipant(idx)">Löschen</button>
+      </li>
+    </ul>
+    <ng-template #noParticipants>
+      <p>Füge Teilnehmer hinzu, um sie hier angezeigt zu bekommen.</p>
+    </ng-template>
+    <form class="grid grid-cols-[2fr,2fr,auto] gap-2 mt-8" [formGroup]="_participantForm" (ngSubmit)="_createParticipant()">
+      <input class="h-8" type="text" placeholder="Name" formControlName="name">
+      <input class="h-8" type="number" placeholder="Stärke" min="0" formControlName="strength">
+      <button type="submit">+</button>
+    </form>
+  </section>
+</div>

@@ -1,17 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { appRoutes } from './app.routes';
-import { EloglickoRouting } from '@every/eloglicko';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    RouterModule.forRoot(appRoutes, { initialNavigation: 'enabledBlocking' }),
-    EloglickoRouting,
-  ],
+  imports: [BrowserModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
 })

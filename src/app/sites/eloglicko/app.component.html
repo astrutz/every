@@ -1,9 +1,9 @@
-<main class="eloglicko">
+<main class="m-auto max-w-7xl">
   <h1>Simulation von Elo- und Glicko-Ratings</h1>
-  <p class="disclaimer">Diese Seite wurde im Rahmen des Hochschulmoduls "Spezielle Gebiete der Mathematik"
-    entwickelt.</p>
-  <p>Auf dieser Seite kannst du die Ratingsysteme <a href="https://de.wikipedia.org/wiki/Elo-Zahl">Elo</a> und <a
-          href="https://de.wikipedia.org/wiki/Glicko-System">Glicko</a> simulieren.
+  <h2>Diese Seite wurde im Rahmen des Hochschulmoduls "Spezielle Gebiete der Mathematik"
+    entwickelt.</h2>
+  <p>Auf dieser Seite kannst du die Ratingsysteme <a href="https://de.wikipedia.org/wiki/Elo-Zahl" target="_blank">Elo</a> und <a
+          href="https://de.wikipedia.org/wiki/Glicko-System" target="_blank">Glicko</a> simulieren.
     Erstelle dazu mindestens zwei neue Spieler und lege eine Spielstärke fest. Die Spielstärke ist ein relativer
     Wert und bestimmt ob ein Spieler gegen einen anderen Spieler gewinnt. Im normalen Simulationsmodus gewinnt stets
     der Spieler mit der höheren Stärke, bzw. es gibt ein Unentschieden, wenn die Spielstärken gleich sind.
@@ -14,13 +14,13 @@
     Stärkenunterschieden spielt. Bei einer Setzliste von acht Teilnehmern spielt der Beste (1.) gegen den
     Schlechtesten (8.),
     der Zweitbeste (2.) gegen den Zweischlechtesten (7.) etc.</p>
-  <div class="tiles">
+  <div class="grid gap-8 grid-cols-[1fr,2fr]">
     <eloglicko-participant></eloglicko-participant>
-    <div class="configuration">
-      <section class="card">
+    <div class="flex flex-col gap-8">
+      <section class="bg-white p-4 border-4">
         <h3>Spielkonfiguration</h3>
       </section>
-      <section class="card">
+      <section class="bg-white p-4 border-4">
         <h3>Lege mindestens zwei Spieler an und starte ein Turnier!</h3>
       </section>
     </div>

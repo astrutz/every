@@ -1,1 +1,0 @@
-export { EloglickoRouting } from './app/app.routes';
