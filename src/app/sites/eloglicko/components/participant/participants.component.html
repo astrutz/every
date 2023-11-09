@@ -2,20 +2,30 @@
   <section class="h-full">
     <h3>Turnierteilnehmer</h3>
     <ul *ngIf="_participants.length; else noParticipants">
-      <li class="grid grid-cols-[1fr,auto]" *ngFor="let participant of _participants; let idx = index">
+      <li [ngClass]="{'border-b-2': idx !== _participants.length}" class="grid grid-cols-[auto,1fr,auto] mb-2"
+          *ngFor="let participant of _participants; let idx = index">
+        <button class="mr-4" (click)="_changeParticipantColor(idx)">
+          <ng-icon [name]="'tablerChess'+participant.piece+'Filled'" size="2em"
+                   [color]="participant.color"></ng-icon>
+        </button>
         <span class="grid grid-col-2">
           <span>{{participant.name}}</span><span class="text-gray-500">Stärke: {{participant.strength}}</span>
         </span>
-        <button (click)="_deleteParticipant(idx)">Löschen</button>
+        <button (click)="_deleteParticipant(idx)">
+          <ng-icon name="lucideUserMinus"></ng-icon>
+        </button>
       </li>
     </ul>
     <ng-template #noParticipants>
-      <p>Füge Teilnehmer hinzu, um sie hier angezeigt zu bekommen.</p>
+      <p>Füge Teilnehmer mit ihrer Stärke hinzu, um sie hier angezeigt zu bekommen.</p>
     </ng-template>
-    <form class="grid grid-cols-[2fr,2fr,auto] gap-2 mt-8" [formGroup]="_participantForm" (ngSubmit)="_createParticipant()">
+    <form class="grid grid-cols-[2fr,2fr,auto] gap-2 mt-8" [formGroup]="_participantForm"
+          (ngSubmit)="_createParticipant()">
       <input class="h-8" type="text" placeholder="Name" formControlName="name">
       <input class="h-8" type="number" placeholder="Stärke" min="0" formControlName="strength">
-      <button type="submit">+</button>
+      <button type="submit">
+        <ng-icon name="lucideUserPlus"></ng-icon>
+      </button>
     </form>
   </section>
 </div>
