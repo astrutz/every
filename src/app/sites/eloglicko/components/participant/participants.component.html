@@ -1,6 +1,6 @@
-<div class="bg-white p-4 border-4">
+<eloglicko-card>
   <section class="h-full">
-    <h3>Turnierteilnehmer</h3>
+    <h3 class="mt-2">Turnierteilnehmer</h3>
     <ul *ngIf="_participants.length; else noParticipants">
       <li [ngClass]="{'border-b-2': idx !== _participants.length}" class="grid grid-cols-[auto,1fr,auto] mb-2"
           *ngFor="let participant of _participants; let idx = index">
@@ -28,4 +28,4 @@
       </button>
     </form>
   </section>
-</div>
+</eloglicko-card>

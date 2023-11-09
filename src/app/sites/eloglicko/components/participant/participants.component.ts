@@ -11,13 +11,14 @@ import {
   tablerChessKnightFilled,
   tablerChessQueenFilled, tablerChessRookFilled,
 } from '@ng-icons/tabler-icons';
+import { CardComponent } from '../shared/card.component';
 
 
 @Component({
   standalone: true,
   selector: 'eloglicko-participant',
   templateUrl: './participants.component.html',
-  imports: [CommonModule, ReactiveFormsModule, NgIconComponent],
+  imports: [CommonModule, ReactiveFormsModule, NgIconComponent, CardComponent],
   viewProviders: [provideIcons({
     lucideUserMinus,
     lucideUserPlus,
