@@ -35,7 +35,7 @@ export class ParticipantsComponent {
 
   protected _participantForm = new FormGroup({
     name: new FormControl('', Validators.required),
-    strength: new FormControl(0, Validators.required),
+    strength: new FormControl(null, Validators.required),
   });
 
   protected _createParticipant(): void {
