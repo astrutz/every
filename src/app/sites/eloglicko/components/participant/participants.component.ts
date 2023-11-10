@@ -41,8 +41,8 @@ export class ParticipantsComponent {
   protected _createParticipant(): void {
     const name = this._participantForm.get('name')?.value;
     const strength = this._participantForm.get('strength')?.value;
-    if (name && strength) {
-      this._participants.push(new Participant(name, strength, this.randomColor));
+    if (this._participantForm.valid) {
+      this._participants.push(new Participant(name ?? '', strength ?? 0, this.randomColor));
       this._participantForm.reset();
     }
   }

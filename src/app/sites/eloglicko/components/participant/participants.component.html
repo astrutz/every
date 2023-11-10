@@ -23,8 +23,8 @@
           (ngSubmit)="_createParticipant()">
       <input class="h-8" type="text" placeholder="Name" formControlName="name">
       <input class="h-8" type="number" placeholder="Stärke" min="0" formControlName="strength">
-      <button type="submit">
-        <ng-icon name="lucideUserPlus"></ng-icon>
+      <button type="submit" [disabled]="_participantForm.invalid">
+        <ng-icon name="lucideUserPlus" [color]="_participantForm.valid ? 'black' : 'gray'"></ng-icon>
       </button>
     </form>
   </section>

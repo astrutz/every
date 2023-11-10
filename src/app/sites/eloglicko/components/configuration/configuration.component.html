@@ -1,42 +1,48 @@
 <eloglicko-card>
   <h3 class="mt-2">Spielkonfiguration</h3>
-  <form class="grid gap-4 grid-cols-[auto,auto,auto]">
+  <form class="grid gap-4 grid-cols-[auto,auto,auto]" [formGroup]="_configurationForm"
+        (ngSubmit)="_startSimulation()">
     <fieldset>
       <legend class="mb-1">Zusammenstellung der Spiele</legend>
       <div>
-        <input type="radio" id="random" name="matching" value="random" checked />
+        <input type="radio" id="random" name="matching" formControlName="matching" value="random" checked />
         <label class="ml-2" for="random">Zufällig</label>
       </div>
       <div>
-        <input type="radio" id="seeded" name="matching" value="seeded" />
+        <input type="radio" id="seeded" name="matching" formControlName="matching" value="seeded" />
         <label class="ml-2" for="seeded">Setzliste</label>
       </div>
       <div>
-        <input type="radio" id="similar" name="matching" value="similar" />
+        <input type="radio" id="similar" name="matching" formControlName="matching" value="similar" />
         <label class="ml-2" for="similar">Möglichst gleich stark</label>
       </div>
     </fieldset>
     <fieldset>
       <legend class="mb-1">Bewertung der Spiele</legend>
       <div>
-        <input type="radio" id="elo" name="ranking" value="elo" checked />
+        <input type="radio" id="elo" name="ranking" formControlName="ranking" value="elo" checked />
         <label class="ml-2" for="elo">Elo-System</label>
       </div>
       <div>
-        <input type="radio" id="glicko" name="ranking" value="glicko" />
+        <input type="radio" id="glicko" name="ranking" formControlName="ranking" value="glicko" />
         <label class="ml-2" for="glicko">Glicko-System</label>
       </div>
     </fieldset>
     <fieldset>
       <legend class="mb-1">Häufigkeit der Spiele</legend>
       <div>
-        <input type="number" min="1" id="count" placeholder="Anzahl pro Spieler" />
+        <input type="number" min="1" id="count" formControlName="count" placeholder="Anzahl pro Spieler" />
       </div>
     </fieldset>
     <div class="col-span-2 self-center">
       <label for="underdog">Schwächere Spieler können gegen Stärkere gewinnen</label>
-      <input class="ml-2" id="underdog" type="checkbox">
+      <input class="ml-2" id="underdog" formControlName="underdog" type="checkbox">
     </div>
-    <button class="hover:bg-green-700 transition-colors p-2 bg-green-800 w-fit text-white rounded-md" type="submit">Spiele simulieren</button>
+    <button [ngClass]="{'!bg-slate-200 !text-gray-700': this._configurationForm.invalid}"
+            class="hover:bg-green-700 transition-colors p-2 bg-green-800 w-fit text-white rounded-md"
+            [disabled]="_configurationForm.invalid"
+            type="submit">
+      Spiele simulieren
+    </button>
   </form>
 </eloglicko-card>
