@@ -7,9 +7,11 @@ export class MatchMaker {
   rounds: Match[][] = [[]];
 
   ranking: Ranking;
+  useRandom: boolean;
 
-  constructor(ranking: Ranking) {
+  constructor(ranking: Ranking, useRandom: boolean = false) {
     this.ranking = ranking;
+    this.useRandom = useRandom;
   }
   // @ts-ignore
   addMatch(...matches): void {
@@ -48,7 +50,7 @@ export class MatchMaker {
         new Match(
           playerRatingsCopy[i],
           playerRatingsCopy[i + 1],
-          // store.state.configuration.useRandom, todo
+          this.useRandom
         ),
       );
     }
@@ -79,7 +81,7 @@ export class MatchMaker {
         );
       }
       // @ts-ignore
-      res.push(new Match(...opponents)); // todo
+      res.push(new Match(...opponents, this.useRandom));
     }
     playerRatingsCopy.forEach((rating) => {
       // @ts-ignore
@@ -118,7 +120,7 @@ export class MatchMaker {
         new Match(
           playerRatingsCopy[i],
           playerRatingsCopy[playerRatingsCopy.length - i - 1],
-          // store.state.configuration.useRandom, todo
+          this.useRandom,
         ),
       );
     }

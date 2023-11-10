@@ -19,7 +19,7 @@ export class SimulationService {
   simulate(): void {
     if (this.simulation.configuration) {
       const ranking = this._getInitialRanking();
-      const matchMaker = new MatchMaker(ranking);
+      const matchMaker = new MatchMaker(ranking, this.simulation.configuration.allowUnderdogWins);
       for (let i = 0; i < this.simulation.configuration.count; i++) {
         const matches = this._getMatches(matchMaker);
         matchMaker.addMatch(matches);
