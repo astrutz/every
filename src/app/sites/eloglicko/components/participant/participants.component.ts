@@ -12,6 +12,7 @@ import {
   tablerChessQueenFilled, tablerChessRookFilled,
 } from '@ng-icons/tabler-icons';
 import { CardComponent } from '../shared/card.component';
+import { SimulationService } from '../../services/simulation.service';
 
 
 @Component({
@@ -38,29 +39,24 @@ export class ParticipantsComponent {
     strength: new FormControl(null, Validators.required),
   });
 
+  constructor(private _simulationService: SimulationService) {
+  }
+
   protected _createParticipant(): void {
     const name = this._participantForm.get('name')?.value;
     const strength = this._participantForm.get('strength')?.value;
     if (this._participantForm.valid) {
-      this._participants.push(new Participant(name ?? '', strength ?? 0, this.randomColor));
+      this._simulationService.simulation.createParticipant(name ?? '', strength ?? 1);
       this._participantForm.reset();
     }
   }
 
-  protected _deleteParticipant(index: number): void {
-    this._participants = this._participants.filter((participant, i) => i !== index);
-  }
-
   protected _changeParticipantColor(index: number): void {
-    this._participants.forEach((participant, i) => {
-      if(index === i) {
-        participant.color = this.randomColor;
-        participant.setRandomPiece();
-      }
-    });
+    this._simulationService.simulation.changeParticipantColor(index);
+
   }
 
-  get randomColor(): string {
-    return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+  protected _deleteParticipant(index: number): void {
+    this._simulationService.simulation.deleteParticipant(index);
   }
 }

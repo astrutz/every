@@ -1,4 +1,4 @@
-import { GamePiece, getRandomGamePiece } from './gamepiece.dataobject';
+import { GamePiece, getRandomGamePiece } from './primitives.types';
 
 export class Participant {
   private readonly _name: string;
