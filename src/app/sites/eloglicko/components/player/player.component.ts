@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Participant } from '../../dataobjects/participant.dataobject';
+import { Player } from '../../dataobjects/player.dataobject';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import { lucideUserMinus, lucideUserPlus } from '@ng-icons/lucide';
 import {
@@ -17,8 +17,8 @@ import { SimulationService } from '../../services/simulation.service';
 
 @Component({
   standalone: true,
-  selector: 'eloglicko-participant',
-  templateUrl: './participants.component.html',
+  selector: 'eloglicko-player',
+  templateUrl: './player.component.html',
   imports: [CommonModule, ReactiveFormsModule, NgIconComponent, CardComponent],
   viewProviders: [provideIcons({
     lucideUserMinus,
@@ -31,32 +31,32 @@ import { SimulationService } from '../../services/simulation.service';
     tablerChessBishopFilled,
   })],
 })
-export class ParticipantsComponent {
-  protected _participants: Participant[] = [];
+export class PlayerComponent {
+  protected _players: Player[] = [];
 
-  protected _participantForm = new FormGroup({
+  protected _playerForm = new FormGroup({
     name: new FormControl('', Validators.required),
     strength: new FormControl(null, Validators.required),
   });
 
-  constructor(private _simulationService: SimulationService) {
+  constructor(protected _simulationService: SimulationService) {
   }
 
-  protected _createParticipant(): void {
-    const name = this._participantForm.get('name')?.value;
-    const strength = this._participantForm.get('strength')?.value;
-    if (this._participantForm.valid) {
-      this._simulationService.simulation.createParticipant(name ?? '', strength ?? 1);
-      this._participantForm.reset();
+  protected _createPlayer(): void {
+    const name = this._playerForm.get('name')?.value;
+    const strength = this._playerForm.get('strength')?.value;
+    if (this._playerForm.valid) {
+      this._simulationService.simulation.createPlayer(name ?? '', strength ?? 1);
+      this._playerForm.reset();
     }
   }
 
-  protected _changeParticipantColor(index: number): void {
-    this._simulationService.simulation.changeParticipantColor(index);
+  protected _changePlayerColor(index: number): void {
+    this._simulationService.simulation.changePlayerColor(index);
 
   }
 
-  protected _deleteParticipant(index: number): void {
-    this._simulationService.simulation.deleteParticipant(index);
+  protected _deletePlayer(index: number): void {
+    this._simulationService.simulation.deletePlayer(index);
   }
 }

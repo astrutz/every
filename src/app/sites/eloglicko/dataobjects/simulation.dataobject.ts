@@ -1,32 +1,34 @@
-import { Participant } from './participant.dataobject';
+import { Player } from './player.dataobject';
 import { Configuration  } from './primitives.types';
+import { MatchMaker } from './matchmaker.dataobject';
 
 export class Simulation {
-  private _participants: Participant[] = [];
+  private _players: Player[] = [];
   private _configuration: Configuration | null = null;
+  private _tournament: MatchMaker | null = null;
 
   constructor() {
   }
 
-  get participants(): Participant[] {
-    return this._participants ?? [];
+  get players(): Player[] {
+    return this._players ?? [];
   }
 
-  createParticipant(name: string, strength: number): void {
-    this._participants.push(new Participant(name ?? '', strength ?? 0, this.randomColor));
+  createPlayer(name: string, strength: number): void {
+    this._players.push(new Player(name ?? '', strength ?? 0, this.randomColor));
   }
 
-  changeParticipantColor(index: number): void {
-    this._participants.forEach((participant, i) => {
+  changePlayerColor(index: number): void {
+    this._players.forEach((player, i) => {
       if (index === i) {
-        participant.color = this.randomColor;
-        participant.setRandomPiece();
+        player.color = this.randomColor;
+        player.setRandomPiece();
       }
     });
   }
 
-  deleteParticipant(index: number): void {
-    this._participants = this._participants.filter((participant, i) => i !== index);
+  deletePlayer(index: number): void {
+    this._players = this._players.filter((player, i) => i !== index);
   }
 
   get randomColor(): string {
@@ -39,5 +41,13 @@ export class Simulation {
 
   set configuration(configuration: Configuration) {
     this._configuration = configuration;
+  }
+
+  get tournament(): MatchMaker | null {
+    return this._tournament;
+  }
+
+  set tournament(tournament: MatchMaker) {
+    this._tournament = tournament;
   }
 }

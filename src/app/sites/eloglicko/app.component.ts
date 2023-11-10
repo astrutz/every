@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { ParticipantsComponent } from './components/participant/participants.component';
+import { PlayerComponent } from './components/player/player.component';
 import { ConfigurationComponent } from './components/configuration/configuration.component';
 
 @Component({
   standalone: true,
-  imports: [RouterModule, AppComponent, ParticipantsComponent, ConfigurationComponent],
+  imports: [RouterModule, AppComponent, PlayerComponent, ConfigurationComponent],
   selector: 'eloglicko-root',
   templateUrl: './app.component.html',
 })
