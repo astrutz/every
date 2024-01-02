@@ -3,6 +3,13 @@
 This repository containing various Angular webapps that power my portfolio website at
 https://alexstrutz.dev. 
 
+## Requirements
+
+```
+node v18.14.2
+npm v9.5.0
+```
+
 ## Installation
 
 To get started with this repository, follow the steps below:
