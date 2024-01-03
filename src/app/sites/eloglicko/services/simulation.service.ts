@@ -97,10 +97,13 @@ export class SimulationService {
   _setPlayerRatingsGlicko(matches: Match[], ranking: Ranking): void {
     matches = matches.filter((match) => match.opponents[1]);
     // collect playerInfos with win/loose info
-    const matchResultsByPlayer: Map<PlayerRating | undefined | -1, {
-      opponent: PlayerRating | undefined | -1,
-      result: 0 | 0.5 | 1
-    }[]> = new Map();
+    const matchResultsByPlayer: Map<
+      PlayerRating | undefined | -1,
+      {
+        opponent: PlayerRating | undefined | -1;
+        result: 0 | 0.5 | 1;
+      }[]
+    > = new Map();
 
     for (const match of matches) {
       if (!matchResultsByPlayer.has(match.winner)) {
@@ -119,21 +122,20 @@ export class SimulationService {
           ?.push({ opponent: match.opponents[0], result: 0.5 });
       } else {
         // one player won
-        matchResultsByPlayer
-          .get(match.winner)
-          ?.push({ opponent: match.loser, result: 1 });
-        matchResultsByPlayer
-          .get(match.loser)
-          ?.push({ opponent: match.winner, result: 0 });
+        matchResultsByPlayer.get(match.winner)?.push({ opponent: match.loser, result: 1 });
+        matchResultsByPlayer.get(match.loser)?.push({ opponent: match.winner, result: 0 });
       }
     }
 
     // Update player Rating and RD
     // We need to do it in two loops, since we first need to calc all new values without changing the old ones
-    const newRatings: Map<PlayerRating | undefined, {
-      rating: number | undefined,
-      rd: number | undefined
-    }>  = new Map();
+    const newRatings: Map<
+      PlayerRating,
+      {
+        rating: number;
+        rd: number;
+      }
+    > = new Map();
     for (const [player, matchResults] of matchResultsByPlayer.entries()) {
       // @ts-ignore
       newRatings.set(player, {
@@ -143,23 +145,20 @@ export class SimulationService {
         rd: player?.glickoNewPlayerRD(matchResults),
       });
     }
-    // @ts-ignore
-    for (const [player, newRatings] of newRatings) {
-      player.currentRating = newRatings.rating;
-      player.currentGlickoRD = newRatings.rd;
+    for (const [player, newRating] of newRatings) {
+      player.currentRating = newRating.rating;
+      player.currentGlickoRD = newRating.rd;
       player.glickoTimeSinceLastGame = 0;
     }
 
     // Update all players glickoTimeSinceLastGame+=1
-    ranking.playerRatings.forEach(
-      (playerRating) => {
-        playerRating.glickoTimeSinceLastGame++;
-        // this player hat a free pass this round, so his ratings were duplicated
-        if (!newRatings.has(playerRating)) {
-          // eslint-disable-next-line no-self-assign
-          playerRating.currentRating = playerRating.currentRating;
-        }
-      },
-    );
+    ranking.playerRatings.forEach((playerRating) => {
+      playerRating.glickoTimeSinceLastGame++;
+      // this player hat a free pass this round, so his ratings were duplicated
+      if (!newRatings.has(playerRating)) {
+        // eslint-disable-next-line no-self-assign
+        playerRating.currentRating = playerRating.currentRating;
+      }
+    });
   }
 }
