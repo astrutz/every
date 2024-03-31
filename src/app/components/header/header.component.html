@@ -1,0 +1,42 @@
+<header
+  class="sticky top-0 z-30 w-full border-b border-transparent max-md:border-gray-100 dark:max-md:border-gray-800 dark:bg-gray-950/50 bg-gray/50 backdrop-blur-xl dark:md:border-gray-800 md:border-gray-100">
+  <div class="mx-auto flex w-full max-w-7xl items-center justify-between p-4 md:px-8">
+    <a target="_self" class="" href="/"
+    ><h3
+      class="text-xl md:text-2xl tracking-[-0.02em] dark:text-gray-50 text-gray-900 font-bold transition-colors duration-200">
+      &lt;alexstrutz.dev /&gt;
+    </h3></a
+    >
+    <div class="hidden items-center gap-6 md:flex">
+      <ul class="flex list-none items-center gap-6">
+        @for (link of ['About', 'Work', 'Testimonials', 'Contact']; track link) {
+          <li>
+            <a
+              target="_self"
+              class="text-base font-medium text-gray-600 dark:text-gray-300 transition-all dark:hover:text-gray-50 hover:text-gray-900 dark:active:text-gray-300 active:text-gray-600 "
+              [href]="'#' + link.toLowerCase()"
+            >{{ link }}</a
+            >
+          </li>
+        }
+      </ul>
+      <div class="h-6 w-0.5 bg-gray-100 dark:bg-gray-800"></div>
+      <div class="flex items-center gap-4">
+        <button
+          class="relative flex justify-center items-center dark:hover:bg-gray-800 hover:bg-gray-100 dark:active:bg-gray-700 active:bg-gray-200 rounded-lg p-1.5 transition-colors duration-200"
+          (click)="toggleColorScheme()">
+          <ng-icon [color]="iconColor" size="1.5rem" name="lucideMoon"></ng-icon>
+        </button>
+      </div>
+    </div>
+    <button
+      class="relative justify-center items-center dark:hover:bg-gray-800 hover:bg-gray-100 dark:active:bg-gray-700 active:bg-gray-200 rounded-lg p-1.5 transition-colors duration-200 flex md:hidden"
+      type="button"
+      aria-haspopup="dialog"
+      aria-expanded="false"
+      aria-controls="radix-:R1mja:"
+      data-state="closed">
+      <ng-icon [color]="iconColor" size="1.5rem" name="lucideMenu"></ng-icon>
+    </button>
+  </div>
+</header>
