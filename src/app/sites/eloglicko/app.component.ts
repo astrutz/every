@@ -5,7 +5,7 @@ import { ConfigurationComponent } from './components/configuration/configuration
 
 @Component({
   standalone: true,
-  imports: [RouterModule, AppComponent, PlayerComponent, ConfigurationComponent],
+  imports: [RouterModule, PlayerComponent, ConfigurationComponent],
   selector: 'eloglicko-root',
   templateUrl: './app.component.html',
 })
