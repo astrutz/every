@@ -1,0 +1,40 @@
+<eloglicko-card>
+  <section class="h-full">
+    <h3 class="mt-2">Turnierteilnehmer</h3>
+    @if (_simulationService.simulation.players.length) {
+      <ul>
+        @for (player of _simulationService.simulation.players; track player; let idx = $index) {
+          <li
+            [ngClass]="{ 'border-b-2': idx !== _simulationService.simulation.players.length }"
+            class="grid grid-cols-[auto,1fr,auto] mb-2">
+            <button class="mr-4" (click)="_changePlayerColor(idx)">
+              <ng-icon
+                [name]="'tablerChess' + player.piece + 'Filled'"
+                size="2em"
+                [color]="player.color"></ng-icon>
+            </button>
+            <span class="grid grid-col-2">
+              <span>{{ player.name }}</span
+              ><span class="text-gray-500">Stärke: {{ player.strength }}</span>
+            </span>
+            <button (click)="_deletePlayer(idx)">
+              <ng-icon name="lucideUserMinus"></ng-icon>
+            </button>
+          </li>
+        }
+      </ul>
+    } @else {
+      <p>Füge Teilnehmer mit ihrer Stärke hinzu, um sie hier angezeigt zu bekommen.</p>
+    }
+    <form
+      class="grid grid-cols-[2fr,2fr,auto] gap-2 mt-8"
+      [formGroup]="_playerForm"
+      (ngSubmit)="_createPlayer()">
+      <input class="h-8" type="text" placeholder="Name" formControlName="name" />
+      <input class="h-8" type="number" placeholder="Stärke" min="0" formControlName="strength" />
+      <button type="submit" [disabled]="_playerForm.invalid">
+        <ng-icon name="lucideUserPlus" [color]="_playerForm.valid ? 'black' : 'gray'"></ng-icon>
+      </button>
+    </form>
+  </section>
+</eloglicko-card>

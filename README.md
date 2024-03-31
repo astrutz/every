@@ -1,9 +1,14 @@
 # Every
 
-This repository containing various Angular apps that power my portfolio website at
-_Todo: Add URL_. It is a [Nx monorepo](https://nx.dev), that provides a streamlined approach to manage multiple Angular
-projects
-within a single codebase.
+This repository containing various Angular webapps that power my portfolio website at
+https://alexstrutz.dev. 
+
+## Requirements
+
+```
+node v18.14.2
+npm v9.5.0
+```
 
 ## Installation
 
@@ -20,16 +25,10 @@ husky install
 
 ## Development server
 
-Run `nx serve every` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you
+Run `ng start` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you
 change any of the source files.
 
-_Todo: Add specific app launch command if necessary_
-
 This command will launch the local development server and make the apps accessible through the specified URLs.
-
-## Understand this workspace
-
-Run `nx graph` to see a diagram of the dependencies of the projects.
 
 ## Commit Conventions
 
