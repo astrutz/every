@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { ColorschemeService } from './services/colorscheme/colorscheme.service';
+import { FooterComponent } from './components/footer/footer.component';
 
 @Component({
   selector: 'every-root',
   templateUrl: './app.component.html',
   standalone: true,
-  imports: [HeaderComponent, RouterModule],
+  imports: [HeaderComponent, RouterModule, FooterComponent],
 })
 export class AppComponent {
   title = 'every';
