@@ -6,9 +6,9 @@ export const experiences: Experience[] = [
     company: 'babiel',
     href: 'https://www.babiel.com',
     tasks: [
-      'Relaunched an Angular based web app for displaying digital publications and statistics.',
-      'Worked with a variety of technologies, including Angular, Typescript, TailwindCSS, EveryLayout, GraphQL, Compodoc, Jest and others.',
-      'Acted as mentor, foreman and technical frontend lead.',
+      'Spearheaded the successful relaunch of a digital publication and statistics application.',
+      'Demonstrated proficiency in a diverse tech stack, including Angular, Typescript, TailwindCSS, EveryLayout, GraphQL, Compodoc, Jest, among others.      ',
+      'Provided leadership as a mentor and technical foreman, guiding the frontend development team.',
     ],
     duration: 'Jan 2023 - Present',
   },
@@ -17,8 +17,8 @@ export const experiences: Experience[] = [
     company: 'appsoluts',
     href: 'https://appsoluts.de',
     tasks: [
-      'Implemented high-performance web applications.',
-      'Worked as fullstack developer including Vue.js and Ruby on Rails.',
+      'Engineered and optimized high-performance web applications for enhanced user experience.',
+      'Fulfilled the role of a full-stack developer, proficient in Vue.js and Ruby on Rails ecosystems.'
     ],
     duration: 'Apr 2022 - Dec 2022',
   },
@@ -27,9 +27,9 @@ export const experiences: Experience[] = [
     company: 'able',
     href: 'https://www.able-group.de',
     tasks: [
-      'Implemented standalone web-based plugins for a document management system.',
-      'Worked in an all-around role including requirements engineering, conception, product implementation, testing and dev-ops.',
-      'Brainstormed ideas and features in close contact to inhouse clients.',
+      'Developed and deployed standalone web-based plugins to enhance a document management system\'s functionality.',
+      'Assumed a comprehensive role encompassing requirements engineering, conceptual design, product development, testing, and operations management.',
+      'Collaborated closely with in-house clients to ideate and refine product features, ensuring alignment with business objectives.',
     ],
     duration: 'Feb 2020 - Mar 2022',
   },
@@ -38,8 +38,8 @@ export const experiences: Experience[] = [
     company: 'kernpunkt',
     href: 'https://www.kernpunkt.de',
     tasks: [
-      'Implemented Java-based CMS extensions and web templates.',
-      'Worked active in a Scrum transformation process',
+      'Executed the development of Java-based CMS extensions and web templates, enhancing system capabilities and user interface.',
+      'Played an important role in the operational Scrum transformation process, contributing to the adoption of agile methodologies.',
     ],
     duration: 'Aug 2017 - Jan 2020',
   },

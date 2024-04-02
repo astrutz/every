@@ -4,8 +4,8 @@ export const works: Work[] = [
   {
     title: 'Digitale Publikationen der Bundesbank',
     description:
-      'A modern platform for searching and reading digital publications of the German Federal Bank. This page includes a reactive read progress indication, as well as multiple navigations and an excellent accessibility and performance.',
-    href: 'https://www.publikationen.bundesbank.de',
+      'An intuitive platform for finding and reading digital publications. It includes a simple progress tracker, easy navigation, and is designed with accessibility and performance in mind.',
+    href: 'https://publikationen.bundesbank.de',
     preview: '/assets/works/digipub.webp',
     technologies: [
       'Angular',
@@ -34,7 +34,7 @@ export const works: Work[] = [
   },
   {
     title: 'Grailify',
-    description: 'A high-performant web-application for researching sneaker information.',
+    description: 'A user-friendly web application for sneaker enthusiasts to find detailed information quickly and efficiently.',
     href: 'https://grailify.com',
     preview: '/assets/works/grailify.webp',
     technologies: [
@@ -50,7 +50,7 @@ export const works: Work[] = [
   {
     title: 'Basler',
     description:
-      'A comprehensive shop to buy optical lenses, including an extensive filtering and search backend application.',
+      'An online store offering a wide range of optical lenses, featuring a comprehensive search and filter system for an easy shopping experience.',
     href: 'https://www.baslerweb.com/',
     preview: '/assets/works/basler.webp',
     technologies: ['React', 'FirstSpirit CMS', 'Java', 'High-Performance', 'SEO'],
