@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { TagComponent } from '../../../../components/tag/tag.component';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { lucideExternalLink, lucideMapPin } from '@ng-icons/lucide';
+import { lucideExternalLink } from '@ng-icons/lucide';
 import { NgOptimizedImage } from '@angular/common';
 
 @Component({
