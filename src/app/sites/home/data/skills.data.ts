@@ -17,5 +17,6 @@ export const skills: Skill[] = [
     name: 'Vue',
     href: 'https://vuejs.org/',
   },
+  // NX, Gridsome
   // todo: add more skills and add them to xing and linkedin accordingly
 ];
