@@ -8,11 +8,12 @@ import {
   lucideX,
 } from '@ng-icons/lucide';
 import { NgIcon, provideIcons } from '@ng-icons/core';
+import { SocialsComponent } from '../../../../components/socials/socials.component';
 
 @Component({
   selector: 'every-contact',
   standalone: true,
-  imports: [NgIcon],
+  imports: [NgIcon, SocialsComponent],
   templateUrl: './contact.component.html',
   viewProviders: [
     provideIcons({
