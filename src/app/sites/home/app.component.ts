@@ -6,6 +6,7 @@ import { SkillsComponent } from './components/skills/skills.component';
 import { ExperienceComponent } from './components/experience/experience.component';
 import { WorkComponent } from './components/work/work.component';
 import { TestimonialsComponent } from './components/testimonials/testimonials.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 @Component({
   standalone: true,
@@ -17,6 +18,7 @@ import { TestimonialsComponent } from './components/testimonials/testimonials.co
     ExperienceComponent,
     WorkComponent,
     TestimonialsComponent,
+    ContactComponent,
   ],
   selector: 'home-root',
   templateUrl: './app.component.html',
