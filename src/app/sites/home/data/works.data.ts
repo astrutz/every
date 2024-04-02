@@ -18,7 +18,7 @@ export const works: Work[] = [
     ],
   },
   {
-    title: 'Compodoc (contributions)',
+    title: 'Compodoc',
     description: 'The missing documentation tool for your Angular, Nest & Stencil application.',
     href: 'https://compodoc.app/',
     preview: '/assets/works/compodoc.webp',
