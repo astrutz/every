@@ -18,6 +18,21 @@ export const works: Work[] = [
     ],
   },
   {
+    title: 'Compodoc (contributions)',
+    description: 'The missing documentation tool for your Angular, Nest & Stencil application.',
+    href: 'https://compodoc.app/',
+    preview: '/assets/works/compodoc.webp',
+    technologies: [
+      'Open Source',
+      'Angular',
+      'TypeScript',
+      'Handlebars',
+      'TS-Morph',
+      'Collaborative',
+      'SCSS',
+    ],
+  },
+  {
     title: 'Grailify',
     description: 'A high-performant web-application for researching sneaker information.',
     href: 'https://grailify.com',
@@ -33,22 +48,6 @@ export const works: Work[] = [
     ],
   },
   {
-    title: 'OfficeClean24',
-    description:
-      'A fast webpage to book cleaning services. Includes a self-written Markdown parser, which works as a CMS.',
-    href: 'https://grailify.com',
-    preview: '/assets/works/officeclean.webp',
-    technologies: [
-      'Vue.js',
-      'Markdown to Code',
-      'Gridsome',
-      'Turbolinks',
-      'Server-Side Generation',
-      'High-Performance',
-      'SEO',
-    ],
-  },
-  {
     title: 'Basler',
     description:
       'A comprehensive shop to buy optical lenses, including an extensive filtering and search backend application.',
@@ -56,4 +55,5 @@ export const works: Work[] = [
     preview: '/assets/works/basler.webp',
     technologies: ['React', 'FirstSpirit CMS', 'Java', 'High-Performance', 'SEO'],
   },
+  // todo: replace officeclean with amazing map or other projects?
 ];
