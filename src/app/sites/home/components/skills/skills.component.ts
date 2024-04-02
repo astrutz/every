@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { TagComponent } from '../../../../components/tag/tag.component';
+import { StoreService } from '../../services/store.service';
+import { Skill } from '../../types/skill.type';
 
 @Component({
   selector: 'every-skills',
@@ -9,23 +11,9 @@ import { TagComponent } from '../../../../components/tag/tag.component';
   templateUrl: './skills.component.html',
 })
 export class SkillsComponent {
-  skills: { name: string; href: string }[] = [
-    {
-      name: 'Javascript',
-      href: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript',
-    },
-    {
-      name: 'Typescript',
-      href: 'https://www.typescriptlang.org/',
-    },
-    {
-      name: 'Angular',
-      href: 'https://angular.io/',
-    },
-    {
-      name: 'Vue',
-      href: 'https://vuejs.org/',
-    },
-    // todo: add more skills and add them to xing and linkedin accordingly
-  ];
+  constructor(private readonly _store: StoreService) {}
+
+  protected get skills(): Skill[] {
+    return this._store.skills;
+  }
 }

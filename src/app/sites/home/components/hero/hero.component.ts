@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideGithub, lucideInstagram, lucideLinkedin, lucideMapPin } from '@ng-icons/lucide';
 import { SocialsComponent } from '../../../../components/socials/socials.component';
+import { Social } from '../../types/social.type';
+import { StoreService } from '../../services/store.service';
 
 @Component({
   selector: 'every-hero',
@@ -18,26 +20,9 @@ import { SocialsComponent } from '../../../../components/socials/socials.compone
   ],
 })
 export class HeroComponent {
-  contact = {
-    mail: 'hello@alexstrutz.dev',
-    links: [
-      {
-        icon: 'lucideGithub',
-        href: 'https://github.com/astrutz',
-      },
-      {
-        icon: 'lucideLinkedin',
-        href: 'https://de.linkedin.com/in/alexander-strutz-36a799230',
-      },
-      {
-        icon: 'lucideXing',
-        href: 'todo',
-      },
-      {
-        icon: 'lucideInstagram',
-        href: 'todo',
-      },
-      // todo: add xing logo and links
-    ],
-  };
+  constructor(private readonly _store: StoreService) {}
+
+  protected get socials(): Social[] {
+    return this._store.socials;
+  }
 }

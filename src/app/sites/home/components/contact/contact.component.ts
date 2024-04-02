@@ -5,10 +5,11 @@ import {
   lucideInstagram,
   lucideLinkedin,
   lucideMail,
-  lucideX,
 } from '@ng-icons/lucide';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { SocialsComponent } from '../../../../components/socials/socials.component';
+import { StoreService } from '../../services/store.service';
+import { Social } from '../../types/social.type';
 
 @Component({
   selector: 'every-contact',
@@ -26,32 +27,20 @@ import { SocialsComponent } from '../../../../components/socials/socials.compone
   ],
 })
 export class ContactComponent {
-  contact = {
-    mail: 'hello@alexstrutz.dev',
-    links: [
-      {
-        icon: 'lucideGithub',
-        href: 'https://github.com/astrutz',
-      },
-      {
-        icon: 'lucideLinkedin',
-        href: 'https://de.linkedin.com/in/alexander-strutz-36a799230',
-      },
-      {
-        icon: 'lucideXing',
-        href: 'todo',
-      },
-      {
-        icon: 'lucideInstagram',
-        href: 'todo',
-      },
-      // todo: add xing logo and links
-    ],
-  };
+  showCopyChip = false;
+
+  mail = 'hello@alexstrutz.dev';
+
+  constructor(private readonly _store: StoreService) {}
+
+  protected get socials(): Social[] {
+    return this._store.socials;
+  }
 
   copyTextToClipboard(text: string) {
     if (navigator && 'clipboard' in navigator) {
       navigator.clipboard.writeText(text);
+      this.showCopyChip = true;
     }
   }
 }

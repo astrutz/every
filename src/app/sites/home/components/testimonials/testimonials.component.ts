@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
+import { StoreService } from '../../services/store.service';
+import { Testimonial } from '../../types/testimonial.type';
 
 @Component({
   selector: 'every-testimonials',
@@ -8,12 +10,9 @@ import { NgOptimizedImage } from '@angular/common';
   templateUrl: './testimonials.component.html',
 })
 export class TestimonialsComponent {
-  testimonials = [
-    {
-      name: 'Thomas Thomasen',
-      position: 'Founder - inboxgenie.io',
-      text: '"Job well done! I am really impressed. He is very very good at what he does:) I would recommend Sagar and will rehire in the future for Frontend development."',
-      avatar: '/assets/headshot.webp',
-    },
-  ];
+  constructor(private readonly _store: StoreService) {}
+
+  protected get testimonials(): Testimonial[] {
+    return this._store.testimonials;
+  }
 }
