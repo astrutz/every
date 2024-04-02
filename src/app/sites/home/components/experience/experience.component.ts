@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { ColorschemeService } from '../../../../services/colorscheme/colorscheme.service';
+import { TagComponent } from '../../../../components/tag/tag.component';
 
 @Component({
   selector: 'every-experience',
   standalone: true,
-  imports: [NgOptimizedImage],
+  imports: [NgOptimizedImage, TagComponent],
   templateUrl: './experience.component.html',
 })
 export class ExperienceComponent {

@@ -1,0 +1,51 @@
+<section class="w-full dark:bg-gray-950 bg-gray py-16 md:py-20 2xl:py-24" id="work">
+  <div class="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 md:gap-12 md:px-8">
+    <div class="flex flex-col items-center gap-4">
+      <div class="self-center">
+        <every-tag>Work</every-tag>
+      </div>
+      <p class="text-normal text-lg md:text-xl max-w-xl text-center">
+        Some of the noteworthy projects I have built:
+      </p>
+    </div>
+    @for (work of works; track work) {
+      <div
+        class="rounded-xl bg-gray shadow-md dark:bg-gray-800 dark:shadow-2xl mx-auto flex w-full max-w-6xl flex-col md:flex-row">
+        <div
+          class="flex items-center justify-center dark:border-gray-800 border-gray-100 bg-gray-50 p-8 dark:bg-gray-700 max-md:rounded-t-xl md:w-1/2 lg:p-12 md:rounded-l-xl md:border-r">
+          <a target="_blank" class="" [href]="work.href"
+            ><img
+              [alt]="work.title + ' preview'"
+              loading="lazy"
+              width="1944"
+              height="1266"
+              decoding="async"
+              data-nimg="1"
+              class="rounded-xl shadow-lg transition-transform duration-500 md:hover:scale-105"
+              style="color: transparent; object-fit: cover"
+              [ngSrc]="work.preview"
+          /></a>
+        </div>
+        <div class="flex flex-col gap-6 p-8 md:w-1/2 lg:p-12">
+          <p class="text-lg md:text-xl font-semibold dark:text-gray-50 text-gray-900">
+            {{ work.title }}
+          </p>
+          <p class="text-normal text-base">
+            {{ work.description }}
+          </p>
+          <div class="flex flex-wrap gap-2">
+            @for (technology of work.technologies; track technology) {
+              <every-tag>{{ technology }}</every-tag>
+            }
+          </div>
+          <a
+            target="_blank"
+            class="self-start rounded-lg p-1.5 dark:hover:bg-gray-900 hover:bg-gray-50"
+            [href]="work.href"
+            ><ng-icon name="lucideExternalLink" size="1.5rem" color="currentColor"></ng-icon
+          ></a>
+        </div>
+      </div>
+    }
+  </div>
+</section>

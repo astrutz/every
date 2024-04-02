@@ -4,10 +4,18 @@ import { HeroComponent } from './components/hero/hero.component';
 import { AboutComponent } from './components/about/about.component';
 import { SkillsComponent } from './components/skills/skills.component';
 import { ExperienceComponent } from './components/experience/experience.component';
+import { WorkComponent } from './components/work/work.component';
 
 @Component({
   standalone: true,
-  imports: [RouterModule, HeroComponent, AboutComponent, SkillsComponent, ExperienceComponent],
+  imports: [
+    RouterModule,
+    HeroComponent,
+    AboutComponent,
+    SkillsComponent,
+    ExperienceComponent,
+    WorkComponent,
+  ],
   selector: 'home-root',
   templateUrl: './app.component.html',
 })
