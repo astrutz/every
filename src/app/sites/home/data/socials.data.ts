@@ -10,12 +10,11 @@ export const socials: Social[] = [
     href: 'https://de.linkedin.com/in/alexander-strutz-36a799230',
   },
   {
-    icon: 'lucideXing',
-    href: 'todo',
+    icon: 'simpleXing',
+    href: 'https://www.xing.com/profile/Alexander_Strutz3/web_profiles?expandNeffi=true',
   },
   {
     icon: 'lucideInstagram',
     href: 'todo',
   },
-  // todo: add xing logo and links
 ];

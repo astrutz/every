@@ -10,6 +10,7 @@ import { NgIcon, provideIcons } from '@ng-icons/core';
 import { SocialsComponent } from '../../../../components/socials/socials.component';
 import { StoreService } from '../../services/store.service';
 import { Social } from '../../types/social.type';
+import { simpleXing } from '@ng-icons/simple-icons';
 
 @Component({
   selector: 'every-contact',
@@ -23,6 +24,7 @@ import { Social } from '../../types/social.type';
       lucideInstagram,
       lucideCopy,
       lucideMail,
+      simpleXing,
     }),
   ],
 })

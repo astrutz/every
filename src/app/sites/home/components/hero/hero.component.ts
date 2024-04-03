@@ -4,6 +4,7 @@ import { lucideGithub, lucideInstagram, lucideLinkedin, lucideMapPin } from '@ng
 import { SocialsComponent } from '../../../../components/socials/socials.component';
 import { Social } from '../../types/social.type';
 import { StoreService } from '../../services/store.service';
+import { simpleXing } from '@ng-icons/simple-icons';
 
 @Component({
   selector: 'every-hero',
@@ -16,6 +17,7 @@ import { StoreService } from '../../services/store.service';
       lucideGithub,
       lucideLinkedin,
       lucideInstagram,
+      simpleXing,
     }),
   ],
 })
