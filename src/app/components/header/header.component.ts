@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideMenu, lucideMoon, lucideSun } from '@ng-icons/lucide';
 import { ColorschemeService } from '../../services/colorscheme/colorscheme.service';
+import { NavigationService } from '../../services/navigation/navigation.service';
 
 @Component({
   selector: 'every-header',
@@ -17,13 +18,20 @@ import { ColorschemeService } from '../../services/colorscheme/colorscheme.servi
   ],
 })
 export class HeaderComponent {
-  constructor(private colorschemeService: ColorschemeService) {}
+  constructor(
+    protected colorschemeService: ColorschemeService,
+    protected _navigationService: NavigationService,
+  ) {}
 
   get iconName() {
     return this.colorschemeService.colorscheme === 'light' ? 'lucideMoon' : 'lucideSun';
   }
 
-  toggleColorScheme() {
+  protected openNavigation(): void {
+    this._navigationService.isOpen = true;
+  }
+
+  protected toggleColorScheme() {
     this.colorschemeService.toggleColorScheme();
   }
 }
