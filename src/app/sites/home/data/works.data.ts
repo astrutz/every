@@ -34,7 +34,8 @@ export const works: Work[] = [
   },
   {
     title: 'Grailify',
-    description: 'A user-friendly web application for sneaker enthusiasts to find detailed information quickly and efficiently.',
+    description:
+      'A user-friendly web application for sneaker enthusiasts to find detailed information quickly and efficiently.',
     href: 'https://grailify.com',
     preview: '/assets/works/grailify.webp',
     technologies: [
@@ -55,5 +56,4 @@ export const works: Work[] = [
     preview: '/assets/works/basler.webp',
     technologies: ['React', 'FirstSpirit CMS', 'Java', 'High-Performance', 'SEO'],
   },
-  // todo: replace officeclean with amazing map or other projects?
 ];
