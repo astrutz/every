@@ -15,6 +15,6 @@ export const socials: Social[] = [
   },
   {
     icon: 'lucideInstagram',
-    href: 'todo',
+    href: 'https://www.instagram.com/der_strutz',
   },
 ];
