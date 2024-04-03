@@ -1,3 +1,5 @@
+[![Deployment Status](https://api.netlify.com/api/v1/badges/3eaba9d6-c656-4963-a370-04b01e27b741/deploy-status)](https://app.netlify.com/sites/lovely-test/deploys)
+
 # Every
 
 This repository containing various Angular webapps that power my portfolio website at
