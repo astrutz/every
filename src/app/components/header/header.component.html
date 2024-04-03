@@ -25,18 +25,19 @@
         <button
           class="relative flex justify-center items-center dark:hover:bg-gray-800 hover:bg-gray-100 dark:active:bg-gray-700 active:bg-gray-200 rounded-lg p-1.5 transition-colors duration-200"
           (click)="toggleColorScheme()">
-          <ng-icon [color]="iconColor" size="1.5rem" name="lucideMoon"></ng-icon>
+          <ng-icon color="currentColor" size="1.5rem" [name]="iconName"></ng-icon>
         </button>
       </div>
     </div>
     <button
+      (click)="openNavigation()"
       class="relative justify-center items-center dark:hover:bg-gray-800 hover:bg-gray-100 dark:active:bg-gray-700 active:bg-gray-200 rounded-lg p-1.5 transition-colors duration-200 flex md:hidden"
       type="button"
       aria-haspopup="dialog"
       aria-expanded="false"
       aria-controls="radix-:R1mja:"
       data-state="closed">
-      <ng-icon [color]="iconColor" size="1.5rem" name="lucideMenu"></ng-icon>
+      <ng-icon color="currentColor" size="1.5rem" name="lucideMenu"></ng-icon>
     </button>
   </div>
 </header>

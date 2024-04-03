@@ -1,0 +1,42 @@
+<section class="w-full bg-gray dark:bg-gray-950 py-16 md:py-20 2xl:py-24" id="contact">
+  <div class="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 md:gap-12 md:px-8">
+    <div class="flex flex-col items-center gap-4">
+      <div class="self-center">
+        <div
+          class="flex items-center justify-center rounded-xl bg-gray-200 dark:bg-gray-700 px-5 py-1">
+          <p class="text-normal text-sm font-medium">Get in touch</p>
+        </div>
+      </div>
+      <p class="text-normal text-lg md:text-xl max-w-xl text-center">
+        Curious to learn more? Feel free to reach out to me if you are looking for a developer, have a
+        inquiry, or simply want to connect.
+      </p>
+    </div>
+    <div class="flex flex-col items-center gap-6 md:gap-12">
+      <div class="flex flex-col items-center md:gap-4">
+        <div class="flex items-center gap-4 md:gap-5">
+          <ng-icon name="lucideMail" size="1.5rem"></ng-icon>
+          <h2
+            class="text-lg md:text-4xl font-semibold tracking-[-0.02em] text-gray-900 dark:text-gray-50">
+            {{ mail }}
+          </h2>
+          <button
+            (click)="copyTextToClipboard(mail)"
+            class="relative flex justify-center items-center hover:bg-gray-100 dark:hover:bg-gray-800 active:bg-gray-200 dark:active:bg-gray-700 rounded-lg p-1.5 transition-colors duration-200 [&amp;_svg]:w-8 [&amp;_svg]:h-8">
+            @if (showCopyChip) {
+              <span
+                class="absolute -top-8 rounded-lg dark:bg-gray-700 bg-gray-200 px-2 py-1 text-sm"
+                >Copied!</span
+              >
+            }
+            <ng-icon name="lucideCopy" size="1.5rem"></ng-icon>
+          </button>
+        </div>
+      </div>
+      <div class="flex flex-col items-center gap-2">
+        <p class="text-normal text-base text-center">You also find me on these platforms!</p>
+        <every-socials [socials]="socials"></every-socials>
+      </div>
+    </div>
+  </div>
+</section>
