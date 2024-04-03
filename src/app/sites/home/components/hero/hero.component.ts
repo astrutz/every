@@ -5,11 +5,12 @@ import { SocialsComponent } from '../../../../components/socials/socials.compone
 import { Social } from '../../types/social.type';
 import { StoreService } from '../../services/store.service';
 import { simpleXing } from '@ng-icons/simple-icons';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'every-hero',
   standalone: true,
-  imports: [NgIcon, SocialsComponent],
+  imports: [NgIcon, SocialsComponent, NgOptimizedImage],
   templateUrl: './hero.component.html',
   viewProviders: [
     provideIcons({
