@@ -7,46 +7,63 @@
     </div>
     <div class="flex w-full flex-col justify-between gap-12 md:flex-row">
       <div class="flex justify-center md:order-first md:justify-end">
-        <div class="relative h-[380px] w-[320px] md:h-[460px] md:w-[380px] lg:h-[520px] lg:w-[440px]">
-          <img alt="Fullpose of Alex" width="270" height="360"
-               class="absolute z-10 h-[360px] w-[280px] border-8 border-gray-50 dark:border-gray-900 max-md:left-5 md:right-0 md:top-0 md:h-[420px] md:w-[340px] lg:h-[480px] lg:w-[400px]"
-               style="color: transparent; object-fit: cover" ngSrc="/assets/fullpose.webp" [priority]="true" />
+        <div
+          class="relative h-[380px] w-[320px] md:h-[460px] md:w-[380px] lg:h-[520px] lg:w-[440px]">
+          <img
+            alt="Fullpose of Alex"
+            width="400"
+            height="480"
+            srcset="/assets/fullpose_sm.webp 640w, /assets/fullpose_md.webp 768w, /assets/fullpose.webp 1024w, /assets/fullpose2x.webp 2x"
+            class="absolute z-10 h-[360px] w-[280px] border-8 border-gray-50 dark:border-gray-900 max-md:left-5 md:right-0 md:top-0 md:h-[420px] md:w-[340px] lg:h-[480px] lg:w-[400px]"
+            style="color: transparent; object-fit: cover"
+            ngSrc="/assets/fullpose.webp"
+            [priority]="true" />
           <div
-            class="absolute h-[360px] w-[320px] border-8 border-transparent bg-gray-200 dark:bg-gray-700 max-md:top-5 md:bottom-0 md:left-0 md:h-[420px] md:w-[340px] lg:h-[480px] lg:w-[400px]">
-          </div>
+            class="absolute h-[360px] w-[320px] border-8 border-transparent bg-gray-200 dark:bg-gray-700 max-md:top-5 md:bottom-0 md:left-0 md:h-[420px] md:w-[340px] lg:h-[480px] lg:w-[400px]"></div>
         </div>
       </div>
       <div class="flex max-w-xl flex-col gap-6">
-        <h3 class="text-2xl md:text-3xl font-semibold tracking-[-0.02em] text-gray-900 dark:text-gray-50">
+        <h3
+          class="text-2xl md:text-3xl font-semibold tracking-[-0.02em] text-gray-900 dark:text-gray-50">
           Curious about me? There you go:
         </h3>
         <p class="text-normal text-base">
-          Hello! I'm a passionate software engineer with a focus on full-stack web development. My mission? To breathe
-          life into digital products by combining technical expertise with a user-centric approach. Whether it's
-          creating seamless user experiences, implementing responsive designs, or writing clean, high-performance code,
-          I thrive on turning ideas into reality.
+          Hello! I'm a passionate software engineer with a focus on full-stack web development. My
+          mission? To breathe life into digital products by combining technical expertise with a
+          user-centric approach. Whether it's creating seamless user experiences, implementing
+          responsive designs, or writing clean, high-performance code, I thrive on turning ideas
+          into reality.
         </p>
         <p class="text-normal text-base">
-          My journey began in 2017 when I dipped my toes into web development while studying. Since then, I've embraced
-          new challenges, continuously evolved, and stayed at the forefront of technology. Over the past six years, I've
-          honed my skills and now build cutting-edge web applications using a stack that includes Angular, TypeScript,
-          Node.js, Tailwind CSS, and Ruby on Rails.
+          My journey began in 2017 when I dipped my toes into web development while studying. Since
+          then, I've embraced new challenges, continuously evolved, and stayed at the forefront of
+          technology. Over the past six years, I've honed my skills and now build cutting-edge web
+          applications using a stack that includes Angular, TypeScript, Node.js, Tailwind CSS, and
+          Ruby on Rails.
         </p>
         <p class="text-normal text-base">
-          As a proactive team member, I relish working on projects from ideation to production release. There's
-          something magical about seeing a concept evolve into a polished product. Whether it's brainstorming features,
-          architecting solutions, or squashing bugs, count me in!
+          As a proactive team member, I relish working on projects from ideation to production
+          release. There's something magical about seeing a concept evolve into a polished product.
+          Whether it's brainstorming features, architecting solutions, or squashing bugs, count me
+          in!
         </p>
         <p class="text-normal text-base">
-          When I'm not immersed in code, you'll find me running across football pitches, throwing darts or drumming.
+          When I'm not immersed in code, you'll find me running across football pitches, throwing
+          darts or drumming.
         </p>
         <p class="text-normal text-base">Finally, some quick bits about me.</p>
         <div class="flex flex-col gap-2 md:flex-row md:gap-6">
           <ul class="flex list-inside list-disc flex-col gap-2">
             <li class="text-normal text-base">M. Sc. in Media Computer Science</li>
-            <li class="text-normal text-base">Full stack engineer &#64; <a target="_blank"
-              class="underline underline-offset-4 transition-all dark:hover:text-gray-50 hover:text-gray-900 dark:active:text-gray-300 active:text-gray-600"
-              href="https://babiel.com">babiel</a></li>
+            <li class="text-normal text-base">
+              Full stack engineer &#64;
+              <a
+                target="_blank"
+                class="underline underline-offset-4 transition-all dark:hover:text-gray-50 hover:text-gray-900 dark:active:text-gray-300 active:text-gray-600"
+                href="https://babiel.com"
+                >babiel</a
+              >
+            </li>
           </ul>
           <ul class="flex list-inside list-disc flex-col gap-2">
             <li class="text-normal text-base">Rapid learner</li>
@@ -54,10 +71,14 @@
           </ul>
         </div>
         <p class="text-normal text-base">
-          Feel free to reach out — I'm available for open-source collaborations, discussions, or just to say hello! 😊 You
-          can find me on <a target="_blank"
-          class="underline underline-offset-4 transition-all dark:hover:text-gray-50 hover:text-gray-900 dark:active:text-gray-300 active:text-gray-600"
-          href="https://github.com/astrutz">GitHub</a>, where I actively support open-source projects in my free time.
+          Feel free to reach out — I'm available for open-source collaborations, discussions, or
+          just to say hello! 😊 You can find me on
+          <a
+            target="_blank"
+            class="underline underline-offset-4 transition-all dark:hover:text-gray-50 hover:text-gray-900 dark:active:text-gray-300 active:text-gray-600"
+            href="https://github.com/astrutz"
+            >GitHub</a
+          >, where I actively support open-source projects in my free time.
         </p>
       </div>
     </div>
