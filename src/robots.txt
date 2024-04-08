@@ -1,7 +1,7 @@
 User-agent: Googlebot-Image
-Disallow: assets/testimonials/daniel.webp
-Disallow: assets/testimonials/georgi.webp
-Disallow: assets/testimonials/philipp.webp
+Disallow: /assets/testimonials/daniel.webp
+Disallow: /assets/testimonials/georgi.webp
+Disallow: /assets/testimonials/philipp.webp
 Disallow: /assets/works/digipub.webp
 Disallow: /assets/works/compodoc.webp
 Disallow: /assets/works/grailify.webp
