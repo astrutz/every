@@ -11,6 +11,7 @@ import { SocialsComponent } from '../../../../components/socials/socials.compone
 import { StoreService } from '../../services/store.service';
 import { Social } from '../../types/social.type';
 import { simpleXing } from '@ng-icons/simple-icons';
+import { TagComponent } from '../../../../components/tag/tag.component';
 
 /**
  * Displays all contact information containing socials and email
@@ -18,7 +19,7 @@ import { simpleXing } from '@ng-icons/simple-icons';
 @Component({
   selector: 'every-contact',
   standalone: true,
-  imports: [NgIcon, SocialsComponent],
+  imports: [NgIcon, SocialsComponent, TagComponent],
   templateUrl: './contact.component.html',
   viewProviders: [
     provideIcons({

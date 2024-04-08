@@ -3,7 +3,9 @@
     <div class="flex flex-col items-center gap-4">
       <div class="self-center">
         <div class="self-center">
-          <every-tag>Experience</every-tag>
+          <h2>
+            <every-tag>Experience</every-tag>
+          </h2>
         </div>
       </div>
       <p class="text-normal text-lg md:text-xl max-w-xl text-center">
@@ -14,7 +16,7 @@
       <div
         class="rounded-xl bg-gray shadow-md dark:bg-gray-800 dark:shadow-2xl mx-auto flex w-full max-w-4xl flex-col justify-between gap-4 p-8 md:flex-row md:gap-8">
         <div class="max-md:order-1 md:w-1/4">
-          <a [href]="experience.href" target="_blank">
+          <a [href]="experience.href" [attr.aria-label]="experience.company" target="_blank">
             <img
               [alt]="experience.company + ' logo'"
               loading="lazy"
