@@ -6,6 +6,9 @@ import { NgOptimizedImage } from '@angular/common';
 import { StoreService } from '../../services/store.service';
 import { Work } from '../../types/work.type';
 
+/**
+ * Displays a list of projects with image and text
+ */
 @Component({
   selector: 'every-work',
   standalone: true,
@@ -20,6 +23,9 @@ import { Work } from '../../types/work.type';
 export class WorkComponent {
   constructor(private readonly _store: StoreService) {}
 
+  /**
+   * @returns The propagated list of works
+   */
   protected get works(): Work[] {
     return this._store.works;
   }

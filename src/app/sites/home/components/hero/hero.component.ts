@@ -7,6 +7,9 @@ import { StoreService } from '../../services/store.service';
 import { simpleXing } from '@ng-icons/simple-icons';
 import { NgOptimizedImage } from '@angular/common';
 
+/**
+ * Displays a herro stage with a large image and an introductory text
+ */
 @Component({
   selector: 'every-hero',
   standalone: true,
@@ -25,6 +28,9 @@ import { NgOptimizedImage } from '@angular/common';
 export class HeroComponent {
   constructor(private readonly _store: StoreService) {}
 
+  /**
+   * @returns The propagated list of socials
+   */
   protected get socials(): Social[] {
     return this._store.socials;
   }

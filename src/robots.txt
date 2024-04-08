@@ -1,0 +1,16 @@
+User-agent: Googlebot-Image
+Disallow: assets/testimonials/daniel.webp
+Disallow: assets/testimonials/georgi.webp
+Disallow: assets/testimonials/philipp.webp
+Disallow: /assets/works/digipub.webp
+Disallow: /assets/works/compodoc.webp
+Disallow: /assets/works/grailify.webp
+Disallow: /assets/works/basler.webp
+Disallow: /assets/logos/babiel_light.svg
+Disallow: /assets/logos/babiel_dark.svg
+Disallow: /assets/logos/appsoluts_light.svg
+Disallow: /assets/logos/appsoluts_dark.svg
+Disallow: /assets/logos/able_light.svg
+Disallow: /assets/logos/able_dark.svg
+Disallow: /assets/logos/kernpunkt_light.svg
+Disallow: /assets/logos/kernpunkt_dark.svg

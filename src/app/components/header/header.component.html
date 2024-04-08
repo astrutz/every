@@ -23,6 +23,7 @@
       <div class="h-6 w-0.5 bg-gray-100 dark:bg-gray-800"></div>
       <div class="flex items-center gap-4">
         <button
+          aria-label="Toggle color scheme"
           class="relative flex justify-center items-center dark:hover:bg-gray-800 hover:bg-gray-100 dark:active:bg-gray-700 active:bg-gray-200 rounded-lg p-1.5 transition-colors duration-200"
           (click)="toggleColorScheme()">
           <ng-icon color="currentColor" size="1.5rem" [name]="iconName"></ng-icon>
@@ -31,6 +32,7 @@
     </div>
     <button
       (click)="openNavigation()"
+      aria-label="Open navigation"
       class="relative justify-center items-center dark:hover:bg-gray-800 hover:bg-gray-100 dark:active:bg-gray-700 active:bg-gray-200 rounded-lg p-1.5 transition-colors duration-200 flex md:hidden"
       type="button"
       aria-haspopup="dialog"
