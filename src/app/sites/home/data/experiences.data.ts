@@ -14,7 +14,7 @@ export const experiences: Experience[] = [
     ended: null,
   },
   {
-    title: 'Web Developer (Working Student)',
+    title: $localize`Web Developer (Working Student)`,
     company: 'appsoluts',
     href: 'https://appsoluts.de',
     tasks: [
