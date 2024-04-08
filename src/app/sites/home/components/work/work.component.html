@@ -70,7 +70,7 @@
           </div>
           <div
             class="flex items-center justify-center dark:border-gray-800 border-gray-100 bg-gray-50 p-8 dark:bg-gray-700 max-md:rounded-t-xl md:w-1/2 lg:p-12 md:rounded-l-xl md:border-r">
-            <a target="_blank" class="" [href]="work.href"
+            <a target="_blank" [attr.aria-label]="work.title" [href]="work.href"
               ><img
                 [alt]="work.title + ' preview'"
                 loading="lazy"
