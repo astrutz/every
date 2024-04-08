@@ -9,7 +9,7 @@
     >
     <div class="hidden items-center gap-6 md:flex">
       <ul class="flex list-none items-center gap-6">
-        @for (link of ['About', 'Work', 'Testimonials', 'Contact']; track link) {
+        @for (link of links; track link) {
           <li>
             <a
               target="_self"
@@ -23,6 +23,7 @@
       <div class="h-6 w-0.5 bg-gray-100 dark:bg-gray-800"></div>
       <div class="flex items-center gap-4">
         <button
+          i18n-aria-label
           aria-label="Toggle color scheme"
           class="relative flex justify-center items-center dark:hover:bg-gray-800 hover:bg-gray-100 dark:active:bg-gray-700 active:bg-gray-200 rounded-lg p-1.5 transition-colors duration-200"
           (click)="toggleColorScheme()">
@@ -32,6 +33,7 @@
     </div>
     <button
       (click)="openNavigation()"
+      i18n-aria-label
       aria-label="Open navigation"
       class="relative justify-center items-center dark:hover:bg-gray-800 hover:bg-gray-100 dark:active:bg-gray-700 active:bg-gray-200 rounded-lg p-1.5 transition-colors duration-200 flex md:hidden"
       type="button"

@@ -23,6 +23,8 @@
       </h3>
       <button
         (click)="closeNavigation()"
+        i18n-aria-label
+        aria-label="Close navigation"
         class="relative flex justify-center items-center hover:bg-gray-100 active:bg-gray-200 dark:hover:bg-gray-800 dark:active:bg-gray-700 rounded-lg p-1.5 transition-colors duration-200 [&amp;_svg]:stroke-gray-600 [&amp;_svg]:hover:stroke-gray-700 [&amp;_svg]:w-6 [&amp;_svg]:h-6"
         type="button">
         <ng-icon color="currentColor" size="1.5rem" name="lucideX"></ng-icon>
@@ -30,7 +32,7 @@
     </div>
     <div class="border-b dark:border-gray-800 border-gray-100 p-4">
       <ul class="flex list-none flex-col gap-4">
-        @for (link of ['About', 'Work', 'Testimonials', 'Contact']; track link) {
+        @for (link of links; track link) {
           <li>
             <a
               (click)="closeNavigation()"
@@ -45,9 +47,10 @@
     </div>
     <div class="flex flex-col gap-4 p-4">
       <div class="flex items-center justify-between">
-        <p class="text-normal text-base">Switch Theme</p>
+        <p i18n id="toggle-theme-label" class="text-normal text-base">Switch Theme</p>
         <button
           class="relative flex justify-center items-center dark:hover:bg-gray-800 hover:bg-gray-100 dark:active:bg-gray-700 active:bg-gray-200 rounded-lg p-1.5 transition-colors duration-200"
+          aria-labelledby="toggle-theme-label"
           (click)="toggleColorScheme()">
           <ng-icon color="currentColor" size="1.5rem" [name]="iconName"></ng-icon>
         </button>
