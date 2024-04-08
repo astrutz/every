@@ -30,6 +30,14 @@ export class ExperienceComponent {
     return this._store.experiences;
   }
 
+  protected getDuration(experience: Experience): string {
+    const dateOptions: Intl.DateTimeFormatOptions = { month: 'short', year: 'numeric' }; // todo when multilang
+    const startDateFormatted = experience.started.toLocaleString('en-EN', dateOptions);
+    console.log(experience.ended, new Date('31.01.2020'));
+    const endDateFormatted = experience.ended?.toLocaleString('en-EN', dateOptions) ?? 'current';
+    return `${startDateFormatted} - ${endDateFormatted}`;
+  }
+
   /**
    * @returns The color of a logo depending on the color scheme
    */

@@ -6,5 +6,6 @@ export type Experience = {
   company: string;
   href: string;
   tasks: string[];
-  duration: string;
+  started: Date;
+  ended: Date | null;
 };

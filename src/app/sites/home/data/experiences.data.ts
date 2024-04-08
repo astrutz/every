@@ -10,7 +10,8 @@ export const experiences: Experience[] = [
       'Demonstrated proficiency in a diverse tech stack, including Angular, Typescript, TailwindCSS, EveryLayout, GraphQL, Compodoc, Jest, among others.      ',
       'Provided leadership as a mentor and technical foreman, guiding the frontend development team.',
     ],
-    duration: 'Jan 2023 - Present',
+    started: new Date('2023-01-01'),
+    ended: null,
   },
   {
     title: 'Web Developer (Working Student)',
@@ -18,20 +19,22 @@ export const experiences: Experience[] = [
     href: 'https://appsoluts.de',
     tasks: [
       'Engineered and optimized high-performance web applications for enhanced user experience.',
-      'Fulfilled the role of a full-stack developer, proficient in Vue.js and Ruby on Rails ecosystems.'
+      'Fulfilled the role of a full-stack developer, proficient in Vue.js and Ruby on Rails ecosystems.',
     ],
-    duration: 'Apr 2022 - Dec 2022',
+    started: new Date('2022-04-01'),
+    ended: new Date('2022-12-31'),
   },
   {
     title: 'ECM Developer (Working Student)',
     company: 'able',
     href: 'https://www.able-group.de',
     tasks: [
-      'Developed and deployed standalone web-based plugins to enhance a document management system\'s functionality.',
+      "Developed and deployed standalone web-based plugins to enhance a document management system's functionality.",
       'Assumed a comprehensive role encompassing requirements engineering, conceptual design, product development, testing, and operations management.',
       'Collaborated closely with in-house clients to ideate and refine product features, ensuring alignment with business objectives.',
     ],
-    duration: 'Feb 2020 - Mar 2022',
+    started: new Date('2020-02-01'),
+    ended: new Date('2022-03-31'),
   },
   {
     title: 'Java Developer (Working Student)',
@@ -41,6 +44,7 @@ export const experiences: Experience[] = [
       'Executed the development of Java-based CMS extensions and web templates, enhancing system capabilities and user interface.',
       'Played an important role in the operational Scrum transformation process, contributing to the adoption of agile methodologies.',
     ],
-    duration: 'Aug 2017 - Jan 2020',
+    started: new Date('2017-08-01'),
+    ended: new Date('2020-01-31'),
   },
 ];
