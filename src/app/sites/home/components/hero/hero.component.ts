@@ -24,6 +24,7 @@ import { NgOptimizedImage } from '@angular/common';
       simpleXing,
     }),
   ],
+  styleUrl: 'hero.component.scss',
 })
 export class HeroComponent {
   constructor(private readonly _store: StoreService) {}
