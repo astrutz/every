@@ -7,8 +7,8 @@
     "configure-husky": "npx husky install && npx husky add .husky/pre-commit",
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
+    "build": "ng build --localize",
+    "watch": "ng build --localize --watch --configuration development",
     "test": "ng test"
   },
   "private": true,

@@ -6,9 +6,9 @@
     "every": {
       "projectType": "application",
       "i18n": {
-        "sourceLocale": "en-GB",
+        "sourceLocale": "en",
         "locales": {
-          "de-DE": "src/locale/messages_de.json"
+          "de": "src/locale/messages_de.json"
         }
       },
       "schematics": {
@@ -40,7 +40,7 @@
               "src/styles.scss"
             ],
             "scripts": [],
-            "localize": ["de-DE"]
+            "localize": ["de"]
           },
           "configurations": {
             "production": {

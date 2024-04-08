@@ -26,6 +26,10 @@ export class HeaderComponent {
     protected _navigationService: NavigationService,
   ) {}
 
+  protected get links(): string[] {
+    return [$localize`About`, $localize`Experience`, 'Work', 'Testimonials', $localize`Contact`];
+  }
+
   /**
    * @returns The name of the color scheme switcher depending on the current theme
    */
@@ -46,4 +50,6 @@ export class HeaderComponent {
   protected toggleColorScheme() {
     this.colorschemeService.toggleColorScheme();
   }
+
+  protected readonly $localize = $localize;
 }
