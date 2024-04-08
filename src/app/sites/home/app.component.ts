@@ -8,6 +8,9 @@ import { WorkComponent } from './components/work/work.component';
 import { TestimonialsComponent } from './components/testimonials/testimonials.component';
 import { ContactComponent } from './components/contact/contact.component';
 
+/**
+ * Root component of the landing page, combines all visual elements
+ */
 @Component({
   standalone: true,
   imports: [

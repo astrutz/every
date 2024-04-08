@@ -3,8 +3,11 @@ import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { ColorschemeService } from './services/colorscheme/colorscheme.service';
 import { FooterComponent } from './components/footer/footer.component';
-import { MobileNavigationComponent } from "./components/mobile-navigation/mobile-navigation.component";
+import { MobileNavigationComponent } from './components/mobile-navigation/mobile-navigation.component';
 
+/**
+ * Global page root component
+ */
 @Component({
   selector: 'every-root',
   templateUrl: './app.component.html',
@@ -12,9 +15,7 @@ import { MobileNavigationComponent } from "./components/mobile-navigation/mobile
   imports: [HeaderComponent, RouterModule, FooterComponent, MobileNavigationComponent],
 })
 export class AppComponent {
-  title = 'every';
-
-  constructor(private colorschemeService: ColorschemeService) {
-    this.colorschemeService.init();
+  constructor(private _colorschemeService: ColorschemeService) {
+    this._colorschemeService.init();
   }
 }
