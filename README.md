@@ -32,6 +32,16 @@ change any of the source files.
 
 This command will launch the local development server and make the apps accessible through the specified URLs.
 
+## Working with translations
+As this page is available in German and English, [i18n](https://angular.io/api/localize) is used. Static strings need to have a `localize` keyword
+or an `i18n` directive attached. To generate the default localization file (English) run:
+
+```bash
+ ng extract-i18n --format=json --output-path src/locale
+```
+
+Copy/paste the new strings into the German locale and translate them.
+
 ## Commit Conventions
 
 In order to standardize commits (and pull request titles) and make the effects of code changes more visible, parts of
