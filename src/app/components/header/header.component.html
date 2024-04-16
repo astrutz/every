@@ -2,10 +2,10 @@
   class="sticky top-0 z-30 w-full border-b border-transparent max-md:border-gray-100 dark:max-md:border-gray-800 dark:bg-gray-950/50 bg-gray/50 backdrop-blur-xl dark:md:border-gray-800 md:border-gray-100">
   <div class="mx-auto flex w-full max-w-7xl items-center justify-between p-4 md:px-8">
     <a target="_self" class="" href="/"
-    ><h3
-      class="text-xl md:text-2xl tracking-[-0.02em] dark:text-gray-50 text-gray-900 font-bold transition-colors duration-200">
-      &lt;alexstrutz.dev /&gt;
-    </h3></a
+      ><h3
+        class="text-xl md:text-2xl tracking-[-0.02em] dark:text-gray-50 text-gray-900 font-bold transition-colors duration-200">
+        &lt;alexstrutz.dev /&gt;
+      </h3></a
     >
     <div class="hidden items-center gap-6 md:flex">
       <ul class="flex list-none items-center gap-6">
@@ -13,9 +13,9 @@
           <li>
             <a
               target="_self"
-              class="text-base font-medium text-gray-600 dark:text-gray-300 transition-all dark:hover:text-gray-50 hover:text-gray-900 dark:active:text-gray-300 active:text-gray-600 "
+              class="text-base font-medium text-gray-600 dark:text-gray-300 transition-all dark:hover:text-gray-50 hover:text-gray-900 dark:active:text-gray-300 active:text-gray-600"
               [href]="'#' + link.toLowerCase()"
-            >{{ link }}</a
+              >{{ link }}</a
             >
           </li>
         }
@@ -27,8 +27,20 @@
           aria-label="Toggle color scheme"
           class="relative flex justify-center items-center dark:hover:bg-gray-800 hover:bg-gray-100 dark:active:bg-gray-700 active:bg-gray-200 rounded-lg p-1.5 transition-colors duration-200"
           (click)="toggleColorScheme()">
-          <ng-icon color="currentColor" size="1.5rem" [name]="iconName"></ng-icon>
+          <ng-icon color="currentColor" size="1.5rem" [name]="colorIconName"></ng-icon>
         </button>
+        <div class="relative inline-block self-center p-1 w-10" role="combobox" aria-haspopup="true" aria-expanded="false">
+          <button (click)="isLanguageSwitcherOpen = !isLanguageSwitcherOpen" aria-haspopup="listbox" aria-expanded="false">
+            <img class="w-full h-auto block rounded" [src]="getLanguageIconName(activeLocale)" [alt]="activeLocale">
+          </button>
+          <div [ngClass]="{'hidden': !isLanguageSwitcherOpen}" class="absolute bg-gray-50 dark:bg-gray-900 min-w-8 z-1 p-2" role="listbox">
+            @for(locale of locales; track locale) {
+              <a [href]="locale.code">
+                <img class="w-full h-auto block" [src]="getLanguageIconName(locale.code)" [alt]="locale.name" role="option">
+              </a>
+            }
+          </div>
+        </div>
       </div>
     </div>
     <button

@@ -1,8 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Inject, LOCALE_ID, OnChanges } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideMenu, lucideMoon, lucideSun } from '@ng-icons/lucide';
 import { Colorscheme, ColorschemeService } from '../../services/colorscheme/colorscheme.service';
 import { NavigationService } from '../../services/navigation/navigation.service';
+import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { NgClass } from '@angular/common';
 
 /**
  * Displays the header bar including links, a language switcher and a color switcher
@@ -10,7 +13,7 @@ import { NavigationService } from '../../services/navigation/navigation.service'
 @Component({
   selector: 'every-header',
   standalone: true,
-  imports: [NgIcon],
+  imports: [NgIcon, FormsModule, NgClass],
   templateUrl: './header.component.html',
   viewProviders: [
     provideIcons({
@@ -21,9 +24,18 @@ import { NavigationService } from '../../services/navigation/navigation.service'
   ],
 })
 export class HeaderComponent {
+  locales = [
+    { code: 'de', name: 'Deutsch' },
+    { code: 'en', name: 'Englisch' },
+  ];
+
+  public isLanguageSwitcherOpen = false;
+
   constructor(
     protected colorschemeService: ColorschemeService,
     protected _navigationService: NavigationService,
+    private _router: Router,
+    @Inject(LOCALE_ID) public activeLocale: string,
   ) {}
 
   protected get links(): string[] {
@@ -33,8 +45,16 @@ export class HeaderComponent {
   /**
    * @returns The name of the color scheme switcher depending on the current theme
    */
-  protected get iconName(): string {
+  protected get colorIconName(): string {
     return this.colorschemeService.colorscheme === Colorscheme.light ? 'lucideMoon' : 'lucideSun';
+  }
+
+  /**
+   * Gets a language icon based on lang code
+   * @returns The name of the color scheme switcher depending on the current theme
+   */
+  protected getLanguageIconName(lang: string): string {
+    return `assets/flags/${lang}.svg`;
   }
 
   /**
@@ -47,9 +67,15 @@ export class HeaderComponent {
   /**
    * Toggles the color scheme (dark/light) on switcher click
    */
-  protected toggleColorScheme() {
+  protected toggleColorScheme(): void {
     this.colorschemeService.toggleColorScheme();
   }
 
-  protected readonly $localize = $localize;
+  /**
+   * Redirects when the language is changed
+   */
+  onLanguageChange(): void {
+    this._router.navigate([`/${this.activeLocale}`]);
+    // window.location.href = `/${this.activeLocale}`;
+  }
 }
