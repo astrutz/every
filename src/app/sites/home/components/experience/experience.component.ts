@@ -51,6 +51,6 @@ export class ExperienceComponent {
    * @returns Combined logo path containing root, name and logo color
    */
   protected getLogoPath(company: string): string {
-    return `/assets/logos/${company}_${this.logoColor}.svg`;
+    return `assets/logos/${company}_${this.logoColor}.svg`;
   }
 }
