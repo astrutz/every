@@ -6,4 +6,5 @@ export type Testimonial = {
   position: string;
   text: string;
   avatar: string;
+  link: string;
 };
