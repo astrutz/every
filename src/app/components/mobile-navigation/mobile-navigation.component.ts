@@ -25,13 +25,13 @@ export class MobileNavigationComponent extends HeaderComponent {
    * Closes the mobile navigation, this happens nowhere else
    */
   protected closeNavigation(): void {
-    this._navigationService.isOpen = false;
+    this.navigationService.isOpen = false;
   }
 
   /**
    * Propagates the open state from {@link NavigationService}
    */
   protected get isOpen(): boolean {
-    return this._navigationService.isOpen;
+    return this.navigationService.isOpen;
   }
 }

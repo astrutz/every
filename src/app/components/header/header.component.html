@@ -29,17 +29,21 @@
           (click)="toggleColorScheme()">
           <ng-icon color="currentColor" size="1.5rem" [name]="colorIconName"></ng-icon>
         </button>
-        <div class="relative inline-block self-center p-1 w-10" role="combobox" aria-haspopup="true" aria-expanded="false">
-          <button (click)="isLanguageSwitcherOpen = !isLanguageSwitcherOpen" aria-haspopup="listbox" aria-expanded="false">
-            <img class="w-full h-auto block rounded" [src]="getLanguageIconName(activeLocale)" [alt]="activeLocale">
+        <div
+          class="relative inline-block self-center p-1 w-10"
+          role="combobox"
+          aria-haspopup="true"
+          aria-expanded="false">
+          <button
+            (click)="localeService.isLanguageSwitcherOpen = !localeService.isLanguageSwitcherOpen"
+            aria-haspopup="listbox"
+            aria-expanded="false">
+            <img
+              class="w-full h-auto block rounded"
+              [src]="localeService.getLanguageIconName(localeService.activeLocale)"
+              [alt]="localeService.activeLocale"
+               />
           </button>
-          <div [ngClass]="{'hidden': !isLanguageSwitcherOpen}" class="absolute bg-gray-50 dark:bg-gray-900 min-w-8 z-1 p-2" role="listbox">
-            @for(locale of locales; track locale) {
-              <a [href]="locale.code">
-                <img class="w-full h-auto block" [src]="getLanguageIconName(locale.code)" [alt]="locale.name" role="option">
-              </a>
-            }
-          </div>
         </div>
       </div>
     </div>
