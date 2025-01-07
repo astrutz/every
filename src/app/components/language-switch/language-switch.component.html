@@ -18,7 +18,7 @@
       <div class="grid grid-cols-3 md:grid-cols-6 gap-6">
         @for (locale of localeService.locales; track locale) {
           <a
-            [routerLink]="locale.code"
+            [href]="locale.code"
             class="flex flex-col gap-1 items-center justify-center group">
             <img
               class="w-12 h-auto block group-hover:scale-110 transition-all duration-200 cursor-pointer"
