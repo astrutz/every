@@ -17,6 +17,7 @@
           "ja": "src/locale/messages_ja.json",
           "pt": "src/locale/messages_pt.json",
           "ru": "src/locale/messages_ru.json",
+          "tr": "src/locale/messages_tr.json",
           "vi": "src/locale/messages_vi.json",
           "zh": "src/locale/messages_zh.json"
         }
