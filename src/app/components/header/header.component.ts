@@ -1,8 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideMenu, lucideMoon, lucideSun } from '@ng-icons/lucide';
 import { Colorscheme, ColorschemeService } from '../../services/colorscheme/colorscheme.service';
 import { NavigationService } from '../../services/navigation/navigation.service';
+import { FormsModule } from '@angular/forms';
+import { NgClass } from '@angular/common';
+import { LanguageSwitchComponent } from '../language-switch/language-switch.component';
+import { LocaleService } from '../../services/locale/locale.service';
 
 /**
  * Displays the header bar including links, a language switcher and a color switcher
@@ -10,7 +14,7 @@ import { NavigationService } from '../../services/navigation/navigation.service'
 @Component({
   selector: 'every-header',
   standalone: true,
-  imports: [NgIcon],
+  imports: [NgIcon, FormsModule, NgClass, LanguageSwitchComponent],
   templateUrl: './header.component.html',
   viewProviders: [
     provideIcons({
@@ -21,10 +25,9 @@ import { NavigationService } from '../../services/navigation/navigation.service'
   ],
 })
 export class HeaderComponent {
-  constructor(
-    protected colorschemeService: ColorschemeService,
-    protected _navigationService: NavigationService,
-  ) {}
+  protected colorschemeService: ColorschemeService = inject(ColorschemeService);
+  protected navigationService: NavigationService = inject(NavigationService);
+  protected localeService: LocaleService = inject(LocaleService);
 
   protected get links(): string[] {
     return [$localize`About`, $localize`Experience`, 'Work', 'Testimonials', $localize`Contact`];
@@ -33,7 +36,7 @@ export class HeaderComponent {
   /**
    * @returns The name of the color scheme switcher depending on the current theme
    */
-  protected get iconName(): string {
+  protected get colorIconName(): string {
     return this.colorschemeService.colorscheme === Colorscheme.light ? 'lucideMoon' : 'lucideSun';
   }
 
@@ -41,15 +44,13 @@ export class HeaderComponent {
    * Opens the mobile navigation, this happens nowhere else
    */
   protected openNavigation(): void {
-    this._navigationService.isOpen = true;
+    this.navigationService.isOpen = true;
   }
 
   /**
    * Toggles the color scheme (dark/light) on switcher click
    */
-  protected toggleColorScheme() {
+  protected toggleColorScheme(): void {
     this.colorschemeService.toggleColorScheme();
   }
-
-  protected readonly $localize = $localize;
 }

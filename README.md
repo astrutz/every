@@ -129,6 +129,8 @@ in `.gitmessage` and can be adjusted as needed.
 
 This repository is licensed under the [MIT License](LICENSE).
 
+Copyright (c) 2025 HatScripts for including [Circle Flags](https://github.com/HatScripts/circle-flags).
+
 ## Contact
 
 If you have any questions or need further assistance, please reach out to us or open an issue in the GitHub repository.
