@@ -23,13 +23,18 @@ export class LocaleService {
     { code: 'zh', name: '官话' },
     { code: 'en', name: 'English' },
     { code: 'es', name: 'Español' },
+    { code: 'fa', name: 'فارسی' },
     { code: 'fr', name: 'Français' },
     { code: 'hi', name: 'हिन्दी' },
     { code: 'it', name: 'Italiano' },
     { code: 'ja', name: '日本語' },
+    { code: 'jv', name: 'basa Jawa' },
+    { code: 'pl', name: 'Polski' },
     { code: 'pt', name: 'Português' },
+    { code: 'ro', name: 'Româna' },
     { code: 'ru', name: 'Pусский' },
     { code: 'tr', name: 'Türkçe' },
+    { code: 'uk', name: 'українська' },
     { code: 'vi', name: 'Tiếng Việt' },
   ];
 
