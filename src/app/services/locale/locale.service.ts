@@ -29,6 +29,7 @@ export class LocaleService {
     { code: 'ja', name: '日本語' },
     { code: 'pt', name: 'Português' },
     { code: 'ru', name: 'Pусский' },
+    { code: 'tr', name: 'Türkçe' },
     { code: 'vi', name: 'Tiếng Việt' },
   ];
 
