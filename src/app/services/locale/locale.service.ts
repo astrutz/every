@@ -1,13 +1,22 @@
 import { inject, Injectable, LOCALE_ID } from '@angular/core';
 
+/**
+ * Service containing state of the current locale and language as well as the modal state
+ */
 @Injectable({
   providedIn: 'root',
 })
 export class LocaleService {
   public activeLocale: string = inject(LOCALE_ID);
 
+  /**
+   * Determines if the modal should be visible
+   */
   private _isLanguageSwitcherOpen: boolean = false;
 
+  /**
+   * List of supported locales and languages
+   */
   public locales = [
     { code: 'bn', name: 'বাংলা' },
     { code: 'de', name: 'Deutsch' },
