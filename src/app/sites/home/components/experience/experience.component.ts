@@ -33,7 +33,7 @@ export class ExperienceComponent {
     const dateOptions: Intl.DateTimeFormatOptions = { month: 'short', year: 'numeric' };
     const startDateFormatted = experience.started.toLocaleString(this.#activeLocale, dateOptions);
     const endDateFormatted =
-      experience.ended?.toLocaleString(this.#activeLocale, dateOptions) ?? 'current';
+      experience.ended?.toLocaleString(this.#activeLocale, dateOptions) ?? $localize`current`;
     return `${startDateFormatted} - ${endDateFormatted}`;
   }
 
