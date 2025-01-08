@@ -21,7 +21,7 @@
         }
       </ul>
       <div class="h-6 w-0.5 bg-gray-100 dark:bg-gray-800"></div>
-      <div class="flex items-center gap-4">
+      <div class="flex items-center justify-center gap-4">
         <button
           i18n-aria-label
           aria-label="Toggle color scheme"
@@ -30,7 +30,7 @@
           <ng-icon color="currentColor" size="1.5rem" [name]="colorIconName"></ng-icon>
         </button>
         <div
-          class="relative inline-block self-center p-1 w-10"
+          class="relative self-center p-1 w-8 flex justify-center items-center"
           role="combobox"
           aria-haspopup="true"
           aria-expanded="false">
@@ -41,8 +41,7 @@
             <img
               class="w-full h-auto block rounded"
               [src]="localeService.getLanguageIconName(localeService.activeLocale)"
-              [alt]="localeService.activeLocale"
-               />
+              [alt]="localeService.activeLocale" />
           </button>
         </div>
       </div>

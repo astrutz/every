@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject, LOCALE_ID } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import {
   Colorscheme,
@@ -18,22 +18,22 @@ import { Experience } from '../../types/experience.type';
   templateUrl: './experience.component.html',
 })
 export class ExperienceComponent {
-  constructor(
-    private _colorschemeService: ColorschemeService,
-    private readonly _store: StoreService,
-  ) {}
+  #activeLocale: string = inject(LOCALE_ID);
+  #colorSchemeService: ColorschemeService = inject(ColorschemeService);
+  #store: StoreService = inject(StoreService);
 
   /**
    * @returns The propagated list of experiencs
    */
   protected get experiences(): Experience[] {
-    return this._store.experiences;
+    return this.#store.experiences;
   }
 
   protected getDuration(experience: Experience): string {
-    const dateOptions: Intl.DateTimeFormatOptions = { month: 'short', year: 'numeric' }; // todo when multilang
-    const startDateFormatted = experience.started.toLocaleString('en-EN', dateOptions);
-    const endDateFormatted = experience.ended?.toLocaleString('en-EN', dateOptions) ?? 'current';
+    const dateOptions: Intl.DateTimeFormatOptions = { month: 'short', year: 'numeric' };
+    const startDateFormatted = experience.started.toLocaleString(this.#activeLocale, dateOptions);
+    const endDateFormatted =
+      experience.ended?.toLocaleString(this.#activeLocale, dateOptions) ?? 'current';
     return `${startDateFormatted} - ${endDateFormatted}`;
   }
 
@@ -41,7 +41,7 @@ export class ExperienceComponent {
    * @returns The color of a logo depending on the color scheme
    */
   protected get logoColor(): Colorscheme {
-    return this._colorschemeService.colorscheme === Colorscheme.light
+    return this.#colorSchemeService.colorscheme === Colorscheme.light
       ? Colorscheme.dark
       : Colorscheme.light;
   }
