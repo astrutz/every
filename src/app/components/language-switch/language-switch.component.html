@@ -24,7 +24,7 @@
               [src]="localeService.getLanguageIconName(locale.code)"
               [alt]="locale.name"
               role="option" />
-            <span class="transition-all duration-200 group-hover:font-semibold">{{
+            <span class="transition-all duration-200 group-hover:font-semibold" [ngClass]="{'underline': locale.code === localeService.activeLocale}">{{
               locale.name
             }}</span>
           </a>
