@@ -125,6 +125,12 @@ the commit message is automatically annotated with the corresponding emojis usin
 use `commitlint` with a corresponding config (`.commitlintrc.js`). An example commit message is also provided
 in `.gitmessage` and can be adjusted as needed.
 
+## Branch Structure
+
+The `master` branch is protected as well as the `dev` branch. Every new feature branch must begin with a prefix
+containing a commit type, for example `feat` or `fix`. They are based of `dev` and will be merged back with pull
+requests only. Every larger release contains a merge into `master`.
+
 ## License
 
 This repository is licensed under the [MIT License](LICENSE).
