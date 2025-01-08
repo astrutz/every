@@ -1,10 +1,10 @@
 <div
   [ngClass]="{ hidden: !localeService.isLanguageSwitcherOpen }"
-  class="absolute inset-0 bg-black/50 backdrop-blur-sm z-[60] overflow-hidden"
+  class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[60] overflow-scroll md:overflow-hidden"
   aria-hidden="true">
   <div
     [ngClass]="{ hidden: !localeService.isLanguageSwitcherOpen }"
-    class="absolute right-0 left-0 top-16 bg-gray-400 dark:bg-gray-600 z-[70] m-auto w-fit rounded-md"
+    class="fixed right-0 left-0 top-16 bg-gray-400 dark:bg-gray-600 z-[70] m-auto w-fit rounded-md"
     role="listbox">
     <div class="relative p-8">
       <div class="mb-8">

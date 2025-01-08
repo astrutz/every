@@ -57,12 +57,12 @@
       </div>
     </div>
 
-    <div class="flex flex-col gap-4 p-4">
+    <div class="flex flex-col gap-4 p-4 pt-0">
       <div
         class="flex items-center justify-between"
         (click)="localeService.isLanguageSwitcherOpen = !localeService.isLanguageSwitcherOpen">
         <p i18n id="toggle-locale-label" class="text-normal text-base">Switch Language</p>
-        <button aria-haspopup="listbox" aria-expanded="false">
+        <button aria-haspopup="listbox" aria-expanded="false" class="p-1.5">
           <img
             class="w-6 h-auto block rounded"
             [src]="localeService.getLanguageIconName(localeService.activeLocale)"
