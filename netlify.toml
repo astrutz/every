@@ -1,0 +1,13 @@
+[[redirects]]
+from = "/"
+to = "/de"
+status = 301
+force = false
+conditions = {Language = ["de"]}
+
+[[redirects]]
+from = "/"
+to = "/en"
+status = 301
+force = false
+conditions = {Language = ["en"]}

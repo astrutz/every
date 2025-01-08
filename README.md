@@ -1,3 +1,5 @@
+[![Deployment Status](https://api.netlify.com/api/v1/badges/3eaba9d6-c656-4963-a370-04b01e27b741/deploy-status)](https://app.netlify.com/sites/lovely-test/deploys)
+
 # Every
 
 This repository containing various Angular webapps that power my portfolio website at
@@ -29,6 +31,16 @@ Run `ng start` for a dev server. Navigate to http://localhost:4200/. The app wil
 change any of the source files.
 
 This command will launch the local development server and make the apps accessible through the specified URLs.
+
+## Working with translations
+As this page is available in German and English, [i18n](https://angular.io/api/localize) is used. Static strings need to have a `localize` keyword
+or an `i18n` directive attached. To generate the default localization file (English) run:
+
+```bash
+ ng extract-i18n --format=json --output-path src/locale
+```
+
+Copy/paste the new strings into the German locale and translate them.
 
 ## Commit Conventions
 
@@ -122,6 +134,8 @@ requests only. Every larger release contains a merge into `master`.
 ## License
 
 This repository is licensed under the [MIT License](LICENSE).
+
+Copyright (c) 2025 HatScripts for including [Circle Flags](https://github.com/HatScripts/circle-flags).
 
 ## Contact
 

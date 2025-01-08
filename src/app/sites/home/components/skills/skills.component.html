@@ -1,0 +1,35 @@
+<section class="w-full dark:bg-gray-950 bg-gray py-16 md:py-20 2xl:py-24">
+  <div class="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 md:gap-12 md:px-8">
+    <div class="flex flex-col items-center gap-4">
+      <div class="self-center">
+        <div class="self-center">
+          <h2>
+            <every-tag i18n>Skills</every-tag>
+          </h2>
+        </div>
+      </div>
+      <p i18n class="text-normal text-lg md:text-xl max-w-xl text-center">
+        The skills, tools and technologies I flourish in:
+      </p>
+    </div>
+    <div class="grid grid-cols-3 gap-y-4 md:grid-cols-6 md:gap-y-8 lg:grid-cols-8 lg:gap-y-12">
+      @for (skill of skills; track skill) {
+        <div class="flex flex-col items-center gap-2">
+          <a target="_blank" class="" [href]="skill.href"
+            ><img
+              [alt]="skill.name"
+              loading="lazy"
+              width="64"
+              height="64"
+              decoding="async"
+              data-nimg="1"
+              class="transition-transform duration-300 md:hover:scale-110"
+              [ngSrc]="'assets/icons/' + getIconUrl(skill)"
+              style="color: transparent"
+          /></a>
+          <p class="text-normal text-base md:text-lg">{{ skill.name }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>

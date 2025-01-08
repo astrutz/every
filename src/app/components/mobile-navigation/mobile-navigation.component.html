@@ -1,0 +1,74 @@
+@if (isOpen) {
+  <div
+    (click)="closeNavigation()"
+    data-state="open"
+    class="fixed inset-0 z-50 dark:bg-gray-50/10 bg-gray-900/10 opacity-100 backdrop-blur-sm"
+    style="pointer-events: auto"
+    data-aria-hidden="true"
+    aria-hidden="true"></div>
+
+  <div
+    role="dialog"
+    id="radix-:R1mja:"
+    aria-describedby="radix-:R1mjaH2:"
+    aria-labelledby="radix-:R1mjaH1:"
+    data-state="open"
+    class="fixed z-50 shadow-2xl bg-gray dark:bg-gray-950 ring-1 ring-black/10 transition-all ease-in-out duration-100 inset-y-0 right-0 h-full max-w-xs w-full data-[state=open]:animate-drawer-open data-[state=closed]:animate-drawer-close"
+    tabindex="-1"
+    style="pointer-events: auto">
+    <div
+      class="flex items-center justify-between border-b border-gray-100 dark:border-gray-800 p-4">
+      <h3 class="text-xl md:text-2xl tracking-[-0.02em] text-gray-900 dark:text-gray-50 font-bold">
+        &lt;alexstrutz.dev /&gt;
+      </h3>
+      <button
+        (click)="closeNavigation()"
+        i18n-aria-label
+        aria-label="Close navigation"
+        class="relative flex justify-center items-center hover:bg-gray-100 active:bg-gray-200 dark:hover:bg-gray-800 dark:active:bg-gray-700 rounded-lg p-1.5 transition-colors duration-200 [&amp;_svg]:stroke-gray-600 [&amp;_svg]:hover:stroke-gray-700 [&amp;_svg]:w-6 [&amp;_svg]:h-6"
+        type="button">
+        <ng-icon color="currentColor" size="1.5rem" name="lucideX"></ng-icon>
+      </button>
+    </div>
+    <div class="border-b dark:border-gray-800 border-gray-100 p-4">
+      <ul class="flex list-none flex-col gap-4">
+        @for (link of links; track link) {
+          <li>
+            <a
+              (click)="closeNavigation()"
+              target="_self"
+              class="text-base font-medium text-gray-600 dark:text-gray-300 transition-all dark:hover:text-gray-50 hover:text-gray-900 dark:active:text-gray-300 active:text-gray-600"
+              [href]="'#' + link.toLowerCase()"
+              >{{ link }}</a
+            >
+          </li>
+        }
+      </ul>
+    </div>
+    <div class="flex flex-col gap-4 p-4">
+      <div class="flex items-center justify-between">
+        <p i18n id="toggle-theme-label" class="text-normal text-base">Switch Theme</p>
+        <button
+          class="relative flex justify-center items-center dark:hover:bg-gray-800 hover:bg-gray-100 dark:active:bg-gray-700 active:bg-gray-200 rounded-lg p-1.5 transition-colors duration-200"
+          aria-labelledby="toggle-theme-label"
+          (click)="toggleColorScheme()">
+          <ng-icon color="currentColor" size="1.5rem" [name]="colorIconName"></ng-icon>
+        </button>
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-4 p-4 pt-0">
+      <div
+        class="flex items-center justify-between"
+        (click)="localeService.isLanguageSwitcherOpen = !localeService.isLanguageSwitcherOpen">
+        <p i18n id="toggle-locale-label" class="text-normal text-base">Switch Language</p>
+        <button aria-haspopup="listbox" aria-expanded="false" class="p-1.5">
+          <img
+            class="w-6 h-auto block rounded"
+            [src]="localeService.getLanguageIconName(localeService.activeLocale)"
+            [alt]="localeService.activeLocale" />
+        </button>
+      </div>
+    </div>
+  </div>
+}
