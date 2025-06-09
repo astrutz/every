@@ -1,13 +1,19 @@
 import { Routes } from '@angular/router';
 import { Routes as HomeRoutes } from './sites/home/app.routes';
+import { Routes as EloglickoRoutes } from './sites/eloglicko/app.routes';
+import { Routes as EurovisionRoutes } from './sites/eurovision/app.routes';
 
 export const routes: Routes = [
   {
     path: '',
     children: HomeRoutes,
   },
-  // {
-  //   path: 'eloglicko',
-  //   children: EloglickoRoutes,
-  // },
+  {
+    path: 'eurovision',
+    children: EurovisionRoutes,
+  },
+  {
+    path: 'eloglicko',
+    children: EloglickoRoutes,
+  },
 ];

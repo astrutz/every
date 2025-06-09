@@ -8,4 +8,4 @@ export const Routes: Route[] = [
   },
 ];
 
-export const EloglickoRouting = RouterModule.forChild(Routes);
+export const EurovisionRouting = RouterModule.forChild(Routes);
