@@ -13,13 +13,7 @@ export class Rating implements RatingModel {
   readonly fun: number;
   readonly vocals: number;
 
-  constructor(
-    energy: number,
-    staging: number,
-    studio: number,
-    fun: number,
-    vocals: number,
-  ) {
+  constructor(energy: number, staging: number, studio: number, fun: number, vocals: number) {
     this.energy = energy;
     this.staging = staging;
     this.studio = studio;
@@ -30,11 +24,12 @@ export class Rating implements RatingModel {
   public getTotal(): number {
     return (
       Math.round(
-        this.energy * ENERGY_FACTOR +
+        (this.energy * ENERGY_FACTOR +
           this.staging * STAGING_FACTOR +
           this.studio * STUDIO_FACTOR +
           this.fun * FUN_FACTOR +
-          this.vocals * VOCALS_FACTOR * 10,
+          this.vocals * VOCALS_FACTOR) *
+          10,
       ) / 10
     );
   }

@@ -1,0 +1,12 @@
+<main class="m-auto max-w-7xl">
+  aa
+
+@for (contest of contests; track contest.year) {
+  <h1>{{contest.year}}</h1>
+  <img src="assets/eurovision/contests/{{contest.year}}.png" alt="{{contest.hostCountry.name}}">
+  @for(entry of contest.entries; track entry.title) {
+    <p>{{entry.artist}} - {{entry.title}} ({{entry.rating.getTotal()}})</p>
+  }
+}
+</main>
+
