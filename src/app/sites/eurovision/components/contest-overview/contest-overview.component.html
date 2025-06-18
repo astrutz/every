@@ -1,0 +1,14 @@
+<div
+  [class]="
+    themeService.getBackgroundPrimary(contest.year) +
+    ' ' +
+    themeService.getTextPrimary(contest.year)
+  ">
+  <div class="m-auto max-w-7xl py-8">
+    <h1 class="text-2xl">{{ contest.year }}</h1>
+    <!--  <img src="assets/eurovision/contests/{{contest.year}}.png" alt="{{contest.hostCountry.name}}">-->
+    @for (entry of contest.entries; track entry.title) {
+      <p>{{ entry.artist }} - {{ entry.title }} ({{ entry.rating.getTotal() }})</p>
+    }
+  </div>
+</div>
