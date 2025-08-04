@@ -1,14 +1,33 @@
 <div
-  [class]="
-    themeService.getBackgroundPrimary(contest.year) +
-    ' ' +
+  class="    {{ themeService.getBackgroundPrimary(contest.year) }}    {{
     themeService.getTextPrimary(contest.year)
-  ">
+  }} border-b-2 border-black">
   <div class="m-auto max-w-7xl py-8">
-    <h1 class="text-2xl">{{ contest.year }}</h1>
-    <!--  <img src="assets/eurovision/contests/{{contest.year}}.png" alt="{{contest.hostCountry.name}}">-->
-    @for (entry of contest.entries; track entry.title) {
-      <p>{{ entry.artist }} - {{ entry.title }} ({{ entry.rating.getTotal() }})</p>
-    }
+    <div class="flex justify-between">
+      <div>
+        <h1 class="text-2xl mb-2">{{ contest.year }}</h1>
+        @for (entry of contest.entries; track entry.title) {
+          <div class="flex gap-2 items-center">
+            <img
+              src="assets/eurovision/countries/{{ getFlag(entry) }}.png"
+              alt="{{ entry.country.name }}"
+              class="h-8 w-8" />
+            <p>
+              {{ entry.artist }} - {{ entry.title }} ({{
+                entry.rating.getTotal().toLocaleString()
+              }})
+            </p>
+            <!--            <img-->
+            <!--              src="assets/eurovision/countries/{{ entry.country.code }}-light.png"-->
+            <!--              alt="{{ entry.country.name }}"-->
+            <!--              class="h-8 w-8" />-->
+          </div>
+        }
+      </div>
+      <img
+        src="assets/eurovision/contests/{{ contest.year }}.png"
+        alt="{{ contest.hostCountry.name }}"
+        class="max-h-32" />
+    </div>
   </div>
 </div>

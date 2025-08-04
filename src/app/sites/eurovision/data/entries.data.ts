@@ -1,18 +1,23 @@
 import { Entry } from '../dataobjects/entry.dataobject';
-import { estonia } from './countries.data';
-import { Rating } from '../dataobjects/rating.dataobject';
+import { entries2017 } from './entries2017.data';
+import { entries2018 } from './entries2018.data';
+import { entries2019 } from './entries2019.data';
+import { entries2021 } from './entries2021.data';
+import { entries2022 } from './entries2022.data';
+import { entries2023 } from './entries2023.data';
+import { entries2024 } from './entries2024.data';
+import { entries2025 } from './entries2025.data';
 
-const ee2025: Entry = {
-  country: estonia,
-  year: 2025,
-  place: 2,
-  artist: 'Tommy Cash',
-  title: 'Espresso Macchiato',
-  link: 'https://www.youtube.com/watch?v=9b9Z5HSCXOI&pp=ygUSZXNwcmVzc28gbWFjY2hpYXRv',
-  rating: new Rating(8, 10, 10, 10, 1),
-};
-
-export const entries: Entry[] = [ee2025];
+export const entries: Entry[] = [
+  ...entries2017,
+  ...entries2018,
+  ...entries2019,
+  ...entries2021,
+  ...entries2022,
+  ...entries2023,
+  ...entries2024,
+  ...entries2025,
+];
 
 export function entriesByYear(year: number): Entry[] {
   return entries.filter((entry) => entry.year === year);

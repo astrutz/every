@@ -59,6 +59,12 @@ export const contest2017 = new Contest(2017, entriesByYear(2017), ukraine, [
   '#ffffff',
   '#000000',
 ]);
+export const contest2016 = new Contest(2016, entriesByYear(2016), sweden, [
+  '#17394F',
+  '#910291',
+  '#ffffff',
+  '#ffffff',
+]);
 
 export const contests: Contest[] = [
   contest2025,
@@ -69,4 +75,5 @@ export const contests: Contest[] = [
   contest2019,
   contest2018,
   contest2017,
+  contest2016,
 ];

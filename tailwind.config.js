@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 
 import {
+  contest2016,
   contest2017,
   contest2018,
   contest2019,
@@ -84,6 +85,12 @@ module.exports = {
           secondary: contest2017.colours[1],
           primaryText: contest2017.colours[2],
           secondaryText: contest2017.colours[3],
+        },
+        contest2016: {
+          primary: contest2016.colours[0],
+          secondary: contest2016.colours[1],
+          primaryText: contest2016.colours[2],
+          secondaryText: contest2016.colours[3],
         },
       },
     },

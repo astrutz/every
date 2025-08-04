@@ -197,7 +197,7 @@ export const ukraine: Country = {
   name: 'Ukraine',
 };
 export const unitedKingdom: Country = {
-  code: 'GB',
+  code: 'UK',
   name: 'Vereinigtes Königreich',
 };
 
