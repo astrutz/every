@@ -1,0 +1,5 @@
+<ul>
+  @for (entity of sortedEntities; track entity) {
+    <li>{{ $index + 1 }}. {{ DisplayNameUtil.getDisplayName(entity) }}</li>
+  }
+</ul>

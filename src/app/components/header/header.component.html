@@ -29,21 +29,23 @@
           (click)="toggleColorScheme()">
           <ng-icon color="currentColor" size="1.5rem" [name]="colorIconName"></ng-icon>
         </button>
-        <div
-          class="relative self-center p-1 w-8 flex justify-center items-center"
-          role="combobox"
-          aria-haspopup="true"
-          aria-expanded="false">
-          <button
-            (click)="localeService.isLanguageSwitcherOpen = !localeService.isLanguageSwitcherOpen"
-            aria-haspopup="listbox"
+        @if (localeService.shouldShowLanguageSwitcher) {
+          <div
+            class="relative self-center p-1 w-8 flex justify-center items-center"
+            role="combobox"
+            aria-haspopup="true"
             aria-expanded="false">
-            <img
-              class="w-full h-auto block rounded"
-              [src]="localeService.getLanguageIconName(localeService.activeLocale)"
-              [alt]="localeService.activeLocale" />
-          </button>
-        </div>
+            <button
+              (click)="localeService.isLanguageSwitcherOpen = !localeService.isLanguageSwitcherOpen"
+              aria-haspopup="listbox"
+              aria-expanded="false">
+              <img
+                class="w-full h-auto block rounded"
+                [src]="localeService.getLanguageIconName(localeService.activeLocale)"
+                [alt]="localeService.activeLocale" />
+            </button>
+          </div>
+        }
       </div>
     </div>
     <button

@@ -2,11 +2,12 @@ import { Component, inject, Input } from '@angular/core';
 import { ThemeService } from '../../services/theme.service';
 import { Contest } from '../../dataobjects/contest.dataobject';
 import { Entry } from '../../dataobjects/entry.dataobject';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'eurovision-contest-overview',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './contest-overview.component.html',
 })
 export class ContestOverviewComponent {
