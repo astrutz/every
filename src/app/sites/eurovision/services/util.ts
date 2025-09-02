@@ -2,27 +2,27 @@ import { Country } from '../dataobjects/country.dataobject';
 import { Contest } from '../dataobjects/contest.dataobject';
 import { Entry } from '../dataobjects/entry.dataobject';
 
-export class DisplayNameUtil {
+export class Util {
   public static getDisplayName(entity: Country | Contest | Entry): string {
-    if (DisplayNameUtil._isCountry(entity)) {
+    if (Util.isCountry(entity)) {
       return entity.name;
-    } else if (DisplayNameUtil._isEntry(entity)) {
+    } else if (Util.isEntry(entity)) {
       return `${entity.artist} - ${entity.title} (${entity.rating.getTotal()})`;
-    } else if (DisplayNameUtil._isContest(entity)) {
+    } else if (Util.isContest(entity)) {
       return `${entity.hostCountry.name} (${entity.year})`;
     }
     return '';
   }
 
-  private static _isCountry(entity: Country | Contest | Entry): entity is Country {
+  public static isCountry(entity: Country | Contest | Entry): entity is Country {
     return entity.hasOwnProperty('code');
   }
 
-  private static _isContest(entity: Country | Contest | Entry): entity is Contest {
+  public static isContest(entity: Country | Contest | Entry): entity is Contest {
     return entity.hasOwnProperty('year');
   }
 
-  private static _isEntry(entity: Country | Contest | Entry): entity is Entry {
+  public static isEntry(entity: Country | Contest | Entry): entity is Entry {
     return entity.hasOwnProperty('place');
   }
 }

@@ -22,6 +22,10 @@ export class Contest implements ContestModel {
     this.colours = colours;
   }
 
+  public get entriesSorted(): Entry[] {
+    return this.entries.sort((a, b) => b.rating.getTotal() - a.rating.getTotal());
+  }
+
   public getRating(): Rating {
     return new Rating(
       this.entries.reduce((sum, entry) => sum + entry.rating.energy, 0) / this.entries.length,

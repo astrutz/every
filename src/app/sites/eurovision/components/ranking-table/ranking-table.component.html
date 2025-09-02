@@ -1,5 +1,16 @@
-<ul>
-  @for (entity of sortedEntities; track entity) {
-    <li>{{ $index + 1 }}. {{ DisplayNameUtil.getDisplayName(entity) }}</li>
+<ul class="flex flex-col gap-1">
+  @for (entity of sortedEntities; track 'a') {
+    @if (Util.isEntry(entity)) {
+      <li class="flex gap-2 items-center" [ngClass]="{ 'font-bold': $index < 3 }">
+        <p class="w-4">{{ $index + 1 }}.</p>
+        <a routerLink="/eurovision/countries/{{ entity.country.code }}">
+          <img
+            src="assets/eurovision/countries/{{ getFlag(entity) }}.png"
+            alt="{{ entity.country.name }}"
+            class="h-8 w-8" />
+        </a>
+        <p>{{ Util.getDisplayName(entity) }}</p>
+      </li>
+    }
   }
 </ul>

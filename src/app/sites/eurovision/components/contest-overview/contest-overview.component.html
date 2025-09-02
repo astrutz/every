@@ -6,26 +6,19 @@
     <div class="flex justify-between">
       <div>
         <h1 class="text-2xl mb-2">{{ contest.year }}</h1>
-        @for (entry of contest.entries; track entry.title) {
-          <div class="flex gap-2 items-center">
-            <a routerLink="/eurovision/countries/{{ entry.country.code }}">
-              <img
-                src="assets/eurovision/countries/{{ getFlag(entry) }}.png"
-                alt="{{ entry.country.name }}"
-                class="h-8 w-8" />
-            </a>
-            <p>
-              {{ entry.artist }} - {{ entry.title }} ({{
-                entry.rating.getTotal().toLocaleString()
-              }})
-            </p>
-          </div>
-        }
+        <eurovision-ranking-table
+          [sortedEntities]="contest.entriesSorted.slice(0, 10)"
+          [colorScheme]="
+            contest.colours[2].toLocaleLowerCase() === '#ffffff' ? 'light' : 'dark'
+          "></eurovision-ranking-table>
       </div>
-      <img
-        src="assets/eurovision/contests/{{ contest.year }}.png"
-        alt="{{ contest.hostCountry.name }}"
-        class="max-h-32" />
+
+      <div>
+        <img
+          alt="{{ contest.hostCountry.name }}"
+          class="max-h-32"
+          src="assets/eurovision/contests/{{ contest.year }}.png" />
+      </div>
     </div>
   </div>
 </div>
