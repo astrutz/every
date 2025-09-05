@@ -76,7 +76,7 @@ export const au2024: Entry = {
   artist: 'Electric Fields',
   title: 'Milkali (One Love)',
   link: '',
-  rating: new Rating(8, 10, 6, 9, 4),
+  rating: new Rating(4, 2, 2, 4, 3),
 };
 
 export const be2024: Entry = {

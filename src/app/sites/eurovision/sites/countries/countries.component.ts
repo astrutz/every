@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { RankingTableComponent } from '../../components/ranking-table/ranking-table.component';
+import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb.component';
 
 @Component({
   selector: 'eurovision-countries',
   templateUrl: 'countries.component.html',
   standalone: true,
-  imports: [],
+  imports: [BreadcrumbComponent],
 })
 export class CountriesComponent {}

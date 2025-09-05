@@ -4,12 +4,13 @@ import { Country } from '../../dataobjects/country.dataobject';
 import { StoreService as EurovisionStoreService } from '../../services/store.service';
 import { RankingTableComponent } from '../../components/ranking-table/ranking-table.component';
 import { Entry } from '../../dataobjects/entry.dataobject';
+import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb.component';
 
 @Component({
   selector: 'eurovision-country',
   templateUrl: 'country.component.html',
   standalone: true,
-  imports: [RankingTableComponent],
+  imports: [RankingTableComponent, BreadcrumbComponent],
 })
 export class CountryComponent implements OnInit {
   protected country!: Country;

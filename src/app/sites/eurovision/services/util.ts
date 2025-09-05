@@ -7,7 +7,7 @@ export class Util {
     if (Util.isCountry(entity)) {
       return entity.name;
     } else if (Util.isEntry(entity)) {
-      return `${entity.artist} - ${entity.title} (${entity.rating.getTotal()})`;
+      return `${entity.artist} - ${entity.title} (${entity.rating.getTotal().toLocaleString()})`;
     } else if (Util.isContest(entity)) {
       return `${entity.hostCountry.name} (${entity.year})`;
     }

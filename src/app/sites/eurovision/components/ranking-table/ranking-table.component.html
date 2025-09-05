@@ -1,7 +1,7 @@
 <ul class="flex flex-col gap-1">
   @for (entity of sortedEntities; track 'a') {
     @if (Util.isEntry(entity)) {
-      <li class="flex gap-2 items-center" [ngClass]="{ 'font-bold': $index < 3 }">
+      <li class="flex gap-2 items-center text-lg" [ngClass]="{ 'font-semibold': $index < 3 }">
         <p class="w-4">{{ $index + 1 }}.</p>
         <a routerLink="/eurovision/countries/{{ entity.country.code }}">
           <img
