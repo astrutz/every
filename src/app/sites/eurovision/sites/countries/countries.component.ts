@@ -1,41 +1,56 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject, Signal, signal, WritableSignal } from '@angular/core';
 import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb.component';
 import { RankingTableComponent } from '../../components/ranking-table/ranking-table.component';
-import { Country, RatedCountry } from '../../dataobjects/country.dataobject';
-import { ActivatedRoute } from '@angular/router';
+import { RatedCountry } from '../../dataobjects/country.dataobject';
 import { StoreService as EurovisionStoreService } from '../../services/store.service';
+import { Rating } from '../../dataobjects/rating.dataobject';
+import { NgClass } from '@angular/common';
+
+type TabKey = { key: keyof Rating | undefined; name: string };
 
 @Component({
   selector: 'eurovision-countries',
   templateUrl: 'countries.component.html',
   standalone: true,
-  imports: [BreadcrumbComponent, RankingTableComponent],
+  imports: [BreadcrumbComponent, RankingTableComponent, NgClass],
 })
 export class CountriesComponent {
-  protected countries!: Country[];
-  protected countriesRanked: RatedCountry[];
   protected storeService = inject(EurovisionStoreService);
+  protected tabKeys: TabKey[] = [
+    { key: undefined, name: 'Gesamt' },
+    { key: 'energy', name: 'Energie' },
+    { key: 'staging', name: 'Staging' },
+    { key: 'studio', name: 'Studio' },
+    { key: 'fun', name: 'Fun' },
+    { key: 'vocals', name: 'Vocals' },
+  ];
 
-  constructor() {
-    this.countries = this.storeService.countries;
-    this.countriesRanked = this._calculateCountryRanking();
-  }
+  protected criteria$: WritableSignal<keyof Rating | undefined> = signal(undefined);
 
-  private _calculateCountryRanking(): RatedCountry[] {
+  protected countriesRanked$: Signal<RatedCountry[]> = computed(() =>
+    this.calculateCountryRanking(this.criteria$()),
+  );
+
+  protected calculateCountryRanking(criteria?: keyof Rating): RatedCountry[] {
     return this.storeService.countries
       .map((country) => {
         const entries = this.storeService.getEntriesByCountry(country);
         if (!entries.length) {
-          console.log(country);
           return { ...country, rating: 0 };
         }
         const countryRating =
           entries.reduce(
-            (accumulator, currentValue) => accumulator + currentValue.rating.getTotal(),
+            (accumulator, currentValue) =>
+              accumulator +
+              (criteria ? +currentValue.rating[criteria] : currentValue.rating.getTotal()),
             0,
           ) / (entries.length ?? 1);
         return { ...country, rating: countryRating };
       })
       .sort((a, b) => b.rating - a.rating);
+  }
+
+  setCriteria(event: Event) {
+    this.criteria$.set((event.target as HTMLSelectElement).value as keyof Rating | undefined);
   }
 }

@@ -1,7 +1,7 @@
 <ul class="flex flex-col gap-1">
   @for (entity of sortedEntities; track 'a') {
     @if (Util.isEntry(entity)) {
-      <li class="flex gap-2 items-center text-lg" [ngClass]="{ 'font-semibold': $index < 3 }">
+      <li class="flex gap-2 items-center text-lg max-w-fit" [ngClass]="{ 'font-semibold': $index < 3 }">
         <p class="w-4">{{ $index + 1 }}.</p>
         @if (showFlag) {
           <a routerLink="/eurovision/countries/{{ entity.country.code }}">
@@ -15,7 +15,7 @@
       </li>
     }
     @if (Util.isRatedCountry(entity)) {
-      <li [ngClass]="{ 'font-semibold': $index < 3 }">
+      <li class="max-w-fit" [ngClass]="{ 'font-semibold': $index < 3 }">
         <!-- TODO: Hover for links and scss -->
         <a class="flex gap-2 items-center text-lg" routerLink="/eurovision/countries/{{ entity.code }}">
           <p class="w-4">{{ $index + 1 }}.</p>
@@ -30,7 +30,7 @@
       </li>
     }
     @if (Util.isCountry(entity)) {
-      <li [ngClass]="{ 'font-semibold': $index < 3 }">
+      <li class="max-w-fit" [ngClass]="{ 'font-semibold': $index < 3 }">
         <a class="flex gap-2 items-center text-lg" routerLink="/eurovision/countries/{{ entity.code }}">
           <p class="w-4">{{ $index + 1 }}.</p>
           @if (showFlag) {
