@@ -1,10 +1,13 @@
-import { Country } from '../dataobjects/country.dataobject';
+import { Country, RatedCountry } from '../dataobjects/country.dataobject';
 import { Contest } from '../dataobjects/contest.dataobject';
 import { Entry } from '../dataobjects/entry.dataobject';
+import { Entity } from '../dataobjects/entity.dataobject';
 
 export class Util {
-  public static getDisplayName(entity: Country | Contest | Entry): string {
-    if (Util.isCountry(entity)) {
+  public static getDisplayName(entity: Entity): string {
+    if (Util.isRatedCountry(entity)) {
+      return `${entity.name} (${(Math.round(entity.rating * 10) / 10).toLocaleString()})`;
+    } else if (Util.isCountry(entity)) {
       return entity.name;
     } else if (Util.isEntry(entity)) {
       return `${entity.artist} - ${entity.title} (${entity.rating.getTotal().toLocaleString()})`;
@@ -14,15 +17,19 @@ export class Util {
     return '';
   }
 
-  public static isCountry(entity: Country | Contest | Entry): entity is Country {
-    return entity.hasOwnProperty('code');
+  public static isCountry(entity: Entity): entity is Country {
+    return entity.hasOwnProperty('code') && !entity.hasOwnProperty('rating');
   }
 
-  public static isContest(entity: Country | Contest | Entry): entity is Contest {
+  public static isRatedCountry(entity: Entity): entity is RatedCountry {
+    return entity.hasOwnProperty('code') && entity.hasOwnProperty('rating');
+  }
+
+  public static isContest(entity: Entity): entity is Contest {
     return entity.hasOwnProperty('year');
   }
 
-  public static isEntry(entity: Country | Contest | Entry): entity is Entry {
+  public static isEntry(entity: Entity): entity is Entry {
     return entity.hasOwnProperty('place');
   }
 }

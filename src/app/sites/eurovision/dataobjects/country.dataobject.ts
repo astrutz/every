@@ -6,9 +6,11 @@ export interface CountryModel {
 export class Country implements CountryModel {
   code: string;
   name: string;
-  
-  constructor (code: string, name: string) {
+
+  constructor(code: string, name: string) {
     this.code = code;
     this.name = name;
   }
 }
+
+export type RatedCountry = Country & { rating: number };

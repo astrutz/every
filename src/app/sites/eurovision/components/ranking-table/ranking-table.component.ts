@@ -19,8 +19,11 @@ export class RankingTableComponent<T extends Contest | Country | Entry> {
   @Input()
   colorScheme: 'light' | 'dark' = 'light';
 
-  protected getFlag(entry: Entry): string {
-    return `${entry.country.code}-${this.colorScheme}`;
+  @Input()
+  showFlag: boolean = true;
+
+  protected getFlag(code: string): string {
+    return `${code}-${this.colorScheme}`;
   }
 
   protected readonly Util = Util;

@@ -3,13 +3,44 @@
     @if (Util.isEntry(entity)) {
       <li class="flex gap-2 items-center text-lg" [ngClass]="{ 'font-semibold': $index < 3 }">
         <p class="w-4">{{ $index + 1 }}.</p>
-        <a routerLink="/eurovision/countries/{{ entity.country.code }}">
-          <img
-            src="assets/eurovision/countries/{{ getFlag(entity) }}.png"
-            alt="{{ entity.country.name }}"
-            class="h-8 w-8" />
-        </a>
+        @if (showFlag) {
+          <a routerLink="/eurovision/countries/{{ entity.country.code }}">
+            <img
+              src="assets/eurovision/countries/{{ getFlag(entity.country.code) }}.png"
+              alt="{{ entity.country.name }}"
+              class="h-8 w-8" />
+          </a>
+        }
         <p>{{ Util.getDisplayName(entity) }}</p>
+      </li>
+    }
+    @if (Util.isRatedCountry(entity)) {
+      <li [ngClass]="{ 'font-semibold': $index < 3 }">
+        <!-- TODO: Hover for links and scss -->
+        <a class="flex gap-2 items-center text-lg" routerLink="/eurovision/countries/{{ entity.code }}">
+          <p class="w-4">{{ $index + 1 }}.</p>
+          @if (showFlag) {
+            <img
+              src="assets/eurovision/countries/{{ getFlag(entity.code) }}.png"
+              alt="{{ entity.name }}"
+              class="h-8 w-8" />
+          }
+          <p>{{ Util.getDisplayName(entity) }}</p>
+        </a>
+      </li>
+    }
+    @if (Util.isCountry(entity)) {
+      <li [ngClass]="{ 'font-semibold': $index < 3 }">
+        <a class="flex gap-2 items-center text-lg" routerLink="/eurovision/countries/{{ entity.code }}">
+          <p class="w-4">{{ $index + 1 }}.</p>
+          @if (showFlag) {
+            <img
+              src="assets/eurovision/countries/{{ getFlag(entity.code) }}.png"
+              alt="{{ entity.name }}"
+              class="h-8 w-8" />
+          }
+          <p>{{ Util.getDisplayName(entity) }}</p>
+        </a>
       </li>
     }
   }

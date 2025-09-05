@@ -12,6 +12,10 @@ import { Entry } from '../dataobjects/entry.dataobject';
   providedIn: 'root',
 })
 export class StoreService {
+  public get countries(): Country[] {
+    return countries;
+  }
+
   public get contests(): Contest[] {
     return contests;
   }

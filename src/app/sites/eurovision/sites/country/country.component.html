@@ -1,7 +1,14 @@
 <main>
   <div class="m-auto max-w-7xl py-8">
     <every-breadcrumb></every-breadcrumb>
-    <h1 class="text-2xl">{{ country.name }} ist toll</h1>
-    <eurovision-ranking-table [sortedEntities]="sortedEntries"/>
+    <h1 class="text-3xl mt-8 mb-4 flex gap-2 items-center">
+      <!-- TODO: Flag in correct color -->
+      <img
+        src="assets/eurovision/countries/{{ country.code }}-light.png"
+        alt="{{ country.name }}"
+        class="h-8 w-8" />
+      {{ country.name }} ist toll
+    </h1>
+    <eurovision-ranking-table [sortedEntities]="sortedEntries" [showFlag]="false" />
   </div>
 </main>
