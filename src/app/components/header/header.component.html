@@ -76,7 +76,8 @@
           (click)="toggleColorScheme()">
           <ng-icon color="currentColor" size="1.5rem" [name]="colorIconName"></ng-icon>
         </button>
-        <div
+        @if (localeService.shouldShowLanguageSwitcher) {
+          <div
           class="relative self-center p-1 w-8 flex justify-center items-center"
           role="combobox"
           aria-haspopup="true"
@@ -91,6 +92,7 @@
               [alt]="localeService.activeLocale" />
           </button>
         </div>
+        }
       </div>
     </div>
     <button
