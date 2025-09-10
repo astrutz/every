@@ -51,6 +51,11 @@ export class CountriesComponent {
   }
 
   setCriteria(event: Event) {
-    this.criteria$.set((event.target as HTMLSelectElement).value as keyof Rating | undefined);
+    const criteria = (event.target as HTMLSelectElement).value;
+    if (criteria === 'undefined') {
+      this.criteria$.set(undefined);
+    } else {
+      this.criteria$.set(criteria as keyof Rating);
+    }
   }
 }

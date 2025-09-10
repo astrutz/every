@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { HeaderComponent } from '../header/header.component';
-import { lucideX, lucideMoon, lucideSun } from '@ng-icons/lucide';
+import { lucideX, lucideMoon, lucideSun, lucideChevronDown } from '@ng-icons/lucide';
 import { RouterLink } from '@angular/router';
+import { apps } from '../../services/app/app.service';
+import { NgClass } from '@angular/common';
 
 /**
  * Displays a mobile navigation, hidden on w > 768px
@@ -11,13 +13,14 @@ import { RouterLink } from '@angular/router';
 @Component({
   selector: 'every-mobile-navigation',
   standalone: true,
-  imports: [NgIcon, RouterLink],
+  imports: [NgIcon, RouterLink, NgClass],
   templateUrl: './mobile-navigation.component.html',
   viewProviders: [
     provideIcons({
       lucideMoon,
       lucideSun,
       lucideX,
+      lucideChevronDown,
     }),
   ],
 })
@@ -35,4 +38,6 @@ export class MobileNavigationComponent extends HeaderComponent {
   protected get isOpen(): boolean {
     return this.navigationService.isOpen;
   }
+
+  protected override readonly apps = apps;
 }

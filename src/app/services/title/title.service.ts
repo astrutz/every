@@ -27,7 +27,13 @@ export class TitleService {
    * @return State containing the title
    */
   get title(): string {
-    const additionalTitle = this._additionalTitles.get(this._router.url.split('/').at(1) ?? '');
+    let additionalTitle;
+    const route = this._router.url.split('/');
+    if (route.at(-1)?.includes('#')) {
+      additionalTitle = this._additionalTitles.get('');
+    } else {
+      additionalTitle = this._additionalTitles.get(this._router.url.split('/').at(1) ?? '');
+    }
     return `${this._baseTitle}.${additionalTitle}`;
   }
 }

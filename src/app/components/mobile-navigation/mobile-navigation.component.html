@@ -38,13 +38,50 @@
               (click)="closeNavigation()"
               target="_self"
               class="text-base font-medium text-gray-600 dark:text-gray-300 transition-all dark:hover:text-gray-50 hover:text-gray-900 dark:active:text-gray-300 active:text-gray-600"
-              [routerLink]="link.path"
+              [href]="link.path"
               >{{ link.name }}</a
             >
           </li>
         }
       </ul>
     </div>
+    <div class="w-full block border-b dark:border-gray-800 border-gray-100" id="navbar-dropdown">
+      <button
+        (click)="isAppNavOpen = !isAppNavOpen"
+        id="dropdownNavbarLink"
+        data-dropdown-toggle="dropdownNavbar"
+        class="flex gap-4 p-4 items-center font-medium justify-between w-full text-gray-600 dark:text-gray-300 transition-all rounded-sm">
+        <p>Apps</p>
+        <button class="p-1.5">
+          <ng-icon
+            color="currentColor"
+            size="1.5rem"
+            name="lucideChevronDown"></ng-icon>
+        </button>
+      </button>
+      <!-- Dropdown menu -->
+      <div
+        id="dropdownNavbar"
+        [ngClass]="isAppNavOpen ? '' : 'hidden'"
+        class="z-10 absolute font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600">
+        <ul
+          class="py-2 text-sm text-gray-700 dark:text-gray-400"
+          aria-labelledby="dropdownLargeButton">
+          @for (app of apps; track app.name) {
+            <li>
+              <a
+                [routerLink]="app.url"
+                (click)="isAppNavOpen = false"
+                [ngClass]="{ 'text-white': appService.currentApp$().name === app.name }"
+                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                >{{ app.name }}</a
+              >
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+
     <div class="flex flex-col gap-4 p-4">
       <div class="flex items-center justify-between">
         <p i18n id="toggle-theme-label" class="text-normal text-base">Switch Theme</p>
