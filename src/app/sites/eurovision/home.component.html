@@ -1,0 +1,7 @@
+<main>
+  @for (contest of contests; track contest.year) {
+    @if (contest.entries.length > 0) {
+      <eurovision-contest-overview [contest]="contest"></eurovision-contest-overview>
+    }
+  }
+</main>

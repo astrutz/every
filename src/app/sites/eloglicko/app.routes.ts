@@ -3,7 +3,7 @@ import { AppComponent } from './app.component';
 
 export const Routes: Route[] = [
   {
-    path: 'eloglicko',
+    path: '',
     component: AppComponent,
   },
 ];

@@ -1,0 +1,13 @@
+<main>
+  <div class="m-auto max-w-7xl py-8 px-4 md:px-8">
+    <every-breadcrumb></every-breadcrumb>
+    <h1 class="text-3xl mt-8 mb-4 flex gap-2 items-center">
+      <img
+        src="assets/eurovision/countries/{{ getFlag(country.code) }}.png"
+        alt="{{ country.name }}"
+        class="h-8 w-8" />
+      {{ country.name }}
+    </h1>
+    <eurovision-ranking-table [sortedEntities]="sortedEntries" [showFlag]="false" />
+  </div>
+</main>

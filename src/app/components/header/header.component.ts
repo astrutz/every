@@ -1,12 +1,15 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject, Signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { lucideMenu, lucideMoon, lucideSun } from '@ng-icons/lucide';
+import { lucideMenu, lucideMoon, lucideSun, lucideArrowDown10 } from '@ng-icons/lucide';
 import { Colorscheme, ColorschemeService } from '../../services/colorscheme/colorscheme.service';
 import { NavigationService } from '../../services/navigation/navigation.service';
 import { FormsModule } from '@angular/forms';
 import { NgClass } from '@angular/common';
 import { LanguageSwitchComponent } from '../language-switch/language-switch.component';
 import { LocaleService } from '../../services/locale/locale.service';
+import { TitleService } from '../../services/title/title.service';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import { apps, AppService, HeaderLink } from '../../services/app/app.service';
 
 /**
  * Displays the header bar including links, a language switcher and a color switcher
@@ -14,13 +17,14 @@ import { LocaleService } from '../../services/locale/locale.service';
 @Component({
   selector: 'every-header',
   standalone: true,
-  imports: [NgIcon, FormsModule, NgClass, LanguageSwitchComponent],
+  imports: [NgIcon, FormsModule, NgClass, LanguageSwitchComponent, RouterLink, RouterLinkActive],
   templateUrl: './header.component.html',
   viewProviders: [
     provideIcons({
       lucideMoon,
       lucideSun,
       lucideMenu,
+      lucideArrowDown10,
     }),
   ],
 })
@@ -28,10 +32,14 @@ export class HeaderComponent {
   protected colorschemeService: ColorschemeService = inject(ColorschemeService);
   protected navigationService: NavigationService = inject(NavigationService);
   protected localeService: LocaleService = inject(LocaleService);
+  private _titleService: TitleService = inject(TitleService);
+  protected appService: AppService = inject(AppService);
 
-  protected get links(): string[] {
-    return [$localize`About`, $localize`Experience`, 'Work', 'Testimonials', $localize`Contact`];
-  }
+  protected isAppNavOpen = false;
+
+  protected links$: Signal<HeaderLink[]> = computed(
+    () => this.appService.currentApp$().headerLinks,
+  );
 
   /**
    * @returns The name of the color scheme switcher depending on the current theme
@@ -53,4 +61,10 @@ export class HeaderComponent {
   protected toggleColorScheme(): void {
     this.colorschemeService.toggleColorScheme();
   }
+
+  protected get title(): string {
+    return this._titleService.title;
+  }
+
+  protected readonly apps = apps;
 }

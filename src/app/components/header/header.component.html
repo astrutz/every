@@ -4,22 +4,69 @@
     <a target="_self" class="" href="/"
       ><h3
         class="text-xl md:text-2xl tracking-[-0.02em] dark:text-gray-50 text-gray-900 font-bold transition-colors duration-200">
-        &lt;alexstrutz.dev /&gt;
+        &lt;{{ title }} /&gt;
       </h3></a
     >
     <div class="hidden items-center gap-6 md:flex">
       <ul class="flex list-none items-center gap-6">
-        @for (link of links; track link) {
+        @for (link of links$(); track link) {
           <li>
             <a
               target="_self"
               class="text-base font-medium text-gray-600 dark:text-gray-300 transition-all dark:hover:text-gray-50 hover:text-gray-900 dark:active:text-gray-300 active:text-gray-600"
-              [href]="'#' + link.toLowerCase()"
-              >{{ link }}</a
+              [routerLink]="link.path"
+              >{{ link.name }}</a
             >
           </li>
         }
       </ul>
+      <div class="h-6 w-0.5 bg-gray-100 dark:bg-gray-800"></div>
+      <div
+        class="w-full md:block md:w-auto"
+        id="navbar-dropdown"
+        [ngClass]="isAppNavOpen ? '' : 'hidden'">
+        <button
+          (click)="isAppNavOpen = !isAppNavOpen"
+          id="dropdownNavbarLink"
+          data-dropdown-toggle="dropdownNavbar"
+          class="flex items-center font-medium justify-between w-full py-2 px-3 text-gray-600 dark:text-gray-300 transition-all dark:hover:text-gray-50 hover:text-gray-900 dark:active:text-gray-300 active:text-gray-600 rounded-sm md:hover:bg-transparent md:border-0 md:p-0 md:w-auto">
+          Apps
+          <svg
+            class="w-2.5 h-2.5 ms-2.5"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 10 6">
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="m1 1 4 4 4-4" />
+          </svg>
+        </button>
+        <!-- Dropdown menu -->
+        <div
+          id="dropdownNavbar"
+          [ngClass]="isAppNavOpen ? '' : 'hidden'"
+          class="z-10 absolute font-normal bg-white  divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600">
+          <ul
+            class="py-2 text-sm text-gray-700 dark:text-gray-400"
+            aria-labelledby="dropdownLargeButton">
+            @for (app of apps; track app.name) {
+              <li>
+                <a
+                  [routerLink]="app.url"
+                  (click)="isAppNavOpen = false"
+                  [ngClass]="{'text-white': appService.currentApp$().name === app.name}"
+                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  >{{ app.name }}</a
+                >
+              </li>
+            }
+          </ul>
+        </div>
+      </div>
       <div class="h-6 w-0.5 bg-gray-100 dark:bg-gray-800"></div>
       <div class="flex items-center justify-center gap-4">
         <button
@@ -29,7 +76,8 @@
           (click)="toggleColorScheme()">
           <ng-icon color="currentColor" size="1.5rem" [name]="colorIconName"></ng-icon>
         </button>
-        <div
+        @if (localeService.shouldShowLanguageSwitcher) {
+          <div
           class="relative self-center p-1 w-8 flex justify-center items-center"
           role="combobox"
           aria-haspopup="true"
@@ -44,6 +92,7 @@
               [alt]="localeService.activeLocale" />
           </button>
         </div>
+        }
       </div>
     </div>
     <button
