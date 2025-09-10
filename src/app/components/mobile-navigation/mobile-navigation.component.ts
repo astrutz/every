@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { HeaderComponent } from '../header/header.component';
 import { lucideX, lucideMoon, lucideSun } from '@ng-icons/lucide';
+import { RouterLink } from '@angular/router';
 
 /**
  * Displays a mobile navigation, hidden on w > 768px
@@ -10,7 +11,7 @@ import { lucideX, lucideMoon, lucideSun } from '@ng-icons/lucide';
 @Component({
   selector: 'every-mobile-navigation',
   standalone: true,
-  imports: [NgIcon],
+  imports: [NgIcon, RouterLink],
   templateUrl: './mobile-navigation.component.html',
   viewProviders: [
     provideIcons({

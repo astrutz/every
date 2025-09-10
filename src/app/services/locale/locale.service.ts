@@ -1,5 +1,4 @@
 import { inject, Injectable, LOCALE_ID } from '@angular/core';
-import { Router } from '@angular/router';
 
 /**
  * Service containing state of the current locale and language as well as the modal state
@@ -9,7 +8,6 @@ import { Router } from '@angular/router';
 })
 export class LocaleService {
   public activeLocale: string = inject(LOCALE_ID);
-  private _router = inject(Router);
 
   /**
    * Determines if the modal should be visible
@@ -39,13 +37,6 @@ export class LocaleService {
     { code: 'uk', name: 'українська' },
     { code: 'vi', name: 'Tiếng Việt' },
   ];
-
-  /**
-   * @return State containing the navigation
-   */
-  get shouldShowLanguageSwitcher(): boolean {
-    return !this._router.url.includes('/eurovision');
-  }
 
   /**
    * @return State containing the navigation

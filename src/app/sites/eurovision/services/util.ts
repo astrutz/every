@@ -3,14 +3,19 @@ import { Contest } from '../dataobjects/contest.dataobject';
 import { Entry } from '../dataobjects/entry.dataobject';
 import { Entity } from '../dataobjects/entity.dataobject';
 
+export interface DisplayNameOptions {
+  hideYear?: boolean;
+  hideRating?: boolean;
+}
+
 export class Util {
-  public static getDisplayName(entity: Entity): string {
+  public static getDisplayName(entity: Entity, options?: DisplayNameOptions): string {
     if (Util.isRatedCountry(entity)) {
-      return `${entity.name} (${(Math.round(entity.rating * 10) / 10).toLocaleString()})`;
+      return `${entity.name} ${options?.hideRating ? '' : `(${(Math.round(entity.rating * 10) / 10).toLocaleString()})`}`;
     } else if (Util.isCountry(entity)) {
       return entity.name;
     } else if (Util.isEntry(entity)) {
-      return `${entity.artist} - ${entity.title} (${entity.rating.getTotal().toLocaleString()})`;
+      return `${entity.artist} - ${entity.title} ${options?.hideRating ? '' : `(${entity.rating.getTotal().toLocaleString()})`} ${options?.hideYear ? '' : ` - ${entity.year}`}`;
     } else if (Util.isContest(entity)) {
       return `${entity.hostCountry.name} (${entity.year})`;
     }

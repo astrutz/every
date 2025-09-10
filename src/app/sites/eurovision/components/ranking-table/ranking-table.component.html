@@ -1,23 +1,26 @@
 <ul class="flex flex-col gap-1">
   @for (entity of sortedEntities; track 'a') {
     @if (Util.isEntry(entity)) {
-      <li class="flex gap-2 items-center text-lg max-w-fit" [ngClass]="{ 'font-semibold': $index < 3 }">
+      <li
+        class="flex gap-2 items-center text-lg max-w-fit"
+        [ngClass]="{ 'font-semibold': $index < 3 }">
         <p class="w-4">{{ $index + 1 }}.</p>
         @if (showFlag) {
           <a routerLink="/eurovision/countries/{{ entity.country.code }}">
             <img
               src="assets/eurovision/countries/{{ getFlag(entity.country.code) }}.png"
               alt="{{ entity.country.name }}"
-              class="h-8 w-8" />
+              class="h-8 w-8 hover:underline" />
           </a>
         }
-        <p>{{ Util.getDisplayName(entity) }}</p>
+        <p>{{ Util.getDisplayName(entity, displayNameOptions) }}</p>
       </li>
     }
     @if (Util.isRatedCountry(entity)) {
       <li class="max-w-fit" [ngClass]="{ 'font-semibold': $index < 3 }">
-        <!-- TODO: Hover for links and scss -->
-        <a class="flex gap-2 items-center text-lg" routerLink="/eurovision/countries/{{ entity.code }}">
+        <a
+          class="flex gap-2 items-center text-lg hover:underline"
+          routerLink="/eurovision/countries/{{ entity.code }}">
           <p class="w-4">{{ $index + 1 }}.</p>
           @if (showFlag) {
             <img
@@ -25,13 +28,15 @@
               alt="{{ entity.name }}"
               class="h-8 w-8" />
           }
-          <p>{{ Util.getDisplayName(entity) }}</p>
+          <p>{{ Util.getDisplayName(entity, displayNameOptions) }}</p>
         </a>
       </li>
     }
     @if (Util.isCountry(entity)) {
       <li class="max-w-fit" [ngClass]="{ 'font-semibold': $index < 3 }">
-        <a class="flex gap-2 items-center text-lg" routerLink="/eurovision/countries/{{ entity.code }}">
+        <a
+          class="flex gap-2 items-center text-lg hover:underline"
+          routerLink="/eurovision/countries/{{ entity.code }}">
           <p class="w-4">{{ $index + 1 }}.</p>
           @if (showFlag) {
             <img
@@ -39,7 +44,7 @@
               alt="{{ entity.name }}"
               class="h-8 w-8" />
           }
-          <p>{{ Util.getDisplayName(entity) }}</p>
+          <p>{{ Util.getDisplayName(entity, displayNameOptions) }}</p>
         </a>
       </li>
     }

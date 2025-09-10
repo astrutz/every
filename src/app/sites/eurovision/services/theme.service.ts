@@ -1,9 +1,12 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ThemeService {
+  private _document = inject(DOCUMENT);
+
   getBackgroundPrimary(year: number): string {
     switch (year) {
       case 2025:
@@ -98,5 +101,9 @@ export class ThemeService {
         return 'text-contest2016-secondaryText';
     }
     return '';
+  }
+
+  get flagBackground(): string {
+    return this._document.documentElement.classList.contains('dark') ? 'light' : 'dark';
   }
 }

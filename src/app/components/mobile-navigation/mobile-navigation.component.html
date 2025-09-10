@@ -32,14 +32,14 @@
     </div>
     <div class="border-b dark:border-gray-800 border-gray-100 p-4">
       <ul class="flex list-none flex-col gap-4">
-        @for (link of links; track link) {
+        @for (link of links$(); track link) {
           <li>
             <a
               (click)="closeNavigation()"
               target="_self"
               class="text-base font-medium text-gray-600 dark:text-gray-300 transition-all dark:hover:text-gray-50 hover:text-gray-900 dark:active:text-gray-300 active:text-gray-600"
-              [href]="'#' + link.toLowerCase()"
-              >{{ link }}</a
+              [routerLink]="link.path"
+              >{{ link.name }}</a
             >
           </li>
         }

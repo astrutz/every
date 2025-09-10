@@ -1,8 +1,4 @@
 <main>
-  <div class="m-auto max-w-7xl py-8">
-    <every-breadcrumb></every-breadcrumb>
-    <section class="min-h-96">Ranking oder so Wallah Wallah W</section>
-  </div>
   @for (contest of contests; track contest.year) {
     @if (contest.entries.length > 0) {
       <eurovision-contest-overview [contest]="contest"></eurovision-contest-overview>
