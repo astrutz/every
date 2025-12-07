@@ -39,5 +39,12 @@ export class MobileNavigationComponent extends HeaderComponent {
     return this.navigationService.isOpen;
   }
 
+  /**
+   * Propagates the open state from {@link NavigationService}
+   */
+  protected set isOpen(newVal: boolean) {
+    this.navigationService.isOpen = newVal;
+  }
+
   protected override readonly apps = apps;
 }
