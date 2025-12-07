@@ -33,6 +33,11 @@
           Apps
           <svg
             class="w-2.5 h-2.5 ms-2.5"
+            [ngClass]="
+              isAppNavOpen
+                ? 'transform rotate-180 transition-transform duration-200'
+                : 'transform rotate-0 transition-transform duration-200'
+            "
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -58,7 +63,7 @@
                 <a
                   [routerLink]="app.url"
                   (click)="isAppNavOpen = false"
-                  [ngClass]="{'text-white': appService.currentApp$().name === app.name}"
+                  [ngClass]="{'dark:text-white text-black underline': appService.currentApp$().name === app.name}"
                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                   >{{ app.name }}</a
                 >
