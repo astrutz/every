@@ -15,18 +15,17 @@ import { apps, AppService, HeaderLink } from '../../services/app/app.service';
  * Displays the header bar including links, a language switcher and a color switcher
  */
 @Component({
-  selector: 'every-header',
-  standalone: true,
-  imports: [NgIcon, FormsModule, NgClass, LanguageSwitchComponent, RouterLink, RouterLinkActive],
-  templateUrl: './header.component.html',
-  viewProviders: [
-    provideIcons({
-      lucideMoon,
-      lucideSun,
-      lucideMenu,
-      lucideArrowDown10,
-    }),
-  ],
+    selector: 'every-header',
+    imports: [NgIcon, FormsModule, NgClass, LanguageSwitchComponent, RouterLink, RouterLinkActive],
+    templateUrl: './header.component.html',
+    viewProviders: [
+        provideIcons({
+            lucideMoon,
+            lucideSun,
+            lucideMenu,
+            lucideArrowDown10,
+        }),
+    ]
 })
 export class HeaderComponent {
   protected colorschemeService: ColorschemeService = inject(ColorschemeService);

@@ -8,15 +8,14 @@ import { LocaleService } from '../../services/locale/locale.service';
  * Global overlay do choose a preferred language
  */
 @Component({
-  selector: 'every-language-switch',
-  standalone: true,
-  imports: [NgClass, NgIcon],
-  templateUrl: './language-switch.component.html',
-  viewProviders: [
-    provideIcons({
-      lucideX,
-    }),
-  ],
+    selector: 'every-language-switch',
+    imports: [NgClass, NgIcon],
+    templateUrl: './language-switch.component.html',
+    viewProviders: [
+        provideIcons({
+            lucideX,
+        }),
+    ]
 })
 export class LanguageSwitchComponent {
   protected localeService: LocaleService = inject(LocaleService);

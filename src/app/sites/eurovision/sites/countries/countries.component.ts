@@ -9,10 +9,9 @@ import { NgClass } from '@angular/common';
 type TabKey = { key: keyof Rating | undefined; name: string };
 
 @Component({
-  selector: 'eurovision-countries',
-  templateUrl: 'countries.component.html',
-  standalone: true,
-  imports: [BreadcrumbComponent, RankingTableComponent, NgClass],
+    selector: 'eurovision-countries',
+    templateUrl: 'countries.component.html',
+    imports: [BreadcrumbComponent, RankingTableComponent, NgClass]
 })
 export class CountriesComponent {
   protected storeService = inject(EurovisionStoreService);

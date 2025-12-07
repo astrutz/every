@@ -9,10 +9,9 @@ import { DOCUMENT } from '@angular/common';
 import { ThemeService } from '../../services/theme.service';
 
 @Component({
-  selector: 'eurovision-country',
-  templateUrl: 'country.component.html',
-  standalone: true,
-  imports: [RankingTableComponent, BreadcrumbComponent],
+    selector: 'eurovision-country',
+    templateUrl: 'country.component.html',
+    imports: [RankingTableComponent, BreadcrumbComponent]
 })
 export class CountryComponent implements OnInit {
   protected country!: Country;

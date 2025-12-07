@@ -12,10 +12,9 @@ import {
  * Displays the skills as a linked logo list
  */
 @Component({
-  selector: 'every-skills',
-  standalone: true,
-  imports: [NgOptimizedImage, TagComponent],
-  templateUrl: './skills.component.html',
+    selector: 'every-skills',
+    imports: [NgOptimizedImage, TagComponent],
+    templateUrl: './skills.component.html'
 })
 export class SkillsComponent {
   constructor(

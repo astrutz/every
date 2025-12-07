@@ -11,18 +11,17 @@ import { NgClass } from '@angular/common';
  * @extends HeaderComponent in order to get the injected {@link NavigationService}
  */
 @Component({
-  selector: 'every-mobile-navigation',
-  standalone: true,
-  imports: [NgIcon, RouterLink, NgClass],
-  templateUrl: './mobile-navigation.component.html',
-  viewProviders: [
-    provideIcons({
-      lucideMoon,
-      lucideSun,
-      lucideX,
-      lucideChevronDown,
-    }),
-  ],
+    selector: 'every-mobile-navigation',
+    imports: [NgIcon, RouterLink, NgClass],
+    templateUrl: './mobile-navigation.component.html',
+    viewProviders: [
+        provideIcons({
+            lucideMoon,
+            lucideSun,
+            lucideX,
+            lucideChevronDown,
+        }),
+    ]
 })
 export class MobileNavigationComponent extends HeaderComponent {
   /**

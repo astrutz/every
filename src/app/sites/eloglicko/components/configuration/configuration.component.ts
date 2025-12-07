@@ -5,15 +5,14 @@ import { NgClass } from '@angular/common';
 import { SimulationService } from '../../services/simulation.service';
 
 @Component({
-  standalone: true,
-  selector: 'eloglicko-configuration',
-  imports: [
-    CardComponent,
-    FormsModule,
-    ReactiveFormsModule,
-    NgClass,
-  ],
-  templateUrl: './configuration.component.html',
+    selector: 'eloglicko-configuration',
+    imports: [
+        CardComponent,
+        FormsModule,
+        ReactiveFormsModule,
+        NgClass,
+    ],
+    templateUrl: './configuration.component.html'
 })
 export class ConfigurationComponent {
   protected _configurationForm = new FormGroup({

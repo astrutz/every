@@ -8,10 +8,9 @@ import { DOCUMENT, NgClass } from '@angular/common';
 import { ThemeService } from '../../services/theme.service';
 
 @Component({
-  selector: 'eurovision-ranking-table',
-  templateUrl: 'ranking-table.component.html',
-  standalone: true,
-  imports: [RouterLink, NgClass],
+    selector: 'eurovision-ranking-table',
+    templateUrl: 'ranking-table.component.html',
+    imports: [RouterLink, NgClass]
 })
 export class RankingTableComponent<T extends Contest | Country | Entry> {
   private _themeService = inject(ThemeService);

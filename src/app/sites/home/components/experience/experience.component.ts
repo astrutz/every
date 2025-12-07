@@ -12,10 +12,9 @@ import { Experience } from '../../types/experience.type';
  * Displays the last jobs in a list with images
  */
 @Component({
-  selector: 'every-experience',
-  standalone: true,
-  imports: [NgOptimizedImage, TagComponent],
-  templateUrl: './experience.component.html',
+    selector: 'every-experience',
+    imports: [NgOptimizedImage, TagComponent],
+    templateUrl: './experience.component.html'
 })
 export class ExperienceComponent {
   #activeLocale: string = inject(LOCALE_ID);

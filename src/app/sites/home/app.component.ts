@@ -16,22 +16,21 @@ import { LanguageSwitchComponent } from '../../components/language-switch/langua
  * Root component of the landing page, combines all visual elements
  */
 @Component({
-  standalone: true,
-  imports: [
-    RouterModule,
-    HeroComponent,
-    AboutComponent,
-    SkillsComponent,
-    ExperienceComponent,
-    WorkComponent,
-    TestimonialsComponent,
-    ContactComponent,
-    NgClass,
-    NgIcon,
-    LanguageSwitchComponent,
-  ],
-  selector: 'home-root',
-  templateUrl: './app.component.html',
+    imports: [
+        RouterModule,
+        HeroComponent,
+        AboutComponent,
+        SkillsComponent,
+        ExperienceComponent,
+        WorkComponent,
+        TestimonialsComponent,
+        ContactComponent,
+        NgClass,
+        NgIcon,
+        LanguageSwitchComponent,
+    ],
+    selector: 'home-root',
+    templateUrl: './app.component.html'
 })
 export class AppComponent {
   protected navigationService = inject(NavigationService);

@@ -6,10 +6,9 @@ import { ContestOverviewComponent } from './components/contest-overview/contest-
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 
 @Component({
-  standalone: true,
-  imports: [RouterModule, ContestOverviewComponent, BreadcrumbComponent],
-  selector: 'eurovision-root',
-  templateUrl: './home.component.html',
+    imports: [RouterModule, ContestOverviewComponent, BreadcrumbComponent],
+    selector: 'eurovision-root',
+    templateUrl: './home.component.html'
 })
 export class HomeComponent {
   private readonly _storeService: EurovisionStoreService = inject(EurovisionStoreService);

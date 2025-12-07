@@ -16,20 +16,19 @@ import { SimulationService } from '../../services/simulation.service';
 
 
 @Component({
-  standalone: true,
-  selector: 'eloglicko-player',
-  templateUrl: './player.component.html',
-  imports: [CommonModule, ReactiveFormsModule, NgIconComponent, CardComponent],
-  viewProviders: [provideIcons({
-    lucideUserMinus,
-    lucideUserPlus,
-    tablerChessFilled,
-    tablerChessKnightFilled,
-    tablerChessQueenFilled,
-    tablerChessKingFilled,
-    tablerChessRookFilled,
-    tablerChessBishopFilled,
-  })],
+    selector: 'eloglicko-player',
+    templateUrl: './player.component.html',
+    imports: [CommonModule, ReactiveFormsModule, NgIconComponent, CardComponent],
+    viewProviders: [provideIcons({
+            lucideUserMinus,
+            lucideUserPlus,
+            tablerChessFilled,
+            tablerChessKnightFilled,
+            tablerChessQueenFilled,
+            tablerChessKingFilled,
+            tablerChessRookFilled,
+            tablerChessBishopFilled,
+        })]
 })
 export class PlayerComponent {
   protected _players: Player[] = [];

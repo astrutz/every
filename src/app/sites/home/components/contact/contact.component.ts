@@ -17,20 +17,19 @@ import { TagComponent } from '../../../../components/tag/tag.component';
  * Displays all contact information containing socials and email
  */
 @Component({
-  selector: 'every-contact',
-  standalone: true,
-  imports: [NgIcon, SocialsComponent, TagComponent],
-  templateUrl: './contact.component.html',
-  viewProviders: [
-    provideIcons({
-      lucideGithub,
-      lucideLinkedin,
-      lucideInstagram,
-      lucideCopy,
-      lucideMail,
-      simpleXing,
-    }),
-  ],
+    selector: 'every-contact',
+    imports: [NgIcon, SocialsComponent, TagComponent],
+    templateUrl: './contact.component.html',
+    viewProviders: [
+        provideIcons({
+            lucideGithub,
+            lucideLinkedin,
+            lucideInstagram,
+            lucideCopy,
+            lucideMail,
+            simpleXing,
+        }),
+    ]
 })
 export class ContactComponent {
   /**
