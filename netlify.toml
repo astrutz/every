@@ -1,8 +1,8 @@
 # ----------------------
-# Netlify Angular i18n Redirects korrekt
+# Angular i18n Redirects für Netlify (DE + EN)
 # ----------------------
 
-# 1️⃣ Assets nicht redirecten
+# --- Assets und JS/CSS vom Redirect ausschließen ---
 [[redirects]]
 from = "/de/*.js"
 to = "/de/:splat"
@@ -39,28 +39,28 @@ to = "/en/:splat"
 status = 200
 force = false
 
-# 2️⃣ SPA Routing für Deep Links
+# --- SPA Routing: alle "Deep Links" die nicht zu JS/CSS/Assets gehören ---
 [[redirects]]
-from = "/de/*"
+from = "/de/:splat"
 to = "/de/index.html"
 status = 200
-force = true
+conditions = {Language = []}
 
 [[redirects]]
-from = "/en/*"
+from = "/en/:splat"
 to = "/en/index.html"
 status = 200
-force = true
+conditions = {Language = []}
 
-# 3️⃣ Startseite Redirect basierend auf Browser Language
+# --- Root Redirect basierend auf Browser Language ---
 [[redirects]]
 from = "/"
 to = "/de"
 status = 302
-conditions = { Language = ["de"] }
+conditions = {Language = ["de"]}
 
 [[redirects]]
 from = "/"
 to = "/en"
 status = 302
-conditions = { Language = ["en"] }
+conditions = {Language = ["en"]}
