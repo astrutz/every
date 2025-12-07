@@ -18,4 +18,5 @@ command = "npm run build"
 
 [[plugins]]
 package = "@netlify/angular-runtime"
-version = "3.0.1"
+  [plugins.inputs]
+  pinned_version = "3.0.1"
