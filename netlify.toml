@@ -1,13 +1,31 @@
+# --------------------------
+# Netlify Redirects für Angular i18n (DE + EN)
+# --------------------------
+
+# 1️⃣ Deep links / SPA routing für Deutsch
+[[redirects]]
+from = "/de/*"
+to = "/de/index.html"
+status = 200
+force = true
+
+# 2️⃣ Deep links / SPA routing für Englisch
+[[redirects]]
+from = "/en/*"
+to = "/en/index.html"
+status = 200
+force = true
+
+# 3️⃣ Optional: Startseite redirect basierend auf Browser Language
+# Netlify kann hier browserbasierte Weiterleitungen machen
 [[redirects]]
 from = "/"
 to = "/de"
-status = 301
-force = false
-conditions = {Language = ["de"]}
+status = 302
+conditions = { Language = ["de"] }
 
 [[redirects]]
 from = "/"
 to = "/en"
-status = 301
-force = false
-conditions = {Language = ["en"]}
+status = 302
+conditions = { Language = ["en"] }
