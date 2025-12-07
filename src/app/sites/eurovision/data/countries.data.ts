@@ -2,203 +2,203 @@ import { Country } from '../dataobjects/country.dataobject';
 
 export const albania: Country = {
   code: 'AL',
-  name: $localize`Albania`,
+  name: 'Albania',
 };
 export const andorra: Country = {
   code: 'AD',
-  name: $localize`Andorra`,
+  name: 'Andorra',
 };
 export const armenia: Country = {
   code: 'AM',
-  name: $localize`Armenia`,
+  name: 'Armenia',
 };
 export const azerbaijan: Country = {
   code: 'AZ',
-  name: $localize`Azerbaijan`,
+  name: 'Azerbaijan',
 };
 export const australia: Country = {
   code: 'AU',
-  name: $localize`Australia`,
+  name: 'Australia',
 };
 export const austria: Country = {
   code: 'AT',
-  name: $localize`Austria`,
+  name: 'Austria',
 };
 export const belarus: Country = {
   code: 'BY',
-  name: $localize`Belarus`,
+  name: 'Belarus',
 };
 export const belgium: Country = {
   code: 'BE',
-  name: $localize`Belgium`,
+  name: 'Belgium',
 };
 export const bosniaAndHerzegovina: Country = {
   code: 'BA',
-  name: $localize`Bosnia and Herzegovina`,
+  name: 'Bosnia and Herzegovina',
 };
 export const bulgaria: Country = {
   code: 'BG',
-  name: $localize`Bulgaria`,
+  name: 'Bulgaria',
 };
 export const croatia: Country = {
   code: 'HR',
-  name: $localize`Croatia`,
+  name: 'Croatia',
 };
 export const cyprus: Country = {
   code: 'CY',
-  name: $localize`Cyprus`,
+  name: 'Cyprus',
 };
 export const czechia: Country = {
   code: 'CZ',
-  name: $localize`Czechia`,
+  name: 'Czechia',
 };
 export const denmark: Country = {
   code: 'DK',
-  name: $localize`Denmark`,
+  name: 'Denmark',
 };
 export const estonia: Country = {
   code: 'EE',
-  name: $localize`Estonia`,
+  name: 'Estonia',
 };
 export const finland: Country = {
   code: 'FI',
-  name: $localize`Finland`,
+  name: 'Finland',
 };
 export const france: Country = {
   code: 'FR',
-  name: $localize`France`,
+  name: 'France',
 };
 export const georgia: Country = {
   code: 'GE',
-  name: $localize`Georgia`,
+  name: 'Georgia',
 };
 export const germany: Country = {
   code: 'DE',
-  name: $localize`Germany`,
+  name: 'Germany',
 };
 export const greece: Country = {
   code: 'GR',
-  name: $localize`Greece`,
+  name: 'Greece',
 };
 export const hungary: Country = {
   code: 'HU',
-  name: $localize`Hungary`,
+  name: 'Hungary',
 };
 export const iceland: Country = {
   code: 'IS',
-  name: $localize`Iceland`,
+  name: 'Iceland',
 };
 export const ireland: Country = {
   code: 'IE',
-  name: $localize`Ireland`,
+  name: 'Ireland',
 };
 export const israel: Country = {
   code: 'IL',
-  name: $localize`Israel`,
+  name: 'Israel',
 };
 export const italy: Country = {
   code: 'IT',
-  name: $localize`Italy`,
+  name: 'Italy',
 };
 export const latvia: Country = {
   code: 'LV',
-  name: $localize`Latvia`,
+  name: 'Latvia',
 };
 export const lithuania: Country = {
   code: 'LT',
-  name: $localize`Lithuania`,
+  name: 'Lithuania',
 };
 export const luxemburg: Country = {
   code: 'LU',
-  name: $localize`Luxembourg`,
+  name: 'Luxembourg',
 };
 export const malta: Country = {
   code: 'MT',
-  name: $localize`Malta`,
+  name: 'Malta',
 };
 export const moldova: Country = {
   code: 'MD',
-  name: $localize`Moldova`,
+  name: 'Moldova',
 };
 export const monaco: Country = {
   code: 'MC',
-  name: $localize`Monaco`,
+  name: 'Monaco',
 };
 export const montenegro: Country = {
   code: 'ME',
-  name: $localize`Montenegro`,
+  name: 'Montenegro',
 };
 export const morocco: Country = {
   code: 'MA',
-  name: $localize`Morocco`,
+  name: 'Morocco',
 };
 export const netherlands: Country = {
   code: 'NL',
-  name: $localize`Netherlands`,
+  name: 'Netherlands',
 };
 export const northMacedonia: Country = {
   code: 'MK',
-  name: $localize`North Macedonia`,
+  name: 'North Macedonia',
 };
 export const norway: Country = {
   code: 'NO',
-  name: $localize`Norway`,
+  name: 'Norway',
 };
 export const poland: Country = {
   code: 'PL',
-  name: $localize`Poland`,
+  name: 'Poland',
 };
 export const portugal: Country = {
   code: 'PT',
-  name: $localize`Portugal`,
+  name: 'Portugal',
 };
 export const romania: Country = {
   code: 'RO',
-  name: $localize`Romania`,
+  name: 'Romania',
 };
 export const russia: Country = {
   code: 'RU',
-  name: $localize`Russia`,
+  name: 'Russia',
 };
 export const sanMarino: Country = {
   code: 'SM',
-  name: $localize`San Marino`,
+  name: 'San Marino',
 };
 export const sweden: Country = {
   code: 'SE',
-  name: $localize`Sweden`,
+  name: 'Sweden',
 };
 export const switzerland: Country = {
   code: 'CH',
-  name: $localize`Switzerland`,
+  name: 'Switzerland',
 };
 export const serbia: Country = {
   code: 'RS',
-  name: $localize`Serbia`,
+  name: 'Serbia',
 };
 export const slovakia: Country = {
   code: 'SK',
-  name: $localize`Slovakia`,
+  name: 'Slovakia',
 };
 export const slovenia: Country = {
   code: 'SI',
-  name: $localize`Slovenia`,
+  name: 'Slovenia',
 };
 export const spain: Country = {
   code: 'ES',
-  name: $localize`Spain`,
+  name: 'Spain',
 };
 export const turkey: Country = {
   code: 'TR',
-  name: $localize`Turkey`,
+  name: 'Turkey',
 };
 export const ukraine: Country = {
   code: 'UA',
-  name: $localize`Ukraine`,
+  name: 'Ukraine',
 };
 export const unitedKingdom: Country = {
   code: 'UK',
-  name: $localize`United Kingdom`,
+  name: 'United Kingdom',
 };
 
 export const countries: Country[] = [
