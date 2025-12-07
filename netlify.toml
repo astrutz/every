@@ -16,6 +16,6 @@ conditions = {Language = ["en"]}
 publish = "dist/every"
 command = "npm run build"
 
-#[[plugins]]
-#package = "@netlify/angular-runtime"
-#version = "3.0.1"
+[[plugins]]
+package = "@netlify/angular-runtime"
+version = "3.0.1"
