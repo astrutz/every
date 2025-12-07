@@ -64,28 +64,28 @@ const _breadcrumbMap: Map<string, BreadcrumbItem> = new Map([
   [
     '',
     {
-      name: 'Home',
+      name: $localize`Home`,
       link: '',
     },
   ],
   [
     'eurovision',
     {
-      name: 'Eurovision',
+      name: $localize`Eurovision`,
       link: '/eurovision',
     },
   ],
   [
     'countries',
     {
-      name: 'Länder',
+      name: $localize`Countries`,
       link: '/eurovision/countries',
     },
   ],
   [
     'contests',
     {
-      name: 'Contents',
+      name: $localize`Contests`,
       link: '/eurovision/contests',
     },
   ],
