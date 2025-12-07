@@ -1,23 +1,58 @@
-# --------------------------
-# Netlify Redirects für Angular i18n (DE + EN)
-# --------------------------
+# ----------------------
+# Netlify Angular i18n Redirects korrekt
+# ----------------------
 
-# 1️⃣ Deep links / SPA routing für Deutsch
+# 1️⃣ Assets nicht redirecten
+[[redirects]]
+from = "/de/*.js"
+to = "/de/:splat"
+status = 200
+force = false
+
+[[redirects]]
+from = "/de/*.css"
+to = "/de/:splat"
+status = 200
+force = false
+
+[[redirects]]
+from = "/de/assets/*"
+to = "/de/:splat"
+status = 200
+force = false
+
+[[redirects]]
+from = "/en/*.js"
+to = "/en/:splat"
+status = 200
+force = false
+
+[[redirects]]
+from = "/en/*.css"
+to = "/en/:splat"
+status = 200
+force = false
+
+[[redirects]]
+from = "/en/assets/*"
+to = "/en/:splat"
+status = 200
+force = false
+
+# 2️⃣ SPA Routing für Deep Links
 [[redirects]]
 from = "/de/*"
 to = "/de/index.html"
 status = 200
 force = true
 
-# 2️⃣ Deep links / SPA routing für Englisch
 [[redirects]]
 from = "/en/*"
 to = "/en/index.html"
 status = 200
 force = true
 
-# 3️⃣ Optional: Startseite redirect basierend auf Browser Language
-# Netlify kann hier browserbasierte Weiterleitungen machen
+# 3️⃣ Startseite Redirect basierend auf Browser Language
 [[redirects]]
 from = "/"
 to = "/de"
