@@ -1,15 +1,138 @@
+# Assets / JS / CSS / Assets Folder nicht redirecten
+[[redirects]]
+from = "/de/*.js"
+to = "/de/:splat"
+status = 200
+force = false
+[[redirects]]
+from = "/de/*.css"
+to = "/de/:splat"
+status = 200
+force = false
+[[redirects]]
+from = "/de/assets/*"
+to = "/de/:splat"
+status = 200
+force = false
+
+[[redirects]]
+from = "/en/*.js"
+to = "/en/:splat"
+status = 200
+force = false
+[[redirects]]
+from = "/en/*.css"
+to = "/en/:splat"
+status = 200
+force = false
+[[redirects]]
+from = "/en/assets/*"
+to = "/en/:splat"
+status = 200
+force = false
+
+# SPA Routing für Deep Links
+[[redirects]]
+from = "/de/:splat"
+to = "/de/index.html"
+status = 200
+
+[[redirects]]
+from = "/en/:splat"
+to = "/en/index.html"
+status = 200
+
+[[redirects]]
+from = "/bn/:splat"
+to = "/bn/index.html"
+status = 200
+
+[[redirects]]
+from = "/es/:splat"
+to = "/es/index.html"
+status = 200
+
+[[redirects]]
+from = "/fa/:splat"
+to = "/fa/index.html"
+status = 200
+
+[[redirects]]
+from = "/fr/:splat"
+to = "/fr/index.html"
+status = 200
+
+[[redirects]]
+from = "/hi/:splat"
+to = "/hi/index.html"
+status = 200
+
+[[redirects]]
+from = "/it/:splat"
+to = "/it/index.html"
+status = 200
+
+[[redirects]]
+from = "/ja/:splat"
+to = "/ja/index.html"
+status = 200
+
+[[redirects]]
+from = "/jv/:splat"
+to = "/jv/index.html"
+status = 200
+
+[[redirects]]
+from = "/pl/:splat"
+to = "/pl/index.html"
+status = 200
+
+[[redirects]]
+from = "/pt/:splat"
+to = "/pt/index.html"
+status = 200
+
+[[redirects]]
+from = "/ro/:splat"
+to = "/ro/index.html"
+status = 200
+
+[[redirects]]
+from = "/ru/:splat"
+to = "/ru/index.html"
+status = 200
+
+[[redirects]]
+from = "/tr/:splat"
+to = "/tr/index.html"
+status = 200
+
+[[redirects]]
+from = "/uk/:splat"
+to = "/uk/index.html"
+status = 200
+
+[[redirects]]
+from = "/vi/:splat"
+to = "/vi/index.html"
+status = 200
+
+[[redirects]]
+from = "/zh/:splat"
+to = "/zh/index.html"
+status = 200
+
+# Root / Redirect nach Browser Language
 [[redirects]]
 from = "/"
 to = "/de"
-status = 301
-force = false
+status = 302
 conditions = {Language = ["de"]}
 
 [[redirects]]
 from = "/"
 to = "/en"
-status = 301
-force = false
+status = 302
 conditions = {Language = ["en"]}
 
 [build]

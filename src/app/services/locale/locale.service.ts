@@ -17,6 +17,11 @@ export class LocaleService {
   private _isLanguageSwitcherOpen: boolean = false;
 
   /**
+   * Determines if the mobile modal should be visible
+   */
+  private _isMobileLanguageSwitcherOpen: boolean = false;
+
+  /**
    * List of supported locales and languages
    */
   public locales = [
@@ -64,6 +69,20 @@ export class LocaleService {
       document.body.classList.remove('overflow-hidden');
     }
     this._isLanguageSwitcherOpen = newVal;
+  }
+
+  /**
+   * @return State containing the navigation
+   */
+  get isMobileLanguageSwitcherOpen(): boolean {
+    return this._isMobileLanguageSwitcherOpen;
+  }
+
+  /**
+   * @param newVal State containing the navigation
+   */
+  set isMobileLanguageSwitcherOpen(newVal: boolean) {
+    this._isMobileLanguageSwitcherOpen = newVal;
   }
 
   /**

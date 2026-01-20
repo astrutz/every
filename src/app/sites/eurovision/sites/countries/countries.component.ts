@@ -16,12 +16,12 @@ type TabKey = { key: keyof Rating | undefined; name: string };
 export class CountriesComponent {
   protected storeService = inject(EurovisionStoreService);
   protected tabKeys: TabKey[] = [
-    { key: undefined, name: 'Gesamt' },
-    { key: 'energy', name: 'Energie' },
-    { key: 'staging', name: 'Staging' },
-    { key: 'studio', name: 'Studio' },
-    { key: 'fun', name: 'Fun' },
-    { key: 'vocals', name: 'Vocals' },
+    { key: undefined, name: $localize`Total` },
+    { key: 'energy', name: $localize`Energy` },
+    { key: 'staging', name: $localize`Staging` },
+    { key: 'studio', name: $localize`Studio` },
+    { key: 'fun', name: $localize`Fun` },
+    { key: 'vocals', name: $localize`Vocals` },
   ];
 
   protected criteria$: WritableSignal<keyof Rating | undefined> = signal(undefined);

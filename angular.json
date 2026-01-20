@@ -43,6 +43,7 @@
               "base": "dist/every"
             },
             "index": "src/index.html",
+            "main": "src/main.ts",
             "polyfills": ["zone.js", "@angular/localize/init"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
@@ -50,6 +51,7 @@
               "src/favicon.ico",
               "src/robots.txt",
               "src/assets",
+              "src/_redirects",
               {
                 "glob": "_redirects",
                 "input": "src",

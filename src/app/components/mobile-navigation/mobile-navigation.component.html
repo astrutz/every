@@ -45,25 +45,31 @@
         }
       </ul>
     </div>
+
     <div class="w-full block border-b dark:border-gray-800 border-gray-100" id="navbar-dropdown">
       <button
         (click)="isAppNavOpen = !isAppNavOpen"
         id="dropdownNavbarLink"
         data-dropdown-toggle="dropdownNavbar"
-        class="flex gap-4 p-4 items-center font-medium justify-between w-full text-gray-600 dark:text-gray-300 transition-all rounded-sm">
+        [ngClass]="{'pb-4': !isAppNavOpen}"
+        class="flex gap-4 pt-4 px-4 items-center font-medium justify-between w-full text-gray-600 dark:text-gray-300 transition rounded-sm">
         <p>Apps</p>
-        <button class="p-1.5">
+        <button class="p-1">
           <ng-icon
             color="currentColor"
-            size="1.5rem"
-            name="lucideChevronDown"></ng-icon>
+            size="1.3rem"
+            name="lucideChevronDown"
+            [ngClass]="
+              isAppNavOpen
+                ? 'transform rotate-180 transition-transform duration-200'
+                : 'transform rotate-0 transition-transform duration-200'
+            "></ng-icon>
         </button>
       </button>
-      <!-- Dropdown menu -->
       <div
         id="dropdownNavbar"
         [ngClass]="isAppNavOpen ? '' : 'hidden'"
-        class="z-10 absolute font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600">
+        class="font-normal divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:divide-gray-600">
         <ul
           class="py-2 text-sm text-gray-700 dark:text-gray-400"
           aria-labelledby="dropdownLargeButton">
@@ -71,8 +77,8 @@
             <li>
               <a
                 [routerLink]="app.url"
-                (click)="isAppNavOpen = false"
-                [ngClass]="{ 'text-white': appService.currentApp$().name === app.name }"
+                (click)="isAppNavOpen = false; isOpen = false"
+                [ngClass]="{'dark:text-white text-black underline': appService.currentApp$().name === app.name}"
                 class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                 >{{ app.name }}</a
               >
@@ -83,29 +89,68 @@
     </div>
 
     <div class="flex flex-col gap-4 p-4">
-      <div class="flex items-center justify-between">
+      <button (click)="toggleColorScheme()" class="flex items-center justify-between">
         <p i18n id="toggle-theme-label" class="text-normal text-base">Switch Theme</p>
-        <button
+        <div
           class="relative flex justify-center items-center dark:hover:bg-gray-800 hover:bg-gray-100 dark:active:bg-gray-700 active:bg-gray-200 rounded-lg p-1.5 transition-colors duration-200"
           aria-labelledby="toggle-theme-label"
-          (click)="toggleColorScheme()">
+          >
           <ng-icon color="currentColor" size="1.5rem" [name]="colorIconName"></ng-icon>
-        </button>
-      </div>
+        </div>
+      </button>
     </div>
 
-    <div class="flex flex-col gap-4 p-4 pt-0">
-      <div
-        class="flex items-center justify-between"
-        (click)="localeService.isLanguageSwitcherOpen = !localeService.isLanguageSwitcherOpen">
-        <p i18n id="toggle-locale-label" class="text-normal text-base">Switch Language</p>
-        <button aria-haspopup="listbox" aria-expanded="false" class="p-1.5">
-          <img
-            class="w-6 h-auto block rounded"
-            [src]="localeService.getLanguageIconName(localeService.activeLocale)"
-            [alt]="localeService.activeLocale" />
+    @if (localeService.shouldShowLanguageSwitcher) {
+      <div class="flex flex-col gap-4 p-4 pt-0">
+        <button
+          (click)="
+            localeService.isMobileLanguageSwitcherOpen = !localeService.isMobileLanguageSwitcherOpen
+          "
+          class="flex items-center justify-between w-full text-left text-gray-600 dark:text-gray-300">
+          <p i18n class="text-base">Switch Language</p>
+          <div class="flex items-center gap-2">
+            <img
+              class="w-6 h-auto block rounded"
+              [src]="localeService.getLanguageIconName(localeService.activeLocale)"
+              [alt]="localeService.activeLocale" />
+            <ng-icon
+              color="currentColor"
+              size="1.3rem"
+              name="lucideChevronDown"
+              [ngClass]="
+                localeService.isMobileLanguageSwitcherOpen
+                  ? 'transform rotate-180 transition-transform duration-200'
+                  : 'transform rotate-0 transition-transform duration-200'
+              "></ng-icon>
+          </div>
         </button>
+
+        <div
+          [ngClass]="localeService.isMobileLanguageSwitcherOpen ? '' : 'hidden'"
+          class="mt-2 ml-2 mr-2 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm p-3">
+          <ul class="grid grid-cols-3 gap-3">
+            @for (locale of localeService.locales; track locale) {
+              <li>
+                <a
+                  [href]="'https://alexstrutz.dev/' + locale.code"
+                  class="flex flex-col items-center gap-1 w-full group">
+                  <img
+                    class="w-8 h-auto block group-hover:scale-110 transition-all duration-150 rounded"
+                    [src]="localeService.getLanguageIconName(locale.code)"
+                    [alt]="locale.name" />
+                  <span
+                    class="text-xs text-gray-700 dark:text-gray-300 group-hover:font-semibold"
+                    [ngClass]="{
+                      'underline font-semibold': locale.code === localeService.activeLocale
+                    }">
+                    {{ locale.name }}
+                  </span>
+                </a>
+              </li>
+            }
+          </ul>
+        </div>
       </div>
-    </div>
+    }
   </div>
 }
