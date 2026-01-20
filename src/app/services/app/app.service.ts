@@ -20,23 +20,23 @@ export const apps: App[] = [
     headerLinks: [
       {
         name: $localize`About`,
-        path: '#about',
+        path: 'about',
       },
       {
         name: $localize`Experience`,
-        path: '#experience',
+        path: 'experience',
       },
       {
         name: 'Work',
-        path: '#work',
+        path: 'work',
       },
       {
         name: 'Testimonials',
-        path: '#testimonials',
+        path: 'testimonials',
       },
       {
         name: $localize`Contact`,
-        path: '#contact',
+        path: 'contact',
       },
     ],
   },
