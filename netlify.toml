@@ -136,8 +136,5 @@ status = 302
 conditions = {Language = ["en"]}
 
 [build]
-publish = "dist/every"
+publish = "dist/every/browser"
 command = "npm run build"
-
-[[plugins]]
-package = "@netlify/angular-runtime"
