@@ -7,10 +7,9 @@ import { Testimonial } from '../../types/testimonial.type';
  * Displays a vertical flex list of testimonials with avatars and texts
  */
 @Component({
-  selector: 'every-testimonials',
-  standalone: true,
-  imports: [NgOptimizedImage],
-  templateUrl: './testimonials.component.html',
+    selector: 'every-testimonials',
+    imports: [NgOptimizedImage],
+    templateUrl: './testimonials.component.html'
 })
 export class TestimonialsComponent {
   constructor(private readonly _store: StoreService) {}

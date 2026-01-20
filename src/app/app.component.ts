@@ -9,10 +9,9 @@ import { MobileNavigationComponent } from './components/mobile-navigation/mobile
  * Global page root component
  */
 @Component({
-  selector: 'every-root',
-  templateUrl: './app.component.html',
-  standalone: true,
-  imports: [HeaderComponent, RouterModule, FooterComponent, MobileNavigationComponent],
+    selector: 'every-root',
+    templateUrl: './app.component.html',
+    imports: [HeaderComponent, RouterModule, FooterComponent, MobileNavigationComponent]
 })
 export class AppComponent {
   constructor(private _colorschemeService: ColorschemeService) {

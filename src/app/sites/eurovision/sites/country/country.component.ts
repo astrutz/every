@@ -1,18 +1,17 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, DOCUMENT } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Country } from '../../dataobjects/country.dataobject';
 import { StoreService as EurovisionStoreService } from '../../services/store.service';
 import { RankingTableComponent } from '../../components/ranking-table/ranking-table.component';
 import { Entry } from '../../dataobjects/entry.dataobject';
 import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb.component';
-import { DOCUMENT } from '@angular/common';
+
 import { ThemeService } from '../../services/theme.service';
 
 @Component({
-  selector: 'eurovision-country',
-  templateUrl: 'country.component.html',
-  standalone: true,
-  imports: [RankingTableComponent, BreadcrumbComponent],
+    selector: 'eurovision-country',
+    templateUrl: 'country.component.html',
+    imports: [RankingTableComponent, BreadcrumbComponent]
 })
 export class CountryComponent implements OnInit {
   protected country!: Country;

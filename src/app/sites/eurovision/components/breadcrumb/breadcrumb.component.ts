@@ -4,10 +4,9 @@ import { RouterLink } from '@angular/router';
 import { BreadcrumbService } from '../../services/breadcrumb.service';
 
 @Component({
-  selector: 'every-breadcrumb',
-  templateUrl: 'breadcrumb.component.html',
-  standalone: true,
-  imports: [NgClass, RouterLink],
+    selector: 'every-breadcrumb',
+    templateUrl: 'breadcrumb.component.html',
+    imports: [NgClass, RouterLink]
 })
 export class BreadcrumbComponent {
   protected breadcrumbService: BreadcrumbService = inject(BreadcrumbService);

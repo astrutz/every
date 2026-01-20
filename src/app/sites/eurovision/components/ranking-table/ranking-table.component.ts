@@ -1,17 +1,16 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject, Input, DOCUMENT } from '@angular/core';
 import { Contest } from '../../dataobjects/contest.dataobject';
 import { Country } from '../../dataobjects/country.dataobject';
 import { Entry } from '../../dataobjects/entry.dataobject';
 import { DisplayNameOptions, Util } from '../../services/util';
 import { RouterLink } from '@angular/router';
-import { DOCUMENT, NgClass } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { ThemeService } from '../../services/theme.service';
 
 @Component({
-  selector: 'eurovision-ranking-table',
-  templateUrl: 'ranking-table.component.html',
-  standalone: true,
-  imports: [RouterLink, NgClass],
+    selector: 'eurovision-ranking-table',
+    templateUrl: 'ranking-table.component.html',
+    imports: [RouterLink, NgClass]
 })
 export class RankingTableComponent<T extends Contest | Country | Entry> {
   private _themeService = inject(ThemeService);

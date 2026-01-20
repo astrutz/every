@@ -10,15 +10,14 @@ import { Work } from '../../types/work.type';
  * Displays a list of projects with image and text
  */
 @Component({
-  selector: 'every-work',
-  standalone: true,
-  imports: [TagComponent, NgIcon, NgOptimizedImage],
-  templateUrl: './work.component.html',
-  viewProviders: [
-    provideIcons({
-      lucideExternalLink,
-    }),
-  ],
+    selector: 'every-work',
+    imports: [TagComponent, NgIcon, NgOptimizedImage],
+    templateUrl: './work.component.html',
+    viewProviders: [
+        provideIcons({
+            lucideExternalLink,
+        }),
+    ]
 })
 export class WorkComponent {
   constructor(private readonly _store: StoreService) {}
