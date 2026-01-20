@@ -12,9 +12,9 @@
         @for (link of links$(); track link) {
           <li>
             <a
-              target="_self"
+              [routerLink]="[]"
+              [fragment]="link.path"
               class="text-base font-medium text-gray-600 dark:text-gray-300 transition-all dark:hover:text-gray-50 hover:text-gray-900 dark:active:text-gray-300 active:text-gray-600"
-              [routerLink]="link.path"
               >{{ link.name }}</a
             >
           </li>
