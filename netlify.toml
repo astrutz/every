@@ -141,4 +141,5 @@ command = "npm run build"
 
 [[plugins]]
 package = "@netlify/angular-runtime"
-path = "/"
+  [plugins.inputs]
+  path = "/"
