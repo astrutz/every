@@ -39,4 +39,13 @@ export class CountryComponent implements OnInit {
   protected getFlag(code: string): string {
     return `${code}-${this._themeService.flagBackground}`;
   }
+
+  /**
+   * Returns the path to the country crest SVG
+   * Crest files should be stored at: assets/eurovision/crests/{COUNTRY_CODE}.svg
+   * Note: You can adjust the size and opacity in the template using h-[30%] and opacity-15 classes
+   */
+  protected getCrest(code: string): string {
+    return `assets/eurovision/crests/${code.toLowerCase()}.svg`;
+  }
 }
