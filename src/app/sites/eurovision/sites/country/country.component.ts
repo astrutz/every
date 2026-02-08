@@ -9,9 +9,10 @@ import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb.comp
 import { ThemeService } from '../../services/theme.service';
 
 @Component({
-    selector: 'eurovision-country',
-    templateUrl: 'country.component.html',
-    imports: [RankingTableComponent, BreadcrumbComponent]
+  selector: 'eurovision-country',
+  templateUrl: 'country.component.html',
+  styleUrl: 'country.component.scss',
+  imports: [RankingTableComponent, BreadcrumbComponent],
 })
 export class CountryComponent implements OnInit {
   protected country!: Country;
@@ -38,5 +39,9 @@ export class CountryComponent implements OnInit {
 
   protected getFlag(code: string): string {
     return `${code}-${this._themeService.flagBackground}`;
+  }
+
+  protected getCrest(code: string): string {
+    return `assets/eurovision/crests/${code}.svg`;
   }
 }
