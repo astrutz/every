@@ -5,6 +5,7 @@ import { filter } from 'rxjs';
 export interface App {
   name: string;
   url: string;
+  isExternal?: boolean;
   headerLinks: HeaderLink[];
 }
 
@@ -53,6 +54,18 @@ export const apps: App[] = [
         path: 'eurovision/countries',
       },
     ],
+  },
+  {
+    name: 'Amazing Map',
+    url: 'https://is-the-amazing-near-me.netlify.app',
+    headerLinks: [],
+    isExternal: true,
+  },
+  {
+    name: "Bake 'n Shake",
+    url: 'https://bakeandshake.netlify.app',
+    headerLinks: [],
+    isExternal: true,
   },
 ];
 

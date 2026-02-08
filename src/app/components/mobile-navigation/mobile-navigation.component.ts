@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { HeaderComponent } from '../header/header.component';
-import { lucideX, lucideMoon, lucideSun, lucideChevronDown } from '@ng-icons/lucide';
+import { lucideX, lucideMoon, lucideSun, lucideChevronDown, lucideExternalLink } from '@ng-icons/lucide';
 import { RouterLink } from '@angular/router';
 import { apps } from '../../services/app/app.service';
 import { NgClass } from '@angular/common';
@@ -20,6 +20,7 @@ import { NgClass } from '@angular/common';
             lucideSun,
             lucideX,
             lucideChevronDown,
+            lucideExternalLink,
         }),
     ]
 })
