@@ -1,12 +1,19 @@
 <main class="relative overflow-hidden">
-  <!-- Colored header banner with national colors -->
+  <!-- Diagonal bars -->
   @if (country.primaryColor && country.secondaryColor) {
-    <div class="absolute top-0 left-0 right-0 h-24 md:h-32 pointer-events-none -z-10">
-      <div 
-        class="absolute inset-0 header-banner-animate"
-        [style.background]="'linear-gradient(90deg, ' + country.primaryColor + ' 0%, ' + country.secondaryColor + ' 100%)'">
+    <div class="absolute inset-0 pointer-events-none -z-10">
+      <!-- First bar (primary color) -->
+      <div
+        class="diagonal-bar diagonal-bar-1 absolute w-4 opacity-60"
+        [style.background-color]="country.primaryColor"
+        style="left: 0; bottom: 0; transform: rotate(45deg); transform-origin: left bottom;">
       </div>
-      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-gray-50 dark:to-gray-950"></div>
+      <!-- Second bar (secondary color) -->
+      <div
+        class="diagonal-bar diagonal-bar-2 absolute w-4 opacity-60"
+        [style.background-color]="country.secondaryColor"
+        style="left: 1rem; bottom: 0; transform: rotate(45deg); transform-origin: left bottom;">
+      </div>
     </div>
   }
   <div class="m-auto max-w-7xl py-8 px-4 md:px-8">
