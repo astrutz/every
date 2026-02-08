@@ -152,3 +152,26 @@
 body {
   @apply font-barlow text-gray-600 dark:text-gray-300 dark:bg-gray-950 bg-gray-50;
 }
+
+/* Diagonal bar animations for country component */
+@keyframes diagonal-bar-grow {
+  from {
+    height: 0;
+  }
+  to {
+    height: 150vh;
+  }
+}
+
+.diagonal-bar {
+  height: 0;
+  animation: diagonal-bar-grow 1.2s ease-out forwards;
+}
+
+.diagonal-bar-1 {
+  animation-delay: 0s;
+}
+
+.diagonal-bar-2 {
+  animation-delay: 0.15s;
+}
