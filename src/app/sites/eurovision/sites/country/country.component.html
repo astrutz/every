@@ -10,10 +10,9 @@
     </h1>
     <eurovision-ranking-table [sortedEntities]="sortedEntries" [showFlag]="false" />
   </div>
-  
-  <!-- Decorative crest background - Adjust size with h-[30%] and opacity with opacity-15 -->
-  <img
-    src="{{ getCrest(country.code) }}"
-    alt=""
-    class="absolute bottom-0 right-0 h-[30%] w-auto opacity-15 grayscale brightness-50 pointer-events-none -z-10"
-    aria-hidden="true" /></main>
+</main>
+<img
+  src="{{ getCrest(country.code) }}"
+  alt=""
+  class="absolute bottom-4 right-4 md:bottom-16 md:right-16 h-[30%] md:h-[50%] w-auto opacity-15 grayscale brightness-50 pointer-events-none -z-10"
+  aria-hidden="true" />

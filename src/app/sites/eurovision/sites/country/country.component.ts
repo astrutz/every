@@ -9,9 +9,9 @@ import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb.comp
 import { ThemeService } from '../../services/theme.service';
 
 @Component({
-    selector: 'eurovision-country',
-    templateUrl: 'country.component.html',
-    imports: [RankingTableComponent, BreadcrumbComponent]
+  selector: 'eurovision-country',
+  templateUrl: 'country.component.html',
+  imports: [RankingTableComponent, BreadcrumbComponent],
 })
 export class CountryComponent implements OnInit {
   protected country!: Country;
@@ -40,11 +40,6 @@ export class CountryComponent implements OnInit {
     return `${code}-${this._themeService.flagBackground}`;
   }
 
-  /**
-   * Returns the path to the country crest SVG
-   * Crest files should be stored at: assets/eurovision/crests/{COUNTRY_CODE}.svg
-   * Note: You can adjust the size and opacity in the template using h-[30%] and opacity-15 classes
-   */
   protected getCrest(code: string): string {
     return `assets/eurovision/crests/${code.toLowerCase()}.svg`;
   }
