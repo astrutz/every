@@ -1,18 +1,10 @@
 <main class="relative overflow-hidden">
-  <!-- Diagonal bars -->
+  <!-- Gradient background overlay -->
   @if (country.primaryColor && country.secondaryColor) {
     <div class="absolute inset-0 pointer-events-none -z-10">
-      <!-- First bar (primary color) -->
-      <div
-        class="diagonal-bar diagonal-bar-1 absolute w-4 opacity-60"
-        [style.background-color]="country.primaryColor"
-        style="left: 0; bottom: 0; transform: rotate(45deg); transform-origin: left bottom;">
-      </div>
-      <!-- Second bar (secondary color) -->
-      <div
-        class="diagonal-bar diagonal-bar-2 absolute w-4 opacity-60"
-        [style.background-color]="country.secondaryColor"
-        style="left: 1rem; bottom: 0; transform: rotate(45deg); transform-origin: left bottom;">
+      <div 
+        class="absolute inset-0 gradient-background-animate"
+        [style.background]="'linear-gradient(135deg, ' + country.primaryColor + '22 0%, ' + country.secondaryColor + '22 50%, ' + country.primaryColor + '11 100%)'">
       </div>
     </div>
   }
