@@ -3,13 +3,13 @@
   @if (country.primaryColor && country.secondaryColor) {
     <div class="absolute inset-0 pointer-events-none -z-10">
       <!-- First bar (primary color) -->
-      <div 
+      <div
         class="absolute w-4 h-[200%] opacity-30"
         [style.background-color]="country.primaryColor"
         style="left: 0; top: 30%; transform: rotate(45deg); transform-origin: left top;">
       </div>
       <!-- Second bar (secondary color) -->
-      <div 
+      <div
         class="absolute w-4 h-[200%] opacity-30"
         [style.background-color]="country.secondaryColor"
         style="left: 1rem; top: 30%; transform: rotate(45deg); transform-origin: left top;">
@@ -28,3 +28,7 @@
     <eurovision-ranking-table [sortedEntities]="sortedEntries" [showFlag]="false" />
   </div>
 </main>
+<img
+  src="{{ getCrest(country.code) }}"
+  aria-hidden="true"
+  class="absolute bottom-32 right-4 md:bottom-32 md:right-16 h-[30%] md:h-[50%] w-auto opacity-15 grayscale dark:brightness-50 pointer-events-none -z-10" />
