@@ -69,7 +69,7 @@
       <div
         id="dropdownNavbar"
         [ngClass]="isAppNavOpen ? '' : 'hidden'"
-        class="font-normal divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:divide-gray-600">
+        class="font-normal divide-y divide-gray-100 rounded-lg shadow-sm w-full dark:divide-gray-600">
         <ul
           class="py-2 text-sm text-gray-700 dark:text-gray-400"
           aria-labelledby="dropdownLargeButton">
@@ -80,11 +80,10 @@
                   [href]="app.url"
                   target="_blank"
                   rel="noopener noreferrer"
-                  (click)="isAppNavOpen = false; isOpen = false"
                   [ngClass]="{'dark:text-white text-black underline': appService.currentApp$().name === app.name}"
-                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white flex items-center justify-between"
+                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white flex items-center gap-2"
                   >{{ app.name }}
-                  <ng-icon color="currentColor" size="1rem" name="lucideExternalLink" class="ml-1"></ng-icon>
+                  <ng-icon color="currentColor" size="1rem" name="lucideExternalLink"></ng-icon>
                 </a>
               } @else {
                 <a

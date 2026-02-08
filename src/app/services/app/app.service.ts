@@ -55,6 +55,18 @@ export const apps: App[] = [
       },
     ],
   },
+  {
+    name: 'Amazing Map',
+    url: 'https://is-the-amazing-near-me.netlify.app',
+    headerLinks: [],
+    isExternal: true,
+  },
+  {
+    name: "Bake 'n Shake",
+    url: 'https://bakeandshake.netlify.app',
+    headerLinks: [],
+    isExternal: true,
+  },
 ];
 
 @Injectable({ providedIn: 'root' })

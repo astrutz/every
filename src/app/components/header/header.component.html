@@ -65,7 +65,6 @@
                     [href]="app.url"
                     target="_blank"
                     rel="noopener noreferrer"
-                    (click)="isAppNavOpen = false"
                     [ngClass]="{'dark:text-white text-black underline': appService.currentApp$().name === app.name}"
                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white flex items-center justify-between"
                     >{{ app.name }}
