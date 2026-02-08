@@ -1,9 +1,11 @@
-<every-header></every-header>
+<div class="flex flex-col min-h-screen">
+  <every-header></every-header>
 
-<main class="flex flex-col min-h-screen w-full">
-  <router-outlet></router-outlet>
-</main>
+  <main class="flex flex-col flex-grow w-full">
+    <router-outlet></router-outlet>
+  </main>
 
-<every-footer></every-footer>
+  <every-footer></every-footer>
+</div>
 
 <every-mobile-navigation></every-mobile-navigation>
