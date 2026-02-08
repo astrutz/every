@@ -41,6 +41,6 @@ export class CountryComponent implements OnInit {
   }
 
   protected getCrest(code: string): string {
-    return `assets/eurovision/crests/${code.toLowerCase()}.svg`;
+    return `assets/eurovision/crests/${code}.svg`;
   }
 }
