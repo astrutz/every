@@ -1,4 +1,4 @@
-<main>
+<main class="relative overflow-hidden">
   <div class="m-auto max-w-7xl py-8 px-4 md:px-8">
     <every-breadcrumb></every-breadcrumb>
     <h1 class="text-3xl mt-8 mb-4 flex gap-2 items-center">
@@ -11,3 +11,7 @@
     <eurovision-ranking-table [sortedEntities]="sortedEntries" [showFlag]="false" />
   </div>
 </main>
+<img
+  src="{{ getCrest(country.code) }}"
+  aria-hidden="true"
+  class="absolute bottom-32 right-4 md:bottom-32 md:right-16 h-[30%] md:h-[50%] w-auto opacity-15 grayscale dark:brightness-50 pointer-events-none -z-10" />
