@@ -11,6 +11,7 @@ import { ThemeService } from '../../services/theme.service';
 @Component({
   selector: 'eurovision-country',
   templateUrl: 'country.component.html',
+  styleUrl: 'country.component.scss',
   imports: [RankingTableComponent, BreadcrumbComponent],
 })
 export class CountryComponent implements OnInit {

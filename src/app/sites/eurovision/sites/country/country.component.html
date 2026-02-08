@@ -1,19 +1,12 @@
-<main class="relative overflow-hidden">
-  <!-- Diagonal bars -->
+<main class="relative overflow-hidden md:overflow-visible">
   @if (country.primaryColor && country.secondaryColor) {
     <div class="absolute inset-0 pointer-events-none -z-10">
-      <!-- First bar (primary color) -->
       <div
-        class="diagonal-bar diagonal-bar-1 absolute w-4 opacity-60"
-        [style.background-color]="country.primaryColor"
-        style="left: 0; bottom: 0; transform: rotate(45deg); transform-origin: left bottom;">
-      </div>
-      <!-- Second bar (secondary color) -->
+        class="diagonal-bar diagonal-bar-1 absolute w-4 opacity-60 -left-8 -bottom-4 md:-bottom-16 rotate-45 origin-bottom-left"
+        [style.background-color]="country.primaryColor"></div>
       <div
-        class="diagonal-bar diagonal-bar-2 absolute w-4 opacity-60"
-        [style.background-color]="country.secondaryColor"
-        style="left: 1rem; bottom: 0; transform: rotate(45deg); transform-origin: left bottom;">
-      </div>
+        class="diagonal-bar diagonal-bar-2 absolute w-4 opacity-60 -left-4 -bottom-4 md:-bottom-16 rotate-45 origin-bottom-left"
+        [style.background-color]="country.secondaryColor"></div>
     </div>
   }
   <div class="m-auto max-w-7xl py-8 px-4 md:px-8">
@@ -31,4 +24,4 @@
 <img
   src="{{ getCrest(country.code) }}"
   aria-hidden="true"
-  class="absolute bottom-32 right-4 md:bottom-32 md:right-16 h-[30%] md:h-[50%] w-auto opacity-15 grayscale dark:brightness-50 pointer-events-none -z-10" />
+  class="absolute bottom-32 right-4 md:bottom-32 md:right-16 h-[30%] md:h-[50%] w-auto opacity-15 dark:grayscale dark:brightness-50 pointer-events-none -z-10" />
