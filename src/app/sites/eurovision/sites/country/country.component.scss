@@ -1,0 +1,22 @@
+/* Diagonal bar animations for country component */
+@keyframes diagonal-bar-grow {
+  from {
+    height: 0;
+  }
+  to {
+    height: 150vh;
+  }
+}
+
+.diagonal-bar {
+  height: 0;
+  animation: diagonal-bar-grow 1.4s ease-out forwards;
+}
+
+.diagonal-bar-1 {
+  animation-delay: 0s;
+}
+
+.diagonal-bar-2 {
+  animation-delay: 0.15s;
+}
