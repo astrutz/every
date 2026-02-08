@@ -1,11 +1,12 @@
 <main class="relative overflow-hidden">
-  <!-- Gradient background overlay -->
+  <!-- Colored header banner with national colors -->
   @if (country.primaryColor && country.secondaryColor) {
-    <div class="absolute inset-0 pointer-events-none -z-10">
+    <div class="absolute top-0 left-0 right-0 h-24 md:h-32 pointer-events-none -z-10">
       <div 
-        class="absolute inset-0 gradient-background-animate"
-        [style.background]="'linear-gradient(135deg, ' + country.primaryColor + '22 0%, ' + country.secondaryColor + '22 50%, ' + country.primaryColor + '11 100%)'">
+        class="absolute inset-0 header-banner-animate"
+        [style.background]="'linear-gradient(90deg, ' + country.primaryColor + ' 0%, ' + country.secondaryColor + ' 100%)'">
       </div>
+      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-gray-50 dark:to-gray-950"></div>
     </div>
   }
   <div class="m-auto max-w-7xl py-8 px-4 md:px-8">

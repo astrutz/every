@@ -190,3 +190,19 @@ body {
   opacity: 0;
   animation: gradient-fade-in 1s ease-out forwards;
 }
+
+/* Header banner animation for country component */
+@keyframes header-slide-down {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.header-banner-animate {
+  animation: header-slide-down 0.8s ease-out forwards;
+}
