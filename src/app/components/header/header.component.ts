@@ -1,6 +1,6 @@
 import { Component, computed, inject, Signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { lucideMenu, lucideMoon, lucideSun, lucideArrowDown10 } from '@ng-icons/lucide';
+import { lucideMenu, lucideMoon, lucideSun, lucideArrowDown10, lucideExternalLink } from '@ng-icons/lucide';
 import { Colorscheme, ColorschemeService } from '../../services/colorscheme/colorscheme.service';
 import { NavigationService } from '../../services/navigation/navigation.service';
 import { FormsModule } from '@angular/forms';
@@ -24,6 +24,7 @@ import { apps, AppService, HeaderLink } from '../../services/app/app.service';
             lucideSun,
             lucideMenu,
             lucideArrowDown10,
+            lucideExternalLink,
         }),
     ]
 })

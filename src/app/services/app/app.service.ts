@@ -5,6 +5,7 @@ import { filter } from 'rxjs';
 export interface App {
   name: string;
   url: string;
+  isExternal?: boolean;
   headerLinks: HeaderLink[];
 }
 
