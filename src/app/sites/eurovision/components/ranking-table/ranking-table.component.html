@@ -1,5 +1,5 @@
 <ul class="flex flex-col gap-1">
-  @for (entity of sortedEntities; track 'a') {
+  @for (entity of sortedEntities; track entity) {
     @if (Util.isEntry(entity)) {
       <li
         class="flex gap-2 items-center text-lg max-w-fit"
