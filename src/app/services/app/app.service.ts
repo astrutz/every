@@ -11,7 +11,8 @@ export interface App {
 
 export interface HeaderLink {
   name: string;
-  path: string;
+  path?: string;
+  fragment?: string;
 }
 
 export const apps: App[] = [
@@ -21,23 +22,23 @@ export const apps: App[] = [
     headerLinks: [
       {
         name: $localize`About`,
-        path: 'about',
+        fragment: 'about',
       },
       {
         name: $localize`Experience`,
-        path: 'experience',
+        fragment: 'experience',
       },
       {
         name: 'Work',
-        path: 'work',
+        fragment: 'work',
       },
       {
         name: 'Testimonials',
-        path: 'testimonials',
+        fragment: 'testimonials',
       },
       {
         name: $localize`Contact`,
-        path: 'contact',
+        fragment: 'contact',
       },
     ],
   },
@@ -77,8 +78,8 @@ export class AppService {
     this._router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event) => {
-        const url = (event as NavigationEnd).urlAfterRedirects;
-        const newApp = apps.find((app) => app.url === url.substring(1));
+        const url = (event as NavigationEnd).urlAfterRedirects.substring(1).split('/')[0];
+        const newApp = apps.find((app) => app.url === url);
         if (newApp) {
           this._currentApp$.set(newApp);
         }
