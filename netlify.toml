@@ -1,128 +1,103 @@
-# Assets / JS / CSS / Assets Folder nicht redirecten
-[[redirects]]
-from = "/de/*.js"
-to = "/de/:splat"
-status = 200
-force = false
-[[redirects]]
-from = "/de/*.css"
-to = "/de/:splat"
-status = 200
-force = false
-[[redirects]]
-from = "/de/assets/*"
-to = "/de/:splat"
-status = 200
-force = false
+# Build configuration
+[build]
+publish = "dist/every/browser"
+command = "npm run build"
 
-[[redirects]]
-from = "/en/*.js"
-to = "/en/:splat"
-status = 200
-force = false
-[[redirects]]
-from = "/en/*.css"
-to = "/en/:splat"
-status = 200
-force = false
-[[redirects]]
-from = "/en/assets/*"
-to = "/en/:splat"
-status = 200
-force = false
+[build.environment]
+NODE_VERSION = "20"
 
-# SPA Routing für Deep Links
+# SPA Routing für Deep Links - these should come FIRST
 [[redirects]]
-from = "/de/:splat"
+from = "/de/*"
 to = "/de/index.html"
 status = 200
 
 [[redirects]]
-from = "/en/:splat"
+from = "/en/*"
 to = "/en/index.html"
 status = 200
 
 [[redirects]]
-from = "/bn/:splat"
+from = "/bn/*"
 to = "/bn/index.html"
 status = 200
 
 [[redirects]]
-from = "/es/:splat"
+from = "/es/*"
 to = "/es/index.html"
 status = 200
 
 [[redirects]]
-from = "/fa/:splat"
+from = "/fa/*"
 to = "/fa/index.html"
 status = 200
 
 [[redirects]]
-from = "/fr/:splat"
+from = "/fr/*"
 to = "/fr/index.html"
 status = 200
 
 [[redirects]]
-from = "/hi/:splat"
+from = "/hi/*"
 to = "/hi/index.html"
 status = 200
 
 [[redirects]]
-from = "/it/:splat"
+from = "/it/*"
 to = "/it/index.html"
 status = 200
 
 [[redirects]]
-from = "/ja/:splat"
+from = "/ja/*"
 to = "/ja/index.html"
 status = 200
 
 [[redirects]]
-from = "/jv/:splat"
+from = "/jv/*"
 to = "/jv/index.html"
 status = 200
 
 [[redirects]]
-from = "/pl/:splat"
+from = "/pl/*"
 to = "/pl/index.html"
 status = 200
 
 [[redirects]]
-from = "/pt/:splat"
+from = "/pt/*"
 to = "/pt/index.html"
 status = 200
 
 [[redirects]]
-from = "/ro/:splat"
+from = "/ro/*"
 to = "/ro/index.html"
 status = 200
 
 [[redirects]]
-from = "/ru/:splat"
+from = "/ru/*"
 to = "/ru/index.html"
 status = 200
 
 [[redirects]]
-from = "/tr/:splat"
+from = "/tr/*"
 to = "/tr/index.html"
 status = 200
 
 [[redirects]]
-from = "/uk/:splat"
+from = "/uk/*"
 to = "/uk/index.html"
 status = 200
 
 [[redirects]]
-from = "/vi/:splat"
+from = "/vi/*"
 to = "/vi/index.html"
 status = 200
 
 [[redirects]]
-from = "/zh/:splat"
+from = "/zh/*"
 to = "/zh/index.html"
 status = 200
 
-# Root / Redirect nach Browser Language
+# Root redirect to browser language
 [[redirects]]
 from = "/"
 to = "/de"
@@ -134,10 +109,3 @@ from = "/"
 to = "/en"
 status = 302
 conditions = {Language = ["en"]}
-
-[build]
-publish = "dist/every/browser"
-command = "npm run build"
-
-[build.environment]
-NODE_VERSION = "20"
