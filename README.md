@@ -137,6 +137,9 @@ This repository is licensed under the [MIT License](LICENSE).
 
 Copyright (c) 2025 HatScripts for including [Circle Flags](https://github.com/HatScripts/circle-flags).
 
-## Contact
+## Author
 
-If you have any questions or need further assistance, please reach out to us or open an issue in the GitHub repository.
+**Alex Strutz**
+
+- Website: [alexstrutz.dev](https://alexstrutz.dev)
+- GitHub: [@astrutz](https://github.com/astrutz)
