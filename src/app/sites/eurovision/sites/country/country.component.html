@@ -1,29 +1,32 @@
-<main class="relative overflow-hidden md:overflow-visible">
-  @if (country.primaryColor && country.secondaryColor) {
-    <div class="absolute inset-0 pointer-events-none -z-10">
-      <div
-        class="diagonal-bar diagonal-bar-1 absolute w-4 opacity-60 -left-8 -bottom-4 md:-bottom-16 rotate-45 origin-bottom-left"
-        [style.background-color]="country.primaryColor"></div>
-      <div
-        class="diagonal-bar diagonal-bar-2 absolute w-4 opacity-60 -left-4 -bottom-4 md:-bottom-16 rotate-45 origin-bottom-left"
-        [style.background-color]="country.secondaryColor"></div>
+@let country = country$();
+@if (country) {
+  <main class="relative overflow-hidden md:overflow-visible">
+    @if (country.primaryColor && country.secondaryColor) {
+      <div class="absolute inset-0 pointer-events-none -z-10">
+        <div
+          class="diagonal-bar diagonal-bar-1 absolute w-4 opacity-60 -left-8 -bottom-4 md:-bottom-16 rotate-45 origin-bottom-left"
+          [style.background-color]="country.primaryColor"></div>
+        <div
+          class="diagonal-bar diagonal-bar-2 absolute w-4 opacity-60 -left-4 -bottom-4 md:-bottom-16 rotate-45 origin-bottom-left"
+          [style.background-color]="country.secondaryColor"></div>
+      </div>
+    }
+    <div class="m-auto max-w-7xl py-8 px-4 md:px-8">
+      <every-breadcrumb></every-breadcrumb>
+      <h1 class="text-3xl mt-8 mb-4 flex gap-2 items-center">
+        <img
+          src="assets/eurovision/countries/{{ getFlag(country.code) }}.png"
+          alt="{{ country.name }}"
+          class="h-8 w-8" />
+        {{ country.name }}
+      </h1>
+      <eurovision-ranking-table [sortedEntities]="sortedEntries$()" [showFlag]="false" />
     </div>
-  }
-  <div class="m-auto max-w-7xl py-8 px-4 md:px-8">
-    <every-breadcrumb></every-breadcrumb>
-    <h1 class="text-3xl mt-8 mb-4 flex gap-2 items-center">
-      <img
-        src="assets/eurovision/countries/{{ getFlag(country.code) }}.png"
-        alt="{{ country.name }}"
-        class="h-8 w-8" />
-      {{ country.name }}
-    </h1>
-    <eurovision-ranking-table [sortedEntities]="sortedEntries" [showFlag]="false" />
-  </div>
-</main>
-<img
-  src="{{ getCrest(country.code) }}"
-  aria-hidden="true"
-  alt=""
-  role="presentation"
-  class="absolute bottom-32 right-4 md:bottom-32 md:right-16 h-[30%] md:h-[50%] w-auto opacity-15 dark:grayscale dark:brightness-50 pointer-events-none -z-10" />
+  </main>
+  <img
+    src="{{ getCrest(country.code) }}"
+    aria-hidden="true"
+    alt=""
+    role="presentation"
+    class="absolute bottom-32 right-4 md:bottom-32 md:right-16 h-[30%] md:h-[50%] w-auto opacity-15 dark:grayscale dark:brightness-50 pointer-events-none -z-10" />
+}

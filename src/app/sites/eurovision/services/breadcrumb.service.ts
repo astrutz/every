@@ -1,8 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { shareReplay, tap } from 'rxjs';
-import { countries } from '../data/countries.data';
-import { contests } from '../data/contests.data';
+import { StoreService as EurovisionStoreService } from './store.service';
 
 export type BreadcrumbItem = {
   name: string;
@@ -12,6 +11,7 @@ export type BreadcrumbItem = {
 @Injectable({ providedIn: 'root' })
 export class BreadcrumbService {
   private _router = inject(Router);
+  private _store = inject(EurovisionStoreService);
 
   constructor() {
     this._createBreadcrumbItems(this._router.url);
@@ -38,14 +38,18 @@ export class BreadcrumbService {
       if (item) {
         return item;
       }
-      const countryName = countries.find((country) => country.code === urlSegment)?.name;
+      const countryName = this._store
+        .countries$()
+        .find((country) => country.code === urlSegment)?.name;
       if (countryName) {
         return {
           name: countryName,
           link: `/${urlSegment}`,
         };
       }
-      const contestName = contests.find((contest) => contest.year.toString() === urlSegment)?.year;
+      const contestName = this._store
+        .contests$()
+        .find((contest) => contest.year.toString() === urlSegment)?.year;
       if (contestName) {
         return {
           name: urlSegment,
