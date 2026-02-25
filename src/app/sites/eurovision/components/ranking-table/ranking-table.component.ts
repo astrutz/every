@@ -11,7 +11,7 @@ import { Entity } from '../../dataobjects/entity.dataobject';
   imports: [RouterLink, NgClass],
 })
 export class RankingTableComponent<T extends Entity> {
-  private _themeService = inject(ThemeService);
+  readonly #themeService = inject(ThemeService);
 
   @Input({ required: true })
   sortedEntities!: T[];
@@ -26,7 +26,7 @@ export class RankingTableComponent<T extends Entity> {
   displayNameOptions: DisplayNameOptions | undefined = undefined;
 
   protected getFlag(code: string): string {
-    return `${code}-${this.colorScheme ?? this._themeService.flagBackground}`;
+    return `${code}-${this.colorScheme ?? this.#themeService.flagBackground}`;
   }
 
   protected readonly Util = Util;

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { TagComponent } from '../../../../components/tag/tag.component';
 import { StoreService } from '../../services/store.service';
@@ -12,21 +12,19 @@ import {
  * Displays the skills as a linked logo list
  */
 @Component({
-    selector: 'every-skills',
-    imports: [NgOptimizedImage, TagComponent],
-    templateUrl: './skills.component.html'
+  selector: 'every-skills',
+  imports: [NgOptimizedImage, TagComponent],
+  templateUrl: './skills.component.html',
 })
 export class SkillsComponent {
-  constructor(
-    private readonly _colorschemeService: ColorschemeService,
-    private readonly _store: StoreService,
-  ) {}
+  readonly #store = inject(StoreService);
+  readonly #colorschemeService = inject(ColorschemeService);
 
   /**
    * @returns The propagated list of skills
    */
   protected get skills(): Skill[] {
-    return this._store.skills;
+    return this.#store.skills;
   }
 
   /**
@@ -34,7 +32,7 @@ export class SkillsComponent {
    * @returns Icon name (url) depending on color scheme
    */
   protected getIconUrl(skill: Skill): string {
-    if (skill.hasDarkIcon && this._colorschemeService.colorscheme === Colorscheme.dark) {
+    if (skill.hasDarkIcon && this.#colorschemeService.colorscheme === Colorscheme.dark) {
       return skill.darkIcon ?? '';
     }
     return skill.icon;

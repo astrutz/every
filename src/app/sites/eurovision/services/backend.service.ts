@@ -8,23 +8,23 @@ import { environment } from '../../../environment';
   providedIn: 'root',
 })
 export class BackendService {
-  private base = environment.apiUrl;
-  private apiKey = environment.apiKey;
+  #base = environment.apiUrl;
+  #apiKey = environment.apiKey;
 
-  private getHeaders() {
+  get #headers() {
     const headers: Record<string, string> = {
       'Content-Type': 'application/json',
     };
-    const key = this.apiKey;
+    const key = this.#apiKey;
     if (key) {
       headers['x-api-key'] = key;
     }
     return headers;
   }
 
-  private async fetchJson<T>(path: string): Promise<T> {
-    const res = await fetch(`${this.base}${path}`, {
-      headers: this.getHeaders(),
+  async #fetchJson<T>(path: string): Promise<T> {
+    const res = await fetch(`${this.#base}${path}`, {
+      headers: this.#headers,
       credentials: 'omit',
     });
     if (!res.ok) {
@@ -35,19 +35,19 @@ export class BackendService {
   }
 
   public async getCountries(): Promise<Country[]> {
-    return this.fetchJson<Country[]>('/countries');
+    return this.#fetchJson<Country[]>('/countries');
   }
 
   public async getContests(): Promise<Contest[]> {
-    return this.fetchJson<Contest[]>('/contests');
+    return this.#fetchJson<Contest[]>('/contests');
   }
 
   public async getContestByYear(year: number): Promise<Contest> {
-    return this.fetchJson<Contest>(`/contests?year=${year}`);
+    return this.#fetchJson<Contest>(`/contests?year=${year}`);
   }
 
   public async getTopEntries(year: number, limit = 10): Promise<Contest> {
-    return this.fetchJson<Contest>(`/contests/${year}/top?limit=${limit}`);
+    return this.#fetchJson<Contest>(`/contests/${year}/top?limit=${limit}`);
   }
 
   public async getEntries(year?: number, countryCode?: string): Promise<Entry[]> {
@@ -59,10 +59,10 @@ export class BackendService {
       params.set('country', countryCode);
     }
     const query = params.toString() ? `?${params.toString()}` : '';
-    return this.fetchJson<Entry[]>(`/entries${query}`);
+    return this.#fetchJson<Entry[]>(`/entries${query}`);
   }
 
   public async getEntryById(id: string): Promise<Entry> {
-    return this.fetchJson<Entry>(`/entries/${id}`);
+    return this.#fetchJson<Entry>(`/entries/${id}`);
   }
 }

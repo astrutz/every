@@ -10,7 +10,7 @@ export class ColorschemeService {
   /**
    * @returns The current color scheme from localStorage
    */
-  get colorscheme(): Colorscheme {
+  public get colorscheme(): Colorscheme {
     return localStorage['theme'];
   }
 
@@ -22,9 +22,9 @@ export class ColorschemeService {
       this.colorscheme === Colorscheme.dark ||
       (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
     ) {
-      this._setDarkTheme();
+      this.#setDarkTheme();
     } else {
-      this._setLightTheme();
+      this.#setLightTheme();
     }
   }
 
@@ -33,16 +33,16 @@ export class ColorschemeService {
    */
   public toggleColorScheme(): void {
     if (this.colorscheme === Colorscheme.light) {
-      this._setDarkTheme();
+      this.#setDarkTheme();
     } else {
-      this._setLightTheme();
+      this.#setLightTheme();
     }
   }
 
   /**
    * Sets the light theme in localStorage and removes the dark mode html class
    */
-  private _setLightTheme(): void {
+  #setLightTheme(): void {
     document.documentElement.classList.remove('dark');
     localStorage['theme'] = Colorscheme.light;
   }
@@ -50,7 +50,7 @@ export class ColorschemeService {
   /**
    * Sets the dark theme in localStorage and adds the dark mode html class
    */
-  private _setDarkTheme(): void {
+  #setDarkTheme(): void {
     document.documentElement.classList.add('dark');
     localStorage['theme'] = Colorscheme.dark;
   }
