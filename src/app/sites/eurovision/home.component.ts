@@ -11,9 +11,9 @@ import { LoadingComponent } from '../../components/loading/loading.component';
   templateUrl: './home.component.html',
 })
 export class HomeComponent {
-  private readonly _storeService: EurovisionStoreService = inject(EurovisionStoreService);
+  readonly #storeService: EurovisionStoreService = inject(EurovisionStoreService);
 
-  protected isLoading$ = computed<boolean>(() => this._storeService.isLoading$());
+  protected isLoading$ = computed<boolean>(() => this.#storeService.isLoading$());
 
-  protected contests$ = computed<Contest[]>(() => this._storeService.contests$());
+  protected contests$ = computed<Contest[]>(() => this.#storeService.contests$());
 }

@@ -15,7 +15,7 @@ type TabKey = { key: keyof Entry | undefined; name: string };
   imports: [BreadcrumbComponent, RankingTableComponent, NgClass, LoadingComponent],
 })
 export class CountriesComponent {
-  protected storeService = inject(EurovisionStoreService);
+  protected readonly storeService = inject(EurovisionStoreService);
   protected tabKeys: TabKey[] = [
     { key: undefined, name: $localize`Total` },
     { key: 'energyRating', name: $localize`Energy` },

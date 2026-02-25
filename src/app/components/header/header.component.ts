@@ -34,11 +34,11 @@ import { apps, AppService, HeaderLink } from '../../services/app/app.service';
   ],
 })
 export class HeaderComponent {
-  protected colorschemeService: ColorschemeService = inject(ColorschemeService);
-  protected navigationService: NavigationService = inject(NavigationService);
-  protected localeService: LocaleService = inject(LocaleService);
-  private _titleService: TitleService = inject(TitleService);
-  protected appService: AppService = inject(AppService);
+  readonly #colorschemeService: ColorschemeService = inject(ColorschemeService);
+  protected readonly navigationService: NavigationService = inject(NavigationService);
+  protected readonly localeService: LocaleService = inject(LocaleService);
+  readonly #titleService: TitleService = inject(TitleService);
+  protected readonly appService: AppService = inject(AppService);
 
   protected isAppNavOpen = false;
 
@@ -50,7 +50,7 @@ export class HeaderComponent {
    * @returns The name of the color scheme switcher depending on the current theme
    */
   protected get colorIconName(): string {
-    return this.colorschemeService.colorscheme === Colorscheme.light ? 'lucideMoon' : 'lucideSun';
+    return this.#colorschemeService.colorscheme === Colorscheme.light ? 'lucideMoon' : 'lucideSun';
   }
 
   /**
@@ -64,11 +64,11 @@ export class HeaderComponent {
    * Toggles the color scheme (dark/light) on switcher click
    */
   protected toggleColorScheme(): void {
-    this.colorschemeService.toggleColorScheme();
+    this.#colorschemeService.toggleColorScheme();
   }
 
   protected get title(): string {
-    return this._titleService.title;
+    return this.#titleService.title;
   }
 
   protected readonly apps = apps;

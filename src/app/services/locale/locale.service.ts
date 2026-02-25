@@ -8,18 +8,18 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class LocaleService {
-  public activeLocale: string = inject(LOCALE_ID);
-  private _router = inject(Router);
+  public readonly activeLocale: string = inject(LOCALE_ID);
+  readonly #router = inject(Router);
 
   /**
    * Determines if the modal should be visible
    */
-  private _isLanguageSwitcherOpen: boolean = false;
+  #isLanguageSwitcherOpen: boolean = false;
 
   /**
    * Determines if the mobile modal should be visible
    */
-  private _isMobileLanguageSwitcherOpen: boolean = false;
+  #isMobileLanguageSwitcherOpen: boolean = false;
 
   /**
    * List of supported locales and languages
@@ -48,41 +48,41 @@ export class LocaleService {
   /**
    * @return State containing the navigation
    */
-  get shouldShowLanguageSwitcher(): boolean {
-    return !this._router.url.includes('/eurovision');
+  public get shouldShowLanguageSwitcher(): boolean {
+    return !this.#router.url.includes('/eurovision');
   }
 
   /**
    * @return State containing the navigation
    */
-  get isLanguageSwitcherOpen(): boolean {
-    return this._isLanguageSwitcherOpen;
+  public get isLanguageSwitcherOpen(): boolean {
+    return this.#isLanguageSwitcherOpen;
   }
 
   /**
    * @param newVal State containing the navigation
    */
-  set isLanguageSwitcherOpen(newVal: boolean) {
+  public set isLanguageSwitcherOpen(newVal: boolean) {
     if (newVal) {
       document.body.classList.add('overflow-hidden');
     } else {
       document.body.classList.remove('overflow-hidden');
     }
-    this._isLanguageSwitcherOpen = newVal;
+    this.#isLanguageSwitcherOpen = newVal;
   }
 
   /**
    * @return State containing the navigation
    */
-  get isMobileLanguageSwitcherOpen(): boolean {
-    return this._isMobileLanguageSwitcherOpen;
+  public get isMobileLanguageSwitcherOpen(): boolean {
+    return this.#isMobileLanguageSwitcherOpen;
   }
 
   /**
    * @param newVal State containing the navigation
    */
-  set isMobileLanguageSwitcherOpen(newVal: boolean) {
-    this._isMobileLanguageSwitcherOpen = newVal;
+  public set isMobileLanguageSwitcherOpen(newVal: boolean) {
+    this.#isMobileLanguageSwitcherOpen = newVal;
   }
 
   /**

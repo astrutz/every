@@ -9,76 +9,76 @@ import { CacheService } from './cache.service';
   providedIn: 'root',
 })
 export class StoreService {
-  private _backendService = inject(BackendService);
-  private _cacheService = inject(CacheService);
+  readonly #backendService = inject(BackendService);
+  readonly #cacheService = inject(CacheService);
 
-  private _countries$: WritableSignal<Country[]> = signal([]);
-  private _contests$: WritableSignal<Contest[]> = signal([]);
-  private _entries$: WritableSignal<Entry[]> = signal([]);
+  #countries$: WritableSignal<Country[]> = signal([]);
+  #contests$: WritableSignal<Contest[]> = signal([]);
+  #entries$: WritableSignal<Entry[]> = signal([]);
 
   constructor() {
-    if (this._cacheService.isValid) {
-      this._loadFromCache();
+    if (this.#cacheService.isValid) {
+      this.#loadFromCache();
     } else {
-      this._loadFromBackend();
+      this.#loadFromBackend();
     }
   }
 
   public isLoading$ = computed<boolean>(
     () =>
-      this._countries$().length === 0 ||
-      this._contests$().length === 0 ||
-      this._entries$().length === 0,
+      this.#countries$().length === 0 ||
+      this.#contests$().length === 0 ||
+      this.#entries$().length === 0,
   );
 
-  public countries$ = computed<Country[]>(() => this._countries$());
+  public countries$ = computed<Country[]>(() => this.#countries$());
 
-  public contests$ = computed<Contest[]>(() => this._contests$());
+  public contests$ = computed<Contest[]>(() => this.#contests$());
 
-  public entries$ = computed<Entry[]>(() => this._entries$());
+  public entries$ = computed<Entry[]>(() => this.#entries$());
 
   public getCountryByCode(code: string): Country | undefined {
-    return this._countries$().find((country) => country.code === code);
+    return this.#countries$().find((country) => country.code === code);
   }
 
   public getEntriesByCountry(country?: Country): Entry[] {
-    return this._entries$().filter((entry) => entry.country.code === country?.code);
+    return this.#entries$().filter((entry) => entry.country.code === country?.code);
   }
 
-  private _loadFromCache(): void {
-    const countries = this._cacheService.countries;
-    const contests = this._cacheService.contests;
-    const entries = this._cacheService.entries;
+  #loadFromCache(): void {
+    const countries = this.#cacheService.countries;
+    const contests = this.#cacheService.contests;
+    const entries = this.#cacheService.entries;
     if (countries && contests && entries) {
-      this._countries$.set(countries);
-      this._contests$.set(contests);
-      this._entries$.set(entries);
+      this.#countries$.set(countries);
+      this.#contests$.set(contests);
+      this.#entries$.set(entries);
     } else {
-      this._loadFromBackend();
+      this.#loadFromBackend();
     }
   }
 
-  private _loadFromBackend(): void {
-    this._loadCountries();
-    this._loadContests();
-    this._loadEntries();
+  #loadFromBackend(): void {
+    this.#loadCountries();
+    this.#loadContests();
+    this.#loadEntries();
   }
 
-  private async _loadCountries(): Promise<void> {
-    const countries = await this._backendService.getCountries();
-    this._countries$.set(countries);
-    this._cacheService.countries = countries;
+  async #loadCountries(): Promise<void> {
+    const countries = await this.#backendService.getCountries();
+    this.#countries$.set(countries);
+    this.#cacheService.countries = countries;
   }
 
-  private async _loadContests(): Promise<void> {
-    const contests = await this._backendService.getContests();
-    this._contests$.set(contests);
-    this._cacheService.contests = contests;
+  async #loadContests(): Promise<void> {
+    const contests = await this.#backendService.getContests();
+    this.#contests$.set(contests);
+    this.#cacheService.contests = contests;
   }
 
-  private async _loadEntries(): Promise<void> {
-    const entries = await this._backendService.getEntries();
-    this._entries$.set(entries);
-    this._cacheService.entries = entries;
+  async #loadEntries(): Promise<void> {
+    const entries = await this.#backendService.getEntries();
+    this.#entries$.set(entries);
+    this.#cacheService.entries = entries;
   }
 }

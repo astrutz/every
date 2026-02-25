@@ -8,17 +8,17 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class TitleService {
-  private _router = inject(Router);
+  readonly #router = inject(Router);
 
   /**
    * State containing the base title which is visible every time
    */
-  private readonly _baseTitle: string = 'alexstrutz';
+  #baseTitle: string = 'alexstrutz';
 
   /**
    * State containing the suffix title depending on the page
    */
-  private readonly _additionalTitles: Map<string, string> = new Map([
+  #additionalTitles: Map<string, string> = new Map([
     ['', 'dev'],
     ['eurovision', 'eurovision'],
   ]);
@@ -26,14 +26,14 @@ export class TitleService {
   /**
    * @return State containing the title
    */
-  get title(): string {
+  public get title(): string {
     let additionalTitle;
-    const route = this._router.url.split('/');
+    const route = this.#router.url.split('/');
     if (route.at(-1)?.includes('#')) {
-      additionalTitle = this._additionalTitles.get('');
+      additionalTitle = this.#additionalTitles.get('');
     } else {
-      additionalTitle = this._additionalTitles.get(this._router.url.split('/').at(1) ?? '');
+      additionalTitle = this.#additionalTitles.get(this.#router.url.split('/').at(1) ?? '');
     }
-    return `${this._baseTitle}.${additionalTitle}`;
+    return `${this.#baseTitle}.${additionalTitle}`;
   }
 }

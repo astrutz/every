@@ -12,14 +12,14 @@ import { Experience } from '../../types/experience.type';
  * Displays the last jobs in a list with images
  */
 @Component({
-    selector: 'every-experience',
-    imports: [NgOptimizedImage, TagComponent],
-    templateUrl: './experience.component.html'
+  selector: 'every-experience',
+  imports: [NgOptimizedImage, TagComponent],
+  templateUrl: './experience.component.html',
 })
 export class ExperienceComponent {
-  #activeLocale: string = inject(LOCALE_ID);
-  #colorSchemeService: ColorschemeService = inject(ColorschemeService);
-  #store: StoreService = inject(StoreService);
+  readonly #activeLocale: string = inject(LOCALE_ID);
+  readonly #colorSchemeService: ColorschemeService = inject(ColorschemeService);
+  readonly #store: StoreService = inject(StoreService);
 
   /**
    * @returns The propagated list of experiencs

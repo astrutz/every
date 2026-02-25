@@ -10,19 +10,19 @@ export class NavigationService {
   /**
    * State containing the navigation
    */
-  private _isOpen: boolean = false;
+  #isOpen: boolean = false;
 
   /**
    * @return State containing the navigation
    */
   get isOpen(): boolean {
-    return this._isOpen;
+    return this.#isOpen;
   }
 
   /**
    * @param newVal State containing the navigation
    */
   set isOpen(newVal: boolean) {
-    this._isOpen = newVal;
+    this.#isOpen = newVal;
   }
 }

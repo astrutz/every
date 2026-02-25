@@ -15,26 +15,26 @@ import { LoadingComponent } from '../../../../components/loading/loading.compone
   imports: [RankingTableComponent, BreadcrumbComponent, LoadingComponent],
 })
 export class CountryComponent implements OnInit {
-  private countryCode: string = '';
-  protected activatedRoute = inject(ActivatedRoute);
-  protected storeService = inject(EurovisionStoreService);
-  protected _themeService = inject(ThemeService);
+  #countryCode: string = '';
+  readonly #activatedRoute = inject(ActivatedRoute);
+  readonly #storeService = inject(EurovisionStoreService);
+  readonly #themeService = inject(ThemeService);
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe((params: Params) => {
-      this.countryCode = params['countryCode'] ?? '';
+    this.#activatedRoute.params.subscribe((params: Params) => {
+      this.#countryCode = params['countryCode'] ?? '';
     });
   }
 
   protected country$ = computed(() => {
-    if (!this.storeService.isLoading$()) {
-      return this.storeService.getCountryByCode(this.countryCode);
+    if (!this.#storeService.isLoading$()) {
+      return this.#storeService.getCountryByCode(this.#countryCode);
     }
     return undefined;
   });
 
   protected entries$ = computed<Entry[]>(
-    () => this.storeService.getEntriesByCountry(this.country$()) ?? [],
+    () => this.#storeService.getEntriesByCountry(this.country$()) ?? [],
   );
 
   protected sortedEntries$ = computed<Entry[]>(() =>
@@ -42,7 +42,7 @@ export class CountryComponent implements OnInit {
   );
 
   protected getFlag(code: string): string {
-    return `${code}-${this._themeService.flagBackground}`;
+    return `${code}-${this.#themeService.flagBackground}`;
   }
 
   protected getCrest(code: string): string {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { ColorschemeService } from './services/colorscheme/colorscheme.service';
@@ -9,12 +9,13 @@ import { MobileNavigationComponent } from './components/mobile-navigation/mobile
  * Global page root component
  */
 @Component({
-    selector: 'every-root',
-    templateUrl: './app.component.html',
-    imports: [HeaderComponent, RouterModule, FooterComponent, MobileNavigationComponent]
+  selector: 'every-root',
+  templateUrl: './app.component.html',
+  imports: [HeaderComponent, RouterModule, FooterComponent, MobileNavigationComponent],
 })
 export class AppComponent {
-  constructor(private _colorschemeService: ColorschemeService) {
-    this._colorschemeService.init();
+  readonly #colorschemeService = inject(ColorschemeService);
+  constructor() {
+    this.#colorschemeService.init();
   }
 }
