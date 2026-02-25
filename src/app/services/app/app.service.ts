@@ -72,21 +72,21 @@ export const apps: App[] = [
 
 @Injectable({ providedIn: 'root' })
 export class AppService {
-  private _router = inject(Router);
+  readonly #router = inject(Router);
 
   constructor() {
-    this._router.events
+    this.#router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event) => {
         const url = (event as NavigationEnd).urlAfterRedirects.substring(1).split('/')[0];
         const newApp = apps.find((app) => app.url === url);
         if (newApp) {
-          this._currentApp$.set(newApp);
+          this.#currentApp$.set(newApp);
         }
       });
   }
 
-  private _currentApp$: WritableSignal<App> = signal(apps[0]);
+  #currentApp$: WritableSignal<App> = signal(apps[0]);
 
-  public currentApp$ = computed(() => this._currentApp$());
+  public currentApp$ = computed(() => this.#currentApp$());
 }

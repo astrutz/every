@@ -1,44 +1,48 @@
-import { Component, inject, OnInit, DOCUMENT } from '@angular/core';
+import { Component, computed, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Country } from '../../dataobjects/country.dataobject';
 import { StoreService as EurovisionStoreService } from '../../services/store.service';
 import { RankingTableComponent } from '../../components/ranking-table/ranking-table.component';
 import { Entry } from '../../dataobjects/entry.dataobject';
 import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb.component';
 
 import { ThemeService } from '../../services/theme.service';
+import { LoadingComponent } from '../../../../components/loading/loading.component';
 
 @Component({
   selector: 'eurovision-country',
   templateUrl: 'country.component.html',
   styleUrl: 'country.component.scss',
-  imports: [RankingTableComponent, BreadcrumbComponent],
+  imports: [RankingTableComponent, BreadcrumbComponent, LoadingComponent],
 })
 export class CountryComponent implements OnInit {
-  protected country!: Country;
-  protected activatedRoute = inject(ActivatedRoute);
-  protected storeService = inject(EurovisionStoreService);
-  protected _themeService = inject(ThemeService);
+  #countryCode: string = '';
+  readonly #activatedRoute = inject(ActivatedRoute);
+  readonly #storeService = inject(EurovisionStoreService);
+  readonly #themeService = inject(ThemeService);
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe((params: Params) => {
-      const foundCountry = this.storeService.getCountryByCode(params['countryCode'] ?? '');
-      if (foundCountry) {
-        this.country = foundCountry;
-      }
+    this.#activatedRoute.params.subscribe((params: Params) => {
+      this.#countryCode = params['countryCode'] ?? '';
     });
   }
 
-  get entries(): Entry[] {
-    return this.storeService.getEntriesByCountry(this.country) ?? [];
-  }
+  protected country$ = computed(() => {
+    if (!this.#storeService.isLoading$()) {
+      return this.#storeService.getCountryByCode(this.#countryCode);
+    }
+    return undefined;
+  });
 
-  get sortedEntries(): Entry[] {
-    return this.entries.sort((a, b) => b.rating.getTotal() - a.rating.getTotal());
-  }
+  protected entries$ = computed<Entry[]>(
+    () => this.#storeService.getEntriesByCountry(this.country$()) ?? [],
+  );
+
+  protected sortedEntries$ = computed<Entry[]>(() =>
+    this.entries$().sort((a, b) => b.totalRating - a.totalRating),
+  );
 
   protected getFlag(code: string): string {
-    return `${code}-${this._themeService.flagBackground}`;
+    return `${code}-${this.#themeService.flagBackground}`;
   }
 
   protected getCrest(code: string): string {

@@ -1,13 +1,12 @@
 import { inject, Injectable, DOCUMENT } from '@angular/core';
 
-
 @Injectable({
   providedIn: 'root',
 })
 export class ThemeService {
-  private _document = inject(DOCUMENT);
+  readonly #document = inject(DOCUMENT);
 
-  getBackgroundPrimary(year: number): string {
+  public getBackgroundPrimary(year: number): string {
     switch (year) {
       case 2025:
         return 'bg-contest2025-primary';
@@ -31,7 +30,7 @@ export class ThemeService {
     return '';
   }
 
-  getBackgroundSecondary(year: number): string {
+  public getBackgroundSecondary(year: number): string {
     switch (year) {
       case 2025:
         return 'bg-contest2025-secondary';
@@ -55,7 +54,7 @@ export class ThemeService {
     return '';
   }
 
-  getTextPrimary(year: number): string {
+  public getTextPrimary(year: number): string {
     switch (year) {
       case 2025:
         return 'text-contest2025-primaryText';
@@ -79,7 +78,7 @@ export class ThemeService {
     return '';
   }
 
-  getTextSecondary(year: number): string {
+  public getTextSecondary(year: number): string {
     switch (year) {
       case 2025:
         return 'text-contest2025-secondaryText';
@@ -103,7 +102,7 @@ export class ThemeService {
     return '';
   }
 
-  get flagBackground(): string {
-    return this._document.documentElement.classList.contains('dark') ? 'light' : 'dark';
+  public get flagBackground(): string {
+    return this.#document.documentElement.classList.contains('dark') ? 'light' : 'dark';
   }
 }

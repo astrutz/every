@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   lucideCopy,
   lucideGithub,
@@ -17,19 +17,19 @@ import { TagComponent } from '../../../../components/tag/tag.component';
  * Displays all contact information containing socials and email
  */
 @Component({
-    selector: 'every-contact',
-    imports: [NgIcon, SocialsComponent, TagComponent],
-    templateUrl: './contact.component.html',
-    viewProviders: [
-        provideIcons({
-            lucideGithub,
-            lucideLinkedin,
-            lucideInstagram,
-            lucideCopy,
-            lucideMail,
-            simpleXing,
-        }),
-    ]
+  selector: 'every-contact',
+  imports: [NgIcon, SocialsComponent, TagComponent],
+  templateUrl: './contact.component.html',
+  viewProviders: [
+    provideIcons({
+      lucideGithub,
+      lucideLinkedin,
+      lucideInstagram,
+      lucideCopy,
+      lucideMail,
+      simpleXing,
+    }),
+  ],
 })
 export class ContactComponent {
   /**
@@ -42,13 +42,13 @@ export class ContactComponent {
    */
   protected mail: string = 'hello@alexstrutz.dev';
 
-  constructor(private readonly _store: StoreService) {}
+  readonly #store = inject(StoreService);
 
   /**
    * @returns The propagated list of socials
    */
   protected get socials(): Social[] {
-    return this._store.socials;
+    return this.#store.socials;
   }
 
   /**

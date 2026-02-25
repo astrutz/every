@@ -1,8 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { shareReplay, tap } from 'rxjs';
-import { countries } from '../data/countries.data';
-import { contests } from '../data/contests.data';
+import { StoreService as EurovisionStoreService } from './store.service';
 
 export type BreadcrumbItem = {
   name: string;
@@ -11,41 +10,46 @@ export type BreadcrumbItem = {
 
 @Injectable({ providedIn: 'root' })
 export class BreadcrumbService {
-  private _router = inject(Router);
+  readonly #router = inject(Router);
+  readonly #store = inject(EurovisionStoreService);
 
   constructor() {
-    this._createBreadcrumbItems(this._router.url);
-    this._router.events
+    this.#createBreadcrumbItems(this.#router.url);
+    this.#router.events
       .pipe(
         tap(() => {
-          this._createBreadcrumbItems(this._router.url);
+          this.#createBreadcrumbItems(this.#router.url);
         }),
         shareReplay(1),
       )
       .subscribe();
   }
 
-  private _breadcrumbItems: BreadcrumbItem[] = [];
+  #breadcrumbItems: BreadcrumbItem[] = [];
 
   public get breadcrumbItems(): BreadcrumbItem[] {
-    return this._breadcrumbItems;
+    return this.#breadcrumbItems;
   }
 
-  private _createBreadcrumbItems(url: string) {
+  #createBreadcrumbItems(url: string) {
     const urlSplit = url.split('/');
-    this._breadcrumbItems = urlSplit.map((urlSegment: string) => {
+    this.#breadcrumbItems = urlSplit.map((urlSegment: string) => {
       const item = _breadcrumbMap.get(urlSegment);
       if (item) {
         return item;
       }
-      const countryName = countries.find((country) => country.code === urlSegment)?.name;
+      const countryName = this.#store
+        .countries$()
+        .find((country) => country.code === urlSegment)?.name;
       if (countryName) {
         return {
           name: countryName,
           link: `/${urlSegment}`,
         };
       }
-      const contestName = contests.find((contest) => contest.year.toString() === urlSegment)?.year;
+      const contestName = this.#store
+        .contests$()
+        .find((contest) => contest.year.toString() === urlSegment)?.year;
       if (contestName) {
         return {
           name: urlSegment,

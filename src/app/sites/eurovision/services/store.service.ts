@@ -1,28 +1,84 @@
-import { Injectable } from '@angular/core';
+import { computed, inject, Injectable, signal, WritableSignal } from '@angular/core';
 import { Contest } from '../dataobjects/contest.dataobject';
-import { contests } from '../data/contests.data';
-import { countries } from '../data/countries.data';
 import { Country } from '../dataobjects/country.dataobject';
-import { entries } from '../data/entries.data';
 import { Entry } from '../dataobjects/entry.dataobject';
+import { BackendService } from './backend.service';
+import { CacheService } from './cache.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StoreService {
-  public get countries(): Country[] {
-    return countries;
+  readonly #backendService = inject(BackendService);
+  readonly #cacheService = inject(CacheService);
+
+  #countries$: WritableSignal<Country[]> = signal([]);
+  #contests$: WritableSignal<Contest[]> = signal([]);
+  #entries$: WritableSignal<Entry[]> = signal([]);
+
+  constructor() {
+    if (this.#cacheService.isValid) {
+      this.#loadFromCache();
+    } else {
+      this.#loadFromBackend();
+    }
   }
 
-  public get contests(): Contest[] {
-    return contests;
-  }
+  public isLoading$ = computed<boolean>(
+    () =>
+      this.#countries$().length === 0 ||
+      this.#contests$().length === 0 ||
+      this.#entries$().length === 0,
+  );
+
+  public countries$ = computed<Country[]>(() => this.#countries$());
+
+  public contests$ = computed<Contest[]>(() => this.#contests$());
+
+  public entries$ = computed<Entry[]>(() => this.#entries$());
 
   public getCountryByCode(code: string): Country | undefined {
-    return countries.find((country) => country.code === code);
+    return this.#countries$().find((country) => country.code === code);
   }
 
-  public getEntriesByCountry(country: Country): Entry[] {
-    return entries.filter((entry) => entry.country === country);
+  public getEntriesByCountry(country?: Country): Entry[] {
+    return this.#entries$().filter((entry) => entry.country.code === country?.code);
+  }
+
+  #loadFromCache(): void {
+    const countries = this.#cacheService.countries;
+    const contests = this.#cacheService.contests;
+    const entries = this.#cacheService.entries;
+    if (countries && contests && entries) {
+      this.#countries$.set(countries);
+      this.#contests$.set(contests);
+      this.#entries$.set(entries);
+    } else {
+      this.#loadFromBackend();
+    }
+  }
+
+  #loadFromBackend(): void {
+    this.#loadCountries();
+    this.#loadContests();
+    this.#loadEntries();
+  }
+
+  async #loadCountries(): Promise<void> {
+    const countries = await this.#backendService.getCountries();
+    this.#countries$.set(countries);
+    this.#cacheService.countries = countries;
+  }
+
+  async #loadContests(): Promise<void> {
+    const contests = await this.#backendService.getContests();
+    this.#contests$.set(contests);
+    this.#cacheService.contests = contests;
+  }
+
+  async #loadEntries(): Promise<void> {
+    const entries = await this.#backendService.getEntries();
+    this.#entries$.set(entries);
+    this.#cacheService.entries = entries;
   }
 }

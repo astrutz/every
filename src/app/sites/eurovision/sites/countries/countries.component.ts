@@ -3,35 +3,39 @@ import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb.comp
 import { RankingTableComponent } from '../../components/ranking-table/ranking-table.component';
 import { RatedCountry } from '../../dataobjects/country.dataobject';
 import { StoreService as EurovisionStoreService } from '../../services/store.service';
-import { Rating } from '../../dataobjects/rating.dataobject';
 import { NgClass } from '@angular/common';
+import { Entry } from '../../dataobjects/entry.dataobject';
+import { LoadingComponent } from '../../../../components/loading/loading.component';
 
-type TabKey = { key: keyof Rating | undefined; name: string };
+type TabKey = { key: keyof Entry | undefined; name: string };
 
 @Component({
-    selector: 'eurovision-countries',
-    templateUrl: 'countries.component.html',
-    imports: [BreadcrumbComponent, RankingTableComponent, NgClass]
+  selector: 'eurovision-countries',
+  templateUrl: 'countries.component.html',
+  imports: [BreadcrumbComponent, RankingTableComponent, NgClass, LoadingComponent],
 })
 export class CountriesComponent {
-  protected storeService = inject(EurovisionStoreService);
+  protected readonly storeService = inject(EurovisionStoreService);
   protected tabKeys: TabKey[] = [
     { key: undefined, name: $localize`Total` },
-    { key: 'energy', name: $localize`Energy` },
-    { key: 'staging', name: $localize`Staging` },
-    { key: 'studio', name: $localize`Studio` },
-    { key: 'fun', name: $localize`Fun` },
-    { key: 'vocals', name: $localize`Vocals` },
+    { key: 'energyRating', name: $localize`Energy` },
+    { key: 'stagingRating', name: $localize`Staging` },
+    { key: 'studioRating', name: $localize`Studio` },
+    { key: 'funRating', name: $localize`Fun` },
+    { key: 'vocalsRating', name: $localize`Vocals` },
   ];
 
-  protected criteria$: WritableSignal<keyof Rating | undefined> = signal(undefined);
+  protected isLoading$ = computed<boolean>(() => this.storeService.isLoading$());
+
+  protected criteria$: WritableSignal<keyof Entry | undefined> = signal(undefined);
 
   protected countriesRanked$: Signal<RatedCountry[]> = computed(() =>
     this.calculateCountryRanking(this.criteria$()),
   );
 
-  protected calculateCountryRanking(criteria?: keyof Rating): RatedCountry[] {
-    return this.storeService.countries
+  protected calculateCountryRanking(criteria?: keyof Entry): RatedCountry[] {
+    return this.storeService
+      .countries$()
       .map((country) => {
         const entries = this.storeService.getEntriesByCountry(country);
         if (!entries.length) {
@@ -40,8 +44,7 @@ export class CountriesComponent {
         const countryRating =
           entries.reduce(
             (accumulator, currentValue) =>
-              accumulator +
-              (criteria ? +currentValue.rating[criteria] : currentValue.rating.getTotal()),
+              accumulator + (criteria ? +currentValue[criteria] : currentValue.totalRating),
             0,
           ) / (entries.length ?? 1);
         return { ...country, rating: countryRating };
@@ -54,7 +57,7 @@ export class CountriesComponent {
     if (criteria === 'undefined') {
       this.criteria$.set(undefined);
     } else {
-      this.criteria$.set(criteria as keyof Rating);
+      this.criteria$.set(criteria as keyof Entry);
     }
   }
 }
