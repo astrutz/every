@@ -1,19 +1,19 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { StoreService as EurovisionStoreService } from './services/store.service';
-import { Contest } from './dataobjects/contest.dataobject';
 import { ContestOverviewComponent } from './components/contest-overview/contest-overview.component';
-import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
+import { Contest } from './dataobjects/contest.dataobject';
+import { LoadingComponent } from '../../components/loading/loading.component';
 
 @Component({
-    imports: [RouterModule, ContestOverviewComponent, BreadcrumbComponent],
-    selector: 'eurovision-root',
-    templateUrl: './home.component.html'
+  imports: [RouterModule, ContestOverviewComponent, LoadingComponent],
+  selector: 'eurovision-root',
+  templateUrl: './home.component.html',
 })
 export class HomeComponent {
   private readonly _storeService: EurovisionStoreService = inject(EurovisionStoreService);
 
-  protected get contests(): Contest[] {
-    return this._storeService.contests;
-  }
+  protected isLoading$ = computed<boolean>(() => this._storeService.isLoading$());
+
+  protected contests$ = computed<Contest[]>(() => this._storeService.contests$());
 }

@@ -15,7 +15,7 @@ export class Util {
     } else if (Util.isCountry(entity)) {
       return entity.name;
     } else if (Util.isEntry(entity)) {
-      return `${entity.artist} - ${entity.title} ${options?.hideRating ? '' : `(${entity.rating.getTotal().toLocaleString()})`} ${options?.hideYear ? '' : ` - ${entity.year}`}`;
+      return `${entity.artist} - ${entity.title} ${options?.hideRating ? '' : `(${entity.totalRating.toLocaleString()})`} ${options?.hideYear ? '' : ` - ${entity.year}`}`;
     } else if (Util.isContest(entity)) {
       return `${entity.hostCountry.name} (${entity.year})`;
     }

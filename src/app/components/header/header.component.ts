@@ -1,32 +1,37 @@
 import { Component, computed, inject, Signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { lucideMenu, lucideMoon, lucideSun, lucideArrowDown10, lucideExternalLink } from '@ng-icons/lucide';
+import {
+  lucideArrowDown10,
+  lucideExternalLink,
+  lucideMenu,
+  lucideMoon,
+  lucideSun,
+} from '@ng-icons/lucide';
 import { Colorscheme, ColorschemeService } from '../../services/colorscheme/colorscheme.service';
 import { NavigationService } from '../../services/navigation/navigation.service';
 import { FormsModule } from '@angular/forms';
 import { NgClass } from '@angular/common';
-import { LanguageSwitchComponent } from '../language-switch/language-switch.component';
 import { LocaleService } from '../../services/locale/locale.service';
 import { TitleService } from '../../services/title/title.service';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { apps, AppService, HeaderLink } from '../../services/app/app.service';
 
 /**
  * Displays the header bar including links, a language switcher and a color switcher
  */
 @Component({
-    selector: 'every-header',
-    imports: [NgIcon, FormsModule, NgClass, LanguageSwitchComponent, RouterLink, RouterLinkActive],
-    templateUrl: './header.component.html',
-    viewProviders: [
-        provideIcons({
-            lucideMoon,
-            lucideSun,
-            lucideMenu,
-            lucideArrowDown10,
-            lucideExternalLink,
-        }),
-    ]
+  selector: 'every-header',
+  imports: [NgIcon, FormsModule, NgClass, RouterLink],
+  templateUrl: './header.component.html',
+  viewProviders: [
+    provideIcons({
+      lucideMoon,
+      lucideSun,
+      lucideMenu,
+      lucideArrowDown10,
+      lucideExternalLink,
+    }),
+  ],
 })
 export class HeaderComponent {
   protected colorschemeService: ColorschemeService = inject(ColorschemeService);
