@@ -5,13 +5,14 @@ import { RatedCountry } from '../../dataobjects/country.dataobject';
 import { StoreService as EurovisionStoreService } from '../../services/store.service';
 import { NgClass } from '@angular/common';
 import { Entry } from '../../dataobjects/entry.dataobject';
+import { LoadingComponent } from '../../../../components/loading/loading.component';
 
 type TabKey = { key: keyof Entry | undefined; name: string };
 
 @Component({
   selector: 'eurovision-countries',
   templateUrl: 'countries.component.html',
-  imports: [BreadcrumbComponent, RankingTableComponent, NgClass],
+  imports: [BreadcrumbComponent, RankingTableComponent, NgClass, LoadingComponent],
 })
 export class CountriesComponent {
   protected storeService = inject(EurovisionStoreService);
@@ -23,6 +24,8 @@ export class CountriesComponent {
     { key: 'funRating', name: $localize`Fun` },
     { key: 'vocalsRating', name: $localize`Vocals` },
   ];
+
+  protected isLoading$ = computed<boolean>(() => this.storeService.isLoading$());
 
   protected criteria$: WritableSignal<keyof Entry | undefined> = signal(undefined);
 

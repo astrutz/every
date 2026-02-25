@@ -6,12 +6,13 @@ import { Entry } from '../../dataobjects/entry.dataobject';
 import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb.component';
 
 import { ThemeService } from '../../services/theme.service';
+import { LoadingComponent } from '../../../../components/loading/loading.component';
 
 @Component({
   selector: 'eurovision-country',
   templateUrl: 'country.component.html',
   styleUrl: 'country.component.scss',
-  imports: [RankingTableComponent, BreadcrumbComponent],
+  imports: [RankingTableComponent, BreadcrumbComponent, LoadingComponent],
 })
 export class CountryComponent implements OnInit {
   private countryCode: string = '';
