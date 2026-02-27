@@ -9,6 +9,9 @@ import { ThemeService } from '../../services/theme.service';
 import { LoadingComponent } from '../../../../components/loading/loading.component';
 import { ContentAreaComponent } from '../../../../components/content-area/content-area.component';
 
+/**
+ * Display a single country as a detail view
+ */
 @Component({
   selector: 'eurovision-country',
   templateUrl: 'country.component.html',

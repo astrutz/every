@@ -59,6 +59,13 @@ export class BreadcrumbService {
           link: `/${urlSegment}`,
         };
       }
+      const entry = this.#store.entries$().find((entry) => entry.id === urlSegment);
+      if (entry) {
+        return {
+          name: `${entry.artist} - ${entry.title}`,
+          link: `/${urlSegment}`,
+        };
+      }
       return {
         name: '',
         link: '',

@@ -52,6 +52,10 @@ export class StoreService {
     return this.#contests$().find((contest) => contest.year === year);
   }
 
+  public getEntryById(id: string): Entry | undefined {
+    return this.#entries$().find((entry) => entry.id === id);
+  }
+
   #loadFromCache(): void {
     const countries = this.#cacheService.countries;
     const contests = this.#cacheService.contests;
