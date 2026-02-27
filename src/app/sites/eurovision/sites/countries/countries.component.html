@@ -1,46 +1,46 @@
-<main>
+<section>
   @if (!isLoading$()) {
-  <div class="m-auto max-w-7xl py-8 px-4 md:px-8">
-    <eurovision-breadcrumb></eurovision-breadcrumb>
-    <h1 i18n class="text-3xl mt-8 mb-4">Best Countries</h1>
+    <every-content-area>
+      <eurovision-breadcrumb></eurovision-breadcrumb>
+      <h1 i18n class="text-3xl mt-8 mb-4">Best Countries</h1>
 
-    <div class="sm:hidden mb-4">
-      <label i18n for="tabs" class="sr-only">Select your country</label>
-      <select
-        id="tabs"
-        (change)="setCriteria($event)"
-        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-        @for (tabKey of tabKeys; track tabKey.name + 1) {
-          <option [value]="tabKey.key">{{ tabKey.name }}</option>
+      <div class="sm:hidden mb-4">
+        <label i18n for="tabs" class="sr-only">Select your country</label>
+        <select
+          id="tabs"
+          (change)="setCriteria($event)"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+          @for (tabKey of tabKeys; track tabKey.name + 1) {
+            <option [value]="tabKey.key">{{ tabKey.name }}</option>
+          }
+        </select>
+      </div>
+      <ul
+        class="hidden mb-6 text-sm font-medium text-center text-gray-500 rounded-lg shadow-sm sm:flex dark:divide-gray-700 dark:text-gray-400">
+        @for (tabKey of tabKeys; track tabKey.name) {
+          <li class="w-full focus-within:z-10">
+            <button
+              (click)="criteria$.set(tabKey.key)"
+              [id]="tabKey.key"
+              class="inline-block w-full p-4 border-gray-200 hover:text-gray-700 dark:border-gray-700 rounded-s-lg active focus:outline-none"
+              [ngClass]="{
+                'bg-white hover:bg-gray-50 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700':
+                  tabKey.key !== criteria$(),
+                'text-gray-900 dark:bg-gray-700 bg-gray-100 dark:text-white':
+                  tabKey.key === criteria$(),
+                'rounded-s-lg': $first,
+                'rounded-e-lg': $last,
+                'border-r': !$last,
+              }">
+              {{ tabKey.name }}
+            </button>
+          </li>
         }
-      </select>
-    </div>
-    <ul
-      class="hidden mb-6 text-sm font-medium text-center text-gray-500 rounded-lg shadow-sm sm:flex dark:divide-gray-700 dark:text-gray-400">
-      @for (tabKey of tabKeys; track tabKey.name) {
-        <li class="w-full focus-within:z-10">
-          <button
-            (click)="criteria$.set(tabKey.key)"
-            [id]="tabKey.key"
-            class="inline-block w-full p-4 border-gray-200 hover:text-gray-700 dark:border-gray-700 rounded-s-lg active focus:outline-none"
-            [ngClass]="{
-              'bg-white hover:bg-gray-50 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700':
-                tabKey.key !== criteria$(),
-              'text-gray-900 dark:bg-gray-700 bg-gray-100 dark:text-white':
-                tabKey.key === criteria$(),
-              'rounded-s-lg': $first,
-              'rounded-e-lg': $last,
-              'border-r': !$last
-            }">
-            {{ tabKey.name }}
-          </button>
-        </li>
-      }
-    </ul>
+      </ul>
 
-    <eurovision-ranking-table [sortedEntities]="countriesRanked$()"></eurovision-ranking-table>
-  </div>
+      <eurovision-ranking-table [sortedEntities]="countriesRanked$()"></eurovision-ranking-table>
+    </every-content-area>
   } @else {
     <every-loading />
   }
-</main>
+</section>

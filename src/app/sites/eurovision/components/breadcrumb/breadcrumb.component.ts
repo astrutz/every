@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { NgClass } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { BreadcrumbService } from '../../services/breadcrumb.service';
@@ -13,4 +13,7 @@ import { BreadcrumbService } from '../../services/breadcrumb.service';
 })
 export class BreadcrumbComponent {
   protected readonly breadcrumbService: BreadcrumbService = inject(BreadcrumbService);
+
+  @Input()
+  textColor: string | null = null;
 }
