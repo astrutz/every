@@ -1,9 +1,7 @@
 import { Component, computed, inject, Signal, signal, WritableSignal } from '@angular/core';
 import { StoreService as EurovisionStoreService } from '../../services/store.service';
 import { Entry } from '../../dataobjects/entry.dataobject';
-import { Country } from '../../dataobjects/country.dataobject';
-import { Rated } from '../../dataobjects/rated.dataobject';
-import { Contest } from '../../dataobjects/contest.dataobject';
+import { RatedEntity } from '../../dataobjects/entity.dataobject';
 
 export type TabKey = { key: keyof Entry | undefined; name: string };
 
@@ -14,7 +12,7 @@ export type TabKey = { key: keyof Entry | undefined; name: string };
   selector: 'eurovision-overview-page',
   template: '',
 })
-export abstract class OverviewPageComponent<T extends Rated<Country> | Rated<Contest>> {
+export abstract class OverviewPageComponent<T extends RatedEntity> {
   protected readonly storeService = inject(EurovisionStoreService);
   protected tabKeys: TabKey[] = [
     { key: undefined, name: $localize`Total` },
