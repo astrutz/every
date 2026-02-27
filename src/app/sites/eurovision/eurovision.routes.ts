@@ -5,6 +5,7 @@ import { CountryComponent } from './sites/country/country.component';
 import { ContestComponent } from './sites/contest/contest.component';
 import { ContestsComponent } from './sites/contests/contests.component';
 import { EntriesComponent } from './sites/entries/entries.component';
+import { EntryComponent } from './sites/entry/entry.component';
 
 export const Routes: Route[] = [
   {
@@ -33,6 +34,10 @@ export const Routes: Route[] = [
     path: 'entries',
     component: EntriesComponent,
     pathMatch: 'full',
+  },
+  {
+    path: 'entries/:id',
+    component: EntryComponent,
   },
 ];
 

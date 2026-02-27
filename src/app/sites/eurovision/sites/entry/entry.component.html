@@ -1,0 +1,41 @@
+@let entry = entry$();
+<section>
+  @if (entry) {
+    <every-content-area>
+      <eurovision-breadcrumb></eurovision-breadcrumb>
+      <h1 class="text-3xl mt-8 mb-2">{{ entry.artist }} - {{ entry.title }}</h1>
+      <h2 class="text-2xl mb-8 flex gap-2 items-center text-lg max-w-fit">
+        <a routerLink="/eurovision/countries/{{ entry.country.code }}">
+          <img
+            src="assets/eurovision/countries/{{ getFlag(entry.country.code) }}.png"
+            alt="{{ entry.country.name }}"
+            class="h-6 w-6 hover:underline" />
+        </a>
+        {{ entry.country.name }} {{ entry.year }}
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="flex flex-col gap-4">
+          <ul class="mb-4 text-lg w-fit">
+            <li i18n>Energy - {{ entry.energyRating }}</li>
+            <li i18n>Staging - {{ entry.stagingRating }}</li>
+            <li i18n>Studio - {{ entry.studioRating }}</li>
+            <li i18n>Fun - {{ entry.funRating }}</li>
+            <li i18n>Vocals - {{ entry.vocalsRating }}</li>
+            <li class="font-bold border-t-2" i18n>
+              Total - {{ Util.roundRating(entry.totalRating) }}
+            </li>
+          </ul>
+          <p class="text-xl">Alex' Ranking: {{placeInRanking}}/{{totalEntriesOfContest}}</p>
+          <p class="text-xl">Placement: {{entry.place}}/{{totalEntriesOfContest}}</p>
+        </div>
+        @if (videoId) {
+          <div class="w-full aspect-video">
+            <iframe class="w-full h-full rounded-xl" [src]="videoId" allowfullscreen></iframe>
+          </div>
+        }
+      </div>
+    </every-content-area>
+  } @else {
+    <every-loading />
+  }
+</section>
