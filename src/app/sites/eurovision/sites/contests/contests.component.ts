@@ -5,8 +5,9 @@ import { RankingTableComponent } from '../../components/ranking-table/ranking-ta
 import { LoadingComponent } from '../../../../components/loading/loading.component';
 import { NgClass } from '@angular/common';
 import { Entry } from '../../dataobjects/entry.dataobject';
-import { RatedContest } from '../../dataobjects/contest.dataobject';
+import { Rated } from '../../dataobjects/rated.dataobject';
 import { OverviewPageComponent } from '../../components/overview-page/overview-page.component';
+import { Contest } from '../../dataobjects/contest.dataobject';
 
 /**
  * Displays contests as a rated list
@@ -22,8 +23,8 @@ import { OverviewPageComponent } from '../../components/overview-page/overview-p
   ],
   templateUrl: './contests.component.html',
 })
-export class ContestsComponent extends OverviewPageComponent<RatedContest> {
-  protected override calculateRanking(criteria?: keyof Entry): RatedContest[] {
+export class ContestsComponent extends OverviewPageComponent<Rated<Contest>> {
+  protected override calculateRanking(criteria?: keyof Entry): Rated<Contest>[] {
     return this.storeService
       .contests$()
       .map((contest) => {

@@ -7,5 +7,3 @@ export interface Contest {
   hostCountry: Country;
   colours: string[];
 }
-
-export type RatedContest = Contest & { rating: number };

@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb.component';
 import { RankingTableComponent } from '../../components/ranking-table/ranking-table.component';
-import { RatedCountry } from '../../dataobjects/country.dataobject';
+import { Rated } from '../../dataobjects/rated.dataobject';
 import { NgClass } from '@angular/common';
 import { Entry } from '../../dataobjects/entry.dataobject';
 import { LoadingComponent } from '../../../../components/loading/loading.component';
 import { ContentAreaComponent } from '../../../../components/content-area/content-area.component';
 import { OverviewPageComponent } from '../../components/overview-page/overview-page.component';
+import { Country } from '../../dataobjects/country.dataobject';
 
 /**
  * Displays countries as a rated list
@@ -22,8 +23,8 @@ import { OverviewPageComponent } from '../../components/overview-page/overview-p
     ContentAreaComponent,
   ],
 })
-export class CountriesComponent extends OverviewPageComponent<RatedCountry> {
-  protected override calculateRanking(criteria?: keyof Entry): RatedCountry[] {
+export class CountriesComponent extends OverviewPageComponent<Rated<Country>> {
+  protected override calculateRanking(criteria?: keyof Entry): Rated<Country>[] {
     return this.storeService
       .countries$()
       .map((country) => {

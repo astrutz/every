@@ -1,5 +1,6 @@
-import { Country, RatedCountry } from '../dataobjects/country.dataobject';
-import { Contest, RatedContest } from '../dataobjects/contest.dataobject';
+import { Country } from '../dataobjects/country.dataobject';
+import { Rated } from '../dataobjects/rated.dataobject';
+import { Contest } from '../dataobjects/contest.dataobject';
 import { Entry } from '../dataobjects/entry.dataobject';
 import { Entity } from '../dataobjects/entity.dataobject';
 
@@ -31,7 +32,7 @@ export class Util {
     return entity.hasOwnProperty('code') && !entity.hasOwnProperty('rating');
   }
 
-  public static isRatedCountry(entity: Entity): entity is RatedCountry {
+  public static isRatedCountry(entity: Entity): entity is Rated<Country> {
     return entity.hasOwnProperty('code') && entity.hasOwnProperty('rating');
   }
 
@@ -39,7 +40,7 @@ export class Util {
     return entity.hasOwnProperty('year');
   }
 
-  public static isRatedContest(entity: Entity): entity is RatedContest {
+  public static isRatedContest(entity: Entity): entity is Rated<Contest> {
     return entity.hasOwnProperty('year') && entity.hasOwnProperty('rating');
   }
 
