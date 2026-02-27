@@ -6,13 +6,20 @@ import { StoreService as EurovisionStoreService } from '../../services/store.ser
 import { NgClass } from '@angular/common';
 import { Entry } from '../../dataobjects/entry.dataobject';
 import { LoadingComponent } from '../../../../components/loading/loading.component';
+import { ContentAreaComponent } from '../../../../components/content-area/content-area.component';
 
 type TabKey = { key: keyof Entry | undefined; name: string };
 
 @Component({
   selector: 'eurovision-countries',
   templateUrl: 'countries.component.html',
-  imports: [BreadcrumbComponent, RankingTableComponent, NgClass, LoadingComponent],
+  imports: [
+    BreadcrumbComponent,
+    RankingTableComponent,
+    NgClass,
+    LoadingComponent,
+    ContentAreaComponent,
+  ],
 })
 export class CountriesComponent {
   protected readonly storeService = inject(EurovisionStoreService);

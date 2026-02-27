@@ -48,6 +48,10 @@ export class StoreService {
     return this.#entries$().filter((entry) => entry.country.code === country?.code);
   }
 
+  public getContestByYear(year: number): Contest | undefined {
+    return this.#contests$().find((contest) => contest.year === year);
+  }
+
   #loadFromCache(): void {
     const countries = this.#cacheService.countries;
     const contests = this.#cacheService.contests;
