@@ -23,9 +23,11 @@
             [ngClass]="{
               'ms-1 md:ms-2': !$first,
               'hover:cursor-default': $last,
-              'hover:text-gray-900 dark:hover:text-gray-50': !$last
+              'hover:text-gray-900 dark:hover:text-gray-50': !$last,
             }"
-            class="text-md font-medium text-gray-600 dark:text-gray-300 transition-all"
+            class="text-md font-medium {{
+              textColor ?? 'text-gray-600 dark:text-gray-300'
+            }}  transition-all"
             >{{ item.name }}</a
           >
         </div>
