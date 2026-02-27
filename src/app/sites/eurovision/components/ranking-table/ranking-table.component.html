@@ -48,5 +48,12 @@
         </a>
       </li>
     }
+    @if (Util.isRatedContest(entity)) {
+      <li class="max-w-fit" [ngClass]="{ 'font-semibold': $index < 3 }">
+        <a class="text-lg hover:underline" routerLink="/eurovision/contests/{{ entity.year }}">
+         {{ $index + 1 }}. {{ Util.getDisplayName(entity, displayNameOptions) }}
+        </a>
+      </li>
+    }
   }
 </ul>

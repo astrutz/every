@@ -1,44 +1,44 @@
 import { Component } from '@angular/core';
+import { ContentAreaComponent } from '../../../../components/content-area/content-area.component';
 import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb.component';
 import { RankingTableComponent } from '../../components/ranking-table/ranking-table.component';
-import { Rated } from '../../dataobjects/rated.dataobject';
+import { LoadingComponent } from '../../../../components/loading/loading.component';
 import { NgClass } from '@angular/common';
 import { Entry } from '../../dataobjects/entry.dataobject';
-import { LoadingComponent } from '../../../../components/loading/loading.component';
-import { ContentAreaComponent } from '../../../../components/content-area/content-area.component';
+import { Rated } from '../../dataobjects/rated.dataobject';
 import { OverviewPageComponent } from '../../components/overview-page/overview-page.component';
-import { Country } from '../../dataobjects/country.dataobject';
+import { Contest } from '../../dataobjects/contest.dataobject';
 
 /**
- * Displays countries as a rated list
+ * Displays contests as a rated list
  */
 @Component({
-  selector: 'eurovision-countries',
-  templateUrl: 'countries.component.html',
+  selector: 'eurovision-contests',
   imports: [
+    ContentAreaComponent,
     BreadcrumbComponent,
     RankingTableComponent,
-    NgClass,
     LoadingComponent,
-    ContentAreaComponent,
+    NgClass,
   ],
+  templateUrl: './contests.component.html',
 })
-export class CountriesComponent extends OverviewPageComponent<Rated<Country>> {
-  protected override calculateRanking(criteria?: keyof Entry): Rated<Country>[] {
+export class ContestsComponent extends OverviewPageComponent<Rated<Contest>> {
+  protected override calculateRanking(criteria?: keyof Entry): Rated<Contest>[] {
     return this.storeService
-      .countries$()
-      .map((country) => {
-        const entries = this.storeService.getEntriesByCountry(country);
+      .contests$()
+      .map((contest) => {
+        const entries = contest.entries;
         if (!entries.length) {
-          return { ...country, rating: 0 };
+          return { ...contest, rating: 0 };
         }
-        const countryRating =
+        const contestRating =
           entries.reduce(
             (accumulator, currentValue) =>
               accumulator + (criteria ? +currentValue[criteria] : currentValue.totalRating),
             0,
           ) / (entries.length ?? 1);
-        return { ...country, rating: countryRating };
+        return { ...contest, rating: contestRating };
       })
       .sort((a, b) => b.rating - a.rating);
   }

@@ -2,10 +2,10 @@
   @if (!isLoading$()) {
     <every-content-area>
       <eurovision-breadcrumb></eurovision-breadcrumb>
-      <h1 i18n class="text-3xl mt-8 mb-4">Best Countries</h1>
+      <h1 i18n class="text-3xl mt-8 mb-4">Best Contests</h1>
 
       <div class="sm:hidden mb-4">
-        <label i18n for="tabs" class="sr-only">Select your country</label>
+        <label i18n for="tabs" class="sr-only">Select your contest</label>
         <select
           id="tabs"
           (change)="setCriteria($event)"
@@ -41,6 +41,6 @@
       <eurovision-ranking-table [sortedEntities]="entitiesRanked$()"></eurovision-ranking-table>
     </every-content-area>
   } @else {
-    <every-loading />
+    <every-loading></every-loading>
   }
 </section>
