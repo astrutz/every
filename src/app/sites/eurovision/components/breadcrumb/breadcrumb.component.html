@@ -1,7 +1,7 @@
 <nav class="flex mb-4" aria-label="Breadcrumb">
-  <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+  <ol class="flex flex-wrap items-center gap-x-2 gap-y-1">
     @for (item of breadcrumbService.breadcrumbItems; track item.link) {
-      <li>
+      <li class="flex items-center">
         <div class="flex items-center">
           @if (!$first) {
             <svg
@@ -27,7 +27,7 @@
             }"
             class="text-md font-medium {{
               textColor ?? 'text-gray-600 dark:text-gray-300'
-            }}  transition-all"
+            }}  transition-all break-words"
             >{{ item.name }}</a
           >
         </div>
