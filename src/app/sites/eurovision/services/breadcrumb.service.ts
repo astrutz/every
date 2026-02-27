@@ -96,4 +96,11 @@ const _breadcrumbMap: Map<string, BreadcrumbItem> = new Map([
       link: '/eurovision/contests',
     },
   ],
+  [
+    'entries',
+    {
+      name: $localize`Entries`,
+      link: '/eurovision/entries',
+    },
+  ],
 ]);

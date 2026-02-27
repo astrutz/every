@@ -3,7 +3,7 @@ import { DisplayNameOptions, Util } from '../../services/util';
 import { RouterLink } from '@angular/router';
 import { NgClass } from '@angular/common';
 import { ThemeService } from '../../services/theme.service';
-import { Entity } from '../../dataobjects/entity.dataobject';
+import { Entity, RatedEntity } from '../../dataobjects/entity.dataobject';
 
 /**
  * Universal list component to show ranked entries/countries/contests as a table
@@ -13,7 +13,7 @@ import { Entity } from '../../dataobjects/entity.dataobject';
   templateUrl: 'ranking-table.component.html',
   imports: [RouterLink, NgClass],
 })
-export class RankingTableComponent<T extends Entity> {
+export class RankingTableComponent<T extends Entity | RatedEntity> {
   readonly #themeService = inject(ThemeService);
 
   @Input({ required: true })

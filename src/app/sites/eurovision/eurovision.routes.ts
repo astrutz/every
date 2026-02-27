@@ -4,6 +4,7 @@ import { CountriesComponent } from './sites/countries/countries.component';
 import { CountryComponent } from './sites/country/country.component';
 import { ContestComponent } from './sites/contest/contest.component';
 import { ContestsComponent } from './sites/contests/contests.component';
+import { EntriesComponent } from './sites/entries/entries.component';
 
 export const Routes: Route[] = [
   {
@@ -27,6 +28,11 @@ export const Routes: Route[] = [
   {
     path: 'contests/:year',
     component: ContestComponent,
+  },
+  {
+    path: 'entries',
+    component: EntriesComponent,
+    pathMatch: 'full',
   },
 ];
 

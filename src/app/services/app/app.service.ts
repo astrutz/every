@@ -58,6 +58,10 @@ export const apps: App[] = [
         name: $localize`Contests`,
         path: 'eurovision/contests',
       },
+      {
+        name: $localize`Entries`,
+        path: 'eurovision/entries',
+      },
     ],
   },
   {
