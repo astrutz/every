@@ -3,10 +3,15 @@ import { ThemeService } from '../../services/theme.service';
 import { Contest } from '../../dataobjects/contest.dataobject';
 import { RankingTableComponent } from '../ranking-table/ranking-table.component';
 import { Entry } from '../../dataobjects/entry.dataobject';
+import { RouterLink } from '@angular/router';
+import { ContentAreaComponent } from '../../../../components/content-area/content-area.component';
 
+/**
+ * Displays an overview of all ESCs with its top 10 songs, current entry page.
+ */
 @Component({
   selector: 'eurovision-contest-overview',
-  imports: [RankingTableComponent],
+  imports: [RankingTableComponent, RouterLink, ContentAreaComponent],
   templateUrl: './contest-overview.component.html',
 })
 export class ContestOverviewComponent {

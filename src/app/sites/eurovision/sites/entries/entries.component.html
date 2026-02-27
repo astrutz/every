@@ -1,0 +1,12 @@
+<section>
+  @if (!isLoading$()) {
+    <every-content-area>
+      <eurovision-breadcrumb></eurovision-breadcrumb>
+      <h1 i18n class="text-3xl mt-8 mb-8">Best Entries</h1>
+
+      <eurovision-ranking-table [sortedEntities]="entitiesRanked$()"></eurovision-ranking-table>
+    </every-content-area>
+  } @else {
+    <every-loading />
+  }
+</section>

@@ -1,5 +1,8 @@
-import { Country, RatedCountry } from './country.dataobject';
+import { Country } from './country.dataobject';
+import { Rated } from './rated.dataobject';
 import { Contest } from './contest.dataobject';
 import { Entry } from './entry.dataobject';
 
-export type Entity = Country | Contest | Entry | RatedCountry;
+export type Entity = Country | Contest | Entry;
+
+export type RatedEntity = Rated<Entity>;

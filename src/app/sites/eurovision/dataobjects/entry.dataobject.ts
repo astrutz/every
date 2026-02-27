@@ -1,6 +1,7 @@
 import { Country } from './country.dataobject';
 
 export interface Entry {
+  id: string;
   country: Country;
   year: number;
   place: number;

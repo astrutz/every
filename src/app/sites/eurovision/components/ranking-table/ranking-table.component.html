@@ -13,7 +13,11 @@
               class="h-8 w-8 hover:underline" />
           </a>
         }
-        <p>{{ Util.getDisplayName(entity, displayNameOptions) }}</p>
+        <a
+          class="hover:underline cursor-pointer"
+          routerLink="/eurovision/entries/{{ entity.id }}"
+          >{{ Util.getDisplayName(entity, displayNameOptions) }}</a
+        >
       </li>
     }
     @if (Util.isRatedCountry(entity)) {
@@ -45,6 +49,13 @@
               class="h-8 w-8" />
           }
           <p>{{ Util.getDisplayName(entity, displayNameOptions) }}</p>
+        </a>
+      </li>
+    }
+    @if (Util.isRatedContest(entity)) {
+      <li class="max-w-fit" [ngClass]="{ 'font-semibold': $index < 3 }">
+        <a class="text-lg hover:underline" routerLink="/eurovision/contests/{{ entity.year }}">
+          {{ $index + 1 }}. {{ Util.getDisplayName(entity, displayNameOptions) }}
         </a>
       </li>
     }

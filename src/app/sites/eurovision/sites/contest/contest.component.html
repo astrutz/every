@@ -1,0 +1,39 @@
+@let contest = contest$();
+<section
+  class="    {{ themeService.getBackgroundPrimary(contest?.year ?? 0) }}    {{
+    themeService.getTextPrimary(contest?.year ?? 0)
+  }}">
+  @if (contest) {
+    <every-content-area>
+      <eurovision-breadcrumb
+        [textColor]="themeService.getTextPrimary(contest.year)"></eurovision-breadcrumb>
+      <h1 class="text-3xl mt-8 mb-8">
+        Eurovision {{ contest.year }} ({{ contest.hostCountry.name }})
+      </h1>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="order-2 md:order-1">
+          <eurovision-ranking-table
+            [sortedEntities]="sortedEntries$()"
+            [colorScheme]="contest.colours[2].toLocaleLowerCase() === '#ffffff' ? 'light' : 'dark'"
+            [displayNameOptions]="{ hideYear: true }"></eurovision-ranking-table>
+        </div>
+        <div class="order-1 md:order-2 flex justify-center md:justify-end h-fit">
+          <div class="md:-mt-32 flex flex-col gap-8">
+            <img
+              alt="{{ contest.hostCountry.name }}"
+              class="max-h-32 "
+              src="assets/eurovision/contests/{{ contest.year }}.png" />
+            <div
+              class="{{ themeService.getBackgroundSecondary(contest.year) }} {{
+                themeService.getTextSecondary(contest.year)
+              }}">
+              <!-- TODO InfoboxComponent here -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </every-content-area>
+  } @else {
+    <every-loading />
+  }
+</section>

@@ -4,5 +4,3 @@ export interface Country {
   primaryColor?: string;
   secondaryColor?: string;
 }
-
-export type RatedCountry = Country & { rating: number };

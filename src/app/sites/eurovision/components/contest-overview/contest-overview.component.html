@@ -2,10 +2,14 @@
   class="    {{ themeService.getBackgroundPrimary(contest.year) }}    {{
     themeService.getTextPrimary(contest.year)
   }} border-b-2 border-black">
-  <div class="m-auto max-w-7xl py-8 px-4 md:px-8">
+  <every-content-area>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div class="order-2 md:order-1">
-        <h1 class="text-2xl mb-4 hidden md:block">{{ contest.year }}</h1>
+        <h1
+          routerLink="/eurovision/contests/{{ contest.year }}"
+          class="text-2xl mb-4 hidden md:block hover:underline cursor-pointer">
+          {{ contest.year }}
+        </h1>
         <eurovision-ranking-table
           [sortedEntities]="topTenEntries"
           [displayNameOptions]="{ hideYear: true }"
@@ -14,11 +18,13 @@
           "></eurovision-ranking-table>
       </div>
       <div class="order-1 md:order-2 flex justify-center md:justify-end">
-        <img
-          alt="{{ contest.hostCountry.name }}"
-          class="max-h-32"
-          src="assets/eurovision/contests/{{ contest.year }}.png" />
+        <a class="h-fit" routerLink="/eurovision/contests/{{ contest.year }}">
+          <img
+            alt="{{ contest.hostCountry.name }}"
+            class="max-h-32"
+            src="assets/eurovision/contests/{{ contest.year }}.png" />
+        </a>
       </div>
     </div>
-  </div>
+  </every-content-area>
 </div>

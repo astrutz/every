@@ -54,6 +54,14 @@ export const apps: App[] = [
         name: $localize`Countries`,
         path: 'eurovision/countries',
       },
+      {
+        name: $localize`Contests`,
+        path: 'eurovision/contests',
+      },
+      {
+        name: $localize`Entries`,
+        path: 'eurovision/entries',
+      },
     ],
   },
   {
@@ -70,6 +78,9 @@ export const apps: App[] = [
   },
 ];
 
+/**
+ * Service to determine the current app (subpage) depending on the URL
+ */
 @Injectable({ providedIn: 'root' })
 export class AppService {
   readonly #router = inject(Router);

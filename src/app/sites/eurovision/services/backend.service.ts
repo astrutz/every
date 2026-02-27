@@ -4,6 +4,9 @@ import { Contest } from '../dataobjects/contest.dataobject';
 import { Entry } from '../dataobjects/entry.dataobject';
 import { environment } from '../../../environment';
 
+/**
+ * Service which queries the backend to load countries, entries and contests via fetch API
+ */
 @Injectable({
   providedIn: 'root',
 })

@@ -21,9 +21,6 @@ export class ExperienceComponent {
   readonly #colorSchemeService: ColorschemeService = inject(ColorschemeService);
   readonly #store: StoreService = inject(StoreService);
 
-  /**
-   * @returns The propagated list of experiencs
-   */
   protected get experiences(): Experience[] {
     return this.#store.experiences;
   }
@@ -36,19 +33,12 @@ export class ExperienceComponent {
     return `${startDateFormatted} - ${endDateFormatted}`;
   }
 
-  /**
-   * @returns The color of a logo depending on the color scheme
-   */
   protected get logoColor(): Colorscheme {
     return this.#colorSchemeService.colorscheme === Colorscheme.light
       ? Colorscheme.dark
       : Colorscheme.light;
   }
 
-  /**
-   * @param company Name of the company logo
-   * @returns Combined logo path containing root, name and logo color
-   */
   protected getLogoPath(company: string): string {
     return `assets/logos/${company}_${this.logoColor}.svg`;
   }

@@ -1,6 +1,6 @@
 @let country = country$();
 @if (country) {
-  <main class="relative overflow-hidden md:overflow-visible">
+  <section class="relative overflow-hidden md:overflow-visible">
     @if (country.primaryColor && country.secondaryColor) {
       <div class="absolute inset-0 pointer-events-none -z-10">
         <div
@@ -11,8 +11,8 @@
           [style.background-color]="country.secondaryColor"></div>
       </div>
     }
-    <div class="m-auto max-w-7xl py-8 px-4 md:px-8">
-      <every-breadcrumb></every-breadcrumb>
+    <every-content-area>
+      <eurovision-breadcrumb></eurovision-breadcrumb>
       <h1 class="text-3xl mt-8 mb-4 flex gap-2 items-center">
         <img
           src="assets/eurovision/countries/{{ getFlag(country.code) }}.png"
@@ -21,8 +21,8 @@
         {{ country.name }}
       </h1>
       <eurovision-ranking-table [sortedEntities]="sortedEntries$()" [showFlag]="false" />
-    </div>
-  </main>
+    </every-content-area>
+  </section>
   <img
     src="{{ getCrest(country.code) }}"
     aria-hidden="true"

@@ -17,37 +17,22 @@ import { socials } from '../data/socials.data';
   providedIn: 'root',
 })
 export class StoreService {
-  /**
-   * @returns Skills propagated from corresponding data file
-   */
   public get skills(): Skill[] {
     return skills;
   }
 
-  /**
-   * @returns Experiences propagated from corresponding data file
-   */
   public get experiences(): Experience[] {
     return experiences;
   }
 
-  /**
-   * @returns Works propagated from corresponding data file
-   */
   public get works(): Work[] {
     return works;
   }
 
-  /**
-   * @returns Testimonials propagated from corresponding data file
-   */
   public get testimonials(): Testimonial[] {
     return testimonials;
   }
 
-  /**
-   * @returns Socials propagated from corresponding data file
-   */
   public get socials(): Social[] {
     return socials;
   }

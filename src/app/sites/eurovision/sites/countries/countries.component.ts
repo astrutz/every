@@ -1,39 +1,30 @@
-import { Component, computed, inject, Signal, signal, WritableSignal } from '@angular/core';
+import { Component } from '@angular/core';
 import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb.component';
 import { RankingTableComponent } from '../../components/ranking-table/ranking-table.component';
-import { RatedCountry } from '../../dataobjects/country.dataobject';
-import { StoreService as EurovisionStoreService } from '../../services/store.service';
+import { Rated } from '../../dataobjects/rated.dataobject';
 import { NgClass } from '@angular/common';
 import { Entry } from '../../dataobjects/entry.dataobject';
 import { LoadingComponent } from '../../../../components/loading/loading.component';
+import { ContentAreaComponent } from '../../../../components/content-area/content-area.component';
+import { OverviewPageComponent } from '../../components/overview-page/overview-page.component';
+import { Country } from '../../dataobjects/country.dataobject';
 
-type TabKey = { key: keyof Entry | undefined; name: string };
-
+/**
+ * Displays countries as a rated list
+ */
 @Component({
   selector: 'eurovision-countries',
   templateUrl: 'countries.component.html',
-  imports: [BreadcrumbComponent, RankingTableComponent, NgClass, LoadingComponent],
+  imports: [
+    BreadcrumbComponent,
+    RankingTableComponent,
+    NgClass,
+    LoadingComponent,
+    ContentAreaComponent,
+  ],
 })
-export class CountriesComponent {
-  protected readonly storeService = inject(EurovisionStoreService);
-  protected tabKeys: TabKey[] = [
-    { key: undefined, name: $localize`Total` },
-    { key: 'energyRating', name: $localize`Energy` },
-    { key: 'stagingRating', name: $localize`Staging` },
-    { key: 'studioRating', name: $localize`Studio` },
-    { key: 'funRating', name: $localize`Fun` },
-    { key: 'vocalsRating', name: $localize`Vocals` },
-  ];
-
-  protected isLoading$ = computed<boolean>(() => this.storeService.isLoading$());
-
-  protected criteria$: WritableSignal<keyof Entry | undefined> = signal(undefined);
-
-  protected countriesRanked$: Signal<RatedCountry[]> = computed(() =>
-    this.calculateCountryRanking(this.criteria$()),
-  );
-
-  protected calculateCountryRanking(criteria?: keyof Entry): RatedCountry[] {
+export class CountriesComponent extends OverviewPageComponent<Rated<Country>> {
+  protected override calculateRanking(criteria?: keyof Entry): Rated<Country>[] {
     return this.storeService
       .countries$()
       .map((country) => {
@@ -50,14 +41,5 @@ export class CountriesComponent {
         return { ...country, rating: countryRating };
       })
       .sort((a, b) => b.rating - a.rating);
-  }
-
-  setCriteria(event: Event) {
-    const criteria = (event.target as HTMLSelectElement).value;
-    if (criteria === 'undefined') {
-      this.criteria$.set(undefined);
-    } else {
-      this.criteria$.set(criteria as keyof Entry);
-    }
   }
 }

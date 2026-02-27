@@ -8,6 +8,9 @@ export type BreadcrumbItem = {
   link: string;
 };
 
+/**
+ * Service which creates a dynamic breadcrumb depending on the URL
+ */
 @Injectable({ providedIn: 'root' })
 export class BreadcrumbService {
   readonly #router = inject(Router);
@@ -56,6 +59,13 @@ export class BreadcrumbService {
           link: `/${urlSegment}`,
         };
       }
+      const entry = this.#store.entries$().find((entry) => entry.id === urlSegment);
+      if (entry) {
+        return {
+          name: `${entry.artist} - ${entry.title}`,
+          link: `/${urlSegment}`,
+        };
+      }
       return {
         name: '',
         link: '',
@@ -91,6 +101,13 @@ const _breadcrumbMap: Map<string, BreadcrumbItem> = new Map([
     {
       name: $localize`Contests`,
       link: '/eurovision/contests',
+    },
+  ],
+  [
+    'entries',
+    {
+      name: $localize`Entries`,
+      link: '/eurovision/entries',
     },
   ],
 ]);

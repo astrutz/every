@@ -7,9 +7,6 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ColorschemeService {
-  /**
-   * @returns The current color scheme from localStorage
-   */
   public get colorscheme(): Colorscheme {
     return localStorage['theme'];
   }
@@ -28,9 +25,6 @@ export class ColorschemeService {
     }
   }
 
-  /**
-   * Changes the color scheme to the "other" value
-   */
   public toggleColorScheme(): void {
     if (this.colorscheme === Colorscheme.light) {
       this.#setDarkTheme();
@@ -39,26 +33,17 @@ export class ColorschemeService {
     }
   }
 
-  /**
-   * Sets the light theme in localStorage and removes the dark mode html class
-   */
   #setLightTheme(): void {
     document.documentElement.classList.remove('dark');
     localStorage['theme'] = Colorscheme.light;
   }
 
-  /**
-   * Sets the dark theme in localStorage and adds the dark mode html class
-   */
   #setDarkTheme(): void {
     document.documentElement.classList.add('dark');
     localStorage['theme'] = Colorscheme.dark;
   }
 }
 
-/**
- * Defines the current color scheme as simple string
- */
 export enum Colorscheme {
   light = 'light',
   dark = 'dark',

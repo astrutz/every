@@ -5,6 +5,9 @@ import { Entry } from '../dataobjects/entry.dataobject';
 import { BackendService } from './backend.service';
 import { CacheService } from './cache.service';
 
+/**
+ * Store service used as a single source of truth
+ */
 @Injectable({
   providedIn: 'root',
 })
@@ -43,6 +46,14 @@ export class StoreService {
 
   public getEntriesByCountry(country?: Country): Entry[] {
     return this.#entries$().filter((entry) => entry.country.code === country?.code);
+  }
+
+  public getContestByYear(year: number): Contest | undefined {
+    return this.#contests$().find((contest) => contest.year === year);
+  }
+
+  public getEntryById(id: string): Entry | undefined {
+    return this.#entries$().find((entry) => entry.id === id);
   }
 
   #loadFromCache(): void {
