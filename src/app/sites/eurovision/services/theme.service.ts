@@ -1,5 +1,8 @@
 import { inject, Injectable, DOCUMENT } from '@angular/core';
 
+/**
+ * Service used to display different themes based on a eurovision contest
+ */
 @Injectable({
   providedIn: 'root',
 })

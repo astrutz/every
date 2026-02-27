@@ -46,23 +46,14 @@ export class HeaderComponent {
     () => this.appService.currentApp$().headerLinks,
   );
 
-  /**
-   * @returns The name of the color scheme switcher depending on the current theme
-   */
   protected get colorIconName(): string {
     return this.#colorschemeService.colorscheme === Colorscheme.light ? 'lucideMoon' : 'lucideSun';
   }
 
-  /**
-   * Opens the mobile navigation, this happens nowhere else
-   */
   protected openNavigation(): void {
     this.navigationService.isOpen = true;
   }
 
-  /**
-   * Toggles the color scheme (dark/light) on switcher click
-   */
   protected toggleColorScheme(): void {
     this.#colorschemeService.toggleColorScheme();
   }

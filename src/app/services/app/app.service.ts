@@ -70,6 +70,9 @@ export const apps: App[] = [
   },
 ];
 
+/**
+ * Service to determine the current app (subpage) depending on the URL
+ */
 @Injectable({ providedIn: 'root' })
 export class AppService {
   readonly #router = inject(Router);

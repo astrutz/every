@@ -10,22 +10,13 @@ import { Router } from '@angular/router';
 export class TitleService {
   readonly #router = inject(Router);
 
-  /**
-   * State containing the base title which is visible every time
-   */
   #baseTitle: string = 'alexstrutz';
 
-  /**
-   * State containing the suffix title depending on the page
-   */
   #additionalTitles: Map<string, string> = new Map([
     ['', 'dev'],
     ['eurovision', 'eurovision'],
   ]);
 
-  /**
-   * @return State containing the title
-   */
   public get title(): string {
     let additionalTitle;
     const route = this.#router.url.split('/');
