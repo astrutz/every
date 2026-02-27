@@ -8,6 +8,9 @@ export type BreadcrumbItem = {
   link: string;
 };
 
+/**
+ * Service which creates a dynamic breadcrumb depending on the URL
+ */
 @Injectable({ providedIn: 'root' })
 export class BreadcrumbService {
   readonly #router = inject(Router);

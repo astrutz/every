@@ -3,8 +3,11 @@ import { NgClass } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { BreadcrumbService } from '../../services/breadcrumb.service';
 
+/**
+ * Displays a breadcrumb to navigate through the eurovision page
+ */
 @Component({
-  selector: 'every-breadcrumb',
+  selector: 'eurovision-breadcrumb',
   templateUrl: 'breadcrumb.component.html',
   imports: [NgClass, RouterLink],
 })

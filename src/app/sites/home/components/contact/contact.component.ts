@@ -32,28 +32,18 @@ import { TagComponent } from '../../../../components/tag/tag.component';
   ],
 })
 export class ContactComponent {
-  /**
-   * Indicates if the address was copied and therefore a chip should be displayed
-   */
-  protected showCopyChip: boolean = false;
-
-  /**
-   * Mail address to be displayed, could be moved into type somewhen
-   */
-  protected mail: string = 'hello@alexstrutz.dev';
-
   readonly #store = inject(StoreService);
 
-  /**
-   * @returns The propagated list of socials
-   */
+  protected showCopyChip: boolean = false;
+  protected mail: string = 'hello@alexstrutz.dev';
+
   protected get socials(): Social[] {
     return this.#store.socials;
   }
 
   /**
    * Copies a text to the clipboard if the feature is available
-   * @param text Text to be copied, at the moment only the mail addres
+   * @param text Text to be copied, at the moment only the mail address
    */
   protected copyTextToClipboard(text: string): void {
     if (navigator && 'clipboard' in navigator) {

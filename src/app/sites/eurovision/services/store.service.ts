@@ -5,6 +5,9 @@ import { Entry } from '../dataobjects/entry.dataobject';
 import { BackendService } from './backend.service';
 import { CacheService } from './cache.service';
 
+/**
+ * Store service used as a single source of truth
+ */
 @Injectable({
   providedIn: 'root',
 })

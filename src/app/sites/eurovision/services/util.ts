@@ -9,6 +9,9 @@ export interface DisplayNameOptions {
 }
 
 export class Util {
+  /**
+   * Constructs a display name depending on the context containing a rating
+   */
   public static getDisplayName(entity: Entity, options?: DisplayNameOptions): string {
     if (Util.isRatedCountry(entity)) {
       return `${entity.name} ${options?.hideRating ? '' : `(${(Math.round(entity.rating * 10) / 10).toLocaleString()})`}`;

@@ -5,6 +5,9 @@ import { NgClass } from '@angular/common';
 import { ThemeService } from '../../services/theme.service';
 import { Entity } from '../../dataobjects/entity.dataobject';
 
+/**
+ * Universal list component to show ranked entries/countries/contests as a table
+ */
 @Component({
   selector: 'eurovision-ranking-table',
   templateUrl: 'ranking-table.component.html',

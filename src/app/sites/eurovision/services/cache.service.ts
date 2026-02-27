@@ -7,6 +7,9 @@ import { Entity } from '../dataobjects/entity.dataobject';
 const CACHE_MAX_AGE = 1000 * 60 * 60 * 24; // 1 day
 const CACHE_KEY_PREFIX = 'EVERY_CACHE';
 
+/**
+ * Service which caches backend responses for one day using LocalStorage
+ */
 @Injectable({
   providedIn: 'root',
 })

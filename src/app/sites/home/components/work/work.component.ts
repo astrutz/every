@@ -22,9 +22,6 @@ import { Work } from '../../types/work.type';
 export class WorkComponent {
   readonly #store = inject(StoreService);
 
-  /**
-   * @returns The propagated list of works
-   */
   protected get works(): Work[] {
     return this.#store.works;
   }

@@ -7,21 +7,12 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class NavigationService {
-  /**
-   * State containing the navigation
-   */
   #isOpen: boolean = false;
 
-  /**
-   * @return State containing the navigation
-   */
   get isOpen(): boolean {
     return this.#isOpen;
   }
 
-  /**
-   * @param newVal State containing the navigation
-   */
   set isOpen(newVal: boolean) {
     this.#isOpen = newVal;
   }

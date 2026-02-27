@@ -14,9 +14,6 @@ import { Testimonial } from '../../types/testimonial.type';
 export class TestimonialsComponent {
   readonly #store = inject(StoreService);
 
-  /**
-   * @returns The propagated list of skills
-   */
   protected get testimonials(): Testimonial[] {
     return this.#store.testimonials;
   }

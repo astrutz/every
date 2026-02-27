@@ -20,17 +20,10 @@ export class SkillsComponent {
   readonly #store = inject(StoreService);
   readonly #colorschemeService = inject(ColorschemeService);
 
-  /**
-   * @returns The propagated list of skills
-   */
   protected get skills(): Skill[] {
     return this.#store.skills;
   }
 
-  /**
-   * @param skill Icon name to be used
-   * @returns Icon name (url) depending on color scheme
-   */
   protected getIconUrl(skill: Skill): string {
     if (skill.hasDarkIcon && this.#colorschemeService.colorscheme === Colorscheme.dark) {
       return skill.darkIcon ?? '';
