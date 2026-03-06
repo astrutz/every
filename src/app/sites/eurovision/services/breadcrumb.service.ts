@@ -59,6 +59,12 @@ export class BreadcrumbService {
           link: `/${urlSegment}`,
         };
       }
+      if (urlSegment === 'oldies') {
+        return {
+          name: 'Oldies',
+          link: `/${urlSegment}`,
+        };
+      }
       const entry = this.#store.entries$().find((entry) => entry.id === urlSegment);
       if (entry) {
         return {

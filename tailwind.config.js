@@ -26,6 +26,12 @@ module.exports = {
           900: '#111827', // Dark: 50
           950: '#030712', // Dark: DEFAULT
         },
+        oldies: {
+          primary: '#d1d5db',
+          secondary: '#1e1c1c',
+          primaryText: '#1e1c1c',
+          secondaryText: '#ffffff',
+        },
         contest2025: {
           primary: '#4e1c8f',
           secondary: '#0adad8',
