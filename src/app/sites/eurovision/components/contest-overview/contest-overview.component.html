@@ -1,28 +1,28 @@
 <div
-  class="    {{ themeService.getBackgroundPrimary(contest.year) }}    {{
-    themeService.getTextPrimary(contest.year)
+  class="    {{ themeService.getBackgroundPrimary(year) }}    {{
+    themeService.getTextPrimary(year)
   }} border-b-2 border-black">
   <every-content-area>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div class="order-2 md:order-1">
         <h1
-          routerLink="/eurovision/contests/{{ contest.year }}"
+          routerLink="/eurovision/contests/{{ year ?? 'oldies' }}"
           class="text-2xl mb-4 hidden md:block hover:underline cursor-pointer">
-          {{ contest.year }}
+          {{ year ?? 'Oldies' }}
         </h1>
         <eurovision-ranking-table
           [sortedEntities]="topTenEntries"
           [displayNameOptions]="{ hideYear: true }"
           [colorScheme]="
-            contest.colours[2].toLocaleLowerCase() === '#ffffff' ? 'light' : 'dark'
+            colours[2].toLocaleLowerCase() === '#ffffff' ? 'light' : 'dark'
           "></eurovision-ranking-table>
       </div>
       <div class="order-1 md:order-2 flex justify-center md:justify-end">
-        <a class="h-fit" routerLink="/eurovision/contests/{{ contest.year }}">
+        <a class="h-fit" routerLink="/eurovision/contests/{{ year ?? 'oldies' }}">
           <img
-            alt="{{ contest.hostCountry.name }}"
+            alt="{{ contest?.hostCountry?.name ?? 'Oldies' }}"
             class="max-h-32"
-            src="assets/eurovision/contests/{{ contest.year }}.png" />
+            src="assets/eurovision/contests/{{ year ?? 'oldies' }}.png" />
         </a>
       </div>
     </div>

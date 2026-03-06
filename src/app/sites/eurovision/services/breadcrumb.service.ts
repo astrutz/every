@@ -2,6 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { shareReplay, tap } from 'rxjs';
 import { StoreService as EurovisionStoreService } from './store.service';
+import { TranslationPipe } from '../pipes/translation.pipe';
 
 export type BreadcrumbItem = {
   name: string;
@@ -15,6 +16,7 @@ export type BreadcrumbItem = {
 export class BreadcrumbService {
   readonly #router = inject(Router);
   readonly #store = inject(EurovisionStoreService);
+  readonly #translationPipe = new TranslationPipe();
 
   constructor() {
     this.#createBreadcrumbItems(this.#router.url);
@@ -46,7 +48,7 @@ export class BreadcrumbService {
         .find((country) => country.code === urlSegment)?.name;
       if (countryName) {
         return {
-          name: countryName,
+          name: this.#translationPipe.transform(countryName),
           link: `/${urlSegment}`,
         };
       }
@@ -56,6 +58,12 @@ export class BreadcrumbService {
       if (contestName) {
         return {
           name: urlSegment,
+          link: `/${urlSegment}`,
+        };
+      }
+      if (urlSegment === 'oldies') {
+        return {
+          name: 'Oldies',
           link: `/${urlSegment}`,
         };
       }

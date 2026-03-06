@@ -7,13 +7,20 @@ import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb.comp
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Util } from '../../services/util';
 import { ThemeService } from '../../services/theme.service';
+import { TranslationPipe } from '../../pipes/translation.pipe';
 
 /**
  * Display a single entry as a detail view
  */
 @Component({
   selector: 'eurovision-entry',
-  imports: [LoadingComponent, ContentAreaComponent, BreadcrumbComponent, RouterLink],
+  imports: [
+    LoadingComponent,
+    ContentAreaComponent,
+    BreadcrumbComponent,
+    RouterLink,
+    TranslationPipe,
+  ],
   templateUrl: './entry.component.html',
 })
 export class EntryComponent implements OnInit {
@@ -67,13 +74,13 @@ export class EntryComponent implements OnInit {
   }
 
   protected get totalEntriesOfContest() {
-    return this.#contest?.entries.length ?? 0;
+    return this.#contest?.entries?.length ?? null;
   }
 
   protected get placeInRanking() {
     const entries = this.#contest?.entries;
     if (!entries) {
-      return 0;
+      return null;
     }
     const sortedEntries = entries.sort((a, b) => b.totalRating - a.totalRating);
     return sortedEntries.findIndex((entry) => entry.id === this.entry$()?.id) + 1;
