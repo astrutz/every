@@ -8,6 +8,7 @@ import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb.comp
 import { ThemeService } from '../../services/theme.service';
 import { LoadingComponent } from '../../../../components/loading/loading.component';
 import { ContentAreaComponent } from '../../../../components/content-area/content-area.component';
+import { TranslationPipe } from '../../pipes/translation.pipe';
 
 /**
  * Display a single country as a detail view
@@ -16,7 +17,13 @@ import { ContentAreaComponent } from '../../../../components/content-area/conten
   selector: 'eurovision-country',
   templateUrl: 'country.component.html',
   styleUrl: 'country.component.scss',
-  imports: [RankingTableComponent, BreadcrumbComponent, LoadingComponent, ContentAreaComponent],
+  imports: [
+    RankingTableComponent,
+    BreadcrumbComponent,
+    LoadingComponent,
+    ContentAreaComponent,
+    TranslationPipe,
+  ],
 })
 export class CountryComponent implements OnInit {
   #countryCode: string = '';

@@ -4,6 +4,9 @@ import { RouterLink } from '@angular/router';
 import { NgClass } from '@angular/common';
 import { ThemeService } from '../../services/theme.service';
 import { Entity, RatedEntity } from '../../dataobjects/entity.dataobject';
+import { TranslationPipe } from '../../pipes/translation.pipe';
+import { Country } from '../../dataobjects/country.dataobject';
+import { Contest } from '../../dataobjects/contest.dataobject';
 
 /**
  * Universal list component to show ranked entries/countries/contests as a table
@@ -11,10 +14,11 @@ import { Entity, RatedEntity } from '../../dataobjects/entity.dataobject';
 @Component({
   selector: 'eurovision-ranking-table',
   templateUrl: 'ranking-table.component.html',
-  imports: [RouterLink, NgClass],
+  imports: [RouterLink, NgClass, TranslationPipe],
 })
 export class RankingTableComponent<T extends Entity | RatedEntity> {
   readonly #themeService = inject(ThemeService);
+  readonly #translationPipe = new TranslationPipe();
 
   @Input({ required: true })
   sortedEntities!: T[];
@@ -30,6 +34,16 @@ export class RankingTableComponent<T extends Entity | RatedEntity> {
 
   protected getFlag(code: string): string {
     return `${code}-${this.colorScheme ?? this.#themeService.flagBackground}`;
+  }
+
+  protected getTranslatedCountry(country: Country) {
+    country.name = this.#translationPipe.transform(country.name);
+    return country;
+  }
+
+  protected getTranslatedContest(contest: Contest) {
+    contest.hostCountry.name = this.#translationPipe.transform(contest.hostCountry.name);
+    return contest;
   }
 
   protected readonly Util = Util;

@@ -7,13 +7,20 @@ import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb.comp
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Util } from '../../services/util';
 import { ThemeService } from '../../services/theme.service';
+import { TranslationPipe } from '../../pipes/translation.pipe';
 
 /**
  * Display a single entry as a detail view
  */
 @Component({
   selector: 'eurovision-entry',
-  imports: [LoadingComponent, ContentAreaComponent, BreadcrumbComponent, RouterLink],
+  imports: [
+    LoadingComponent,
+    ContentAreaComponent,
+    BreadcrumbComponent,
+    RouterLink,
+    TranslationPipe,
+  ],
   templateUrl: './entry.component.html',
 })
 export class EntryComponent implements OnInit {

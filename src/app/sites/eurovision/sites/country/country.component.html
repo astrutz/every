@@ -16,9 +16,9 @@
       <h1 class="text-3xl mt-8 mb-4 flex gap-2 items-center">
         <img
           src="assets/eurovision/countries/{{ getFlag(country.code) }}.png"
-          alt="{{ country.name }}"
+          alt="{{ country.name | translate }}"
           class="h-8 w-8" />
-        {{ country.name }}
+        {{ country.name | translate }}
       </h1>
       <eurovision-ranking-table [sortedEntities]="sortedEntries$()" [showFlag]="false" />
     </every-content-area>

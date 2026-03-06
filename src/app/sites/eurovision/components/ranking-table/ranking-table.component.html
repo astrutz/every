@@ -9,7 +9,7 @@
           <a routerLink="/eurovision/countries/{{ entity.country.code }}">
             <img
               src="assets/eurovision/countries/{{ getFlag(entity.country.code) }}.png"
-              alt="{{ entity.country.name }}"
+              alt="{{ entity.country.name | translate }}"
               class="h-8 w-8 hover:underline" />
           </a>
         }
@@ -32,7 +32,7 @@
               alt="{{ entity.name }}"
               class="h-8 w-8" />
           }
-          <p>{{ Util.getDisplayName(entity, displayNameOptions) }}</p>
+          <p>{{ Util.getDisplayName(getTranslatedCountry(entity), displayNameOptions) }}</p>
         </a>
       </li>
     }
@@ -48,14 +48,14 @@
               alt="{{ entity.name }}"
               class="h-8 w-8" />
           }
-          <p>{{ Util.getDisplayName(entity, displayNameOptions) }}</p>
+          <p>{{ Util.getDisplayName(getTranslatedCountry(entity), displayNameOptions) }}</p>
         </a>
       </li>
     }
     @if (Util.isRatedContest(entity)) {
       <li class="max-w-fit" [ngClass]="{ 'font-semibold': $index < 3 }">
         <a class="text-lg hover:underline" routerLink="/eurovision/contests/{{ entity.year }}">
-          {{ $index + 1 }}. {{ Util.getDisplayName(entity, displayNameOptions) }}
+          {{ $index + 1 }}. {{ Util.getDisplayName(getTranslatedContest(entity), displayNameOptions) }}
         </a>
       </li>
     }

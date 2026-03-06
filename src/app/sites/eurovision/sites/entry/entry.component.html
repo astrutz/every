@@ -8,10 +8,10 @@
         <a routerLink="/eurovision/countries/{{ entry.country.code }}">
           <img
             src="assets/eurovision/countries/{{ getFlag(entry.country.code) }}.png"
-            alt="{{ entry.country.name }}"
+            alt="{{ entry.country.name | translate }}"
             class="h-6 w-6 hover:underline" />
         </a>
-        {{ entry.country.name }} {{ entry.year }}
+        {{ entry.country.name | translate }} {{ entry.year }}
       </h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div class="flex flex-col gap-4">

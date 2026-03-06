@@ -7,13 +7,20 @@ import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb.comp
 import { ThemeService } from '../../services/theme.service';
 import { RankingTableComponent } from '../../components/ranking-table/ranking-table.component';
 import { Entry } from '../../dataobjects/entry.dataobject';
+import { TranslationPipe } from '../../pipes/translation.pipe';
 
 /**
  * Displays a detail page for a single contest
  */
 @Component({
   selector: 'eurovision-contest',
-  imports: [LoadingComponent, ContentAreaComponent, BreadcrumbComponent, RankingTableComponent],
+  imports: [
+    LoadingComponent,
+    ContentAreaComponent,
+    BreadcrumbComponent,
+    RankingTableComponent,
+    TranslationPipe,
+  ],
   templateUrl: './contest.component.html',
 })
 export class ContestComponent implements OnInit {
