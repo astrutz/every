@@ -25,8 +25,12 @@
               Total - {{ Util.roundRating(entry.totalRating) }}
             </li>
           </ul>
-          <p i18n class="text-xl">Alex' Ranking: {{placeInRanking}}/{{totalEntriesOfContest}}</p>
-          <p i18n class="text-xl">Placement: {{entry.place}}/{{totalEntriesOfContest}}</p>
+          @if (placeInRanking && totalEntriesOfContest) {
+            <p i18n class="text-xl">
+              Alex' Ranking: {{ placeInRanking }}/{{ totalEntriesOfContest }}
+            </p>
+            <p i18n class="text-xl">Placement: {{ entry.place }}/{{ totalEntriesOfContest }}</p>
+          }
         </div>
         @if (videoId) {
           <div class="w-full aspect-video md:-mt-32">
