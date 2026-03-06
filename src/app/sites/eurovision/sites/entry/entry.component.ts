@@ -67,13 +67,13 @@ export class EntryComponent implements OnInit {
   }
 
   protected get totalEntriesOfContest() {
-    return this.#contest?.entries.length ?? 0;
+    return this.#contest?.entries?.length ?? null;
   }
 
   protected get placeInRanking() {
     const entries = this.#contest?.entries;
     if (!entries) {
-      return 0;
+      return null;
     }
     const sortedEntries = entries.sort((a, b) => b.totalRating - a.totalRating);
     return sortedEntries.findIndex((entry) => entry.id === this.entry$()?.id) + 1;

@@ -9,7 +9,7 @@ import { inject, Injectable, DOCUMENT } from '@angular/core';
 export class ThemeService {
   readonly #document = inject(DOCUMENT);
 
-  public getBackgroundPrimary(year: number): string {
+  public getBackgroundPrimary(year?: number): string {
     switch (year) {
       case 2025:
         return 'bg-contest2025-primary';
@@ -30,7 +30,7 @@ export class ThemeService {
       case 2016:
         return 'bg-contest2016-primary';
     }
-    return '';
+    return 'bg-oldies-primary';
   }
 
   public getBackgroundSecondary(year: number): string {
@@ -54,10 +54,10 @@ export class ThemeService {
       case 2016:
         return 'bg-contest2016-secondary';
     }
-    return '';
+    return 'bg-oldies-secondary';
   }
 
-  public getTextPrimary(year: number): string {
+  public getTextPrimary(year?: number): string {
     switch (year) {
       case 2025:
         return 'text-contest2025-primaryText';
@@ -78,7 +78,7 @@ export class ThemeService {
       case 2016:
         return 'text-contest2016-primaryText';
     }
-    return '';
+    return 'text-oldies-primaryText';
   }
 
   public getTextSecondary(year: number): string {
@@ -102,7 +102,7 @@ export class ThemeService {
       case 2016:
         return 'text-contest2016-secondaryText';
     }
-    return '';
+    return 'text-oldies-secondaryText';
   }
 
   public get flagBackground(): string {

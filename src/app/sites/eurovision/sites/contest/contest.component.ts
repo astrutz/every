@@ -24,13 +24,17 @@ export class ContestComponent implements OnInit {
 
   ngOnInit() {
     this.#activatedRoute.params.subscribe((params: Params) => {
-      this.#year = +(params['year'] ?? '');
+      if (Number(params['year'])) {
+        this.#year = +(params['year'] ?? '');
+      }
     });
   }
 
   protected contest$ = computed(() => {
     if (!this.#storeService.isLoading$()) {
-      return this.#storeService.getContestByYear(this.#year);
+      return this.#year > 0
+        ? this.#storeService.getContestByYear(this.#year)
+        : this.#storeService.getOldiesContest();
     }
     return undefined;
   });

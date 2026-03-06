@@ -56,6 +56,22 @@ export class StoreService {
     return this.#entries$().find((entry) => entry.id === id);
   }
 
+  public getEntriesWithoutContest(): Entry[] {
+    return this.#entries$().filter((entry) => !('contest' in entry));
+  }
+
+  public getOldiesContest(): Contest {
+    return {
+      colours: ['#d1d5db', '#1e1c1c', '#d1d5db', '#1e1c1c'],
+      year: 0,
+      entries: this.getEntriesWithoutContest(),
+      hostCountry: {
+        code: '',
+        name: '',
+      },
+    };
+  }
+
   #loadFromCache(): void {
     const countries = this.#cacheService.countries;
     const contests = this.#cacheService.contests;
