@@ -1,5 +1,4 @@
-import { inject, Pipe, PipeTransform } from '@angular/core';
-import { Router } from '@angular/router';
+import { Pipe, PipeTransform } from '@angular/core';
 import { translations } from '../translations/country-translations';
 
 type LocaleKey = keyof typeof translations;
@@ -11,8 +10,6 @@ type LocaleKey = keyof typeof translations;
   name: 'translate',
 })
 export class TranslationPipe implements PipeTransform {
-  readonly #router = inject(Router);
-
   public transform(key: string): string {
     if (!this.#locale || this.#locale === 'en') {
       return key;
@@ -29,7 +26,7 @@ export class TranslationPipe implements PipeTransform {
   }
 
   get #locale(): string | null {
-    const locale = this.#router.url.split('/')?.[1];
+    const locale = location.pathname.split('/')[1];
     if (locale?.length !== 2) {
       return 'de';
     }
