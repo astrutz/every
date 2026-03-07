@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Country } from '../dataobjects/country.dataobject';
 import { Contest } from '../dataobjects/contest.dataobject';
-import { Entry } from '../dataobjects/entry.dataobject';
+import { EntryDto, Entry } from '../dataobjects/entry.dataobject';
 import { environment } from '../../../environment';
 
 /**
@@ -67,5 +67,31 @@ export class BackendService {
 
   public async getEntryById(id: string): Promise<Entry> {
     return this.#fetchJson<Entry>(`/entries/${id}`);
+  }
+
+  async #postJson<T>(path: string, data: T) {
+    await fetch(`${this.#base}${path}`, {
+      headers: this.#headers,
+      credentials: 'omit',
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
+  }
+
+  public async createEntry(entry: EntryDto) {
+    await this.#postJson<EntryDto>('/entries', entry);
+  }
+
+  async #putJson<T>(path: string, data: T) {
+    await fetch(`${this.#base}${path}`, {
+      headers: this.#headers,
+      credentials: 'omit',
+      method: 'PUT',
+      body: JSON.stringify(data),
+    });
+  }
+
+  public async updateEntry(id: string, entry: EntryDto) {
+    await this.#putJson<EntryDto>(`/entries/${id}`, entry);
   }
 }
