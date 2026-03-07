@@ -1,0 +1,137 @@
+<div class="max-w-2xl rounded shadow">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="mb-4">
+      <label class="block text-sm font-medium mb-1">ID</label>
+      <div class="flex gap-2 items-center">
+        <div class="grow">
+          <input
+            formControlName="id"
+            type="text"
+            class="w-full border p-2 rounded text-black"
+            placeholder="Entry ID" />
+        </div>
+        @if (form.controls['id'].value) {
+          <button
+            class="bg-gray-600 text-white px-4 rounded h-[stretch]"
+            type="button"
+            (click)="onSearch()">
+            Search
+          </button>
+        }
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <label class="block text-sm font-medium mb-1">Country*</label>
+      <input
+        formControlName="country"
+        type="text"
+        class="w-full border p-2 rounded text-black"
+        placeholder="Country code with two letters, e.g. 'DE'" />
+    </div>
+
+    <div class="mb-4">
+      <label class="block text-sm font-medium mb-1">Year*</label>
+      <input
+        formControlName="year"
+        type="number"
+        class="w-full border p-2 rounded text-black"
+        placeholder="Contest Year" />
+    </div>
+
+    <div class="mb-4">
+      <label class="block text-sm font-medium mb-1">Place</label>
+      <input
+        formControlName="place"
+        type="number"
+        class="w-full border p-2 rounded text-black"
+        placeholder="Placement in the Contest" />
+    </div>
+
+    <div class="mb-4">
+      <label class="block text-sm font-medium mb-1">Title</label>
+      <input
+        formControlName="title"
+        type="text"
+        class="w-full border p-2 rounded text-black"
+        placeholder="Song Title" />
+    </div>
+
+    <div class="mb-4">
+      <label class="block text-sm font-medium mb-1">Artist</label>
+      <input
+        formControlName="artist"
+        type="text"
+        class="w-full border p-2 rounded text-black"
+        placeholder="Song Artist" />
+    </div>
+
+    <div class="mb-4">
+      <label class="block text-sm font-medium mb-1">Link</label>
+      <input
+        formControlName="link"
+        type="text"
+        class="w-full border p-2 rounded text-black"
+        placeholder="YouTube Link" />
+    </div>
+
+    <div class="mb-4 flex gap-2">
+      <div>
+        <label class="block text-sm font-medium mb-1">Energy</label>
+        <input
+          formControlName="energyRating"
+          type="number"
+          class="w-full border p-2 rounded text-black"
+          placeholder="1 - 10" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium mb-1">Staging</label>
+        <input
+          formControlName="stagingRating"
+          type="number"
+          class="w-full border p-2 rounded text-black"
+          placeholder="1 - 10" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium mb-1">Studio</label>
+        <input
+          formControlName="studioRating"
+          type="number"
+          class="w-full border p-2 rounded text-black"
+          placeholder="1 - 10" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium mb-1">Fun</label>
+        <input
+          formControlName="funRating"
+          type="number"
+          class="w-full border p-2 rounded text-black"
+          placeholder="1 - 10" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium mb-1">Vocals</label>
+        <input
+          formControlName="vocalsRating"
+          type="number"
+          class="w-full border p-2 rounded text-black"
+          placeholder="1 - 10" />
+      </div>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">
+        {{ form.get('id')?.value ? 'Update' : 'Create' }}
+      </button>
+    </div>
+
+    @if (state === 'saving') {
+      <div class="mt-2 text-sm text-gray-600">Saving…</div>
+    }
+    @if (state === 'success') {
+      <div class="mt-2 text-sm text-green-600">Success</div>
+    }
+    @if (state === 'error') {
+      <div class="mt-2 text-sm text-red-600">{{ errorMessage }}</div>
+    }
+  </form>
+</div>

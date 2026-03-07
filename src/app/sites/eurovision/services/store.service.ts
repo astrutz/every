@@ -53,7 +53,7 @@ export class StoreService {
   }
 
   public getEntryById(id: string): Entry | undefined {
-    return this.#entries$().find((entry) => entry.id === id);
+    return this.#entries$().find((entry) => entry._id === id);
   }
 
   public getEntriesWithoutContest(): Entry[] {
@@ -62,10 +62,12 @@ export class StoreService {
 
   public getOldiesContest(): Contest {
     return {
+      _id: '',
       colours: ['#d1d5db', '#1e1c1c', '#d1d5db', '#1e1c1c'],
       year: 0,
       entries: this.getEntriesWithoutContest(),
       hostCountry: {
+        _id: '',
         code: '',
         name: '',
       },

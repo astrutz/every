@@ -1,4 +1,4 @@
-import { Route, RouterModule } from '@angular/router';
+import { Route } from '@angular/router';
 import { HomeComponent } from './home.component';
 import { CountriesComponent } from './sites/countries/countries.component';
 import { CountryComponent } from './sites/country/country.component';
@@ -6,11 +6,17 @@ import { ContestComponent } from './sites/contest/contest.component';
 import { ContestsComponent } from './sites/contests/contests.component';
 import { EntriesComponent } from './sites/entries/entries.component';
 import { EntryComponent } from './sites/entry/entry.component';
+import { CrudComponent } from './sites/crud/crud.component';
 
 export const Routes: Route[] = [
   {
     path: '',
     component: HomeComponent,
+  },
+  {
+    path: 'crud',
+    component: CrudComponent,
+    pathMatch: 'full',
   },
   {
     path: 'countries',
@@ -40,5 +46,3 @@ export const Routes: Route[] = [
     component: EntryComponent,
   },
 ];
-
-export const EurovisionRouting = RouterModule.forChild(Routes);
