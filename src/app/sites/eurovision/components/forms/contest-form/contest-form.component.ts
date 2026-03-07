@@ -3,6 +3,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormComponent } from '../form.component';
 import { ContestDto } from '../../../dataobjects/contest.dataobject';
 
+/**
+ * Form to create or update contests
+ */
 @Component({
   selector: 'eurovision-contest-form',
   templateUrl: 'contest-form.component.html',
