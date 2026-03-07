@@ -2,11 +2,23 @@
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="mb-4">
       <label class="block text-sm font-medium mb-1">ID</label>
-      <input
-        formControlName="id"
-        type="text"
-        class="w-full border p-2 rounded text-black"
-        placeholder="Entry ID" />
+      <div class="flex gap-2 items-center">
+        <div class="grow">
+          <input
+            formControlName="id"
+            type="text"
+            class="w-full border p-2 rounded text-black"
+            placeholder="Entry ID" />
+        </div>
+        @if (form.controls['id'].value) {
+          <button
+            class="bg-gray-600 text-white px-4 rounded h-[stretch]"
+            type="button"
+            (click)="onSearch()">
+            Search
+          </button>
+        }
+      </div>
     </div>
 
     <div class="mb-4">
@@ -70,7 +82,7 @@
           formControlName="energyRating"
           type="number"
           class="w-full border p-2 rounded text-black"
-          placeholder="1 - 10"/>
+          placeholder="1 - 10" />
       </div>
       <div>
         <label class="block text-sm font-medium mb-1">Staging</label>
