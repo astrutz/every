@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Country } from '../dataobjects/country.dataobject';
-import { Contest } from '../dataobjects/contest.dataobject';
+import { Contest, ContestDto } from '../dataobjects/contest.dataobject';
 import { EntryDto, Entry } from '../dataobjects/entry.dataobject';
 import { environment } from '../../../environment';
 
@@ -82,6 +82,10 @@ export class BackendService {
     await this.#postJson<EntryDto>('/entries', entry);
   }
 
+  public async createContest(contest: ContestDto) {
+    await this.#postJson<ContestDto>('/contests', contest);
+  }
+
   async #putJson<T>(path: string, data: T) {
     await fetch(`${this.#base}${path}`, {
       headers: this.#headers,
@@ -93,5 +97,9 @@ export class BackendService {
 
   public async updateEntry(id: string, entry: EntryDto) {
     await this.#putJson<EntryDto>(`/entries/${id}`, entry);
+  }
+
+  public async updateContest(id: string, contest: ContestDto) {
+    await this.#putJson<ContestDto>(`/contests/${id}`, contest);
   }
 }

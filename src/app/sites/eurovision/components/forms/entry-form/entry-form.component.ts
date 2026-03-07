@@ -15,7 +15,7 @@ export class EntryFormComponent extends FormComponent implements OnInit {
   get #formToEntry(): EntryDto {
     const raw = this.form.getRawValue();
     return {
-      country: this.#getCountryIDByCode(raw.country),
+      country: this.getCountryIDByCode(raw.country),
       contest: this.#getContestIDByYear(raw.year),
       year: raw.year,
       place: raw.place,
@@ -66,10 +66,6 @@ export class EntryFormComponent extends FormComponent implements OnInit {
       this.state = 'error';
       this.errorMessage = err?.toString() ?? '';
     }
-  }
-
-  #getCountryIDByCode(countryCode: string): string {
-    return this.storeService.getCountryByCode(countryCode.toUpperCase())?._id ?? '';
   }
 
   #getContestIDByYear(year: number): string {

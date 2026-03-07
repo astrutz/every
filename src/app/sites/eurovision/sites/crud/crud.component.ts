@@ -5,8 +5,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EntryFormComponent } from '../../components/forms/entry-form/entry-form.component';
 import { StoreService as EurovisionStoreService } from '../../services/store.service';
 import { LoadingComponent } from '../../../../components/loading/loading.component';
+import { ContestFormComponent } from '../../components/forms/contest-form/contest-form.component';
 
-type CrudKey = { key: 'entries' | 'contests' | 'countries'; name: string };
+type CrudKey = { key: 'entries' | 'contests'; name: string };
 
 /**
  * CRUD page containing different create and update forms
@@ -21,6 +22,7 @@ type CrudKey = { key: 'entries' | 'contests' | 'countries'; name: string };
     ReactiveFormsModule,
     EntryFormComponent,
     LoadingComponent,
+    ContestFormComponent,
   ],
 })
 export class CrudComponent {
@@ -29,14 +31,13 @@ export class CrudComponent {
   protected keys: CrudKey[] = [
     { key: 'entries', name: $localize`Entries` },
     { key: 'contests', name: $localize`Contests` },
-    { key: 'countries', name: $localize`Countries` },
   ];
 
-  protected tab$: WritableSignal<'entries' | 'contests' | 'countries'> = signal('entries');
+  protected tab$: WritableSignal<'entries' | 'contests'> = signal('entries');
   protected isLoading$ = computed<boolean>(() => this.storeService.isLoading$());
 
   protected setTab(event: Event) {
     const tab = (event.target as HTMLSelectElement).value;
-    this.tab$.set(tab as 'entries' | 'contests' | 'countries');
+    this.tab$.set(tab as 'entries' | 'contests');
   }
 }

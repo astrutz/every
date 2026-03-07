@@ -1,0 +1,67 @@
+<div class="max-w-2xl rounded shadow">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="mb-4">
+      <label class="block text-sm font-medium mb-1">ID</label>
+      <input
+        formControlName="id"
+        type="text"
+        class="w-full border p-2 rounded text-black"
+        placeholder="Contest ID" />
+    </div>
+
+    <div class="mb-4">
+      <label class="block text-sm font-medium mb-1">Year*</label>
+      <div class="flex gap-2 items-center">
+        <div class="grow">
+          <input
+            formControlName="year"
+            type="number"
+            class="w-full border p-2 rounded text-black"
+            placeholder="Contest Year" />
+        </div>
+        @if (form.controls['year'].value) {
+          <button
+            class="bg-gray-600 text-white px-4 rounded h-[stretch]"
+            type="button"
+            (click)="onSearch()">
+            Search
+          </button>
+        }
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <label class="block text-sm font-medium mb-1">Host Country</label>
+      <input
+        formControlName="hostCountry"
+        type="text"
+        class="w-full border p-2 rounded text-black"
+        placeholder="Country code with two letters, e.g. 'DE'" />
+    </div>
+
+    <div class="mb-4">
+      <label class="block text-sm font-medium mb-1">Colours</label>
+      <input
+        formControlName="colours"
+        type="string"
+        class="w-full border p-2 rounded text-black"
+        placeholder="Array of four colours e.g. #ffffff,#000000..." />
+    </div>
+
+    <div class="flex items-center gap-2">
+      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">
+        {{ form.get('id')?.value ? 'Update' : 'Create' }}
+      </button>
+    </div>
+
+    @if (state === 'saving') {
+      <div class="mt-2 text-sm text-gray-600">Saving…</div>
+    }
+    @if (state === 'success') {
+      <div class="mt-2 text-sm text-green-600">Success</div>
+    }
+    @if (state === 'error') {
+      <div class="mt-2 text-sm text-red-600">Error: {{ errorMessage }}</div>
+    }
+  </form>
+</div>

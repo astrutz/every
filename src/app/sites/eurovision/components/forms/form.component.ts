@@ -20,6 +20,10 @@ export abstract class FormComponent {
   protected errorMessage: string = '';
   protected state: State = 'idle';
 
+  protected getCountryIDByCode(countryCode: string): string {
+    return this.storeService.getCountryByCode(countryCode.toUpperCase())?._id ?? '';
+  }
+
   protected onSubmit(): void {
     throw 'NotImplementedError';
   }

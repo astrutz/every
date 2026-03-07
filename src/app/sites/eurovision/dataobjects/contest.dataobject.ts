@@ -8,3 +8,9 @@ export interface Contest {
   hostCountry: Country;
   colours: string[];
 }
+
+export interface ContestDto {
+  year: number;
+  hostCountry: string;
+  colours: string[];
+}
