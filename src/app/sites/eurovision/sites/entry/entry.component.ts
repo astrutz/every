@@ -83,7 +83,7 @@ export class EntryComponent implements OnInit {
       return null;
     }
     const sortedEntries = entries.sort((a, b) => b.totalRating - a.totalRating);
-    return sortedEntries.findIndex((entry) => entry.id === this.entry$()?.id) + 1;
+    return sortedEntries.findIndex((entry) => entry._id === this.entry$()?._id) + 1;
   }
 
   protected readonly Util = Util;
