@@ -70,12 +70,16 @@ export class BackendService {
   }
 
   async #postJson<T>(path: string, data: T) {
-    await fetch(`${this.#base}${path}`, {
+    const res = await fetch(`${this.#base}${path}`, {
       headers: this.#headers,
       credentials: 'omit',
       method: 'POST',
       body: JSON.stringify(data),
     });
+    if (!res.ok) {
+      const text = await res.text().catch(() => '');
+      throw new Error(`HTTP ${res.status} ${res.statusText} - ${text}`);
+    }
   }
 
   public async createEntry(entry: EntryDto) {
@@ -87,12 +91,16 @@ export class BackendService {
   }
 
   async #putJson<T>(path: string, data: T) {
-    await fetch(`${this.#base}${path}`, {
+    const res = await fetch(`${this.#base}${path}`, {
       headers: this.#headers,
       credentials: 'omit',
       method: 'PUT',
       body: JSON.stringify(data),
     });
+    if (!res.ok) {
+      const text = await res.text().catch(() => '');
+      throw new Error(`HTTP ${res.status} ${res.statusText} - ${text}`);
+    }
   }
 
   public async updateEntry(id: string, entry: EntryDto) {

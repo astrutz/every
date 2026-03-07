@@ -43,7 +43,7 @@
       <label class="block text-sm font-medium mb-1">Colours</label>
       <input
         formControlName="colours"
-        type="string"
+        type="text"
         class="w-full border p-2 rounded text-black"
         placeholder="Array of four colours e.g. #ffffff,#000000..." />
     </div>
@@ -61,7 +61,7 @@
       <div class="mt-2 text-sm text-green-600">Success</div>
     }
     @if (state === 'error') {
-      <div class="mt-2 text-sm text-red-600">Error: {{ errorMessage }}</div>
+      <div class="mt-2 text-sm text-red-600">{{ errorMessage }}</div>
     }
   </form>
 </div>
