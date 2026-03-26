@@ -37,7 +37,7 @@ export class LocaleService {
   ];
 
   public getLocaleUrl(locale: string): string {
-    return `https://alexstrutz.dev/${locale}/${this.#router.url.substring(4)}`;
+    return `https://alexstrutz.dev/${locale}/${this.#router.url.substring(1)}`;
   }
 
   public get isLanguageSwitcherOpen(): boolean {
