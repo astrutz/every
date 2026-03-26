@@ -6,6 +6,7 @@ import { EntryFormComponent } from '../../components/forms/entry-form/entry-form
 import { StoreService as EurovisionStoreService } from '../../services/store.service';
 import { LoadingComponent } from '../../../../components/loading/loading.component';
 import { ContestFormComponent } from '../../components/forms/contest-form/contest-form.component';
+import { LanguageSwitchComponent } from '../../../../components/language-switch/language-switch.component';
 
 type CrudKey = { key: 'entries' | 'contests'; name: string };
 
@@ -23,6 +24,7 @@ type CrudKey = { key: 'entries' | 'contests'; name: string };
     EntryFormComponent,
     LoadingComponent,
     ContestFormComponent,
+    LanguageSwitchComponent,
   ],
 })
 export class CrudComponent {

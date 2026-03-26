@@ -54,7 +54,7 @@
         <div
           id="dropdownNavbar"
           [ngClass]="isAppNavOpen ? '' : 'hidden'"
-          class="z-10 absolute font-normal bg-white  divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600">
+          class="z-10 absolute font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600">
           <ul
             class="py-2 text-sm text-gray-700 dark:text-gray-400"
             aria-labelledby="dropdownLargeButton">
@@ -65,16 +65,26 @@
                     [href]="app.url"
                     target="_blank"
                     rel="noopener noreferrer"
-                    [ngClass]="{'dark:text-white text-black underline': appService.currentApp$().name === app.name}"
+                    [ngClass]="{
+                      'dark:text-white text-black underline':
+                        appService.currentApp$().name === app.name,
+                    }"
                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white flex items-center justify-between"
                     >{{ app.name }}
-                    <ng-icon color="currentColor" size="1rem" name="lucideExternalLink" class="ml-1"></ng-icon>
+                    <ng-icon
+                      color="currentColor"
+                      size="1rem"
+                      name="lucideExternalLink"
+                      class="ml-1"></ng-icon>
                   </a>
                 } @else {
                   <a
                     [routerLink]="app.url"
                     (click)="isAppNavOpen = false"
-                    [ngClass]="{'dark:text-white text-black underline': appService.currentApp$().name === app.name}"
+                    [ngClass]="{
+                      'dark:text-white text-black underline':
+                        appService.currentApp$().name === app.name,
+                    }"
                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >{{ app.name }}</a
                   >
@@ -93,8 +103,7 @@
           (click)="toggleColorScheme()">
           <ng-icon color="currentColor" size="1.5rem" [name]="colorIconName"></ng-icon>
         </button>
-        @if (localeService.shouldShowLanguageSwitcher) {
-          <div
+        <div
           class="relative self-center p-1 w-8 flex justify-center items-center"
           role="combobox"
           aria-haspopup="true"
@@ -109,7 +118,6 @@
               [alt]="localeService.activeLocale" />
           </button>
         </div>
-        }
       </div>
     </div>
     <button

@@ -8,6 +8,7 @@ import { LoadingComponent } from '../../../../components/loading/loading.compone
 import { ContentAreaComponent } from '../../../../components/content-area/content-area.component';
 import { OverviewPageComponent } from '../../components/overview-page/overview-page.component';
 import { Country } from '../../dataobjects/country.dataobject';
+import { LanguageSwitchComponent } from '../../../../components/language-switch/language-switch.component';
 
 /**
  * Displays countries as a rated list
@@ -21,6 +22,7 @@ import { Country } from '../../dataobjects/country.dataobject';
     NgClass,
     LoadingComponent,
     ContentAreaComponent,
+    LanguageSwitchComponent,
   ],
 })
 export class CountriesComponent extends OverviewPageComponent<Rated<Country>> {
