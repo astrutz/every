@@ -8,6 +8,7 @@ import { ThemeService } from '../../services/theme.service';
 import { RankingTableComponent } from '../../components/ranking-table/ranking-table.component';
 import { Entry } from '../../dataobjects/entry.dataobject';
 import { TranslationPipe } from '../../pipes/translation.pipe';
+import { LanguageSwitchComponent } from '../../../../components/language-switch/language-switch.component';
 
 /**
  * Displays a detail page for a single contest
@@ -20,6 +21,7 @@ import { TranslationPipe } from '../../pipes/translation.pipe';
     BreadcrumbComponent,
     RankingTableComponent,
     TranslationPipe,
+    LanguageSwitchComponent,
   ],
   templateUrl: './contest.component.html',
 })

@@ -6,13 +6,20 @@ import { LoadingComponent } from '../../../../components/loading/loading.compone
 import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb.component';
 import { ContentAreaComponent } from '../../../../components/content-area/content-area.component';
 import { RankingTableComponent } from '../../components/ranking-table/ranking-table.component';
+import { LanguageSwitchComponent } from '../../../../components/language-switch/language-switch.component';
 
 /**
  * Displays the list of entries ranked by their total ranking
  */
 @Component({
   selector: 'eurovision-entries',
-  imports: [LoadingComponent, BreadcrumbComponent, ContentAreaComponent, RankingTableComponent],
+  imports: [
+    LoadingComponent,
+    BreadcrumbComponent,
+    ContentAreaComponent,
+    RankingTableComponent,
+    LanguageSwitchComponent,
+  ],
   templateUrl: './entries.component.html',
 })
 export class EntriesComponent extends OverviewPageComponent<Rated<Entry>> {

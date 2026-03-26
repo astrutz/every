@@ -8,6 +8,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Util } from '../../services/util';
 import { ThemeService } from '../../services/theme.service';
 import { TranslationPipe } from '../../pipes/translation.pipe';
+import { LanguageSwitchComponent } from '../../../../components/language-switch/language-switch.component';
 
 /**
  * Display a single entry as a detail view
@@ -20,6 +21,7 @@ import { TranslationPipe } from '../../pipes/translation.pipe';
     BreadcrumbComponent,
     RouterLink,
     TranslationPipe,
+    LanguageSwitchComponent,
   ],
   templateUrl: './entry.component.html',
 })
