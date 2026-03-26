@@ -8,6 +8,7 @@ import { Entry } from '../../dataobjects/entry.dataobject';
 import { Rated } from '../../dataobjects/rated.dataobject';
 import { OverviewPageComponent } from '../../components/overview-page/overview-page.component';
 import { Contest } from '../../dataobjects/contest.dataobject';
+import { LanguageSwitchComponent } from '../../../../components/language-switch/language-switch.component';
 
 /**
  * Displays contests as a rated list
@@ -20,6 +21,7 @@ import { Contest } from '../../dataobjects/contest.dataobject';
     RankingTableComponent,
     LoadingComponent,
     NgClass,
+    LanguageSwitchComponent,
   ],
   templateUrl: './contests.component.html',
 })

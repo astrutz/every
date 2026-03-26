@@ -9,6 +9,7 @@ import { ThemeService } from '../../services/theme.service';
 import { LoadingComponent } from '../../../../components/loading/loading.component';
 import { ContentAreaComponent } from '../../../../components/content-area/content-area.component';
 import { TranslationPipe } from '../../pipes/translation.pipe';
+import { LanguageSwitchComponent } from '../../../../components/language-switch/language-switch.component';
 
 /**
  * Display a single country as a detail view
@@ -23,6 +24,7 @@ import { TranslationPipe } from '../../pipes/translation.pipe';
     LoadingComponent,
     ContentAreaComponent,
     TranslationPipe,
+    LanguageSwitchComponent,
   ],
 })
 export class CountryComponent implements OnInit {

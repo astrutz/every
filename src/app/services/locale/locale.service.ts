@@ -36,8 +36,8 @@ export class LocaleService {
     { code: 'vi', name: 'Tiếng Việt' },
   ];
 
-  public get shouldShowLanguageSwitcher(): boolean {
-    return !this.#router.url.includes('/eurovision');
+  public getLocaleUrl(locale: string): string {
+    return `https://alexstrutz.dev/${locale}/${this.#router.url.substring(4)}`;
   }
 
   public get isLanguageSwitcherOpen(): boolean {
