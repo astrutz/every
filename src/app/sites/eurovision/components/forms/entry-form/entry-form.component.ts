@@ -68,8 +68,18 @@ export class EntryFormComponent extends FormComponent implements OnInit {
     }
   }
 
-  #getContestIDByYear(year: number): string {
-    return this.storeService.getContestByYear(year)?._id ?? '';
+  protected get totalRanking(): number {
+    const raw = this.form.getRawValue();
+    const energy = raw.energyRating;
+    const staging = raw.stagingRating;
+    const studio = raw.studioRating;
+    const fun = raw.funRating;
+    const vocals = raw.vocalsRating;
+    return (energy * 3 + staging * 3 + studio * 1.5 + fun * 1.5 + vocals) / 10;
+  }
+
+  #getContestIDByYear(year: number): string | undefined {
+    return this.storeService.getContestByYear(year)?._id;
   }
 
   ngOnInit(): void {

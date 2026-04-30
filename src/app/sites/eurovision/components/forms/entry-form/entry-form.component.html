@@ -118,10 +118,15 @@
       </div>
     </div>
 
-    <div class="flex items-center gap-2">
+    <div class="flex justify-between items-center gap-2">
       <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">
         {{ form.get('id')?.value ? 'Update' : 'Create' }}
       </button>
+      @if (totalRanking > 0) {
+        <div class="self-center h-full">
+          Total: {{ totalRanking.toLocaleString() }}
+        </div>
+      }
     </div>
 
     @if (state === 'saving') {
