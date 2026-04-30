@@ -20,7 +20,7 @@ export interface Entry {
 
 export interface EntryDto {
   country: string;
-  contest: string;
+  contest?: string;
   year: number;
   place: number;
   artist: string;
