@@ -9,6 +9,7 @@ import { SearchService } from '../../services/search.service';
 import { RouterLink } from '@angular/router';
 import { TranslationPipe } from '../../pipes/translation.pipe';
 import { ThemeService } from '../../services/theme.service';
+import { RatingComponent } from '../../components/rating/rating.component';
 
 @Component({
   selector: 'every-search',
@@ -19,6 +20,7 @@ import { ThemeService } from '../../services/theme.service';
     FormsModule,
     RouterLink,
     TranslationPipe,
+    RatingComponent,
   ],
   templateUrl: './search.component.html',
 })
@@ -42,4 +44,6 @@ export class SearchComponent implements OnDestroy {
   ngOnDestroy() {
     this.onSearch('');
   }
+
+  protected readonly Math = Math;
 }

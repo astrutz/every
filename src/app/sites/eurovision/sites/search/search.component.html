@@ -55,13 +55,16 @@
               <p class="text-lg md:text-2xl">{{ result.title }}</p>
               <p class="text-sm md:text-lg">{{ result.artist }}</p>
             </div>
-            <p class="text-sm md:text-base flex gap-2">
-              {{ result.country.name | translate }} {{ result.year }}
-              <img
-                src="assets/eurovision/countries/{{ getFlag(result.country.code) }}.png"
-                alt="{{ result.country.name | translate }}"
-                class="h-6 w-6 hover:underline" />
-            </p>
+            <div>
+              <p class="text-sm md:text-base flex gap-2">
+                {{ result.country.name | translate }} {{ result.year }}
+                <img
+                  src="assets/eurovision/countries/{{ getFlag(result.country.code) }}.png"
+                  alt="{{ result.country.name | translate }}"
+                  class="h-6 w-6 hover:underline" />
+              </p>
+              <eurovision-rating [totalRating]="result.totalRating"/>
+            </div>
           </a>
         } @empty {
           @if (searchTerm.length > 2) {
