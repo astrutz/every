@@ -7,6 +7,7 @@ import { ContestsComponent } from './sites/contests/contests.component';
 import { EntriesComponent } from './sites/entries/entries.component';
 import { EntryComponent } from './sites/entry/entry.component';
 import { CrudComponent } from './sites/crud/crud.component';
+import { SearchComponent } from './sites/search/search.component';
 
 export const Routes: Route[] = [
   {
@@ -44,5 +45,10 @@ export const Routes: Route[] = [
   {
     path: 'entries/:id',
     component: EntryComponent,
+  },
+  {
+    path: 'search',
+    component: SearchComponent,
+    pathMatch: 'full',
   },
 ];
