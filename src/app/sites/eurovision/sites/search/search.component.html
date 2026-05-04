@@ -1,0 +1,80 @@
+<section>
+  @if (!isLoading$()) {
+    <every-content-area>
+      <form class="max-w-2xl mx-auto mb-6 md:mb-8" (ngSubmit)="onSearch()">
+        <label
+          for="default-search"
+          class="mb-2 text-base font-medium text-gray-900 sr-only dark:text-white"
+          >...</label
+        >
+        <div class="relative">
+          <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+            <svg
+              class="w-4 h-4 text-gray-500 dark:text-gray-400"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 20 20">
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+            </svg>
+          </div>
+          <input
+            type="search"
+            id="default-search"
+            class="block w-full p-4 ps-10 text-base text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+            placeholder="..."
+            name="search"
+            (input)="onSearch()"
+            [(ngModel)]="searchTerm"
+            required />
+          <button
+            i18n
+            type="submit"
+            class="i18n text-white absolute end-2.5 bottom-2.5 bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+            Search
+          </button>
+        </div>
+      </form>
+
+      <div class="flex flex-col gap-6">
+        @if (searchResults$().length) {
+          <h3 class="text-2xl">{{ searchResults$().length }} Results for "{{ searchTerm }}"</h3>
+        }
+        @for (result of searchResults$(); track result._id) {
+          <a
+            class="relative text-lg p-4 md:p-6 pl-8 md:pl-10 dark:bg-gray-700 bg-white rounded-lg flex justify-between before:content-[''] before:absolute before:rounded-l-lg before:top-0 before:left-0 before:h-full before:w-2 before:bg-[var(--primary)] after:content-[''] after:absolute after:top-0 after:left-2 after:h-full after:w-2 after:bg-[var(--secondary)]"
+            [style.--primary]="result.country.primaryColor"
+            [style.--secondary]="result.country.secondaryColor"
+            [routerLink]="'/eurovision/entries/' + result._id">
+            <div>
+              <p class="text-lg md:text-2xl">{{ result.title }}</p>
+              <p class="text-sm md:text-lg">{{ result.artist }}</p>
+            </div>
+            <p class="text-sm md:text-base flex gap-2">
+              {{ result.country.name | translate }} {{ result.year }}
+              <img
+                src="assets/eurovision/countries/{{ getFlag(result.country.code) }}.png"
+                alt="{{ result.country.name | translate }}"
+                class="h-6 w-6 hover:underline" />
+            </p>
+          </a>
+        } @empty {
+          @if (searchTerm.length > 2) {
+            <h3 i18n class="text-2xl">No Results for "{{ searchTerm }}"</h3>
+          } @else {
+            <h3 i18n class="text-2xl">Please enter at least 3 characters</h3>
+          }
+        }
+      </div>
+    </every-content-area>
+  } @else {
+    <every-loading />
+  }
+</section>
+
+<every-language-switch></every-language-switch>
