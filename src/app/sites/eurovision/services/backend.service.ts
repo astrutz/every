@@ -38,19 +38,19 @@ export class BackendService {
   }
 
   public async getCountries(): Promise<Country[]> {
-    return this.#fetchJson<Country[]>('/countries');
+    return this.#fetchJson<Country[]>('/eurovision/countries');
   }
 
   public async getContests(): Promise<Contest[]> {
-    return this.#fetchJson<Contest[]>('/contests');
+    return this.#fetchJson<Contest[]>('/eurovision/contests');
   }
 
   public async getContestByYear(year: number): Promise<Contest> {
-    return this.#fetchJson<Contest>(`/contests?year=${year}`);
+    return this.#fetchJson<Contest>(`/eurovision/contests?year=${year}`);
   }
 
   public async getTopEntries(year: number, limit = 10): Promise<Contest> {
-    return this.#fetchJson<Contest>(`/contests/${year}/top?limit=${limit}`);
+    return this.#fetchJson<Contest>(`/eurovision/contests/${year}/top?limit=${limit}`);
   }
 
   public async getEntries(year?: number, countryCode?: string): Promise<Entry[]> {
@@ -62,11 +62,11 @@ export class BackendService {
       params.set('country', countryCode);
     }
     const query = params.toString() ? `?${params.toString()}` : '';
-    return this.#fetchJson<Entry[]>(`/entries${query}`);
+    return this.#fetchJson<Entry[]>(`/eurovision/entries${query}`);
   }
 
   public async getEntryById(id: string): Promise<Entry> {
-    return this.#fetchJson<Entry>(`/entries/${id}`);
+    return this.#fetchJson<Entry>(`/eurovision/entries/${id}`);
   }
 
   async #postJson<T>(path: string, data: T) {
@@ -83,11 +83,11 @@ export class BackendService {
   }
 
   public async createEntry(entry: EntryDto) {
-    await this.#postJson<EntryDto>('/entries', entry);
+    await this.#postJson<EntryDto>('/eurovision/entries', entry);
   }
 
   public async createContest(contest: ContestDto) {
-    await this.#postJson<ContestDto>('/contests', contest);
+    await this.#postJson<ContestDto>('/eurovision/contests', contest);
   }
 
   async #putJson<T>(path: string, data: T) {
@@ -104,10 +104,10 @@ export class BackendService {
   }
 
   public async updateEntry(id: string, entry: EntryDto) {
-    await this.#putJson<EntryDto>(`/entries/${id}`, entry);
+    await this.#putJson<EntryDto>(`/eurovision/entries/${id}`, entry);
   }
 
   public async updateContest(id: string, contest: ContestDto) {
-    await this.#putJson<ContestDto>(`/contests/${id}`, contest);
+    await this.#putJson<ContestDto>(`/eurovision/contests/${id}`, contest);
   }
 }
