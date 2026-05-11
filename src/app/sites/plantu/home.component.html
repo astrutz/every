@@ -1,7 +1,7 @@
 <every-content-area>
   <div class="flex flex-col gap-4">
-  <plantu-card></plantu-card>
-  <plantu-card></plantu-card>
-  <plantu-card></plantu-card>
+    @for (plant of testPlants; track plant._id) {
+      <plantu-card [plant]="plant"></plantu-card>
+    }
   </div>
 </every-content-area>

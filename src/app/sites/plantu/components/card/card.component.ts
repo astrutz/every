@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
   lucideCheck,
@@ -9,6 +9,7 @@ import {
   lucideBrushCleaning,
   lucideWandSparkles,
 } from '@ng-icons/lucide';
+import { Plant } from '../../dataobjects/plant.dataobject';
 
 @Component({
   selector: 'plantu-card',
@@ -26,4 +27,7 @@ import {
     }),
   ],
 })
-export class CardComponent {}
+export class CardComponent {
+  @Input({ required: true })
+  plant!: Plant;
+}
