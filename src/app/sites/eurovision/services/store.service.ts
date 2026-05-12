@@ -2,7 +2,7 @@ import { computed, inject, Injectable, signal, WritableSignal } from '@angular/c
 import { Contest } from '../dataobjects/contest.dataobject';
 import { Country } from '../dataobjects/country.dataobject';
 import { Entry } from '../dataobjects/entry.dataobject';
-import { BackendService } from './backend.service';
+import { BackendService as EurovisionBackendService } from './backend.service';
 import { CacheService } from './cache.service';
 
 /**
@@ -12,7 +12,7 @@ import { CacheService } from './cache.service';
   providedIn: 'root',
 })
 export class StoreService {
-  readonly #backendService = inject(BackendService);
+  readonly #backendService = inject(EurovisionBackendService);
   readonly #cacheService = inject(CacheService);
 
   #countries$: WritableSignal<Country[]> = signal([]);
