@@ -30,4 +30,12 @@ import { Plant } from '../../dataobjects/plant.dataobject';
 export class CardComponent {
   @Input({ required: true })
   plant!: Plant;
+
+  @Input({ required: true })
+  targetDate!: string;
+
+  protected isToday(key: keyof Plant): boolean {
+    const date = this.plant[key]?.toString().split('T')[0];
+    return this.targetDate === date;
+  }
 }

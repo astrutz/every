@@ -8,11 +8,26 @@
       <h3 class="text-lg text-black dark:text-white font-bold">{{ plant.name }}</h3>
       <h3 class="md:text-base text-sm">{{ plant.location }}</h3>
       <div class="mt-2 md:mt-4 flex gap-2 items-center">
-        <!--        <ng-icon color="currentColor" size="1rem" name="lucideDroplet"></ng-icon>-->
-        <ng-icon color="currentColor" size="1rem" name="lucideSprayCan"></ng-icon>
-        <!--        <ng-icon color="currentColor" size="1rem" name="lucideBrushCleaning"></ng-icon>-->
-        <!--        <ng-icon color="currentColor" size="1rem" name="lucideWandSparkles"></ng-icon>-->
-        <h4 class="text-sm">Alle {{ plant.wateringInterval }} Tage</h4>
+        @if(isToday('nextWatering')) {
+          <ng-icon color="currentColor" size="1rem" name="lucideDroplet"></ng-icon>
+          <h4 class="text-sm">Alle {{ plant.wateringInterval }} Tage</h4>
+        }
+        @if(isToday('nextSpraying')) {
+          <ng-icon color="currentColor" size="1rem" name="lucideSprayCan"></ng-icon>
+          <h4 class="text-sm">Alle {{ plant.sprayingInterval }} Tage</h4>
+        }
+        @if(isToday('nextFertilizing')) {
+          <ng-icon color="currentColor" size="1rem" name="lucideWandSparkles"></ng-icon>
+          <h4 class="text-sm">Alle {{ plant.fertilizingInterval }} Tage</h4>
+        }
+        @if(isToday('nextCutting')) {
+          <ng-icon color="currentColor" size="1rem" name="lucideSprout"></ng-icon>
+          <h4 class="text-sm">Alle {{ plant.cuttingInterval }} Tage</h4>
+        }
+        @if(isToday('nextWiping')) {
+          <ng-icon color="currentColor" size="1rem" name="lucideBrushCleaning"></ng-icon>
+          <h4 class="text-sm">Alle {{ plant.wipingInterval }} Tage</h4>
+        }
       </div>
     </div>
   </div>
