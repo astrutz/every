@@ -33,8 +33,8 @@ module.exports = {
           secondaryText: '#ffffff',
         },
         contest2026: {
-          primary: '#FF055C',
-          secondary: '#001A8B',
+          primary: '#ad8a37',
+          secondary: '#000000',
           primaryText: '#ffffff',
           secondaryText: '#ffffff',
         },
