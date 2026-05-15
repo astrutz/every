@@ -3,11 +3,14 @@ import { ContentAreaComponent } from '../../components/content-area/content-area
 import { CardComponent } from './components/card/card.component';
 import { StoreService as PlantuStoreService } from './services/store.service';
 import { BasketService } from './services/basket.service';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { lucideCloudUpload, lucideX } from '@ng-icons/lucide';
 
 @Component({
   selector: 'plantu-home',
   templateUrl: 'home.component.html',
-  imports: [ContentAreaComponent, CardComponent],
+  imports: [ContentAreaComponent, CardComponent, NgIcon],
+  providers: [provideIcons({ lucideCloudUpload, lucideX })],
 })
 export class HomeComponent {
   readonly #storeService = inject(PlantuStoreService);
