@@ -4,6 +4,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { ColorschemeService } from './services/colorscheme/colorscheme.service';
 import { FooterComponent } from './components/footer/footer.component';
 import { MobileNavigationComponent } from './components/mobile-navigation/mobile-navigation.component';
+import { LanguageSwitchComponent } from './components/language-switch/language-switch.component';
 
 /**
  * Global page root component
@@ -11,7 +12,13 @@ import { MobileNavigationComponent } from './components/mobile-navigation/mobile
 @Component({
   selector: 'every-root',
   templateUrl: './app.component.html',
-  imports: [HeaderComponent, RouterModule, FooterComponent, MobileNavigationComponent],
+  imports: [
+    HeaderComponent,
+    RouterModule,
+    FooterComponent,
+    MobileNavigationComponent,
+    LanguageSwitchComponent,
+  ],
 })
 export class AppComponent {
   readonly #colorschemeService = inject(ColorschemeService);

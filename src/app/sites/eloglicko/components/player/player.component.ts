@@ -5,30 +5,32 @@ import { Player } from '../../dataobjects/player.dataobject';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import { lucideUserMinus, lucideUserPlus } from '@ng-icons/lucide';
 import {
-  tablerChessBishopFilled,
-  tablerChessFilled,
-  tablerChessKingFilled,
-  tablerChessKnightFilled,
-  tablerChessQueenFilled, tablerChessRookFilled,
+  tablerChessBishop,
+  tablerChess,
+  tablerChessKing,
+  tablerChessKnight,
+  tablerChessQueen,
+  tablerChessRook,
 } from '@ng-icons/tabler-icons';
 import { CardComponent } from '../shared/card.component';
 import { SimulationService } from '../../services/simulation.service';
 
-
 @Component({
-    selector: 'eloglicko-player',
-    templateUrl: './player.component.html',
-    imports: [CommonModule, ReactiveFormsModule, NgIconComponent, CardComponent],
-    viewProviders: [provideIcons({
-            lucideUserMinus,
-            lucideUserPlus,
-            tablerChessFilled,
-            tablerChessKnightFilled,
-            tablerChessQueenFilled,
-            tablerChessKingFilled,
-            tablerChessRookFilled,
-            tablerChessBishopFilled,
-        })]
+  selector: 'eloglicko-player',
+  templateUrl: './player.component.html',
+  imports: [CommonModule, ReactiveFormsModule, NgIconComponent, CardComponent],
+  viewProviders: [
+    provideIcons({
+      lucideUserMinus,
+      lucideUserPlus,
+      tablerChess,
+      tablerChessKnight,
+      tablerChessQueen,
+      tablerChessKing,
+      tablerChessRook,
+      tablerChessBishop,
+    }),
+  ],
 })
 export class PlayerComponent {
   protected _players: Player[] = [];
@@ -38,8 +40,7 @@ export class PlayerComponent {
     strength: new FormControl(null, Validators.required),
   });
 
-  constructor(protected _simulationService: SimulationService) {
-  }
+  constructor(protected _simulationService: SimulationService) {}
 
   protected _createPlayer(): void {
     const name = this._playerForm.get('name')?.value;
@@ -52,7 +53,6 @@ export class PlayerComponent {
 
   protected _changePlayerColor(index: number): void {
     this._simulationService.simulation.changePlayerColor(index);
-
   }
 
   protected _deletePlayer(index: number): void {
