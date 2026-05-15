@@ -11,6 +11,8 @@
       <div class="mt-2 md:mt-4 flex gap-2 md:gap-4 items-center">
         @if (isToday('nextWatering')) {
           <button
+            type="button"
+            (click)="basketService.add('watered', plant._id)"
             class="cursor-pointer bg-gray-50 hover:bg-gray-100 active:bg-gray-200 text-gray-500 text-xs flex items-center gap-1.5 p-1 rounded-lg dark:active:bg-gray-500 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-400 border border-gray-300 dark:border-gray-500">
             <ng-icon color="currentColor" size="1.5rem" name="lucideDroplet"></ng-icon>
             <p class="hidden md:block text-sm">Alle {{ plant.wateringInterval }} Tage</p>
@@ -18,6 +20,8 @@
         }
         @if (isToday('nextSpraying')) {
           <button
+            type="button"
+            (click)="basketService.add('sprayed', plant._id)"
             class="cursor-pointer bg-gray-50 hover:bg-gray-100 active:bg-gray-200 text-gray-500 text-xs flex items-center gap-1.5 p-1 rounded-lg dark:active:bg-gray-500 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-400 border border-gray-300 dark:border-gray-500">
             <ng-icon color="currentColor" size="1.5rem" name="lucideSprayCan"></ng-icon>
             <p class="hidden md:block text-sm">Alle {{ plant.sprayingInterval }} Tage</p>
@@ -25,6 +29,8 @@
         }
         @if (isToday('nextFertilizing')) {
           <button
+            type="button"
+            (click)="basketService.add('fertilized', plant._id)"
             class="cursor-pointer bg-gray-50 hover:bg-gray-100 active:bg-gray-200 text-gray-500 text-xs flex items-center gap-1.5 p-1 rounded-lg dark:active:bg-gray-500 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-400 border border-gray-300 dark:border-gray-500">
             <ng-icon color="currentColor" size="1.5rem" name="lucideWandSparkles"></ng-icon>
             <p class="hidden md:block text-sm">Alle {{ plant.fertilizingInterval }} Tage</p>
@@ -32,6 +38,8 @@
         }
         @if (isToday('nextCutting')) {
           <button
+            type="button"
+            (click)="basketService.add('trimmed', plant._id)"
             class="cursor-pointer bg-gray-50 hover:bg-gray-100 active:bg-gray-200 text-gray-500 text-xs flex items-center gap-1.5 p-1 rounded-lg dark:active:bg-gray-500 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-400 border border-gray-300 dark:border-gray-500">
             <ng-icon color="currentColor" size="1.5rem" name="lucideSprout"></ng-icon>
             <p class="hidden md:block text-sm">Alle {{ plant.cuttingInterval }} Tage</p>
@@ -39,6 +47,8 @@
         }
         @if (isToday('nextWiping')) {
           <button
+            type="button"
+            (click)="basketService.add('wiped', plant._id)"
             class="cursor-pointer bg-gray-50 hover:bg-gray-100 active:bg-gray-200 text-gray-500 text-xs flex items-center gap-1.5 p-1 rounded-lg dark:active:bg-gray-500 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-400 border border-gray-300 dark:border-gray-500">
             <ng-icon color="currentColor" size="1.5rem" name="lucideBrushCleaning"></ng-icon>
             <p class="hidden md:block text-sm">Alle {{ plant.wipingInterval }} Tage</p>

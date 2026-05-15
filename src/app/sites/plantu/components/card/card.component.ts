@@ -1,15 +1,16 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
+  lucideBrushCleaning,
   lucideCheck,
-  lucideDroplet,
   lucideClockPlus,
+  lucideDroplet,
   lucideSprayCan,
   lucideSprout,
-  lucideBrushCleaning,
   lucideWandSparkles,
 } from '@ng-icons/lucide';
 import { Plant } from '../../dataobjects/plant.dataobject';
+import { BasketService } from '../../services/basket.service';
 
 @Component({
   selector: 'plantu-card',
@@ -26,8 +27,11 @@ import { Plant } from '../../dataobjects/plant.dataobject';
       lucideWandSparkles,
     }),
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardComponent {
+  protected readonly basketService = inject(BasketService);
+
   @Input({ required: true })
   plant!: Plant;
 

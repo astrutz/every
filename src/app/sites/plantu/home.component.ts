@@ -2,6 +2,7 @@ import { Component, computed, inject } from '@angular/core';
 import { ContentAreaComponent } from '../../components/content-area/content-area.component';
 import { CardComponent } from './components/card/card.component';
 import { StoreService as PlantuStoreService } from './services/store.service';
+import { BasketService } from './services/basket.service';
 
 @Component({
   selector: 'plantu-home',
@@ -10,6 +11,7 @@ import { StoreService as PlantuStoreService } from './services/store.service';
 })
 export class HomeComponent {
   readonly #storeService = inject(PlantuStoreService);
+  protected readonly basketService = inject(BasketService);
 
   tasks$ = computed(() => this.#storeService.tasks$());
 
