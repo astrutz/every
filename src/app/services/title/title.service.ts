@@ -15,6 +15,7 @@ export class TitleService {
   #additionalTitles: Map<string, string> = new Map([
     ['', 'dev'],
     ['eurovision', 'eurovision'],
+    ['plantu', 'plantu'],
   ]);
 
   public get title(): string {

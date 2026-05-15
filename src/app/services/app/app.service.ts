@@ -69,6 +69,16 @@ export const apps: App[] = [
     ],
   },
   {
+    name: 'plantu',
+    url: 'plantu',
+    headerLinks: [
+      {
+        name: $localize`Overview`,
+        path: 'plantu',
+      },
+    ],
+  },
+  {
     name: 'Amazing Map',
     url: 'https://is-the-amazing-near-me.netlify.app',
     headerLinks: [],
