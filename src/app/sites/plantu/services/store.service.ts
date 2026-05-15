@@ -16,7 +16,7 @@ export class StoreService {
   #tasks$: WritableSignal<Task[]> = signal([]);
 
   constructor() {
-    this.#loadFromBackend();
+    this.loadFromBackend();
   }
 
   public isLoading$ = computed<boolean>(() => this.#plants$().length === 0);
@@ -24,9 +24,9 @@ export class StoreService {
   public plants$ = computed<Plant[]>(() => this.#plants$());
   public tasks$ = computed<Task[]>(() => this.#tasks$());
 
-  #loadFromBackend(): void {
-    this.#loadPlants();
-    this.#loadTasks();
+  public async loadFromBackend(): Promise<void> {
+    await this.#loadPlants();
+    await this.#loadTasks();
   }
 
   async #loadPlants(): Promise<void> {
