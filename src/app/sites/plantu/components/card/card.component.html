@@ -4,7 +4,10 @@
     <img
       class="my-auto max-h-20 md:max-h-32 aspect-square rounded-md"
       [alt]="plant.name"
-      [src]="plant.imageUrl ?? 'https://cdn.shopify.com/s/files/1/0250/0329/4765/t/4/assets/pf-c8c2f78a--Drachenbaum6_1200x.jpg?v=1609938372'" />
+      [src]="
+        plant.imageUrl ??
+        'https://cdn.shopify.com/s/files/1/0250/0329/4765/t/4/assets/pf-c8c2f78a--Drachenbaum6_1200x.jpg?v=1609938372'
+      " />
     <div class="flex flex-col justify-center">
       <h3 class="text-lg text-black dark:text-white font-bold">{{ plant.name }}</h3>
       <h3 class="md:text-base text-sm">{{ plant.location }}</h3>
@@ -66,8 +69,16 @@
     </button>
     <button
       type="button"
+      (click)="isModalOpen$.set(true)"
       class="text-amber-700 border border-amber-700 hover:bg-amber-600 active:bg-amber-500 hover:text-white font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center dark:border-amber-500 dark:text-amber-500 dark:hover:text-white dark:hover:bg-amber-500 dark:active:bg-amber-600">
       <ng-icon color="currentColor" size="1rem" name="lucideClockPlus"></ng-icon>
     </button>
   </div>
 </div>
+
+<plantu-snooze-modal
+  [isOpen$]="isModalOpen$()"
+  [title$]="plant.name"
+  [initialDate$]="targetDate"
+  (onSnooze$)="snoozeAll($event)"
+  (onClose$)="isModalOpen$.set(false)"/>
