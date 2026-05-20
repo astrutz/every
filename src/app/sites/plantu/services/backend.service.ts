@@ -3,6 +3,7 @@ import { environment } from '../../../environment';
 import { Plant } from '../dataobjects/plant.dataobject';
 import { Task } from '../dataobjects/task.dataobject';
 import { CareDto } from '../dataobjects/care.dataobject';
+import { SnoozeDto } from '../dataobjects/snooze.dataobject';
 
 /**
  * Service which queries the backend to load plants via fetch API
@@ -50,6 +51,19 @@ export class BackendService {
     }
   }
 
+  async #patchJson<T>(path: string, data: T) {
+    const res = await fetch(`${this.#base}${path}`, {
+      headers: this.#headers,
+      credentials: 'omit',
+      method: 'PATCH',
+      body: JSON.stringify(data),
+    });
+    if (!res.ok) {
+      const text = await res.text().catch(() => '');
+      throw new Error(`HTTP ${res.status} ${res.statusText} - ${text}`);
+    }
+  }
+
   public async getPlants(): Promise<Plant[]> {
     return this.#fetchJson<Plant[]>('/plantu');
   }
@@ -60,5 +74,9 @@ export class BackendService {
 
   public async postCare(careDto: CareDto): Promise<void> {
     return this.#postJson<CareDto>('/plantu/care', careDto);
+  }
+
+  public async patchSnooze(id: string, snoozeDto: SnoozeDto): Promise<void> {
+    return this.#patchJson<SnoozeDto>(`/plantu/${id}/snooze`, snoozeDto);
   }
 }
