@@ -2,6 +2,7 @@ import { computed, inject, Injectable, signal, WritableSignal } from '@angular/c
 import { BackendService as PlantuBackendService } from './backend.service';
 import { Plant } from '../dataobjects/plant.dataobject';
 import { Task } from '../dataobjects/task.dataobject';
+import { SnoozeDto } from '../dataobjects/snooze.dataobject';
 
 /**
  * Store service used as a single source of truth
@@ -27,6 +28,11 @@ export class StoreService {
   public async loadFromBackend(): Promise<void> {
     await this.#loadPlants();
     await this.#loadTasks();
+  }
+
+  public async snoozePlant(id: string, snoozeDto: SnoozeDto): Promise<void> {
+    await this.#backendService.patchSnooze(id, snoozeDto);
+    await this.loadFromBackend();
   }
 
   async #loadPlants(): Promise<void> {
