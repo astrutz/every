@@ -33,6 +33,11 @@ export class BasketService {
     });
   }
 
+  public has(type: BasketKey, id: string): boolean {
+    const items = this.#basket$()[type];
+    return items.has(id);
+  }
+
   public remove(type: BasketKey, id: string): void {
     this.#basket$.update((state) => {
       const newState = { ...state };

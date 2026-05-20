@@ -16,57 +16,81 @@
           <button
             type="button"
             (click)="basketService.add('watered', plant._id)"
-            class="cursor-pointer bg-gray-50 hover:bg-gray-100 active:bg-gray-200 text-gray-500 text-xs flex items-center gap-1.5 p-1 rounded-lg dark:active:bg-gray-500 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-400 border border-gray-300 dark:border-gray-500">
+            class="relative cursor-pointer bg-gray-50 hover:bg-gray-100 active:bg-gray-200 text-gray-500 text-xs flex items-center gap-1.5 p-1 rounded-lg dark:active:bg-gray-500 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-400 border border-gray-300 dark:border-gray-500">
             <ng-icon color="currentColor" size="1.5rem" name="lucideDroplet"></ng-icon>
             <p class="hidden md:block text-sm">Alle {{ plant.wateringInterval }} Tage</p>
+            @if (basketService.has('watered', plant._id)) {
+              <div
+                class="absolute cursor-default inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-lime-500 border-2 border-white rounded-full -top-4 -end-4 dark:border-gray-700">
+                ✔
+              </div>
+            }
           </button>
         }
         @if (isToday('nextSpraying')) {
           <button
             type="button"
             (click)="basketService.add('sprayed', plant._id)"
-            class="cursor-pointer bg-gray-50 hover:bg-gray-100 active:bg-gray-200 text-gray-500 text-xs flex items-center gap-1.5 p-1 rounded-lg dark:active:bg-gray-500 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-400 border border-gray-300 dark:border-gray-500">
+            class="relative cursor-pointer bg-gray-50 hover:bg-gray-100 active:bg-gray-200 text-gray-500 text-xs flex items-center gap-1.5 p-1 rounded-lg dark:active:bg-gray-500 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-400 border border-gray-300 dark:border-gray-500">
             <ng-icon color="currentColor" size="1.5rem" name="lucideSprayCan"></ng-icon>
             <p class="hidden md:block text-sm">Alle {{ plant.sprayingInterval }} Tage</p>
+            @if (basketService.has('sprayed', plant._id)) {
+              <div
+                class="absolute cursor-default inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-lime-500 border-2 border-white rounded-full -top-4 -end-4 dark:border-gray-700">
+                ✔
+              </div>
+            }
           </button>
         }
         @if (isToday('nextFertilizing')) {
           <button
             type="button"
             (click)="basketService.add('fertilized', plant._id)"
-            class="cursor-pointer bg-gray-50 hover:bg-gray-100 active:bg-gray-200 text-gray-500 text-xs flex items-center gap-1.5 p-1 rounded-lg dark:active:bg-gray-500 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-400 border border-gray-300 dark:border-gray-500">
+            class="relative cursor-pointer bg-gray-50 hover:bg-gray-100 active:bg-gray-200 text-gray-500 text-xs flex items-center gap-1.5 p-1 rounded-lg dark:active:bg-gray-500 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-400 border border-gray-300 dark:border-gray-500">
             <ng-icon color="currentColor" size="1.5rem" name="lucideWandSparkles"></ng-icon>
             <p class="hidden md:block text-sm">Alle {{ plant.fertilizingInterval }} Tage</p>
+            @if (basketService.has('fertilized', plant._id)) {
+              <div
+                class="absolute cursor-default inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-lime-500 border-2 border-white rounded-full -top-4 -end-4 dark:border-gray-700">
+                ✔
+              </div>
+            }
           </button>
         }
         @if (isToday('nextCutting')) {
           <button
             type="button"
             (click)="basketService.add('trimmed', plant._id)"
-            class="cursor-pointer bg-gray-50 hover:bg-gray-100 active:bg-gray-200 text-gray-500 text-xs flex items-center gap-1.5 p-1 rounded-lg dark:active:bg-gray-500 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-400 border border-gray-300 dark:border-gray-500">
+            class="relative cursor-pointer bg-gray-50 hover:bg-gray-100 active:bg-gray-200 text-gray-500 text-xs flex items-center gap-1.5 p-1 rounded-lg dark:active:bg-gray-500 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-400 border border-gray-300 dark:border-gray-500">
             <ng-icon color="currentColor" size="1.5rem" name="lucideSprout"></ng-icon>
             <p class="hidden md:block text-sm">Alle {{ plant.cuttingInterval }} Tage</p>
+            @if (basketService.has('trimmed', plant._id)) {
+              <div
+                class="absolute cursor-default inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-lime-500 border-2 border-white rounded-full -top-4 -end-4 dark:border-gray-700">
+                ✔
+              </div>
+            }
           </button>
         }
         @if (isToday('nextWiping')) {
           <button
             type="button"
             (click)="basketService.add('wiped', plant._id)"
-            class="cursor-pointer bg-gray-50 hover:bg-gray-100 active:bg-gray-200 text-gray-500 text-xs flex items-center gap-1.5 p-1 rounded-lg dark:active:bg-gray-500 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-400 border border-gray-300 dark:border-gray-500">
+            class="relative cursor-pointer bg-gray-50 hover:bg-gray-100 active:bg-gray-200 text-gray-500 text-xs flex items-center gap-1.5 p-1 rounded-lg dark:active:bg-gray-500 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-400 border border-gray-300 dark:border-gray-500">
             <ng-icon color="currentColor" size="1.5rem" name="lucideBrushCleaning"></ng-icon>
             <p class="hidden md:block text-sm">Alle {{ plant.wipingInterval }} Tage</p>
+            @if (basketService.has('wiped', plant._id)) {
+              <div
+                class="absolute cursor-default inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-lime-500 border-2 border-white rounded-full -top-4 -end-4 dark:border-gray-700">
+                ✔
+              </div>
+            }
           </button>
         }
       </div>
     </div>
   </div>
   <div class="flex flex-col justify-center gap-2">
-    <button
-      type="button"
-      (click)="resolveAll()"
-      class="text-white bg-green-600 hover:bg-green-700 active:bg-green-500 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center dark:bg-green-600 dark:hover:bg-green-700 dark:active:bg-green-500">
-      <ng-icon color="currentColor" size="1rem" name="lucideCheck"></ng-icon>
-    </button>
     <button
       type="button"
       (click)="isModalOpen$.set(true)"
@@ -81,4 +105,4 @@
   [title$]="plant.name"
   [initialDate$]="targetDate"
   (onSnooze$)="snoozeAll($event)"
-  (onClose$)="isModalOpen$.set(false)"/>
+  (onClose$)="isModalOpen$.set(false)" />
