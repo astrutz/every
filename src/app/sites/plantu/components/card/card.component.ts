@@ -11,10 +11,11 @@ import {
 } from '@ng-icons/lucide';
 import { Plant } from '../../dataobjects/plant.dataobject';
 import { BasketService } from '../../services/basket.service';
+import { SnoozeModalComponent } from '../snooze-modal/snooze-modal.component';
 
 @Component({
   selector: 'plantu-card',
-  imports: [NgIcon],
+  imports: [NgIcon, SnoozeModalComponent],
   templateUrl: './card.component.html',
   viewProviders: [
     provideIcons({
@@ -38,6 +39,8 @@ export class CardComponent {
   @Input({ required: true })
   targetDate!: string;
 
+  protected isModalOpen = false;
+
   protected isToday(key: keyof Plant): boolean {
     const date = this.plant[key]?.toString().split('T')[0];
     return this.targetDate === date;
@@ -59,5 +62,9 @@ export class CardComponent {
     if (this.isToday('nextWiping')) {
       this.basketService.add('wiped', this.plant._id);
     }
+  }
+
+  protected snoozeAll(date: Date): void {
+    console.log(date); // todo
   }
 }
