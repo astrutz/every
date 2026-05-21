@@ -49,24 +49,6 @@ export class CardComponent {
     return this.targetDate === date;
   }
 
-  protected resolveAll(): void {
-    if (this.isToday('nextWatering')) {
-      this.basketService.add('watered', this.plant._id);
-    }
-    if (this.isToday('nextSpraying')) {
-      this.basketService.add('sprayed', this.plant._id);
-    }
-    if (this.isToday('nextFertilizing')) {
-      this.basketService.add('fertilized', this.plant._id);
-    }
-    if (this.isToday('nextCutting')) {
-      this.basketService.add('trimmed', this.plant._id);
-    }
-    if (this.isToday('nextWiping')) {
-      this.basketService.add('wiped', this.plant._id);
-    }
-  }
-
   protected async snoozeAll(date: Date): Promise<void> {
     const snoozeDto: SnoozeDto = {};
 
