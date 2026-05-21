@@ -1,28 +1,65 @@
-import { Component, input, output } from '@angular/core';
+import { AfterViewInit, Component, computed, input, output, signal } from '@angular/core';
 import { NgIcon } from '@ng-icons/core';
 
-/**
- * Displays a modal with a date picker
- */
 @Component({
   selector: 'plantu-snooze-modal',
   templateUrl: 'snooze-modal.component.html',
   styleUrl: 'snooze-modal.component.scss',
   imports: [NgIcon],
 })
-export class SnoozeModalComponent {
+export class SnoozeModalComponent implements AfterViewInit {
   isOpen$ = input<boolean>(false);
   title$ = input<string>('');
   initialDate$ = input<string>('');
 
-  snoozedDate: Date = new Date(this.initialDate$());
+  protected snoozedDate$ = signal(new Date());
   onClose$ = output();
   onSnooze$ = output<Date>();
 
-  onDateChange(event: Event) {
+  ngAfterViewInit() {
+    this.snoozedDate$.set(new Date(this.initialDate$()));
+  }
+
+  protected dateForInput$ = computed(() => {
+    return this.snoozedDate$().toISOString().split('T')[0];
+  });
+
+  protected onDateChange(event: Event): void {
     const inputElement: HTMLInputElement = event.target as HTMLInputElement;
     if (inputElement.valueAsDate) {
-      this.snoozedDate = inputElement.valueAsDate;
+      this.snoozedDate$.set(inputElement.valueAsDate);
     }
+  }
+
+  protected setToTomorrow(): void {
+    const date = new Date();
+    date.setDate(date.getDate() + 1);
+    this.snoozedDate$.set(date);
+  }
+
+  protected setToDayAfterTomorrow(): void {
+    const date = new Date();
+    date.setDate(date.getDate() + 2);
+    this.snoozedDate$.set(date);
+  }
+
+  protected setToIn3Days(): void {
+    const date = new Date();
+    date.setDate(date.getDate() + 3);
+    this.snoozedDate$.set(date);
+  }
+
+  protected setToIn7Days(): void {
+    const date = new Date();
+    date.setDate(date.getDate() + 7);
+    this.snoozedDate$.set(date);
+  }
+
+  protected setToNextMonday(): void {
+    const date = new Date();
+    const day = date.getDay();
+    const diff = (8 - day) % 7;
+    date.setDate(date.getDate() + diff);
+    this.snoozedDate$.set(date);
   }
 }
