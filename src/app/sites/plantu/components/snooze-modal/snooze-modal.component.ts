@@ -1,4 +1,12 @@
-import { AfterViewInit, Component, computed, input, output, signal } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  computed,
+  input,
+  OnDestroy,
+  output,
+  signal,
+} from '@angular/core';
 import { NgIcon } from '@ng-icons/core';
 
 @Component({
@@ -7,17 +15,22 @@ import { NgIcon } from '@ng-icons/core';
   styleUrl: 'snooze-modal.component.scss',
   imports: [NgIcon],
 })
-export class SnoozeModalComponent implements AfterViewInit {
+export class SnoozeModalComponent implements AfterViewInit, OnDestroy {
   isOpen$ = input<boolean>(false);
   title$ = input<string>('');
   initialDate$ = input<string>('');
 
   protected snoozedDate$ = signal(new Date());
+  protected isLoading$ = signal(false);
   onClose$ = output();
   onSnooze$ = output<Date>();
 
   ngAfterViewInit() {
     this.snoozedDate$.set(new Date(this.initialDate$()));
+  }
+
+  ngOnDestroy() {
+    this.isLoading$.set(false);
   }
 
   protected dateForInput$ = computed(() => {
