@@ -12,11 +12,12 @@ import {
   lucideX,
 } from '@ng-icons/lucide';
 import { NgClass } from '@angular/common';
+import { LoadingComponent } from '../../components/loading/loading.component';
 
 @Component({
   selector: 'plantu-home',
   templateUrl: 'home.component.html',
-  imports: [ContentAreaComponent, CardComponent, NgIcon, NgClass],
+  imports: [ContentAreaComponent, CardComponent, NgIcon, NgClass, LoadingComponent],
   providers: [
     provideIcons({
       lucideCloudUpload,
