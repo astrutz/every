@@ -12,11 +12,12 @@ import {
   lucideX,
 } from '@ng-icons/lucide';
 import { NgClass } from '@angular/common';
+import { LoadingComponent } from '../../components/loading/loading.component';
 
 @Component({
   selector: 'plantu-home',
   templateUrl: 'home.component.html',
-  imports: [ContentAreaComponent, CardComponent, NgIcon, NgClass],
+  imports: [ContentAreaComponent, CardComponent, NgIcon, NgClass, LoadingComponent],
   providers: [
     provideIcons({
       lucideCloudUpload,
@@ -36,13 +37,34 @@ export class HomeComponent {
   protected showToast$: WritableSignal<undefined | 'success' | 'error'> = signal(undefined);
 
   protected getLocalDate(dateString: string): string {
-    let localDate = '';
     const date = new Date(dateString);
     const today = new Date();
-    if (date.toISOString().split('T')[0] === today.toISOString().split('T')[0]) {
-      localDate += 'Heute, ';
+    today.setHours(0, 0, 0, 0);
+    date.setHours(0, 0, 0, 0);
+
+    const diffTime = date.getTime() - today.getTime();
+    const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24));
+
+    let localDate = '';
+
+    if (diffDays === 0) {
+      localDate = 'Heute, ';
+    } else if (diffDays === 1) {
+      localDate = 'Morgen, ';
+    } else if (diffDays === 2) {
+      localDate = 'Übermorgen, ';
+    } else if (diffDays === -1) {
+      localDate = 'Gestern, ';
+    } else if (diffDays === -2) {
+      localDate = 'Vorgestern, ';
     }
-    localDate += date.toLocaleDateString(undefined, { dateStyle: 'long' });
+
+    if (localDate === '') {
+      localDate = date.toLocaleDateString(undefined, { dateStyle: 'long' });
+    } else {
+      localDate += date.toLocaleDateString(undefined, { dateStyle: 'long' });
+    }
+
     return localDate;
   }
 

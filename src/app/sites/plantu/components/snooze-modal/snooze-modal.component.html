@@ -16,22 +16,66 @@
         </div>
         <div class="p-4 md:p-5 space-y-4">
           <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-            Snooze alle offenen Aufgaben von "{{ title$() }}" auf folgendes Datum:
+            Snooze alle offenen Aufgaben von "{{ title$() }}":
           </p>
-          <input
-            class="datepicker-input w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-700 shadow-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white"
-            type="date"
-            [value]="initialDate$()"
-            (change)="onDateChange($event)" />
+          <div class="flex flex-wrap gap-1">
+            <button
+              type="button"
+              (click)="setToTomorrow()"
+              class="px-3 py-2 text-xs font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+              Morgen
+            </button>
+            <button
+              type="button"
+              (click)="setToDayAfterTomorrow()"
+              class="px-3 py-2 text-xs font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+              Übermorgen
+            </button>
+            <button
+              type="button"
+              (click)="setToIn3Days()"
+              class="px-3 py-2 text-xs font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+              in 3 Tagen
+            </button>
+            <button
+              type="button"
+              (click)="setToIn7Days()"
+              class="px-3 py-2 text-xs font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+              in 7 Tagen
+            </button>
+            <button
+              type="button"
+              (click)="setToNextMonday()"
+              class="px-3 py-2 text-xs font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+              Nächsten Montag
+            </button>
+          </div>
+          <div class="mt-2">
+            <label for="snooze-date" class="block mb-1 text-sm font-medium text-heading"
+              >Snooze-Datum</label
+            >
+            <input
+              id="snooze-date"
+              class="datepicker-input w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-700 shadow-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white"
+              type="date"
+              [value]="dateForInput$()"
+              (change)="onDateChange($event)" />
+          </div>
         </div>
         <div
-          class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+          class="flex items-center justify-between p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
           <button
             type="button"
-            (click)="onSnooze$.emit(snoozedDate)"
+            (click)="onSnooze$.emit(snoozedDate$()); isLoading$.set(true);"
             class="text-white bg-sky-700 hover:bg-sky-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-sky-600 dark:hover:bg-sky-700">
             Snooze me!
           </button>
+          @if (isLoading$()) {
+            <div
+              class="px-3 py-1 text-xs font-medium leading-none text-center text-emerald-800 bg-emerald-200 rounded-full animate-pulse dark:bg-emerald-900 dark:text-emerald-200">
+              Daten werden gesendet...
+            </div>
+          }
         </div>
       </div>
     </div>
