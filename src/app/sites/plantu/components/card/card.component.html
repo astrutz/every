@@ -2,12 +2,9 @@
   class="flex justify-between max-w-3xl p-2 md:p-4 gap-2 md:gap-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
   <div class="flex gap-3 md:gap-4">
     <img
-      class="my-auto max-h-20 md:max-h-32 aspect-square rounded-md"
+      class="my-auto max-h-20 md:max-h-32 aspect-square rounded-md object-cover"
       [alt]="plant.name"
-      [src]="
-        plant.imageUrl ??
-        'https://cdn.shopify.com/s/files/1/0250/0329/4765/t/4/assets/pf-c8c2f78a--Drachenbaum6_1200x.jpg?v=1609938372'
-      " />
+      [src]="`assets/plantu/${plant._id}.jpg`" />
     <div class="flex flex-col justify-center">
       <h3 class="text-lg text-black dark:text-white font-bold">{{ plant.name }}</h3>
       <h3 class="md:text-base text-sm">{{ plant.location }}</h3>
@@ -47,7 +44,7 @@
             type="button"
             (click)="basketService.add('fertilized', plant._id)"
             class="relative cursor-pointer bg-gray-50 hover:bg-gray-100 active:bg-gray-200 text-gray-500 text-xs flex items-center gap-1.5 p-1 rounded-lg dark:active:bg-gray-500 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-400 border border-gray-300 dark:border-gray-500">
-            <ng-icon color="currentColor" size="1.5rem" name="lucideWandSparkles"></ng-icon>
+            <ng-icon color="currentColor" size="1.5rem" name="lucideDumbbell"></ng-icon>
             <p class="hidden md:block text-sm">Alle {{ plant.fertilizingInterval }} Tage</p>
             @if (basketService.has('fertilized', plant._id)) {
               <div
