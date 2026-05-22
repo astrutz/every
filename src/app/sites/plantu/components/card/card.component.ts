@@ -5,9 +5,9 @@ import {
   lucideCheck,
   lucideClockPlus,
   lucideDroplet,
+  lucideDumbbell,
   lucideSprayCan,
   lucideSprout,
-  lucideWandSparkles,
 } from '@ng-icons/lucide';
 import { Plant } from '../../dataobjects/plant.dataobject';
 import { BasketService } from '../../services/basket.service';
@@ -27,7 +27,7 @@ import { SnoozeDto } from '../../dataobjects/snooze.dataobject';
       lucideSprayCan,
       lucideSprout,
       lucideBrushCleaning,
-      lucideWandSparkles,
+      lucideDumbbell,
     }),
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
