@@ -2,6 +2,9 @@
 @if (tasks.length) {
   <every-content-area class="relative">
     <h1 class="text-2xl md:text-3xl mb-4 md:mb-8">Pflegeliste</h1>
+
+    <plantu-location-dropdown (changeFilter$)="onFilterChange($event)" />
+
     <div class="flex flex-col gap-4">
       @for (task of tasks; track task.day) {
         <h2 class="text-xl md:text-2xl">{{ getLocalDate(task.day) }}</h2>
