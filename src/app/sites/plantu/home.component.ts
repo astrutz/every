@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal, WritableSignal } from '@angular/core';
+import { Component, computed, HostListener, inject, signal, WritableSignal } from '@angular/core';
 import { ContentAreaComponent } from '../../components/content-area/content-area.component';
 import { CardComponent } from './components/card/card.component';
 import { StoreService as PlantuStoreService } from './services/store.service';
@@ -10,6 +10,7 @@ import {
   lucideCloudUpload,
   lucideLoaderCircle,
   lucideX,
+  lucideArrowUp,
 } from '@ng-icons/lucide';
 import { NgClass } from '@angular/common';
 import { LoadingComponent } from '../../components/loading/loading.component';
@@ -25,6 +26,7 @@ import { LoadingComponent } from '../../components/loading/loading.component';
       lucideLoaderCircle,
       lucideCircleCheck,
       lucideCircleX,
+      lucideArrowUp,
     }),
   ],
 })
@@ -32,9 +34,16 @@ export class HomeComponent {
   readonly #storeService = inject(PlantuStoreService);
   protected readonly basketService = inject(BasketService);
 
+  @HostListener('window:scroll')
+  protected onScroll() {
+    this.showScrollToTop$.set(window.scrollY > 100);
+  }
+
   tasks$ = computed(() => this.#storeService.tasks$());
-  protected requestIsPending$: WritableSignal<boolean> = signal(false);
+  protected requestIsPending$ = signal(false);
+
   protected showToast$: WritableSignal<undefined | 'success' | 'error'> = signal(undefined);
+  protected showScrollToTop$ = signal(false);
 
   protected getLocalDate(dateString: string): string {
     const date = new Date(dateString);
@@ -66,6 +75,10 @@ export class HomeComponent {
     }
 
     return localDate;
+  }
+
+  protected scrollToTop(): void {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   protected async submit(): Promise<void> {
