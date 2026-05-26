@@ -32,7 +32,7 @@
     <button
       (click)="submit()"
       type="button"
-      class="flex items-center justify-center text-white shadow-gray-400 dark:shadow-black shadow-lg bg-sky-600 rounded-full w-12 h-12 md:w-16 md:h-16 hover:bg-sky-800 dark:bg-sky-600 dark:hover:bg-sky-700">
+      class="relative flex items-center justify-center text-white shadow-gray-400 dark:shadow-black shadow-lg bg-sky-600 rounded-full w-12 h-12 md:w-16 md:h-16 hover:bg-sky-800 dark:bg-sky-600 dark:hover:bg-sky-700">
       @if (requestIsPending$()) {
         <span class="hidden md:flex items-center animate-spin">
           <ng-icon color="currentColor" size="2rem" name="lucideLoaderCircle"></ng-icon>
@@ -54,6 +54,10 @@
           <span class="sr-only">Save</span>
         </span>
       }
+      <div
+        class="absolute cursor-default inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500   rounded-full  -top-2 -end-2 md:-top-1 md:-end-1">
+        {{ basketService.size$() }}
+      </div>
     </button>
   </div>
 }
