@@ -7,7 +7,7 @@ import {
   lucideDroplet,
   lucideDumbbell,
   lucideSprayCan,
-  lucideSprout,
+  lucideScissors,
 } from '@ng-icons/lucide';
 import { Plant } from '../../dataobjects/plant.dataobject';
 import { BasketService } from '../../services/basket.service';
@@ -25,7 +25,7 @@ import { SnoozeDto } from '../../dataobjects/snooze.dataobject';
       lucideDroplet,
       lucideClockPlus,
       lucideSprayCan,
-      lucideSprout,
+      lucideScissors,
       lucideBrushCleaning,
       lucideDumbbell,
     }),
