@@ -24,6 +24,11 @@ export class BasketService {
     [...Object.values(this.#basket$())].every((set) => set.size === 0),
   );
 
+  public size$ = computed(() => {
+    const basket = this.#basket$();
+    return Object.values(basket).reduce((total, set) => total + set.size, 0);
+  });
+
   public add(type: BasketKey, id: string): void {
     this.#basket$.update((state) => {
       const newState = { ...state };
