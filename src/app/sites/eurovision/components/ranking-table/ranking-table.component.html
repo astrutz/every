@@ -10,7 +10,7 @@
             <img
               src="assets/eurovision/countries/{{ getFlag(entity.country.code) }}.png"
               alt="{{ entity.country.name | translate }}"
-              class="h-8 w-8 hover:underline" />
+              class="h-8 min-w-8 hover:underline" />
           </a>
         }
         <a
@@ -30,7 +30,7 @@
             <img
               src="assets/eurovision/countries/{{ getFlag(entity.code) }}.png"
               alt="{{ entity.name }}"
-              class="h-8 w-8" />
+              class="h-8 min-w-8" />
           }
           <p>{{ Util.getDisplayName(getTranslatedCountry(entity), displayNameOptions) }}</p>
         </a>
@@ -46,7 +46,7 @@
             <img
               src="assets/eurovision/countries/{{ getFlag(entity.code) }}.png"
               alt="{{ entity.name }}"
-              class="h-8 w-8" />
+              class="h-8 min-w-8" />
           }
           <p>{{ Util.getDisplayName(getTranslatedCountry(entity), displayNameOptions) }}</p>
         </a>
