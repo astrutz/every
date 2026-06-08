@@ -11,7 +11,7 @@
           {{ year ?? 'Oldies' }}
         </h1>
         <eurovision-ranking-table
-          [sortedEntities]="topTenEntries"
+          [sortedEntities]="entries"
           [displayNameOptions]="{ hideYear: true }"
           [colorScheme]="
             colours[2].toLocaleLowerCase() === '#ffffff' ? 'light' : 'dark'

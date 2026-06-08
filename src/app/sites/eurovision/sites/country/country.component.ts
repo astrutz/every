@@ -10,6 +10,7 @@ import { LoadingComponent } from '../../../../components/loading/loading.compone
 import { ContentAreaComponent } from '../../../../components/content-area/content-area.component';
 import { TranslationPipe } from '../../pipes/translation.pipe';
 import { LanguageSwitchComponent } from '../../../../components/language-switch/language-switch.component';
+import { Util } from '../../services/util';
 
 /**
  * Display a single country as a detail view
@@ -50,9 +51,7 @@ export class CountryComponent implements OnInit {
     () => this.#storeService.getEntriesByCountry(this.country$()) ?? [],
   );
 
-  protected sortedEntries$ = computed<Entry[]>(() =>
-    this.entries$().sort((a, b) => b.totalRating - a.totalRating),
-  );
+  protected sortedEntries$ = computed<Entry[]>(() => Util.sortEntries(this.entries$()));
 
   protected getFlag(code: string): string {
     return `${code}-${this.#themeService.flagBackground}`;

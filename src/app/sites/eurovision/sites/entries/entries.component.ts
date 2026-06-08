@@ -7,6 +7,7 @@ import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb.comp
 import { ContentAreaComponent } from '../../../../components/content-area/content-area.component';
 import { RankingTableComponent } from '../../components/ranking-table/ranking-table.component';
 import { LanguageSwitchComponent } from '../../../../components/language-switch/language-switch.component';
+import { Util } from '../../services/util';
 
 /**
  * Displays the list of entries ranked by their total ranking
@@ -24,9 +25,7 @@ import { LanguageSwitchComponent } from '../../../../components/language-switch/
 })
 export class EntriesComponent extends OverviewPageComponent<Rated<Entry>> {
   protected override calculateRanking(): Rated<Entry>[] {
-    return this.storeService
-      .entries$()
-      .map((entry) => ({ ...entry, rating: entry.totalRating }))
-      .sort((a, b) => b.rating - a.rating);
+    const entriesWithRating = Util.sortEntries(this.storeService.entries$());
+    return entriesWithRating.map((entry) => ({ ...entry, rating: entry.totalRating }));
   }
 }

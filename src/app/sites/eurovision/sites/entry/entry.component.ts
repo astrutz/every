@@ -84,7 +84,7 @@ export class EntryComponent implements OnInit {
     if (!entries) {
       return null;
     }
-    const sortedEntries = entries.sort((a, b) => b.totalRating - a.totalRating);
+    const sortedEntries = Util.sortEntries(entries);
     return sortedEntries.findIndex((entry) => entry._id === this.entry$()?._id) + 1;
   }
 
