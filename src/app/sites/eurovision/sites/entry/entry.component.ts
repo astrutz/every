@@ -9,6 +9,16 @@ import { Util } from '../../services/util';
 import { ThemeService } from '../../services/theme.service';
 import { TranslationPipe } from '../../pipes/translation.pipe';
 import { LanguageSwitchComponent } from '../../../../components/language-switch/language-switch.component';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import {
+  lucideAudioLines,
+  lucideMic,
+  lucideSmile,
+  lucideTheater,
+  lucideZap,
+} from '@ng-icons/lucide';
+import { Contest } from '../../dataobjects/contest.dataobject';
+import { CountUpDirective } from '../../directives/count-up.directive';
 
 /**
  * Display a single entry as a detail view
@@ -22,8 +32,19 @@ import { LanguageSwitchComponent } from '../../../../components/language-switch/
     RouterLink,
     TranslationPipe,
     LanguageSwitchComponent,
+    NgIcon,
+    CountUpDirective,
   ],
   templateUrl: './entry.component.html',
+  viewProviders: [
+    provideIcons({
+      lucideZap,
+      lucideTheater,
+      lucideAudioLines,
+      lucideSmile,
+      lucideMic,
+    }),
+  ],
 })
 export class EntryComponent implements OnInit {
   #id: string = '';
@@ -67,25 +88,33 @@ export class EntryComponent implements OnInit {
     return `${code}-${this.#themeService.flagBackground}`;
   }
 
-  get #contest() {
+  get #contest(): Contest | undefined {
     const entry = this.entry$();
     if (!entry) {
-      return null;
+      return undefined;
     }
     return this.#storeService.getContestByYear(entry.year);
   }
 
-  protected get totalEntriesOfContest() {
-    return this.#contest?.entries?.length ?? null;
+  protected get totalEntriesOfContest(): number | undefined {
+    return this.#contest?.entries?.length ?? undefined;
   }
 
-  protected get placeInRanking() {
+  protected get placeInRanking(): number | undefined {
     const entries = this.#contest?.entries;
     if (!entries) {
-      return null;
+      return undefined;
     }
     const sortedEntries = Util.sortEntries(entries);
     return sortedEntries.findIndex((entry) => entry._id === this.entry$()?._id) + 1;
+  }
+
+  protected get allTimeRank(): number | undefined {
+    return Util.getTotalRankingOfEntry(this.#storeService.entries$(), this.entry$());
+  }
+
+  protected get allEntryCount(): number {
+    return this.#storeService.entries$().length;
   }
 
   protected readonly Util = Util;

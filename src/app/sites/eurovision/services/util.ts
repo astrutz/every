@@ -52,6 +52,10 @@ export class Util {
     return (Math.round(rating * 10) / 10).toLocaleString();
   }
 
+  public static roundRatingAsNumber(rating: number): number {
+    return Math.round(rating * 10) / 10;
+  }
+
   public static sortEntries(entries: Entry[]): Entry[] {
     return entries.sort(
       (a, b) =>
@@ -63,5 +67,9 @@ export class Util {
         b.vocalsRating - a.vocalsRating ||
         a.year - b.year,
     );
+  }
+
+  public static getTotalRankingOfEntry(entries: Entry[], entry?: Entry): number | undefined {
+    return entry ? Util.sortEntries(entries).indexOf(entry) + 1 : undefined;
   }
 }
