@@ -6,6 +6,7 @@ import { Entry } from '../../dataobjects/entry.dataobject';
 import { RouterLink } from '@angular/router';
 import { ContentAreaComponent } from '../../../../components/content-area/content-area.component';
 import { StoreService as EurovisionStoreService } from '../../services/store.service';
+import { Util } from '../../services/util';
 
 /**
  * Displays an overview of all ESCs with its top 10 songs, current entry page.
@@ -22,10 +23,6 @@ export class ContestOverviewComponent {
   @Input({ required: true })
   public contest!: Contest | null;
 
-  public get topTenEntries(): Entry[] {
-    return this.#entries.sort((a, b) => b.totalRating - a.totalRating).slice(0, 10);
-  }
-
   public get year(): number | undefined {
     return this.contest?.year;
   }
@@ -37,10 +34,10 @@ export class ContestOverviewComponent {
     return this.#storeService.getOldiesContest().colours;
   }
 
-  get #entries(): Entry[] {
+  get entries(): Entry[] {
     if (this.contest) {
-      return this.contest.entries.sort((a, b) => b.totalRating - a.totalRating).slice(0, 10);
+      return Util.sortEntries(this.contest.entries).slice(0, 10);
     }
-    return this.#storeService.getEntriesWithoutContest();
+    return Util.sortEntries(this.#storeService.getEntriesWithoutContest()).slice(0, 10);
   }
 }

@@ -9,6 +9,7 @@ import { RankingTableComponent } from '../../components/ranking-table/ranking-ta
 import { Entry } from '../../dataobjects/entry.dataobject';
 import { TranslationPipe } from '../../pipes/translation.pipe';
 import { LanguageSwitchComponent } from '../../../../components/language-switch/language-switch.component';
+import { Util } from '../../services/util';
 
 /**
  * Displays a detail page for a single contest
@@ -50,7 +51,5 @@ export class ContestComponent implements OnInit {
 
   protected entries$ = computed<Entry[]>(() => this.contest$()?.entries ?? []);
 
-  protected sortedEntries$ = computed<Entry[]>(() =>
-    this.entries$().sort((a, b) => b.totalRating - a.totalRating),
-  );
+  protected sortedEntries$ = computed<Entry[]>(() => Util.sortEntries(this.entries$()));
 }

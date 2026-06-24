@@ -4,7 +4,7 @@
     <every-content-area>
       <eurovision-breadcrumb></eurovision-breadcrumb>
       <h1 class="text-3xl mt-8 mb-2">{{ entry.artist }} - {{ entry.title }}</h1>
-      <h2 class="text-2xl mb-8 flex gap-2 items-center text-lg max-w-fit">
+      <h2 class="mb-8 md:mb-12 flex gap-2 items-center text-lg max-w-fit">
         <a routerLink="/eurovision/countries/{{ entry.country.code }}">
           <img
             src="assets/eurovision/countries/{{ getFlag(entry.country.code) }}.png"
@@ -13,28 +13,119 @@
         </a>
         {{ entry.country.name | translate }} {{ entry.year }}
       </h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="flex flex-col gap-4">
-          <ul class="mb-4 text-lg w-fit">
-            <li i18n>Energy - {{ entry.energyRating }}</li>
-            <li i18n>Staging - {{ entry.stagingRating }}</li>
-            <li i18n>Studio - {{ entry.studioRating }}</li>
-            <li i18n>Fun - {{ entry.funRating }}</li>
-            <li i18n>Vocals - {{ entry.vocalsRating }}</li>
-            <li class="font-bold border-t-2" i18n>
-              Total - {{ Util.roundRating(entry.totalRating) }}
-            </li>
-          </ul>
-          @if (placeInRanking && totalEntriesOfContest) {
-            <p i18n class="text-xl">
-              Alex' Ranking: {{ placeInRanking }}/{{ totalEntriesOfContest }}
-            </p>
-            <p i18n class="text-xl">Placement: {{ entry.place }}/{{ totalEntriesOfContest }}</p>
-          }
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
+        <div class="space-y-6">
+          <div class="grid grid-cols-5 gap-4">
+            <div class="text-center dark:text-pink-500 text-pink-700">
+              <div class="mb-2 flex items-center justify-center gap-1">
+                <ng-icon class="!w-0 md:!w-fit" name="lucideZap" size="1.5rem" />
+                <span i18n class="text-md">Energy</span>
+              </div>
+              <div class="text-4xl font-light" countUp [target$]="entry.energyRating"></div>
+            </div>
+
+            <div class="text-center dark:text-purple-400 text-purple-700">
+              <div class="mb-2 flex items-center justify-center gap-1">
+                <ng-icon class="!w-0 md:!w-fit" name="lucideTheater" size="1.5rem" />
+                <span i18n class="text-md">Staging</span>
+              </div>
+              <div class="text-4xl font-light" countUp [target$]="entry.stagingRating"></div>
+            </div>
+
+            <div class="text-center dark:text-sky-400 text-sky-600">
+              <div class="mb-2 flex items-center justify-center gap-1">
+                <ng-icon class="!w-0 md:!w-fit" name="lucideAudioLines" size="1.5rem" />
+                <span i18n class="text-md">Studio</span>
+              </div>
+              <div class="text-4xl font-light" countUp [target$]="entry.studioRating"></div>
+            </div>
+
+            <div class="text-center dark:text-cyan-400 text-cyan-500">
+              <div class="mb-2 flex items-center justify-center gap-1">
+                <ng-icon class="!w-0 md:!w-fit" name="lucideSmile" size="1.5rem" />
+                <span i18n class="text-md">Fun</span>
+              </div>
+              <div class="text-4xl font-light" countUp [target$]="entry.funRating"></div>
+            </div>
+
+            <div class="text-center dark:text-yellow-400 text-yellow-600">
+              <div class="mb-2 flex items-center justify-center gap-1">
+                <ng-icon class="!w-0 md:!w-fit" name="lucideMic" size="1.5rem" />
+                <span i18n class="text-md">Vocals</span>
+              </div>
+              <div class="text-4xl font-light" countUp [target$]="entry.vocalsRating"></div>
+            </div>
+          </div>
+
+          <div class="border-t border-black/10 dark:border-white/20"></div>
+
+          <div class="flex items-center gap-6">
+            <div class="flex shrink-0 items-baseline gap-4">
+              <span i18n class="text-xl dark:opacity-90">Total</span>
+              <span
+                class="inline-block min-w-[3ch] text-3xl font-semibold opacity-80 tabular-nums dark:opacity-100"
+                countUp
+                [target$]="Util.roundRatingAsNumber(entry.totalRating)"
+                [barElement$]="bar"></span>
+            </div>
+
+            <div class="flex-1">
+              <div class="h-3 overflow-hidden rounded-full dark:bg-white/10 bg-black/10">
+                <div
+                  #bar
+                  class="h-full rounded-full bg-gradient-to-r from-pink-500 via-sky-400 to-yellow-400"
+                  style="width: 0%"></div>
+              </div>
+            </div>
+          </div>
         </div>
         @if (videoId) {
           <div class="w-full aspect-video md:-mt-32">
             <iframe class="w-full h-full rounded-xl" [src]="videoId" allowfullscreen></iframe>
+          </div>
+        }
+
+        @if (allTimeRank) {
+          <div
+            class="md:-mt-6 rounded-lg dark:bg-gray-900 bg-white border border-black/10 dark:border-white/20 p-4 flex items-center gap-4 md:gap-8">
+            <img class="max-h-16 md:max-h-24" src="assets/eurovision/trophy.png" />
+            <div>
+              <h5 class="md:text-2xl text-xl font-light">All Time Ranking</h5>
+              <span class="md:text-4xl text-3xl font-medium">#{{ allTimeRank }}</span>
+              <span class="md:text-2xl text-xl font-light"> / {{ allEntryCount }}</span>
+            </div>
+          </div>
+        }
+        @if (placeInRanking && totalEntriesOfContest) {
+          <div
+            class="rounded-lg dark:bg-gray-900 bg-white border border-black/10 dark:border-white/20 p-4 flex gap-4 justify-evenly">
+            <div class="items-center flex flex-col gap-2 text-xl md:text-2xl">
+              <p class="text-md md:text-lg" i18n>Alex' Ranking</p>
+              <p class="flex gap-1">
+                <span class="font-medium">{{ placeInRanking }}</span>
+                <span class="font-light">/</span>
+                <span class="font-light">{{ totalEntriesOfContest }}</span>
+              </p>
+            </div>
+            <span class="border-r border-black/10 dark:border-white/20"></span>
+            <div class="items-center flex flex-col gap-2 text-xl md:text-2xl">
+              <p class="text-md md:text-lg" i18n>Placement</p>
+              <p class="flex gap-1">
+                <span class="font-semibold">{{ entry.place }}</span>
+                <span class="font-light">/</span>
+                <span class="font-light">{{ totalEntriesOfContest }}</span>
+              </p>
+            </div>
+            <span class="border-r border-black/10 dark:border-white/20 hidden md:block"></span>
+            <div class="items-center hidden md:flex flex-col gap-2 text-xl md:text-2xl">
+              <p class="text-md md:text-lg" i18n>Contest</p>
+              <a
+                routerLink="/eurovision/contests/{{ entry.year }}"
+                class="flex font-light hover:underline"
+                >{{ entry.contest.hostCountry.name | translate }} {{ entry.year }}</a
+              >
+            </div>
           </div>
         }
       </div>

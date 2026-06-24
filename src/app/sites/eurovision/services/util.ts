@@ -51,4 +51,25 @@ export class Util {
   public static roundRating(rating: number): string {
     return (Math.round(rating * 10) / 10).toLocaleString();
   }
+
+  public static roundRatingAsNumber(rating: number): number {
+    return Math.round(rating * 10) / 10;
+  }
+
+  public static sortEntries(entries: Entry[]): Entry[] {
+    return entries.sort(
+      (a, b) =>
+        Math.round(b.totalRating * 10) / 10 - Math.round(a.totalRating * 10) / 10 ||
+        b.funRating - a.funRating ||
+        b.energyRating - a.energyRating ||
+        b.stagingRating - a.stagingRating ||
+        b.studioRating - a.studioRating ||
+        b.vocalsRating - a.vocalsRating ||
+        a.year - b.year,
+    );
+  }
+
+  public static getTotalRankingOfEntry(entries: Entry[], entry?: Entry): number | undefined {
+    return entry ? Util.sortEntries(entries).indexOf(entry) + 1 : undefined;
+  }
 }
