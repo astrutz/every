@@ -4,13 +4,13 @@
       <li
         class="flex gap-2 items-center text-lg max-w-fit"
         [ngClass]="{ 'font-semibold': $index < 3 }">
-        <p class="w-4">{{ $index + 1 }}.</p>
+        <p class="w-4 mr-2">{{ $index + 1 }}.</p>
         @if (showFlag) {
           <a routerLink="/eurovision/countries/{{ entity.country.code }}">
             <img
               src="assets/eurovision/countries/{{ getFlag(entity.country.code) }}.png"
               alt="{{ entity.country.name | translate }}"
-              class="h-8 w-8 hover:underline" />
+              class="h-8 min-w-8 hover:underline" />
           </a>
         }
         <a
@@ -25,12 +25,12 @@
         <a
           class="flex gap-2 items-center text-lg hover:underline"
           routerLink="/eurovision/countries/{{ entity.code }}">
-          <p class="w-4">{{ $index + 1 }}.</p>
+          <p class="w-4 mr-2">{{ $index + 1 }}.</p>
           @if (showFlag) {
             <img
               src="assets/eurovision/countries/{{ getFlag(entity.code) }}.png"
               alt="{{ entity.name }}"
-              class="h-8 w-8" />
+              class="h-8 min-w-8" />
           }
           <p>{{ Util.getDisplayName(getTranslatedCountry(entity), displayNameOptions) }}</p>
         </a>
@@ -41,12 +41,12 @@
         <a
           class="flex gap-2 items-center text-lg hover:underline"
           routerLink="/eurovision/countries/{{ entity.code }}">
-          <p class="w-4">{{ $index + 1 }}.</p>
+          <p class="w-4 mr-2">{{ $index + 1 }}.</p>
           @if (showFlag) {
             <img
               src="assets/eurovision/countries/{{ getFlag(entity.code) }}.png"
               alt="{{ entity.name }}"
-              class="h-8 w-8" />
+              class="h-8 min-w-8" />
           }
           <p>{{ Util.getDisplayName(getTranslatedCountry(entity), displayNameOptions) }}</p>
         </a>
