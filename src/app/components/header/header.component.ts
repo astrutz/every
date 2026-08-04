@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { NgClass } from '@angular/common';
 import { LocaleService } from '../../services/locale/locale.service';
 import { TitleService } from '../../services/title/title.service';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { apps, AppService, HeaderLink } from '../../services/app/app.service';
 
 /**
@@ -21,7 +21,7 @@ import { apps, AppService, HeaderLink } from '../../services/app/app.service';
  */
 @Component({
   selector: 'every-header',
-  imports: [NgIcon, FormsModule, NgClass, RouterLink],
+  imports: [NgIcon, FormsModule, NgClass, RouterLink, RouterLinkActive],
   templateUrl: './header.component.html',
   viewProviders: [
     provideIcons({
