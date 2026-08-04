@@ -1,8 +1,16 @@
 {
   "locale": "de",
   "translations": {
+    "4599156733472041465": "Hilfe öffnen",
     "4092554493038679417": "Farbschema ändern",
     "5034473762587110175": "Navigation öffnen",
+    "5874780279351956748": "Worum geht es hier eigentlich?",
+    "8306425547100789966": "Willkommen! Diese Website ist mein persönlicher Playground, auf dem ich Projekte entwickle, neue Ideen ausprobiere und meine Skills als Entwickler verbessere. Einige Projekte sind einfach nur zum Spaß entstanden, andere lösen echte Probleme, die ich selbst hatte. Schau dich gerne um und entdecke die verschiedenen Bereiche.",
+    "1395721240186478717": "In diesem Bereich geht es um mich als Softwareentwickler. Hier findest du Informationen über meinen Werdegang, die Technologien, mit denen ich arbeite, meine berufliche Erfahrung, ausgewählte Projekte und Empfehlungen von Kollegen. Wenn du wissen möchtest, wer diese Website erstellt hat, findest du hier die Antworten.",
+    "232622518780069786": "Eurovision ist mein Fanprojekt rund um den Eurovision Song Contest. Es vereint Statistiken, meine persönlichen Rankings, interaktive Tools und weitere Funktionen für alle, die den Wettbewerb gerne verfolgen.",
+    "2488054634998455877": "Plantu ist ein persönliches Projekt, das ich entwickelt habe, um meine Zimmerpflanzen im Blick zu behalten und sicherzustellen, dass keine vergessen wird. Es hilft mir dabei, Gießpläne und andere regelmäßige Pflegeaufgaben zu verwalten. Schau dich gerne in der App um, aber deine Änderungen werden nicht gespeichert.",
+    "902976565323770932": "Amazing Map ist eine Karte, auf der alle \"Amazing Artur\"-Sticker angezeigt werden, die wir weltweit verteilt haben. Falls du an einen exotischen Ort reist, melde dich gerne bei mir - ich kann dich mit ein paar Stickern unterstützen 😉",
+    "7907661499216029221": "Dies ist ein Gruppenprojekt, das während eines Hackathons entwickelt wurde. In diesem Browsergame besitzt du deine eigene Bäckerei, in der du deine Kunden mit frisch gebackenem Brot zufriedenstellst. Beachte, dass das Spiel an einem einzigen Wochenende entwickelt wurde und daher noch einige Fehler enthalten kann.",
     "1726363342938046830": "Über",
     "3398353192845179101": "Erfahrung",
     "7922989125096435449": "Kontakt",

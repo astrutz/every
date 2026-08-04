@@ -17,7 +17,7 @@ export interface HeaderLink {
 
 export const apps: App[] = [
   {
-    name: 'Portfolio',
+    name: $localize`About me`,
     url: '',
     headerLinks: [
       {

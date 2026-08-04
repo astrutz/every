@@ -13,7 +13,10 @@
           <li>
             <a
               [routerLink]="link.path ?? []"
-              [routerLinkActiveOptions]="{ paths: link.path === appService.currentApp$().url ? 'exact' : 'subset', fragment: 'exact' }"
+              [routerLinkActiveOptions]="{
+                paths: link.path === appService.currentApp$().url ? 'exact' : 'subset',
+                fragment: 'exact',
+              }"
               routerLinkActive="dark:!text-white !text-black !font-semibold"
               [fragment]="link.fragment"
               class="text-base font-medium text-gray-600 dark:text-gray-300 transition-all dark:hover:text-gray-50 hover:text-gray-900 dark:active:text-gray-300 active:text-gray-600"
@@ -100,6 +103,16 @@
       <div class="flex items-center justify-center gap-4">
         <button
           i18n-aria-label
+          aria-label="Open help dialog"
+          class="relative flex justify-center items-center dark:hover:bg-gray-800 hover:bg-gray-100 dark:active:bg-gray-700 active:bg-gray-200 rounded-lg p-1.5 transition-colors duration-200"
+          (click)="showHelpDialog$.set(true)">
+          <ng-icon
+            color="currentColor"
+            size="1.5rem"
+            name="lucideMessageCircleQuestionMark"></ng-icon>
+        </button>
+        <button
+          i18n-aria-label
           aria-label="Toggle color scheme"
           class="relative flex justify-center items-center dark:hover:bg-gray-800 hover:bg-gray-100 dark:active:bg-gray-700 active:bg-gray-200 rounded-lg p-1.5 transition-colors duration-200"
           (click)="toggleColorScheme()">
@@ -137,3 +150,7 @@
     </button>
   </div>
 </header>
+
+@if (showHelpDialog$()) {
+  <every-help-dialog (closed$)="showHelpDialog$.set(false)" />
+}

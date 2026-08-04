@@ -1,7 +1,15 @@
 {
   "locale": "ro",
   "translations": {
+    "4599156733472041465": "Deschide dialogul de ajutor",
     "4092554493038679417": "Schimbă schema de culori",
+    "5874780279351956748": "Despre ce este vorba aici?",
+    "8306425547100789966": "Bine ai venit! Acest site este spațiul meu personal de experimentare, unde dezvolt proiecte, testez idei noi și îmi îmbunătățesc abilitățile de dezvoltator. Unele proiecte sunt create doar pentru distracție, iar altele rezolvă probleme reale cu care m-am confruntat personal. Simte-te liber să explorezi și să descoperi.",
+    "1395721240186478717": "Această secțiune este despre mine ca dezvoltator software. Aici vei găsi informații despre parcursul meu, tehnologiile cu care lucrez, experiența mea profesională, proiecte selectate și recomandări de la colegi. Dacă ești curios să afli cine a creat acest site, vei găsi răspunsurile aici.",
+    "232622518780069786": "Eurovision este proiectul meu personal dedicat Concursului Muzical Eurovision. Acesta reunește statistici, clasamentele mele personale, instrumente interactive și alte funcționalități pentru toți cei cărora le place să urmărească acest concurs.",
+    "2488054634998455877": "Plantu este un proiect personal pe care l-am creat pentru a urmări plantele mele de apartament și pentru a mă asigura că niciuna nu este uitată. Mă ajută să gestionez programele de udare și alte sarcini recurente de îngrijire. Simte-te liber să explorezi aplicația, dar modificările pe care le faci nu vor fi salvate.",
+    "902976565323770932": "Amazing Map este o hartă care afișează toate autocolantele \"Amazing Artur\" pe care le-am distribuit în întreaga lume. Dacă urmează să călătorești într-un loc exotic, contactează-mă și te pot ajuta cu câteva autocolante 😉",
+    "7907661499216029221": "Acesta este un proiect de grup dezvoltat în timpul unui hackathon. În acest joc de browser ai propria brutărie, unde îți mulțumești clienții pregătind pâine pentru ei. Ține cont că jocul a fost dezvoltat într-un singur weekend și, prin urmare, poate conține destule erori.",
     "5034473762587110175": "Deschide navigația",
     "1726363342938046830": "Despre mine",
     "3398353192845179101": "Experiență",

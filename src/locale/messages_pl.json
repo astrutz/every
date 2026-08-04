@@ -1,8 +1,16 @@
 {
   "locale": "pl",
   "translations": {
+    "4599156733472041465": "Otwórz okno pomocy",
     "4092554493038679417": "Zmień schemat kolorów",
     "5034473762587110175": "Otwórz nawigację",
+    "5874780279351956748": "O co właściwie tutaj chodzi?",
+    "8306425547100789966": "Witaj! Ta strona internetowa jest moim osobistym placem zabaw, na którym tworzę projekty, testuję nowe pomysły i rozwijam swoje umiejętności jako programista. Niektóre projekty powstały po prostu dla zabawy, inne rozwiązują prawdziwe problemy, z którymi sam się zetknąłem. Zapraszam do rozejrzenia się i odkrywania.",
+    "1395721240186478717": "Ta sekcja jest poświęcona mnie jako programiście oprogramowania. Znajdziesz tutaj informacje o mojej drodze zawodowej, technologiach, z których korzystam, moim doświadczeniu zawodowym, wybranych projektach oraz rekomendacjach od współpracowników. Jeśli ciekawi Cię, kto stworzył tę stronę internetową, tutaj znajdziesz odpowiedzi.",
+    "232622518780069786": "Eurovision to mój fanowski projekt poświęcony Konkursowi Piosenki Eurowizji. Łączy statystyki, moje osobiste rankingi, interaktywne narzędzia i inne funkcje dla wszystkich, którzy lubią śledzić ten konkurs.",
+    "2488054634998455877": "Plantu to osobisty projekt, który stworzyłem, aby śledzić moje rośliny domowe i upewnić się, że żadna z nich nie zostanie zapomniana. Pomaga mi kontrolować harmonogram podlewania oraz inne regularne zadania związane z pielęgnacją. Zachęcam do wypróbowania aplikacji, ale wprowadzone zmiany nie zostaną zapisane.",
+    "902976565323770932": "Amazing Map to mapa pokazująca wszystkie naklejki \"Amazing Artur\", które rozprowadziliśmy na całym świecie. Jeśli wybierasz się w jakieś egzotyczne miejsce, odezwij się do mnie, a mogę wesprzeć Cię kilkoma naklejkami 😉",
+    "7907661499216029221": "To projekt grupowy stworzony podczas hackathonu. W tej grze przeglądarkowej prowadzisz własną piekarnię, w której zadowalasz klientów, piekąc dla nich chleb. Pamiętaj, że projekt został stworzony w jeden weekend, dlatego może zawierać sporo błędów.",
     "1726363342938046830": "O mnie",
     "3398353192845179101": "Doświadczenie",
     "7922989125096435449": "Kontakt",
