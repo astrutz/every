@@ -1,8 +1,16 @@
 {
   "locale": "fr",
   "translations": {
+    "4599156733472041465": "Ouvrir la boîte de dialogue d’aide",
     "4092554493038679417": "Basculer le schéma de couleurs",
     "5034473762587110175": "Ouvrir la navigation",
+    "5874780279351956748": "De quoi s’agit-il exactement ?",
+    "8306425547100789966": "Bienvenue ! Ce site web est mon espace personnel d’expérimentation, où je développe des projets, teste de nouvelles idées et améliore mes compétences en tant que développeur. Certains projets sont simplement créés pour le plaisir, tandis que d’autres résolvent de vrais problèmes auxquels j’ai moi-même été confronté. N’hésitez pas à explorer et à découvrir les différentes sections.",
+    "1395721240186478717": "Cette section parle de moi en tant que développeur logiciel. Vous y trouverez des informations sur mon parcours, les technologies avec lesquelles je travaille, mon expérience professionnelle, certains projets sélectionnés ainsi que des recommandations de collègues. Si vous souhaitez savoir qui a créé ce site web, vous trouverez les réponses ici.",
+    "232622518780069786": "Eurovision est mon projet de fan dédié au Concours Eurovision de la chanson. Il rassemble des statistiques, mes classements personnels, des outils interactifs et d’autres fonctionnalités pour tous ceux qui aiment suivre le concours.",
+    "2488054634998455877": "Plantu est un projet personnel que j’ai créé pour suivre mes plantes d’intérieur et m’assurer qu’aucune ne soit oubliée. Il m’aide à gérer les calendriers d’arrosage et les autres tâches d’entretien récurrentes. N’hésitez pas à explorer l’application, mais les modifications que vous effectuez ne seront pas enregistrées.",
+    "902976565323770932": "Amazing Map est une carte qui affiche tous les autocollants \"Amazing Artur\" que nous avons distribués dans le monde entier. Si vous voyagez bientôt vers une destination exotique, contactez-moi et je pourrai vous aider avec quelques autocollants 😉",
+    "7907661499216029221": "Il s’agit d’un projet de groupe développé lors d’un hackathon. Dans ce jeu de navigateur, vous possédez votre propre boulangerie dans laquelle vous satisfaites vos clients en préparant du pain pour eux. Gardez à l’esprit que le jeu a été développé en un seul week-end et qu’il peut donc contenir quelques bugs.",
     "1726363342938046830": "À propos",
     "3398353192845179101": "Expérience",
     "7922989125096435449": "Contact",
