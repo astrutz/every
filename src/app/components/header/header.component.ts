@@ -1,4 +1,4 @@
-import { Component, computed, inject, Signal } from '@angular/core';
+import { Component, computed, inject, signal, Signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
   lucideArrowDown10,
@@ -6,6 +6,7 @@ import {
   lucideMenu,
   lucideMoon,
   lucideSun,
+  lucideMessageCircleQuestionMark,
 } from '@ng-icons/lucide';
 import { Colorscheme, ColorschemeService } from '../../services/colorscheme/colorscheme.service';
 import { NavigationService } from '../../services/navigation/navigation.service';
@@ -13,15 +14,16 @@ import { FormsModule } from '@angular/forms';
 import { NgClass } from '@angular/common';
 import { LocaleService } from '../../services/locale/locale.service';
 import { TitleService } from '../../services/title/title.service';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { apps, AppService, HeaderLink } from '../../services/app/app.service';
+import { HelpDialogComponent } from '../help-dialog/help-dialog.component';
 
 /**
  * Displays the header bar including links, a language switcher and a color switcher
  */
 @Component({
   selector: 'every-header',
-  imports: [NgIcon, FormsModule, NgClass, RouterLink],
+  imports: [NgIcon, FormsModule, NgClass, RouterLink, RouterLinkActive, HelpDialogComponent],
   templateUrl: './header.component.html',
   viewProviders: [
     provideIcons({
@@ -30,6 +32,7 @@ import { apps, AppService, HeaderLink } from '../../services/app/app.service';
       lucideMenu,
       lucideArrowDown10,
       lucideExternalLink,
+      lucideMessageCircleQuestionMark,
     }),
   ],
 })
@@ -41,6 +44,7 @@ export class HeaderComponent {
   protected readonly appService: AppService = inject(AppService);
 
   protected isAppNavOpen = false;
+  protected showHelpDialog$ = signal(false);
 
   protected links$: Signal<HeaderLink[]> = computed(
     () => this.appService.currentApp$().headerLinks,

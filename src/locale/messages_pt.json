@@ -1,8 +1,16 @@
 {
   "locale": "pt",
   "translations": {
+    "4599156733472041465": "Abrir diálogo de ajuda",
     "4092554493038679417": "Alternar esquema de cores",
     "5034473762587110175": "Abrir navegação",
+    "5874780279351956748": "Do que se trata afinal?",
+    "8306425547100789966": "Bem-vindo! Este site é o meu espaço pessoal de experimentação, onde desenvolvo projetos, testo novas ideias e melhoro as minhas competências como programador. Alguns projetos são apenas por diversão, enquanto outros resolvem problemas reais que eu próprio enfrentei. Sinta-se à vontade para explorar e descobrir.",
+    "1395721240186478717": "Esta secção é sobre mim como programador de software. Inclui informações sobre o meu percurso, as tecnologias com que trabalho, a minha experiência profissional, projetos selecionados e recomendações de colegas. Se tem curiosidade em saber quem criou este site, encontrará aqui as respostas.",
+    "232622518780069786": "Eurovision é o meu projeto de fã dedicado ao Festival Eurovisão da Canção. Reúne estatísticas, os meus rankings pessoais, ferramentas interativas e outras funcionalidades para todos os que gostam de acompanhar o concurso.",
+    "2488054634998455877": "Plantu é um projeto pessoal que criei para acompanhar as minhas plantas de interior e garantir que nenhuma é esquecida. Ajuda-me a gerir os calendários de rega e outras tarefas regulares de cuidado. Sinta-se à vontade para explorar a aplicação, mas as alterações que fizer não serão guardadas.",
+    "902976565323770932": "Amazing Map é um mapa que mostra todos os autocolantes \"Amazing Artur\" que distribuímos por todo o mundo. Se estiver prestes a viajar para algum lugar exótico, envie-me uma mensagem e posso ajudar com alguns autocolantes 😉",
+    "7907661499216029221": "Este é um projeto de grupo desenvolvido durante um hackathon. Neste jogo de navegador, tem a sua própria padaria, onde satisfaz os seus clientes ao fazer pão para eles. Tenha em atenção que foi desenvolvido durante apenas um fim de semana e, por isso, pode conter alguns erros.",
     "1726363342938046830": "Sobre",
     "3398353192845179101": "Experiência",
     "7922989125096435449": "Contato",

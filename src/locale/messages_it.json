@@ -1,8 +1,16 @@
 {
   "locale": "it",
   "translations": {
+    "4599156733472041465": "Apri finestra di dialogo di aiuto",
     "4092554493038679417": "Cambia schema di colori",
     "5034473762587110175": "Apri navigazione",
+    "5874780279351956748": "Di cosa si tratta?",
+    "8306425547100789966": "Benvenuto! Questo sito web è il mio spazio personale di sperimentazione, dove sviluppo progetti, provo nuove idee e miglioro le mie competenze come sviluppatore. Alcuni progetti sono semplicemente per divertimento, mentre altri risolvono problemi reali che ho affrontato personalmente. Sentiti libero di esplorare e scoprire tutto ciò che trovi qui.",
+    "1395721240186478717": "Questa sezione parla di me come sviluppatore software. Include informazioni sul mio percorso, sulle tecnologie con cui lavoro, sulla mia esperienza professionale, su alcuni progetti selezionati e sulle raccomandazioni dei miei colleghi. Se sei curioso di sapere chi ha creato questo sito web, qui troverai le risposte.",
+    "232622518780069786": "Eurovision è il mio progetto da fan dedicato all'Eurovision Song Contest. Riunisce statistiche, le mie classifiche personali, strumenti interattivi e altre funzionalità per tutti coloro che amano seguire la competizione.",
+    "2488054634998455877": "Plantu è un progetto personale che ho creato per tenere sotto controllo le mie piante da appartamento e assicurarmi che nessuna venga dimenticata. Mi aiuta a gestire i programmi di irrigazione e altre attività di cura ricorrenti. Sentiti libero di esplorare l'app, ma le modifiche che apporterai non verranno salvate.",
+    "902976565323770932": "Amazing Map è una mappa che mostra tutti gli adesivi \"Amazing Artur\" che abbiamo distribuito in tutto il mondo. Se stai per viaggiare verso una destinazione esotica, contattami e potrò aiutarti con qualche adesivo 😉",
+    "7907661499216029221": "Questo è un progetto di gruppo sviluppato durante un hackathon. In questo gioco per browser possiedi la tua panetteria, dove soddisfi i clienti preparando il pane per loro. Tieni presente che è stato sviluppato durante un solo fine settimana e quindi potrebbe contenere diversi bug.",
     "1726363342938046830": "Informazioni",
     "3398353192845179101": "Esperienza",
     "7922989125096435449": "Contatti",

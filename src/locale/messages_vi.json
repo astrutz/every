@@ -1,8 +1,16 @@
 {
   "locale": "vi",
   "translations": {
+    "4599156733472041465": "Mở hộp thoại trợ giúp",
     "4092554493038679417": "Chuyển đổi bảng màu",
     "5034473762587110175": "Mở điều hướng",
+    "5874780279351956748": "Tất cả những điều này là về gì?",
+    "8306425547100789966": "Chào mừng! Trang web này là không gian thử nghiệm cá nhân của tôi, nơi tôi phát triển các dự án, thử nghiệm những ý tưởng mới và cải thiện kỹ năng của mình với tư cách là một nhà phát triển. Một số dự án chỉ được tạo ra để giải trí, trong khi những dự án khác giải quyết các vấn đề thực tế mà chính tôi từng gặp phải. Hãy thoải mái tham quan và khám phá.",
+    "1395721240186478717": "Phần này giới thiệu về tôi với tư cách là một nhà phát triển phần mềm. Bạn sẽ tìm thấy thông tin về nền tảng của tôi, các công nghệ tôi sử dụng, kinh nghiệm nghề nghiệp, những dự án tiêu biểu và lời giới thiệu từ các đồng nghiệp. Nếu bạn tò mò ai đã tạo ra trang web này, bạn sẽ tìm thấy câu trả lời ở đây.",
+    "232622518780069786": "Eurovision là dự án dành cho người hâm mộ của tôi về Cuộc thi Ca khúc Eurovision. Dự án tập hợp các số liệu thống kê, bảng xếp hạng cá nhân của tôi, các công cụ tương tác và nhiều tính năng khác dành cho những ai yêu thích theo dõi cuộc thi.",
+    "2488054634998455877": "Plantu là một dự án cá nhân tôi tạo ra để theo dõi các cây trồng trong nhà và đảm bảo không cây nào bị bỏ quên. Nó giúp tôi quản lý lịch tưới nước và các công việc chăm sóc định kỳ khác. Bạn có thể thoải mái khám phá ứng dụng, nhưng những thay đổi bạn thực hiện sẽ không được lưu lại.",
+    "902976565323770932": "Amazing Map là một bản đồ hiển thị tất cả các nhãn dán \"Amazing Artur\" mà chúng tôi đã phân phát trên khắp thế giới. Nếu bạn sắp đi du lịch đến một nơi xa lạ hoặc thú vị, hãy liên hệ với tôi và tôi có thể hỗ trợ bạn một vài nhãn dán 😉",
+    "7907661499216029221": "Đây là một dự án nhóm được phát triển trong một cuộc thi hackathon. Trong trò chơi trên trình duyệt này, bạn sở hữu một tiệm bánh riêng, nơi bạn làm hài lòng khách hàng bằng cách nướng bánh mì cho họ. Hãy lưu ý rằng trò chơi được phát triển chỉ trong một cuối tuần, vì vậy có thể vẫn còn khá nhiều lỗi.",
     "1726363342938046830": "Giới thiệu",
     "3398353192845179101": "Kinh nghiệm",
     "7922989125096435449": "Liên hệ",
