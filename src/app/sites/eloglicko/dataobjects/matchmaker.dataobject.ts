@@ -9,7 +9,7 @@ export class MatchMaker {
   ranking: Ranking;
   useRandom: boolean;
 
-  constructor(ranking: Ranking, useRandom: boolean = false) {
+  constructor(ranking: Ranking, useRandom = false) {
     this.ranking = ranking;
     this.useRandom = useRandom;
   }

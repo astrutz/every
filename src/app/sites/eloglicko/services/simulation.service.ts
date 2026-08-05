@@ -97,13 +97,13 @@ export class SimulationService {
   _setPlayerRatingsGlicko(matches: Match[], ranking: Ranking): void {
     matches = matches.filter((match) => match.opponents[1]);
     // collect playerInfos with win/loose info
-    const matchResultsByPlayer: Map<
+    const matchResultsByPlayer = new Map<
       PlayerRating | undefined | -1,
       {
         opponent: PlayerRating | undefined | -1;
         result: 0 | 0.5 | 1;
       }[]
-    > = new Map();
+    >();
 
     for (const match of matches) {
       if (!matchResultsByPlayer.has(match.winner)) {
@@ -129,13 +129,13 @@ export class SimulationService {
 
     // Update player Rating and RD
     // We need to do it in two loops, since we first need to calc all new values without changing the old ones
-    const newRatings: Map<
+    const newRatings = new Map<
       PlayerRating,
       {
         rating: number;
         rd: number;
       }
-    > = new Map();
+    >();
     for (const [player, matchResults] of matchResultsByPlayer.entries()) {
       // @ts-ignore
       newRatings.set(player, {

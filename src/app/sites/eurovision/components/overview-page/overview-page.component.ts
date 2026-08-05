@@ -3,7 +3,10 @@ import { StoreService as EurovisionStoreService } from '../../services/store.ser
 import { Entry } from '../../dataobjects/entry.dataobject';
 import { RatedEntity } from '../../dataobjects/entity.dataobject';
 
-export type TabKey = { key: keyof Entry | undefined; name: string };
+export interface TabKey {
+  key: keyof Entry | undefined;
+  name: string;
+}
 
 /**
  * Abstract component to contain UI logic to display a ranked table with tabs
@@ -15,11 +18,17 @@ export type TabKey = { key: keyof Entry | undefined; name: string };
 export abstract class OverviewPageComponent<T extends RatedEntity> {
   protected readonly storeService = inject(EurovisionStoreService);
   protected tabKeys: TabKey[] = [
+    // @ts-expect-error - Localize is some Angular syntax
     { key: undefined, name: $localize`Total` },
+    // @ts-expect-error - Localize is some Angular syntax
     { key: 'energyRating', name: $localize`Energy` },
+    // @ts-expect-error - Localize is some Angular syntax
     { key: 'stagingRating', name: $localize`Staging` },
+    // @ts-expect-error - Localize is some Angular syntax
     { key: 'studioRating', name: $localize`Studio` },
+    // @ts-expect-error - Localize is some Angular syntax
     { key: 'funRating', name: $localize`Fun` },
+    // @ts-expect-error - Localize is some Angular syntax
     { key: 'vocalsRating', name: $localize`Vocals` },
   ];
 

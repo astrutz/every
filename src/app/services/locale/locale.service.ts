@@ -11,9 +11,9 @@ export class LocaleService {
   public readonly activeLocale: string = inject(LOCALE_ID);
   readonly #router = inject(Router);
 
-  #isLanguageSwitcherOpen: boolean = false;
+  #isLanguageSwitcherOpen = false;
 
-  #isMobileLanguageSwitcherOpen: boolean = false;
+  #isMobileLanguageSwitcherOpen = false;
 
   public locales = [
     { code: 'bn', name: 'বাংলা' },

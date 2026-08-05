@@ -47,7 +47,7 @@ import { CountUpDirective } from '../../directives/count-up.directive';
   ],
 })
 export class EntryComponent implements OnInit {
-  #id: string = '';
+  #id = '';
   readonly #activatedRoute = inject(ActivatedRoute);
   readonly #storeService = inject(EurovisionStoreService);
   readonly #sanitizer: DomSanitizer = inject(DomSanitizer);

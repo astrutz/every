@@ -29,7 +29,7 @@ import { Util } from '../../services/util';
   ],
 })
 export class CountryComponent implements OnInit {
-  #countryCode: string = '';
+  #countryCode = '';
   readonly #activatedRoute = inject(ActivatedRoute);
   readonly #storeService = inject(EurovisionStoreService);
   readonly #themeService = inject(ThemeService);

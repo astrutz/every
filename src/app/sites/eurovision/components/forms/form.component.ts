@@ -17,7 +17,7 @@ export abstract class FormComponent {
   protected readonly storeService = inject(EurovisionStoreService);
 
   protected form!: FormGroup;
-  protected errorMessage: string = '';
+  protected errorMessage = '';
   protected state: State = 'idle';
 
   protected getCountryIDByCode(countryCode: string): string {

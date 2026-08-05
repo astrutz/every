@@ -134,7 +134,7 @@ export class PlayerRating {
       this.GLICKO_Q /
       (1 / this.glickoRoundRD ** 2 + 1 / this.glickoD2(matchResults));
 
-    let newRating = this.currentRating + changeScaling * ratingChange;
+    const newRating = this.currentRating + changeScaling * ratingChange;
 
     return Math.round(newRating);
   }

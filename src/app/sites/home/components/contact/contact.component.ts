@@ -34,8 +34,8 @@ import { TagComponent } from '../../../../components/tag/tag.component';
 export class ContactComponent {
   readonly #store = inject(StoreService);
 
-  protected showCopyChip: boolean = false;
-  protected mail: string = 'hello@alexstrutz.dev';
+  protected showCopyChip = false;
+  protected mail = 'hello@alexstrutz.dev';
 
   protected get socials(): Social[] {
     return this.#store.socials;

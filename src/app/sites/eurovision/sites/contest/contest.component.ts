@@ -27,7 +27,7 @@ import { Util } from '../../services/util';
   templateUrl: './contest.component.html',
 })
 export class ContestComponent implements OnInit {
-  #year: number = 0;
+  #year = 0;
   readonly #activatedRoute = inject(ActivatedRoute);
   readonly #storeService = inject(EurovisionStoreService);
   protected readonly themeService = inject(ThemeService);

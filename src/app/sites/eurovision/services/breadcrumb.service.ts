@@ -4,10 +4,10 @@ import { shareReplay, tap } from 'rxjs';
 import { StoreService as EurovisionStoreService } from './store.service';
 import { TranslationPipe } from '../pipes/translation.pipe';
 
-export type BreadcrumbItem = {
+export interface BreadcrumbItem {
   name: string;
   link: string;
-};
+}
 
 /**
  * Service which creates a dynamic breadcrumb depending on the URL
@@ -82,10 +82,11 @@ export class BreadcrumbService {
   }
 }
 
-const _breadcrumbMap: Map<string, BreadcrumbItem> = new Map([
+const _breadcrumbMap = new Map<string, BreadcrumbItem>([
   [
     '',
     {
+      // @ts-expect-error - Localize is some Angular syntax
       name: $localize`Home`,
       link: '',
     },
@@ -93,6 +94,7 @@ const _breadcrumbMap: Map<string, BreadcrumbItem> = new Map([
   [
     'eurovision',
     {
+      // @ts-expect-error - Localize is some Angular syntax
       name: $localize`Eurovision`,
       link: '/eurovision',
     },
@@ -100,6 +102,7 @@ const _breadcrumbMap: Map<string, BreadcrumbItem> = new Map([
   [
     'countries',
     {
+      // @ts-expect-error - Localize is some Angular syntax
       name: $localize`Countries`,
       link: '/eurovision/countries',
     },
@@ -107,6 +110,7 @@ const _breadcrumbMap: Map<string, BreadcrumbItem> = new Map([
   [
     'contests',
     {
+      // @ts-expect-error - Localize is some Angular syntax
       name: $localize`Contests`,
       link: '/eurovision/contests',
     },
@@ -114,6 +118,7 @@ const _breadcrumbMap: Map<string, BreadcrumbItem> = new Map([
   [
     'entries',
     {
+      // @ts-expect-error - Localize is some Angular syntax
       name: $localize`Entries`,
       link: '/eurovision/entries',
     },

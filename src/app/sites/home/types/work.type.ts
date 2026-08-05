@@ -1,10 +1,10 @@
 /**
  * Defines a work project
  */
-export type Work = {
+export interface Work {
   title: string;
   description: string;
   href: string;
   preview: string;
   technologies: string[];
-};
+}

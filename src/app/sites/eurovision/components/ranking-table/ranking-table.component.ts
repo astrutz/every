@@ -27,7 +27,7 @@ export class RankingTableComponent<T extends Entity | RatedEntity> {
   colorScheme?: 'light' | 'dark' = undefined;
 
   @Input()
-  showFlag: boolean = true;
+  showFlag = true;
 
   @Input()
   displayNameOptions: DisplayNameOptions | undefined = undefined;

@@ -8,7 +8,10 @@ import { LoadingComponent } from '../../../../components/loading/loading.compone
 import { ContestFormComponent } from '../../components/forms/contest-form/contest-form.component';
 import { LanguageSwitchComponent } from '../../../../components/language-switch/language-switch.component';
 
-type CrudKey = { key: 'entries' | 'contests'; name: string };
+interface CrudKey {
+  key: 'entries' | 'contests';
+  name: string;
+}
 
 /**
  * CRUD page containing different create and update forms
@@ -31,7 +34,9 @@ export class CrudComponent {
   protected readonly storeService = inject(EurovisionStoreService);
 
   protected keys: CrudKey[] = [
+    // @ts-expect-error - Localize is some Angular syntax
     { key: 'entries', name: $localize`Entries` },
+    // @ts-expect-error - Localize is some Angular syntax
     { key: 'contests', name: $localize`Contests` },
   ];
 
