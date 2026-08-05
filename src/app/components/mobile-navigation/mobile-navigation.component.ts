@@ -7,10 +7,12 @@ import {
   lucideSun,
   lucideChevronDown,
   lucideExternalLink,
+  lucideMessageCircleQuestionMark,
 } from '@ng-icons/lucide';
 import { RouterLink } from '@angular/router';
 import { apps } from '../../services/app/app.service';
 import { NgClass } from '@angular/common';
+import { HelpDialogComponent } from '../help-dialog/help-dialog.component';
 
 /**
  * Displays a mobile navigation, hidden on w > 768px
@@ -18,7 +20,7 @@ import { NgClass } from '@angular/common';
  */
 @Component({
   selector: 'every-mobile-navigation',
-  imports: [NgIcon, RouterLink, NgClass],
+  imports: [NgIcon, RouterLink, NgClass, HelpDialogComponent],
   templateUrl: './mobile-navigation.component.html',
   viewProviders: [
     provideIcons({
@@ -27,6 +29,7 @@ import { NgClass } from '@angular/common';
       lucideX,
       lucideChevronDown,
       lucideExternalLink,
+      lucideMessageCircleQuestionMark,
     }),
   ],
 })
