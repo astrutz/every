@@ -2,12 +2,14 @@ import {
   AfterViewInit,
   Component,
   computed,
+  inject,
   input,
   OnDestroy,
   output,
   signal,
 } from '@angular/core';
 import { NgIcon } from '@ng-icons/core';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'plantu-snooze-modal',
@@ -16,6 +18,8 @@ import { NgIcon } from '@ng-icons/core';
   imports: [NgIcon],
 })
 export class SnoozeModalComponent implements AfterViewInit, OnDestroy {
+  readonly authService = inject(AuthService);
+
   isOpen$ = input<boolean>(false);
   title$ = input<string>('');
   initialDate$ = input<string>('');
