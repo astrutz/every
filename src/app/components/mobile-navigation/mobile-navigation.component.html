@@ -106,7 +106,6 @@
         </ul>
       </div>
     </div>
-
     <div class="flex flex-col gap-4 p-4">
       <button (click)="toggleColorScheme()" class="flex items-center justify-between">
         <p i18n id="toggle-theme-label" class="text-normal text-base">Switch Theme</p>
@@ -167,5 +166,20 @@
         </ul>
       </div>
     </div>
+
+    <div class="flex flex-col gap-4 px-4">
+      <button (click)="showHelpDialog$.set(true)" class="flex items-center justify-between">
+        <p i18n id="toggle-help-label" class="text-normal text-base">Open help dialog</p>
+        <div
+          class="relative flex justify-center items-center dark:hover:bg-gray-800 hover:bg-gray-100 dark:active:bg-gray-700 active:bg-gray-200 rounded-lg p-1.5 transition-colors duration-200"
+          aria-labelledby="toggle-help-label">
+          <ng-icon color="currentColor" size="1.5rem" name="lucideMessageCircleQuestionMark"></ng-icon>
+        </div>
+      </button>
+    </div>
   </div>
+}
+
+@if (showHelpDialog$()) {
+  <every-help-dialog (closed$)="showHelpDialog$.set(false)" />
 }
