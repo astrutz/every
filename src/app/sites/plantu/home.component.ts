@@ -50,7 +50,12 @@ export class HomeComponent {
   readonly authService = inject(AuthService);
   protected readonly basketService = inject(BasketService);
 
-  protected currentFilter = signal<PlantLocation>('Alle');
+  @HostListener('window:scroll')
+  protected onScroll() {
+    this.showScrollToTop$.set(window.scrollY > 100);
+  }
+  protected passwordInput = '';
+
   private readonly homeLocations: PlantLocation[] = [
     'Schlafzimmer',
     'Flur',
@@ -59,38 +64,13 @@ export class HomeComponent {
     'Balkon',
   ];
 
-  @HostListener('window:scroll')
-  protected onScroll() {
-    this.showScrollToTop$.set(window.scrollY > 100);
-  }
-
-  protected tasks$ = computed(() => this.#getFilteredTasks());
+  protected currentFilter = signal<PlantLocation>('Alle');
 
   protected requestIsPending$ = signal(false);
-  protected showToast$: WritableSignal<undefined | 'success' | 'error'> = signal(undefined);
   protected showScrollToTop$ = signal(false);
+  protected showToast$: WritableSignal<undefined | 'success' | 'error'> = signal(undefined);
 
-  protected passwordInput = '';
-
-  #getFilteredTasks(): Task[] {
-    const allTasks = this.#storeService.tasks$();
-    const filter = this.currentFilter();
-
-    if (filter === 'Alle') {
-      return allTasks;
-    }
-
-    return allTasks
-      .map((task) => {
-        const filteredPlants = task.plants.filter((plant) =>
-          filter === 'Zuhause'
-            ? this.homeLocations.includes(plant.location as PlantLocation)
-            : plant.location === filter,
-        );
-        return { ...task, plants: filteredPlants };
-      })
-      .filter((task) => task.plants.length > 0);
-  }
+  protected tasks$ = computed(() => this.#getFilteredTasks());
 
   protected getLocalDate(dateString: string): string {
     const date = new Date(dateString);
@@ -124,12 +104,20 @@ export class HomeComponent {
     return localDate;
   }
 
+  protected onFilterChange(filter: string) {
+    this.currentFilter.set(filter as PlantLocation);
+  }
+
   protected scrollToTop(): void {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  protected onFilterChange(filter: string) {
-    this.currentFilter.set(filter as PlantLocation);
+  protected async sendPasswordAndSubmit(): Promise<void> {
+    const isLoggedIn = this.authService.login(this.passwordInput);
+    if (isLoggedIn) {
+      await this.submit();
+    }
+    this.passwordInput = '';
   }
 
   protected async submit(): Promise<void> {
@@ -153,11 +141,23 @@ export class HomeComponent {
     }
   }
 
-  protected async sendPasswordAndSubmit(): Promise<void> {
-    const isLoggedIn = this.authService.login(this.passwordInput);
-    if (isLoggedIn) {
-      await this.submit();
+  #getFilteredTasks(): Task[] {
+    const allTasks = this.#storeService.tasks$();
+    const filter = this.currentFilter();
+
+    if (filter === 'Alle') {
+      return allTasks;
     }
-    this.passwordInput = '';
+
+    return allTasks
+      .map((task) => {
+        const filteredPlants = task.plants.filter((plant) =>
+          filter === 'Zuhause'
+            ? this.homeLocations.includes(plant.location as PlantLocation)
+            : plant.location === filter,
+        );
+        return { ...task, plants: filteredPlants };
+      })
+      .filter((task) => task.plants.length > 0);
   }
 }

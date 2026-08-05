@@ -15,10 +15,6 @@ export class StoreService {
   readonly #backendService = inject(EurovisionBackendService);
   readonly #cacheService = inject(CacheService);
 
-  #countries$: WritableSignal<Country[]> = signal([]);
-  #contests$: WritableSignal<Contest[]> = signal([]);
-  #entries$: WritableSignal<Entry[]> = signal([]);
-
   constructor() {
     if (this.#cacheService.isValid) {
       this.#loadFromCache();
@@ -26,6 +22,16 @@ export class StoreService {
       this.#loadFromBackend();
     }
   }
+  #contests$: WritableSignal<Contest[]> = signal([]);
+  #countries$: WritableSignal<Country[]> = signal([]);
+
+  #entries$: WritableSignal<Entry[]> = signal([]);
+
+  public contests$ = computed<Contest[]>(() => this.#contests$());
+
+  public countries$ = computed<Country[]>(() => this.#countries$());
+
+  public entries$ = computed<Entry[]>(() => this.#entries$());
 
   public isLoading$ = computed<boolean>(
     () =>
@@ -34,11 +40,9 @@ export class StoreService {
       this.#entries$().length === 0,
   );
 
-  public countries$ = computed<Country[]>(() => this.#countries$());
-
-  public contests$ = computed<Contest[]>(() => this.#contests$());
-
-  public entries$ = computed<Entry[]>(() => this.#entries$());
+  public getContestByYear(year: number): Contest | undefined {
+    return this.#contests$().find((contest) => contest.year === year);
+  }
 
   public getCountryByCode(code: string): Country | undefined {
     return this.#countries$().find((country) => country.code === code);
@@ -48,16 +52,12 @@ export class StoreService {
     return this.#entries$().filter((entry) => entry.country.code === country?.code);
   }
 
-  public getContestByYear(year: number): Contest | undefined {
-    return this.#contests$().find((contest) => contest.year === year);
+  public getEntriesWithoutContest(): Entry[] {
+    return this.#entries$().filter((entry) => !('contest' in entry));
   }
 
   public getEntryById(id: string): Entry | undefined {
     return this.#entries$().find((entry) => entry._id === id);
-  }
-
-  public getEntriesWithoutContest(): Entry[] {
-    return this.#entries$().filter((entry) => !('contest' in entry));
   }
 
   public getOldiesContest(): Contest {
@@ -74,6 +74,30 @@ export class StoreService {
     };
   }
 
+  async #loadContests(): Promise<void> {
+    const contests = await this.#backendService.getContests();
+    this.#contests$.set(contests);
+    this.#cacheService.contests = contests;
+  }
+
+  async #loadCountries(): Promise<void> {
+    const countries = await this.#backendService.getCountries();
+    this.#countries$.set(countries);
+    this.#cacheService.countries = countries;
+  }
+
+  async #loadEntries(): Promise<void> {
+    const entries = await this.#backendService.getEntries();
+    this.#entries$.set(entries);
+    this.#cacheService.entries = entries;
+  }
+
+  #loadFromBackend(): void {
+    this.#loadCountries();
+    this.#loadContests();
+    this.#loadEntries();
+  }
+
   #loadFromCache(): void {
     const countries = this.#cacheService.countries;
     const contests = this.#cacheService.contests;
@@ -85,29 +109,5 @@ export class StoreService {
     } else {
       this.#loadFromBackend();
     }
-  }
-
-  #loadFromBackend(): void {
-    this.#loadCountries();
-    this.#loadContests();
-    this.#loadEntries();
-  }
-
-  async #loadCountries(): Promise<void> {
-    const countries = await this.#backendService.getCountries();
-    this.#countries$.set(countries);
-    this.#cacheService.countries = countries;
-  }
-
-  async #loadContests(): Promise<void> {
-    const contests = await this.#backendService.getContests();
-    this.#contests$.set(contests);
-    this.#cacheService.contests = contests;
-  }
-
-  async #loadEntries(): Promise<void> {
-    const entries = await this.#backendService.getEntries();
-    this.#entries$.set(entries);
-    this.#cacheService.entries = entries;
   }
 }

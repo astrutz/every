@@ -47,17 +47,13 @@ import { CountUpDirective } from '../../directives/count-up.directive';
   ],
 })
 export class EntryComponent implements OnInit {
-  #id: string = '';
   readonly #activatedRoute = inject(ActivatedRoute);
-  readonly #storeService = inject(EurovisionStoreService);
   readonly #sanitizer: DomSanitizer = inject(DomSanitizer);
+  readonly #storeService = inject(EurovisionStoreService);
   readonly #themeService = inject(ThemeService);
+  protected readonly Util = Util;
 
-  ngOnInit() {
-    this.#activatedRoute.params.subscribe((params: Params) => {
-      this.#id = params['id'] ?? '';
-    });
-  }
+  #id = '';
 
   protected entry$ = computed(() => {
     if (!this.#storeService.isLoading$()) {
@@ -65,6 +61,31 @@ export class EntryComponent implements OnInit {
     }
     return undefined;
   });
+
+  protected getFlag(code: string): string {
+    return `${code}-${this.#themeService.flagBackground}`;
+  }
+
+  protected get allEntryCount(): number {
+    return this.#storeService.entries$().length;
+  }
+
+  protected get allTimeRank(): number | undefined {
+    return Util.getTotalRankingOfEntry(this.#storeService.entries$(), this.entry$());
+  }
+
+  protected get placeInRanking(): number | undefined {
+    const entries = this.#contest?.entries;
+    if (!entries) {
+      return undefined;
+    }
+    const sortedEntries = Util.sortEntries(entries);
+    return sortedEntries.findIndex((entry) => entry._id === this.entry$()?._id) + 1;
+  }
+
+  protected get totalEntriesOfContest(): number | undefined {
+    return this.#contest?.entries?.length ?? undefined;
+  }
 
   protected get videoId(): SafeResourceUrl | null {
     const link = this.entry$()?.link;
@@ -84,10 +105,6 @@ export class EntryComponent implements OnInit {
     );
   }
 
-  protected getFlag(code: string): string {
-    return `${code}-${this.#themeService.flagBackground}`;
-  }
-
   get #contest(): Contest | undefined {
     const entry = this.entry$();
     if (!entry) {
@@ -96,26 +113,9 @@ export class EntryComponent implements OnInit {
     return this.#storeService.getContestByYear(entry.year);
   }
 
-  protected get totalEntriesOfContest(): number | undefined {
-    return this.#contest?.entries?.length ?? undefined;
+  ngOnInit() {
+    this.#activatedRoute.params.subscribe((params: Params) => {
+      this.#id = params['id'] ?? '';
+    });
   }
-
-  protected get placeInRanking(): number | undefined {
-    const entries = this.#contest?.entries;
-    if (!entries) {
-      return undefined;
-    }
-    const sortedEntries = Util.sortEntries(entries);
-    return sortedEntries.findIndex((entry) => entry._id === this.entry$()?._id) + 1;
-  }
-
-  protected get allTimeRank(): number | undefined {
-    return Util.getTotalRankingOfEntry(this.#storeService.entries$(), this.entry$());
-  }
-
-  protected get allEntryCount(): number {
-    return this.#storeService.entries$().length;
-  }
-
-  protected readonly Util = Util;
 }

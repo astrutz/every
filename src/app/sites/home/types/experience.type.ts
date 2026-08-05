@@ -1,11 +1,11 @@
 /**
  * Defines a working experience (job)
  */
-export type Experience = {
+export interface Experience {
   title: string;
   company: string;
   href: string;
   tasks: string[];
   started: Date;
   ended: Date | null;
-};
+}

@@ -3,7 +3,10 @@ import { StoreService as EurovisionStoreService } from '../../services/store.ser
 import { Entry } from '../../dataobjects/entry.dataobject';
 import { RatedEntity } from '../../dataobjects/entity.dataobject';
 
-export type TabKey = { key: keyof Entry | undefined; name: string };
+export interface TabKey {
+  key: keyof Entry | undefined;
+  name: string;
+}
 
 /**
  * Abstract component to contain UI logic to display a ranked table with tabs
@@ -23,11 +26,12 @@ export abstract class OverviewPageComponent<T extends RatedEntity> {
     { key: 'vocalsRating', name: $localize`Vocals` },
   ];
 
-  protected isLoading$ = computed<boolean>(() => this.storeService.isLoading$());
   protected criteria$: WritableSignal<keyof Entry | undefined> = signal(undefined);
-
   protected entitiesRanked$: Signal<T[]> = computed(() => this.calculateRanking(this.criteria$()));
 
+  protected isLoading$ = computed<boolean>(() => this.storeService.isLoading$());
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   protected calculateRanking(criteria?: keyof Entry): T[] {
     throw 'NotImplementedError';
   }

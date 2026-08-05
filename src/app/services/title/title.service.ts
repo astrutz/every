@@ -10,13 +10,13 @@ import { Router } from '@angular/router';
 export class TitleService {
   readonly #router = inject(Router);
 
-  #baseTitle: string = 'alexstrutz';
-
-  #additionalTitles: Map<string, string> = new Map([
+  #additionalTitles = new Map<string, string>([
     ['', 'dev'],
     ['eurovision', 'eurovision'],
     ['plantu', 'plantu'],
   ]);
+
+  #baseTitle = 'alexstrutz';
 
   public get title(): string {
     let additionalTitle;

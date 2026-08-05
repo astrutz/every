@@ -12,15 +12,6 @@ import { ContestDto } from '../../../dataobjects/contest.dataobject';
   imports: [FormsModule, ReactiveFormsModule],
 })
 export class ContestFormComponent extends FormComponent implements OnInit {
-  get #formToContest(): ContestDto {
-    const raw = this.form.getRawValue();
-    return {
-      year: raw.year,
-      hostCountry: this.getCountryIDByCode(raw.hostCountry),
-      colours: raw.colours.split(','),
-    };
-  }
-
   protected override onSearch() {
     const year = this.form.controls['year'].value;
     if (year) {
@@ -52,6 +43,15 @@ export class ContestFormComponent extends FormComponent implements OnInit {
       this.state = 'error';
       this.errorMessage = err?.toString() ?? '';
     }
+  }
+
+  get #formToContest(): ContestDto {
+    const raw = this.form.getRawValue();
+    return {
+      year: raw.year,
+      hostCountry: this.getCountryIDByCode(raw.hostCountry),
+      colours: raw.colours.split(','),
+    };
   }
 
   ngOnInit(): void {

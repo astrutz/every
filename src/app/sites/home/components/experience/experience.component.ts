@@ -21,10 +21,6 @@ export class ExperienceComponent {
   readonly #colorSchemeService: ColorschemeService = inject(ColorschemeService);
   readonly #store: StoreService = inject(StoreService);
 
-  protected get experiences(): Experience[] {
-    return this.#store.experiences;
-  }
-
   protected getDuration(experience: Experience): string {
     const dateOptions: Intl.DateTimeFormatOptions = { month: 'short', year: 'numeric' };
     const startDateFormatted = experience.started.toLocaleString(this.#activeLocale, dateOptions);
@@ -33,13 +29,17 @@ export class ExperienceComponent {
     return `${startDateFormatted} - ${endDateFormatted}`;
   }
 
+  protected getLogoPath(company: string): string {
+    return `assets/logos/${company}_${this.logoColor}.svg`;
+  }
+
+  protected get experiences(): Experience[] {
+    return this.#store.experiences;
+  }
+
   protected get logoColor(): Colorscheme {
     return this.#colorSchemeService.colorscheme === Colorscheme.light
       ? Colorscheme.dark
       : Colorscheme.light;
-  }
-
-  protected getLogoPath(company: string): string {
-    return `assets/logos/${company}_${this.logoColor}.svg`;
   }
 }

@@ -8,7 +8,10 @@ import { LoadingComponent } from '../../../../components/loading/loading.compone
 import { ContestFormComponent } from '../../components/forms/contest-form/contest-form.component';
 import { LanguageSwitchComponent } from '../../../../components/language-switch/language-switch.component';
 
-type CrudKey = { key: 'entries' | 'contests'; name: string };
+interface CrudKey {
+  key: 'entries' | 'contests';
+  name: string;
+}
 
 /**
  * CRUD page containing different create and update forms

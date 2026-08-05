@@ -38,20 +38,6 @@ export class BasketService {
     });
   }
 
-  public has(type: BasketKey, id: string): boolean {
-    const items = this.#basket$()[type];
-    return items.has(id);
-  }
-
-  public remove(type: BasketKey, id: string): void {
-    this.#basket$.update((state) => {
-      const newState = { ...state };
-      newState[type] = new Set(newState[type]);
-      newState[type].delete(id);
-      return newState;
-    });
-  }
-
   public clear(type?: BasketKey): void {
     this.#basket$.update((state) => {
       const newState = { ...state };
@@ -62,6 +48,20 @@ export class BasketService {
         (Object.keys(newState) as BasketKey[]).forEach((k) => (newState[k] = new Set()));
       }
 
+      return newState;
+    });
+  }
+
+  public has(type: BasketKey, id: string): boolean {
+    const items = this.#basket$()[type];
+    return items.has(id);
+  }
+
+  public remove(type: BasketKey, id: string): void {
+    this.#basket$.update((state) => {
+      const newState = { ...state };
+      newState[type] = new Set(newState[type]);
+      newState[type].delete(id);
       return newState;
     });
   }

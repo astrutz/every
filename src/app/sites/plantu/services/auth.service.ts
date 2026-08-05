@@ -6,12 +6,12 @@ import { environment } from '../../../environment';
  */
 @Injectable({ providedIn: 'root' })
 export class AuthService {
+  #enteredPassword$ = signal('');
+
   isLoggedIn$ = computed(
     () =>
       (localStorage.getItem(`EVERY_PLANTU`) ?? this.#enteredPassword$()) === environment.password,
   );
-
-  #enteredPassword$ = signal('');
 
   login(password: string): boolean {
     const encodedPassword = btoa(password);

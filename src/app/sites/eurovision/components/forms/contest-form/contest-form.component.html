@@ -1,20 +1,22 @@
 <div class="max-w-2xl rounded">
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="mb-4">
-      <label class="block text-sm font-medium mb-1">ID</label>
+      <label class="block text-sm font-medium mb-1" for="contest-id">ID</label>
       <input
         formControlName="id"
+        id="contest-id"
         type="text"
         class="w-full border p-2 rounded text-black"
         placeholder="Contest ID" />
     </div>
 
     <div class="mb-4">
-      <label class="block text-sm font-medium mb-1">Year*</label>
+      <label class="block text-sm font-medium mb-1" for="contest-id">Year*</label>
       <div class="flex gap-2 items-center">
         <div class="grow">
           <input
             formControlName="year"
+            id="contest-year"
             type="number"
             class="w-full border p-2 rounded text-black"
             placeholder="Contest Year" />
@@ -31,18 +33,20 @@
     </div>
 
     <div class="mb-4">
-      <label class="block text-sm font-medium mb-1">Host Country</label>
+      <label class="block text-sm font-medium mb-1" for="contest-hostCountry">Host Country</label>
       <input
         formControlName="hostCountry"
+        id="contest-hostCountry"
         type="text"
         class="w-full border p-2 rounded text-black"
         placeholder="Country code with two letters, e.g. 'DE'" />
     </div>
 
     <div class="mb-4">
-      <label class="block text-sm font-medium mb-1">Colours</label>
+      <label class="block text-sm font-medium mb-1" for="contest-colours">Colours</label>
       <input
         formControlName="colours"
+        id="contest-colours"
         type="text"
         class="w-full border p-2 rounded text-black"
         placeholder="Array of four colours e.g. #ffffff,#000000..." />

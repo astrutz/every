@@ -34,6 +34,8 @@ import { DialogComponent } from '../dialog/dialog.component';
   ],
 })
 export class MobileNavigationComponent extends HeaderComponent {
+  protected override readonly apps = apps;
+
   protected closeNavigation(): void {
     this.navigationService.isOpen = false;
   }
@@ -45,6 +47,4 @@ export class MobileNavigationComponent extends HeaderComponent {
   protected set isOpen(newVal: boolean) {
     this.navigationService.isOpen = newVal;
   }
-
-  protected override readonly apps = apps;
 }

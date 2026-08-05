@@ -1,4 +1,4 @@
-export type CountryTranslation = {
+export interface CountryTranslation {
   Albania: string;
   Andorra: string;
   Armenia: string;
@@ -49,4 +49,4 @@ export type CountryTranslation = {
   Turkey: string;
   Ukraine: string;
   'United Kingdom': string;
-};
+}

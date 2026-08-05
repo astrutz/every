@@ -4,7 +4,7 @@ export type GamePiece = typeof gamePieceKeys[number];
 export type Matching = 'random' | 'seeded' | 'similar';
 export type Ranking = 'elo' | 'glicko';
 
-export type Configuration = {
+export interface Configuration {
   matching: Matching;
   ranking: Ranking;
   count: number;
