@@ -16,14 +16,14 @@ import { LocaleService } from '../../services/locale/locale.service';
 import { TitleService } from '../../services/title/title.service';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { apps, AppService, HeaderLink } from '../../services/app/app.service';
-import { HelpDialogComponent } from '../help-dialog/help-dialog.component';
+import { DialogComponent } from '../dialog/dialog.component';
 
 /**
  * Displays the header bar including links, a language switcher and a color switcher
  */
 @Component({
   selector: 'every-header',
-  imports: [NgIcon, FormsModule, NgClass, RouterLink, RouterLinkActive, HelpDialogComponent],
+  imports: [NgIcon, FormsModule, NgClass, RouterLink, RouterLinkActive, DialogComponent],
   templateUrl: './header.component.html',
   viewProviders: [
     provideIcons({
@@ -44,7 +44,6 @@ export class HeaderComponent {
   protected readonly appService: AppService = inject(AppService);
 
   protected isAppNavOpen = false;
-  protected showHelpDialog$ = signal(false);
 
   protected links$: Signal<HeaderLink[]> = computed(
     () => this.appService.currentApp$().headerLinks,

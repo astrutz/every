@@ -168,7 +168,8 @@
     </div>
 
     <div class="flex flex-col gap-4 px-4">
-      <button (click)="showHelpDialog$.set(true)" class="flex items-center justify-between">
+      <button command="show-modal"
+              commandfor="help-dialog" class="flex items-center justify-between">
         <p i18n id="toggle-help-label" class="text-normal text-base">Open help dialog</p>
         <div
           class="relative flex justify-center items-center dark:hover:bg-gray-800 hover:bg-gray-100 dark:active:bg-gray-700 active:bg-gray-200 rounded-lg p-1.5 transition-colors duration-200"
@@ -180,6 +181,43 @@
   </div>
 }
 
-@if (showHelpDialog$()) {
-  <every-help-dialog (closed$)="showHelpDialog$.set(false)" />
-}
+
+
+<every-dialog [dialogId$]="'help-dialog'">
+  <h3 i18n class="text-2xl mb-4">What's this all about?</h3>
+  <p i18n class="mb-6">
+    Welcome! This website is my personal playground where I build projects, try out new ideas and
+    improve my skills as a developer. Some projects are just for fun, others solve real problems I
+    had myself. Feel free to look around and explore.
+  </p>
+  <h3 i18n class="text-xl mb-4">About me</h3>
+  <p i18n class="mb-6">
+    This section is all about me as a software developer. It covers my background, the technologies
+    I work with, my professional experience, selected projects and recommendations from colleagues.
+    If you're curious about who built this website, you'll find the answers here.
+  </p>
+  <h3 class="text-xl mb-4">Eurovision</h3>
+  <p i18n class="mb-6">
+    Eurovision is my fan project dedicated to the Eurovision Song Contest. It brings together
+    statistics, my rankings, interactive tools and other features for everyone who enjoys following
+    the contest.
+  </p>
+  <h3 class="text-xl mb-4">Plantu</h3>
+  <p i18n class="mb-6">
+    Plantu is a personal project I built to keep track of my houseplants and make sure none of them
+    are forgotten. It helps me stay on top of watering schedules and other recurring care tasks.
+    Feel free to explore the app, but any changes you make won't be saved.
+  </p>
+  <h3 class="text-xl mb-4">Amazing Map</h3>
+  <p i18n class="mb-6">
+    Amazing map is a map displaying all "Amazing Artur" stickers we distributed all around the
+    world. If you are about to travel somewhere exotic, hit me up and I can support you with a
+    couple of stickers 😉
+  </p>
+  <h3 class="text-xl mb-4">Bake 'n Shake</h3>
+  <p i18n>
+    This is a group project developed during a hackathon. In this browser game you own your own
+    bakery, in which you satisfy your customers by baking bread for them. Be aware that this was
+    developed during one weekend and therefore is quite buggy.
+  </p>
+</every-dialog>
