@@ -15,16 +15,16 @@ export class Ranking {
     return this.playerRatings.find((p) => p.player.id === player.id);
   }
 
-  getDeviationsFromStrenghtRating(): { playerRating: PlayerRating, currentPosition: number, strengthPosition: number }[] {
+  getDeviationsFromStrenghtRating(): {
+    playerRating: PlayerRating;
+    currentPosition: number;
+    strengthPosition: number;
+  }[] {
     const deviations = [];
 
     for (const playerRating of this.playerRatings) {
-      const currentPosition = this.getPlayerCurrentPosition(
-        playerRating.player,
-      );
-      const strengthPosition = this.getPlayerExpectedPosition(
-        playerRating.player,
-      );
+      const currentPosition = this.getPlayerCurrentPosition(playerRating.player);
+      const strengthPosition = this.getPlayerExpectedPosition(playerRating.player);
       if (strengthPosition !== currentPosition) {
         deviations.push({
           playerRating,
@@ -42,7 +42,7 @@ export class Ranking {
     let currentPlayer;
     for (let i = this.players.length - 1; i >= 0; i--) {
       const cPlayer = this.players[i];
-      // @ts-ignore
+      // @ts-expect-error - todo
       if (cPlayer.winsAgainst(currentPlayer) !== 0) {
         currentPlayer = cPlayer;
         currentPosition--;
@@ -59,7 +59,7 @@ export class Ranking {
     let currentPlayerRating;
     for (let i = this.playerRatings.length - 1; i >= 0; i--) {
       const playerRating = this.playerRatings[i];
-      // @ts-ignore
+      // @ts-expect-error - todo
       if (playerRating.player.winsAgainst(currentPlayerRating) !== 0) {
         currentPlayerRating = playerRating;
         currentPosition--;
@@ -96,5 +96,4 @@ export class Ranking {
   sortPlayerRatingsByCurrentRatingAsc(): void {
     this.playerRatings.sort((a, b) => a.currentRating - b.currentRating);
   }
-
 }

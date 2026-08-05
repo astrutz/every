@@ -86,7 +86,6 @@ const _breadcrumbMap = new Map<string, BreadcrumbItem>([
   [
     '',
     {
-      // @ts-expect-error - Localize is some Angular syntax
       name: $localize`Home`,
       link: '',
     },
@@ -94,7 +93,6 @@ const _breadcrumbMap = new Map<string, BreadcrumbItem>([
   [
     'eurovision',
     {
-      // @ts-expect-error - Localize is some Angular syntax
       name: $localize`Eurovision`,
       link: '/eurovision',
     },
@@ -102,7 +100,6 @@ const _breadcrumbMap = new Map<string, BreadcrumbItem>([
   [
     'countries',
     {
-      // @ts-expect-error - Localize is some Angular syntax
       name: $localize`Countries`,
       link: '/eurovision/countries',
     },
@@ -110,7 +107,6 @@ const _breadcrumbMap = new Map<string, BreadcrumbItem>([
   [
     'contests',
     {
-      // @ts-expect-error - Localize is some Angular syntax
       name: $localize`Contests`,
       link: '/eurovision/contests',
     },
@@ -118,7 +114,6 @@ const _breadcrumbMap = new Map<string, BreadcrumbItem>([
   [
     'entries',
     {
-      // @ts-expect-error - Localize is some Angular syntax
       name: $localize`Entries`,
       link: '/eurovision/entries',
     },

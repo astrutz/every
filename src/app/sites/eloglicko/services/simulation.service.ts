@@ -70,15 +70,13 @@ export class SimulationService {
     matches.forEach((match) => {
       if (match.winner && match.loser) {
         // Sieg/Niederlage
-        // @ts-ignore
+        // @ts-expect-error - todo
         match.winner.calculateEloScore(match.loser, 1);
-        // @ts-ignore
+        // @ts-expect-error - todo
         match.loser.calculateEloScore(match.winner, -1);
       } else if (match.opponents[1]) {
         // Unentschieden
-        // @ts-ignore
         match.opponents[0].calculateEloScore(match.opponents[1], 0);
-        // @ts-ignore
         match.opponents[1].calculateEloScore(match.opponents[0], 0);
       } else {
         // Spielfrei
@@ -137,11 +135,11 @@ export class SimulationService {
       }
     >();
     for (const [player, matchResults] of matchResultsByPlayer.entries()) {
-      // @ts-ignore
+      // @ts-expect-error - todo
       newRatings.set(player, {
-        // @ts-ignore
+        // @ts-expect-error - todo
         rating: player?.calculateGlickoScore(matchResults),
-        // @ts-ignore
+        // @ts-expect-error - todo
         rd: player?.glickoNewPlayerRD(matchResults),
       });
     }

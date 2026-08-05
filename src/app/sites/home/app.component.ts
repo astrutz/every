@@ -24,7 +24,7 @@ import { LanguageSwitchComponent } from '../../components/language-switch/langua
     ContactComponent,
     LanguageSwitchComponent,
   ],
-  selector: 'home-root',
+  selector: 'every-root',
   templateUrl: './app.component.html',
 })
 export class AppComponent {}

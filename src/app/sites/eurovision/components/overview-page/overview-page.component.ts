@@ -18,17 +18,11 @@ export interface TabKey {
 export abstract class OverviewPageComponent<T extends RatedEntity> {
   protected readonly storeService = inject(EurovisionStoreService);
   protected tabKeys: TabKey[] = [
-    // @ts-expect-error - Localize is some Angular syntax
     { key: undefined, name: $localize`Total` },
-    // @ts-expect-error - Localize is some Angular syntax
     { key: 'energyRating', name: $localize`Energy` },
-    // @ts-expect-error - Localize is some Angular syntax
     { key: 'stagingRating', name: $localize`Staging` },
-    // @ts-expect-error - Localize is some Angular syntax
     { key: 'studioRating', name: $localize`Studio` },
-    // @ts-expect-error - Localize is some Angular syntax
     { key: 'funRating', name: $localize`Fun` },
-    // @ts-expect-error - Localize is some Angular syntax
     { key: 'vocalsRating', name: $localize`Vocals` },
   ];
 
@@ -37,6 +31,7 @@ export abstract class OverviewPageComponent<T extends RatedEntity> {
 
   protected entitiesRanked$: Signal<T[]> = computed(() => this.calculateRanking(this.criteria$()));
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   protected calculateRanking(criteria?: keyof Entry): T[] {
     throw 'NotImplementedError';
   }

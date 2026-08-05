@@ -101,5 +101,5 @@
   [isOpen$]="isModalOpen$()"
   [title$]="plant.name"
   [initialDate$]="targetDate"
-  (onSnooze$)="snoozeAll($event)"
-  (onClose$)="isModalOpen$.set(false)" />
+  (snoozed$)="snoozeAll($event)"
+  (closed$)="isModalOpen$.set(false)" />

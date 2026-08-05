@@ -29,23 +29,32 @@ export class Util {
   }
 
   public static isCountry(entity: Entity | RatedEntity): entity is Country {
-    return entity.hasOwnProperty('code') && !entity.hasOwnProperty('rating');
+    return (
+      Object.prototype.hasOwnProperty.call(entity, 'code') &&
+      !Object.prototype.hasOwnProperty.call(entity, 'rating')
+    );
   }
 
   public static isRatedCountry(entity: Entity | RatedEntity): entity is Rated<Country> {
-    return entity.hasOwnProperty('code') && entity.hasOwnProperty('rating');
+    return (
+      Object.prototype.hasOwnProperty.call(entity, 'code') &&
+      Object.prototype.hasOwnProperty.call(entity, 'rating')
+    );
   }
 
   public static isContest(entity: Entity | RatedEntity): entity is Contest {
-    return entity.hasOwnProperty('hostCountry');
+    return Object.prototype.hasOwnProperty.call(entity, 'hostCountry');
   }
 
   public static isRatedContest(entity: Entity | RatedEntity): entity is Rated<Contest> {
-    return entity.hasOwnProperty('hostCountry') && entity.hasOwnProperty('rating');
+    return (
+      Object.prototype.hasOwnProperty.call(entity, 'hostCountry') &&
+      Object.prototype.hasOwnProperty.call(entity, 'rating')
+    );
   }
 
   public static isEntry(entity: Entity | RatedEntity): entity is Entry {
-    return entity.hasOwnProperty('place');
+    return Object.prototype.hasOwnProperty.call(entity, 'place');
   }
 
   public static roundRating(rating: number): string {

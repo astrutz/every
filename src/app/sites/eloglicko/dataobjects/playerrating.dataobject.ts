@@ -86,25 +86,24 @@ export class PlayerRating {
         (1 +
           Math.pow(
             10,
-            (this.currentRating - opponent.currentRating) /
-            this.ELO_KENNETH_HARKNESS_MAGIC,
+            (this.currentRating - opponent.currentRating) / this.ELO_KENNETH_HARKNESS_MAGIC,
           ))
       ).toFixed(3),
     );
     if (result === 1) {
       this.currentRating =
         this.currentRating +
-        // @ts-ignore
+        // @ts-expect-error - todo
         this.ELO_MAX_POSSIBLE_POINTSWITCH * (1 - expectationValue).toFixed(1);
     } else if (result === -1) {
       this.currentRating =
         this.currentRating +
-        // @ts-ignore
+        // @ts-expect-error - todo
         this.ELO_MAX_POSSIBLE_POINTSWITCH * (0 - expectationValue).toFixed(1);
     } else if (result === 0) {
       this.currentRating =
         this.currentRating +
-        // @ts-ignore
+        // @ts-expect-error - todo
         this.ELO_MAX_POSSIBLE_POINTSWITCH * (0.5 - expectationValue).toFixed(1);
     }
   }
@@ -114,25 +113,23 @@ export class PlayerRating {
    * @param {{opponent: PlayerRating, result: 0|0.5|1}[]} matchResults
    * @returns {number} New Rating after round
    */
-  calculateGlickoScore(matchResults: { opponent: PlayerRating | undefined, result: 0 | 0.5 | 1 }[]): number {
+  calculateGlickoScore(
+    matchResults: { opponent: PlayerRating | undefined; result: 0 | 0.5 | 1 }[],
+  ): number {
     let ratingChange = 0;
     for (const matchResult of matchResults) {
-      if(!matchResult.opponent) {
+      if (!matchResult.opponent) {
         return -1;
       }
       const opponent = matchResult.opponent;
       ratingChange +=
         this.glickoG(opponent.glickoRoundRD) *
         (matchResult.result -
-          this.glickoE(
-            opponent.glickoRoundRD,
-            this.currentRating - opponent.currentRating,
-          ));
+          this.glickoE(opponent.glickoRoundRD, this.currentRating - opponent.currentRating));
     }
 
     const changeScaling =
-      this.GLICKO_Q /
-      (1 / this.glickoRoundRD ** 2 + 1 / this.glickoD2(matchResults));
+      this.GLICKO_Q / (1 / this.glickoRoundRD ** 2 + 1 / this.glickoD2(matchResults));
 
     const newRating = this.currentRating + changeScaling * ratingChange;
 
@@ -144,11 +141,11 @@ export class PlayerRating {
    * @param {{opponent: PlayerRating, result: 0|0.5|1}[]} matchResults
    * @returns {number} New RD
    */
-  glickoNewPlayerRD(matchResults: { opponent: PlayerRating | undefined, result: 0 | 0.5 | 1 }[]): number {
+  glickoNewPlayerRD(
+    matchResults: { opponent: PlayerRating | undefined; result: 0 | 0.5 | 1 }[],
+  ): number {
     return Math.round(
-      Math.sqrt(
-        1 / (1 / this.glickoRoundRD ** 2 + 1 / this.glickoD2(matchResults)),
-      ),
+      Math.sqrt(1 / (1 / this.glickoRoundRD ** 2 + 1 / this.glickoD2(matchResults))),
     );
   }
 
@@ -178,8 +175,7 @@ export class PlayerRating {
   get glickoRoundRD(): number {
     return Math.min(
       Math.sqrt(
-        this.currentGlickoRD ** 2 +
-        this.GLICKO_DEFAULT_C ** 2 * this.glickoTimeSinceLastGame,
+        this.currentGlickoRD ** 2 + this.GLICKO_DEFAULT_C ** 2 * this.glickoTimeSinceLastGame,
       ),
       350,
     );
@@ -195,18 +191,12 @@ export class PlayerRating {
     // d2 is d**2
     let d2 = 0;
     for (const match of matchResults) {
-      if(!match.opponent) {
+      if (!match.opponent) {
         return -1;
       }
       const opponent = match.opponent;
-      const E = this.glickoE(
-        opponent.glickoRoundRD,
-        this.currentRating - opponent.currentRating,
-      );
-      d2 +=
-        1 /
-        (this.GLICKO_Q ** 2 *
-          (this.glickoG(opponent.glickoRoundRD) ** 2 * E * (1 - E)));
+      const E = this.glickoE(opponent.glickoRoundRD, this.currentRating - opponent.currentRating);
+      d2 += 1 / (this.GLICKO_Q ** 2 * (this.glickoG(opponent.glickoRoundRD) ** 2 * E * (1 - E)));
     }
     return d2;
   }

@@ -26,8 +26,8 @@ export class SnoozeModalComponent implements AfterViewInit, OnDestroy {
 
   protected snoozedDate$ = signal(new Date());
   protected isLoading$ = signal(false);
-  onClose$ = output();
-  onSnooze$ = output<Date>();
+  closed$ = output();
+  snoozed$ = output<Date>();
 
   ngAfterViewInit() {
     this.snoozedDate$.set(new Date(this.initialDate$()));

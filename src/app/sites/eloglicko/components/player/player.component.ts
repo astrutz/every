@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Player } from '../../dataobjects/player.dataobject';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
@@ -33,14 +33,14 @@ import { SimulationService } from '../../services/simulation.service';
   ],
 })
 export class PlayerComponent {
+  protected _simulationService = inject(SimulationService);
+
   protected _players: Player[] = [];
 
   protected _playerForm = new FormGroup({
     name: new FormControl('', Validators.required),
     strength: new FormControl(null, Validators.required),
   });
-
-  constructor(protected _simulationService: SimulationService) {}
 
   protected _createPlayer(): void {
     const name = this._playerForm.get('name')?.value;

@@ -7,9 +7,6 @@ export class Simulation {
   private _configuration: Configuration | null = null;
   private _tournament: MatchMaker | null = null;
 
-  constructor() {
-  }
-
   get players(): Player[] {
     return this._players ?? [];
   }

@@ -34,9 +34,7 @@ export class CrudComponent {
   protected readonly storeService = inject(EurovisionStoreService);
 
   protected keys: CrudKey[] = [
-    // @ts-expect-error - Localize is some Angular syntax
     { key: 'entries', name: $localize`Entries` },
-    // @ts-expect-error - Localize is some Angular syntax
     { key: 'contests', name: $localize`Contests` },
   ];
 

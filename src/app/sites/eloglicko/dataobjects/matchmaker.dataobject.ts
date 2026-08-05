@@ -13,7 +13,7 @@ export class MatchMaker {
     this.ranking = ranking;
     this.useRandom = useRandom;
   }
-  // @ts-ignore
+  // @ts-expect-error - todo
   addMatch(...matches): void {
     this.matches.push(...matches);
     this.rounds.slice(-1)[0].push(...matches);
@@ -41,21 +41,18 @@ export class MatchMaker {
 
     // Give a random player "spielfrei"
     if (playerRatingsCopy.length % 2 !== 0) {
-      freilosPlayerRating = playerRatingsCopy.splice(Math.floor(Math.random() * playerRatingsCopy.length), 1);
+      freilosPlayerRating = playerRatingsCopy.splice(
+        Math.floor(Math.random() * playerRatingsCopy.length),
+        1,
+      );
     }
 
     // the minus one is, so we don't get a single element if we have an odd number of players
     for (let i = 0; i < playerRatingsCopy.length; i += 2) {
-      res.push(
-        new Match(
-          playerRatingsCopy[i],
-          playerRatingsCopy[i + 1],
-          this.useRandom
-        ),
-      );
+      res.push(new Match(playerRatingsCopy[i], playerRatingsCopy[i + 1], this.useRandom));
     }
     if (freilosPlayerRating) {
-      // @ts-ignore
+      // @ts-expect-error - todo
       res.push(new Match(...[freilosPlayerRating[0], null]));
     }
 
@@ -74,17 +71,14 @@ export class MatchMaker {
       let opponents: PlayerRating[] = [];
       for (let j = 0; j < 2; j++) {
         opponents = opponents.concat(
-          playerRatingsCopy.splice(
-            Math.floor(Math.random() * playerRatingsCopy.length),
-            1,
-          ),
+          playerRatingsCopy.splice(Math.floor(Math.random() * playerRatingsCopy.length), 1),
         );
       }
-      // @ts-ignore
+      // @ts-expect-error - todo
       res.push(new Match(...opponents, this.useRandom));
     }
     playerRatingsCopy.forEach((rating) => {
-      // @ts-ignore
+      // @ts-expect-error - todo
       res.push(new Match(...[rating, null]));
     });
     return res;
@@ -109,10 +103,12 @@ export class MatchMaker {
     const res = [];
     let freilosPlayerRating;
 
-
     // Give a random player "spielfrei"
     if (playerRatingsCopy.length % 2 !== 0) {
-      freilosPlayerRating = playerRatingsCopy.splice(Math.floor(Math.random() * playerRatingsCopy.length), 1);
+      freilosPlayerRating = playerRatingsCopy.splice(
+        Math.floor(Math.random() * playerRatingsCopy.length),
+        1,
+      );
     }
 
     for (let i = 0; i < playerRatingsCopy.length / 2; i++) {
@@ -125,7 +121,7 @@ export class MatchMaker {
       );
     }
     if (freilosPlayerRating) {
-      // @ts-ignore
+      // @ts-expect-error - todo
       res.push(new Match(...[freilosPlayerRating[0], null]));
     }
     return res;

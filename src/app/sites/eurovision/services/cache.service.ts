@@ -57,14 +57,17 @@ export class CacheService {
     return this.#readEntities<Entry>('ENTRIES');
   }
 
+  // eslint-disable-next-line @typescript-eslint/adjacent-overload-signatures
   public set countries(countries: Country[]) {
     this.#writeEntities<Country>('COUNTRIES', countries);
   }
 
+  // eslint-disable-next-line @typescript-eslint/adjacent-overload-signatures
   public set contests(contests: Contest[]) {
     this.#writeEntities<Contest>('CONTESTS', contests);
   }
 
+  // eslint-disable-next-line @typescript-eslint/adjacent-overload-signatures
   public set entries(entries: Entry[]) {
     this.#writeEntities<Entry>('ENTRIES', entries);
   }
