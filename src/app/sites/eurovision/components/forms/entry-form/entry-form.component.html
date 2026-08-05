@@ -1,11 +1,12 @@
 <div class="max-w-2xl rounded">
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="mb-4">
-      <label class="block text-sm font-medium mb-1">ID</label>
+      <label class="block text-sm font-medium mb-1" for="entry-id">ID</label>
       <div class="flex gap-2 items-center">
         <div class="grow">
           <input
             formControlName="id"
+            id="entry-id"
             type="text"
             class="w-full border p-2 rounded text-black"
             placeholder="Entry ID" />
@@ -22,54 +23,60 @@
     </div>
 
     <div class="mb-4">
-      <label class="block text-sm font-medium mb-1">Country*</label>
+      <label class="block text-sm font-medium mb-1" for="entry-country">Country*</label>
       <input
         formControlName="country"
+        id="entry-country"
         type="text"
         class="w-full border p-2 rounded text-black"
         placeholder="Country code with two letters, e.g. 'DE'" />
     </div>
 
     <div class="mb-4">
-      <label class="block text-sm font-medium mb-1">Year*</label>
+      <label class="block text-sm font-medium mb-1" for="entry-year">Year*</label>
       <input
         formControlName="year"
+        id="entry-year"
         type="number"
         class="w-full border p-2 rounded text-black"
         placeholder="Contest Year" />
     </div>
 
     <div class="mb-4">
-      <label class="block text-sm font-medium mb-1">Place</label>
+      <label class="block text-sm font-medium mb-1" for="entry-place">Place</label>
       <input
         formControlName="place"
+        id="entry-place"
         type="number"
         class="w-full border p-2 rounded text-black"
         placeholder="Placement in the Contest" />
     </div>
 
     <div class="mb-4">
-      <label class="block text-sm font-medium mb-1">Title</label>
+      <label class="block text-sm font-medium mb-1" for="entry-title">Title</label>
       <input
         formControlName="title"
+        id="entry-title"
         type="text"
         class="w-full border p-2 rounded text-black"
         placeholder="Song Title" />
     </div>
 
     <div class="mb-4">
-      <label class="block text-sm font-medium mb-1">Artist</label>
+      <label class="block text-sm font-medium mb-1" for="entry-artist">Artist</label>
       <input
         formControlName="artist"
+        id="entry-artist"
         type="text"
         class="w-full border p-2 rounded text-black"
         placeholder="Song Artist" />
     </div>
 
     <div class="mb-4">
-      <label class="block text-sm font-medium mb-1">Link</label>
+      <label class="block text-sm font-medium mb-1" for="entry-link">Link</label>
       <input
         formControlName="link"
+        id="entry-link"
         type="text"
         class="w-full border p-2 rounded text-black"
         placeholder="YouTube Link" />
@@ -77,41 +84,46 @@
 
     <div class="mb-4 flex gap-2">
       <div>
-        <label class="block text-sm font-medium mb-1">Energy</label>
+        <label class="block text-sm font-medium mb-1" for="entry-energyRating">Energy</label>
         <input
           formControlName="energyRating"
+          id="entry-energyRating"
           type="number"
           class="w-full border p-2 rounded text-black"
           placeholder="1 - 10" />
       </div>
       <div>
-        <label class="block text-sm font-medium mb-1">Staging</label>
+        <label class="block text-sm font-medium mb-1" for="entry-stagingRating">Staging</label>
         <input
           formControlName="stagingRating"
+          id="entry-stagingRating"
           type="number"
           class="w-full border p-2 rounded text-black"
           placeholder="1 - 10" />
       </div>
       <div>
-        <label class="block text-sm font-medium mb-1">Studio</label>
+        <label class="block text-sm font-medium mb-1" for="entry-studioRating">Studio</label>
         <input
           formControlName="studioRating"
+          id="entry-studioRating"
           type="number"
           class="w-full border p-2 rounded text-black"
           placeholder="1 - 10" />
       </div>
       <div>
-        <label class="block text-sm font-medium mb-1">Fun</label>
+        <label class="block text-sm font-medium mb-1" for="entry-funRating">Fun</label>
         <input
           formControlName="funRating"
+          id="entry-funRating"
           type="number"
           class="w-full border p-2 rounded text-black"
           placeholder="1 - 10" />
       </div>
       <div>
-        <label class="block text-sm font-medium mb-1">Vocals</label>
+        <label class="block text-sm font-medium mb-1" for="entry-vocalsRating">Vocals</label>
         <input
           formControlName="vocalsRating"
+          id="entry-vocalsRating"
           type="number"
           class="w-full border p-2 rounded text-black"
           placeholder="1 - 10" />

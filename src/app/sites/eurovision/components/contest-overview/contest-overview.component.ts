@@ -17,15 +17,11 @@ import { Util } from '../../services/util';
   templateUrl: './contest-overview.component.html',
 })
 export class ContestOverviewComponent {
-  protected readonly themeService: ThemeService = inject(ThemeService);
   readonly #storeService: EurovisionStoreService = inject(EurovisionStoreService);
+  protected readonly themeService: ThemeService = inject(ThemeService);
 
   @Input({ required: true })
   public contest!: Contest | null;
-
-  public get year(): number | undefined {
-    return this.contest?.year;
-  }
 
   public get colours(): string[] {
     if (this.contest) {
@@ -39,5 +35,9 @@ export class ContestOverviewComponent {
       return Util.sortEntries(this.contest.entries).slice(0, 10);
     }
     return Util.sortEntries(this.#storeService.getEntriesWithoutContest()).slice(0, 10);
+  }
+
+  public get year(): number | undefined {
+    return this.contest?.year;
   }
 }

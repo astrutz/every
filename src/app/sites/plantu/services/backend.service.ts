@@ -12,18 +12,23 @@ import { SnoozeDto } from '../dataobjects/snooze.dataobject';
   providedIn: 'root',
 })
 export class BackendService {
-  #base = environment.apiUrl;
   #apiKey = environment.apiKey;
+  #base = environment.apiUrl;
 
-  get #headers() {
-    const headers: Record<string, string> = {
-      'Content-Type': 'application/json',
-    };
-    const key = this.#apiKey;
-    if (key) {
-      headers['x-api-key'] = key;
-    }
-    return headers;
+  public async getPlants(): Promise<Plant[]> {
+    return this.#fetchJson<Plant[]>('/plantu');
+  }
+
+  public async getTasks(): Promise<Task[]> {
+    return this.#fetchJson<Task[]>('/plantu/tasks');
+  }
+
+  public async patchSnooze(id: string, snoozeDto: SnoozeDto): Promise<void> {
+    return this.#patchJson<SnoozeDto>(`/plantu/${id}/snooze`, snoozeDto);
+  }
+
+  public async postCare(careDto: CareDto): Promise<void> {
+    return this.#postJson<CareDto>('/plantu/care', careDto);
   }
 
   async #fetchJson<T>(path: string): Promise<T> {
@@ -36,19 +41,6 @@ export class BackendService {
       throw new Error(`HTTP ${res.status} ${res.statusText} - ${text}`);
     }
     return (await res.json()) as T;
-  }
-
-  async #postJson<T>(path: string, data: T) {
-    const res = await fetch(`${this.#base}${path}`, {
-      headers: this.#headers,
-      credentials: 'omit',
-      method: 'POST',
-      body: JSON.stringify(data),
-    });
-    if (!res.ok) {
-      const text = await res.text().catch(() => '');
-      throw new Error(`HTTP ${res.status} ${res.statusText} - ${text}`);
-    }
   }
 
   async #patchJson<T>(path: string, data: T) {
@@ -64,19 +56,27 @@ export class BackendService {
     }
   }
 
-  public async getPlants(): Promise<Plant[]> {
-    return this.#fetchJson<Plant[]>('/plantu');
+  async #postJson<T>(path: string, data: T) {
+    const res = await fetch(`${this.#base}${path}`, {
+      headers: this.#headers,
+      credentials: 'omit',
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
+    if (!res.ok) {
+      const text = await res.text().catch(() => '');
+      throw new Error(`HTTP ${res.status} ${res.statusText} - ${text}`);
+    }
   }
 
-  public async getTasks(): Promise<Task[]> {
-    return this.#fetchJson<Task[]>('/plantu/tasks');
-  }
-
-  public async postCare(careDto: CareDto): Promise<void> {
-    return this.#postJson<CareDto>('/plantu/care', careDto);
-  }
-
-  public async patchSnooze(id: string, snoozeDto: SnoozeDto): Promise<void> {
-    return this.#patchJson<SnoozeDto>(`/plantu/${id}/snooze`, snoozeDto);
+  get #headers() {
+    const headers: Record<string, string> = {
+      'Content-Type': 'application/json',
+    };
+    const key = this.#apiKey;
+    if (key) {
+      headers['x-api-key'] = key;
+    }
+    return headers;
   }
 }

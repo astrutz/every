@@ -37,7 +37,7 @@ As this page is available in German and English, [i18n](https://angular.io/api/l
 or an `i18n` directive attached. To generate the default localization file (English) run:
 
 ```bash
- ng extract-i18n --format=json --output-path src/locale
+ npm run translate
 ```
 
 Copy/paste the new strings into the German locale and translate them.

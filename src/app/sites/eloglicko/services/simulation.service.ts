@@ -10,10 +10,84 @@ import { PlayerRating } from '../dataobjects/playerrating.dataobject';
   providedIn: 'root',
 })
 export class SimulationService {
-  readonly simulation: Simulation;
-
   constructor() {
     this.simulation = new Simulation();
+  }
+
+  readonly simulation: Simulation;
+
+  _getInitialRanking(): Ranking {
+    const ranking = new Ranking();
+    this.simulation.players.forEach((player) => ranking.addPlayer(player));
+    return ranking;
+  }
+
+  _setPlayerRatingsGlicko(matches: Match[], ranking: Ranking): void {
+    matches = matches.filter((match) => match.opponents[1]);
+    // collect playerInfos with win/loose info
+    const matchResultsByPlayer = new Map<
+      PlayerRating | undefined | -1,
+      {
+        opponent: PlayerRating | undefined | -1;
+        result: 0 | 0.5 | 1;
+      }[]
+    >();
+
+    for (const match of matches) {
+      if (!matchResultsByPlayer.has(match.winner)) {
+        matchResultsByPlayer.set(match.winner, []);
+      }
+      if (!matchResultsByPlayer.has(match.loser)) {
+        matchResultsByPlayer.set(match.loser, []);
+      }
+      if (!match.winner) {
+        // draw
+        matchResultsByPlayer
+          .get(match.opponents[0])
+          ?.push({ opponent: match.opponents[1], result: 0.5 });
+        matchResultsByPlayer
+          .get(match.opponents[1])
+          ?.push({ opponent: match.opponents[0], result: 0.5 });
+      } else {
+        // one player won
+        matchResultsByPlayer.get(match.winner)?.push({ opponent: match.loser, result: 1 });
+        matchResultsByPlayer.get(match.loser)?.push({ opponent: match.winner, result: 0 });
+      }
+    }
+
+    // Update player Rating and RD
+    // We need to do it in two loops, since we first need to calc all new values without changing the old ones
+    const newRatings = new Map<
+      PlayerRating,
+      {
+        rating: number;
+        rd: number;
+      }
+    >();
+    for (const [player, matchResults] of matchResultsByPlayer.entries()) {
+      // @ts-expect-error - todo
+      newRatings.set(player, {
+        // @ts-expect-error - todo
+        rating: player?.calculateGlickoScore(matchResults),
+        // @ts-expect-error - todo
+        rd: player?.glickoNewPlayerRD(matchResults),
+      });
+    }
+    for (const [player, newRating] of newRatings) {
+      player.currentRating = newRating.rating;
+      player.currentGlickoRD = newRating.rd;
+      player.glickoTimeSinceLastGame = 0;
+    }
+
+    // Update all players glickoTimeSinceLastGame+=1
+    ranking.playerRatings.forEach((playerRating) => {
+      playerRating.glickoTimeSinceLastGame++;
+      // this player hat a free pass this round, so his ratings were duplicated
+      if (!newRatings.has(playerRating)) {
+        // eslint-disable-next-line no-self-assign
+        playerRating.currentRating = playerRating.currentRating;
+      }
+    });
   }
 
   simulate(): void {
@@ -28,12 +102,6 @@ export class SimulationService {
       this.simulation.tournament = matchMaker;
       console.log(matchMaker);
     }
-  }
-
-  _getInitialRanking(): Ranking {
-    const ranking = new Ranking();
-    this.simulation.players.forEach((player) => ranking.addPlayer(player));
-    return ranking;
   }
 
   private _getMatches(matchMaker: MatchMaker): Match[] {
@@ -70,15 +138,13 @@ export class SimulationService {
     matches.forEach((match) => {
       if (match.winner && match.loser) {
         // Sieg/Niederlage
-        // @ts-ignore
+        // @ts-expect-error - todo
         match.winner.calculateEloScore(match.loser, 1);
-        // @ts-ignore
+        // @ts-expect-error - todo
         match.loser.calculateEloScore(match.winner, -1);
       } else if (match.opponents[1]) {
         // Unentschieden
-        // @ts-ignore
         match.opponents[0].calculateEloScore(match.opponents[1], 0);
-        // @ts-ignore
         match.opponents[1].calculateEloScore(match.opponents[0], 0);
       } else {
         // Spielfrei
@@ -90,74 +156,6 @@ export class SimulationService {
           // eslint-disable-next-line no-self-assign
           match.opponents[0].currentRating = match.opponents[0].currentRating;
         }
-      }
-    });
-  }
-
-  _setPlayerRatingsGlicko(matches: Match[], ranking: Ranking): void {
-    matches = matches.filter((match) => match.opponents[1]);
-    // collect playerInfos with win/loose info
-    const matchResultsByPlayer: Map<
-      PlayerRating | undefined | -1,
-      {
-        opponent: PlayerRating | undefined | -1;
-        result: 0 | 0.5 | 1;
-      }[]
-    > = new Map();
-
-    for (const match of matches) {
-      if (!matchResultsByPlayer.has(match.winner)) {
-        matchResultsByPlayer.set(match.winner, []);
-      }
-      if (!matchResultsByPlayer.has(match.loser)) {
-        matchResultsByPlayer.set(match.loser, []);
-      }
-      if (!match.winner) {
-        // draw
-        matchResultsByPlayer
-          .get(match.opponents[0])
-          ?.push({ opponent: match.opponents[1], result: 0.5 });
-        matchResultsByPlayer
-          .get(match.opponents[1])
-          ?.push({ opponent: match.opponents[0], result: 0.5 });
-      } else {
-        // one player won
-        matchResultsByPlayer.get(match.winner)?.push({ opponent: match.loser, result: 1 });
-        matchResultsByPlayer.get(match.loser)?.push({ opponent: match.winner, result: 0 });
-      }
-    }
-
-    // Update player Rating and RD
-    // We need to do it in two loops, since we first need to calc all new values without changing the old ones
-    const newRatings: Map<
-      PlayerRating,
-      {
-        rating: number;
-        rd: number;
-      }
-    > = new Map();
-    for (const [player, matchResults] of matchResultsByPlayer.entries()) {
-      // @ts-ignore
-      newRatings.set(player, {
-        // @ts-ignore
-        rating: player?.calculateGlickoScore(matchResults),
-        // @ts-ignore
-        rd: player?.glickoNewPlayerRD(matchResults),
-      });
-    }
-    for (const [player, newRating] of newRatings) {
-      player.currentRating = newRating.rating;
-      player.currentGlickoRD = newRating.rd;
-      player.glickoTimeSinceLastGame = 0;
-    }
-
-    // Update all players glickoTimeSinceLastGame+=1
-    ranking.playerRatings.forEach((playerRating) => {
-      playerRating.glickoTimeSinceLastGame++;
-      // this player hat a free pass this round, so his ratings were duplicated
-      if (!newRatings.has(playerRating)) {
-        // eslint-disable-next-line no-self-assign
-        playerRating.currentRating = playerRating.currentRating;
       }
     });
   }

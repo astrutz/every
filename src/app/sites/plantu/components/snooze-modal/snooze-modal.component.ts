@@ -2,12 +2,14 @@ import {
   AfterViewInit,
   Component,
   computed,
+  inject,
   input,
   OnDestroy,
   output,
   signal,
 } from '@angular/core';
 import { NgIcon } from '@ng-icons/core';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'plantu-snooze-modal',
@@ -16,22 +18,16 @@ import { NgIcon } from '@ng-icons/core';
   imports: [NgIcon],
 })
 export class SnoozeModalComponent implements AfterViewInit, OnDestroy {
+  readonly authService = inject(AuthService);
+
+  initialDate$ = input<string>('');
   isOpen$ = input<boolean>(false);
   title$ = input<string>('');
-  initialDate$ = input<string>('');
 
-  protected snoozedDate$ = signal(new Date());
+  closed$ = output();
+  snoozed$ = output<Date>();
   protected isLoading$ = signal(false);
-  onClose$ = output();
-  onSnooze$ = output<Date>();
-
-  ngAfterViewInit() {
-    this.snoozedDate$.set(new Date(this.initialDate$()));
-  }
-
-  ngOnDestroy() {
-    this.isLoading$.set(false);
-  }
+  protected snoozedDate$ = signal(new Date());
 
   protected dateForInput$ = computed(() => {
     return this.snoozedDate$().toISOString().split('T')[0];
@@ -42,12 +38,6 @@ export class SnoozeModalComponent implements AfterViewInit, OnDestroy {
     if (inputElement.valueAsDate) {
       this.snoozedDate$.set(inputElement.valueAsDate);
     }
-  }
-
-  protected setToTomorrow(): void {
-    const date = new Date();
-    date.setDate(date.getDate() + 1);
-    this.snoozedDate$.set(date);
   }
 
   protected setToDayAfterTomorrow(): void {
@@ -74,5 +64,19 @@ export class SnoozeModalComponent implements AfterViewInit, OnDestroy {
     const diff = (8 - day) % 7;
     date.setDate(date.getDate() + diff);
     this.snoozedDate$.set(date);
+  }
+
+  protected setToTomorrow(): void {
+    const date = new Date();
+    date.setDate(date.getDate() + 1);
+    this.snoozedDate$.set(date);
+  }
+
+  ngAfterViewInit() {
+    this.snoozedDate$.set(new Date(this.initialDate$()));
+  }
+
+  ngOnDestroy() {
+    this.isLoading$.set(false);
   }
 }

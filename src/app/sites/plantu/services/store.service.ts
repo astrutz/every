@@ -13,12 +13,12 @@ import { SnoozeDto } from '../dataobjects/snooze.dataobject';
 export class StoreService {
   readonly #backendService = inject(PlantuBackendService);
 
-  #plants$: WritableSignal<Plant[]> = signal([]);
-  #tasks$: WritableSignal<Task[]> = signal([]);
-
   constructor() {
     this.loadFromBackend();
   }
+  #plants$: WritableSignal<Plant[]> = signal([]);
+
+  #tasks$: WritableSignal<Task[]> = signal([]);
 
   public isLoading$ = computed<boolean>(() => this.#plants$().length === 0);
 

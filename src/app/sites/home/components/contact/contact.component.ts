@@ -34,12 +34,8 @@ import { TagComponent } from '../../../../components/tag/tag.component';
 export class ContactComponent {
   readonly #store = inject(StoreService);
 
-  protected showCopyChip: boolean = false;
-  protected mail: string = 'hello@alexstrutz.dev';
-
-  protected get socials(): Social[] {
-    return this.#store.socials;
-  }
+  protected mail = 'hello@alexstrutz.dev';
+  protected showCopyChip = false;
 
   /**
    * Copies a text to the clipboard if the feature is available
@@ -50,5 +46,9 @@ export class ContactComponent {
       navigator.clipboard.writeText(text);
       this.showCopyChip = true;
     }
+  }
+
+  protected get socials(): Social[] {
+    return this.#store.socials;
   }
 }

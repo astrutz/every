@@ -17,17 +17,17 @@ import {
   templateUrl: './skills.component.html',
 })
 export class SkillsComponent {
-  readonly #store = inject(StoreService);
   readonly #colorschemeService = inject(ColorschemeService);
-
-  protected get skills(): Skill[] {
-    return this.#store.skills;
-  }
+  readonly #store = inject(StoreService);
 
   protected getIconUrl(skill: Skill): string {
     if (skill.hasDarkIcon && this.#colorschemeService.colorscheme === Colorscheme.dark) {
       return skill.darkIcon ?? '';
     }
     return skill.icon;
+  }
+
+  protected get skills(): Skill[] {
+    return this.#store.skills;
   }
 }

@@ -7,10 +7,12 @@ import {
   lucideSun,
   lucideChevronDown,
   lucideExternalLink,
+  lucideMessageCircleQuestionMark,
 } from '@ng-icons/lucide';
 import { RouterLink } from '@angular/router';
 import { apps } from '../../services/app/app.service';
 import { NgClass } from '@angular/common';
+import { DialogComponent } from '../dialog/dialog.component';
 
 /**
  * Displays a mobile navigation, hidden on w > 768px
@@ -18,7 +20,7 @@ import { NgClass } from '@angular/common';
  */
 @Component({
   selector: 'every-mobile-navigation',
-  imports: [NgIcon, RouterLink, NgClass],
+  imports: [NgIcon, RouterLink, NgClass, DialogComponent],
   templateUrl: './mobile-navigation.component.html',
   viewProviders: [
     provideIcons({
@@ -27,10 +29,13 @@ import { NgClass } from '@angular/common';
       lucideX,
       lucideChevronDown,
       lucideExternalLink,
+      lucideMessageCircleQuestionMark,
     }),
   ],
 })
 export class MobileNavigationComponent extends HeaderComponent {
+  protected override readonly apps = apps;
+
   protected closeNavigation(): void {
     this.navigationService.isOpen = false;
   }
@@ -42,6 +47,4 @@ export class MobileNavigationComponent extends HeaderComponent {
   protected set isOpen(newVal: boolean) {
     this.navigationService.isOpen = newVal;
   }
-
-  protected override readonly apps = apps;
 }

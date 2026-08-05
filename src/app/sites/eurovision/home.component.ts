@@ -14,7 +14,7 @@ import { LanguageSwitchComponent } from '../../components/language-switch/langua
 export class HomeComponent {
   readonly #storeService: EurovisionStoreService = inject(EurovisionStoreService);
 
-  protected isLoading$ = computed<boolean>(() => this.#storeService.isLoading$());
-
   protected contests$ = computed<Contest[]>(() => this.#storeService.contests$());
+
+  protected isLoading$ = computed<boolean>(() => this.#storeService.isLoading$());
 }

@@ -17,23 +17,23 @@ import { socials } from '../data/socials.data';
   providedIn: 'root',
 })
 export class StoreService {
-  public get skills(): Skill[] {
-    return skills;
-  }
-
   public get experiences(): Experience[] {
     return experiences;
   }
 
-  public get works(): Work[] {
-    return works;
+  public get skills(): Skill[] {
+    return skills;
+  }
+
+  public get socials(): Social[] {
+    return socials;
   }
 
   public get testimonials(): Testimonial[] {
     return testimonials;
   }
 
-  public get socials(): Social[] {
-    return socials;
+  public get works(): Work[] {
+    return works;
   }
 }

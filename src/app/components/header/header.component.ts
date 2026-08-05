@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal, Signal } from '@angular/core';
+import { Component, computed, inject, Signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
   lucideArrowDown10,
@@ -16,14 +16,14 @@ import { LocaleService } from '../../services/locale/locale.service';
 import { TitleService } from '../../services/title/title.service';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { apps, AppService, HeaderLink } from '../../services/app/app.service';
-import { HelpDialogComponent } from '../help-dialog/help-dialog.component';
+import { DialogComponent } from '../dialog/dialog.component';
 
 /**
  * Displays the header bar including links, a language switcher and a color switcher
  */
 @Component({
   selector: 'every-header',
-  imports: [NgIcon, FormsModule, NgClass, RouterLink, RouterLinkActive, HelpDialogComponent],
+  imports: [NgIcon, FormsModule, NgClass, RouterLink, RouterLinkActive, DialogComponent],
   templateUrl: './header.component.html',
   viewProviders: [
     provideIcons({
@@ -38,21 +38,18 @@ import { HelpDialogComponent } from '../help-dialog/help-dialog.component';
 })
 export class HeaderComponent {
   readonly #colorschemeService: ColorschemeService = inject(ColorschemeService);
-  protected readonly navigationService: NavigationService = inject(NavigationService);
-  protected readonly localeService: LocaleService = inject(LocaleService);
   readonly #titleService: TitleService = inject(TitleService);
   protected readonly appService: AppService = inject(AppService);
+  protected readonly localeService: LocaleService = inject(LocaleService);
+  protected readonly navigationService: NavigationService = inject(NavigationService);
+
+  protected readonly apps = apps;
 
   protected isAppNavOpen = false;
-  protected showHelpDialog$ = signal(false);
 
   protected links$: Signal<HeaderLink[]> = computed(
     () => this.appService.currentApp$().headerLinks,
   );
-
-  protected get colorIconName(): string {
-    return this.#colorschemeService.colorscheme === Colorscheme.light ? 'lucideMoon' : 'lucideSun';
-  }
 
   protected openNavigation(): void {
     this.navigationService.isOpen = true;
@@ -62,9 +59,11 @@ export class HeaderComponent {
     this.#colorschemeService.toggleColorScheme();
   }
 
+  protected get colorIconName(): string {
+    return this.#colorschemeService.colorscheme === Colorscheme.light ? 'lucideMoon' : 'lucideSun';
+  }
+
   protected get title(): string {
     return this.#titleService.title;
   }
-
-  protected readonly apps = apps;
 }

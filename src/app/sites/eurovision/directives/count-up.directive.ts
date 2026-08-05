@@ -23,14 +23,14 @@ export class CountUpDirective implements AfterViewInit, OnDestroy {
   private readonly _environmentInjector = inject(EnvironmentInjector);
 
   /**
-   * Number to which the directive should count up to
+   * Observer to determine when the transition should start.
    */
-  public target$ = input.required<number>();
+  private _observer?: IntersectionObserver;
 
   /**
-   * Duration of the animation
+   * Indicates if the counting has already started, so it won't get restarted on second intersection
    */
-  public duration$ = input<number>(2000);
+  private _started = false;
 
   /**
    * Optional element whose width should grow together with the count-up animation.
@@ -47,97 +47,14 @@ export class CountUpDirective implements AfterViewInit, OnDestroy {
   public barMultiplier$ = input<number>(10);
 
   /**
-   * Observer to determine when the transition should start.
+   * Duration of the animation
    */
-  private _observer?: IntersectionObserver;
+  public duration$ = input<number>(2000);
 
   /**
-   * Indicates if the counting has already started, so it won't get restarted on second intersection
+   * Number to which the directive should count up to
    */
-  private _started = false;
-
-  /**
-   * Returns how many decimal places the target value has.
-   */
-  private _getFractionDigits(): number {
-    const value = this.target$();
-    const valueAsString = value.toString();
-
-    if (!valueAsString.includes('.')) {
-      return 0;
-    }
-
-    return valueAsString.split('.')[1]?.length ?? 0;
-  }
-
-  /**
-   * Formats a value using the same decimal precision as the target value.
-   */
-  private _formatValue(value: number): string {
-    const fractionDigits = this._getFractionDigits();
-
-    return value.toLocaleString(undefined, {
-      minimumFractionDigits: fractionDigits,
-      maximumFractionDigits: fractionDigits,
-      useGrouping: true,
-    });
-  }
-
-  /**
-   * Rounds a number to the given decimal places.
-   */
-  private _roundToFractionDigits(value: number, fractionDigits: number): number {
-    const factor = Math.pow(10, fractionDigits);
-    return Math.round(value * factor) / factor;
-  }
-
-  /**
-   * Reserve enough width for the final formatted value to prevent layout shifts.
-   */
-  private _applyFixedWidth(): void {
-    const targetText = this._formatValue(this.target$());
-    const length = targetText.length;
-
-    const element = this._elementRef.nativeElement;
-    element.style.display = 'inline-block';
-    element.style.minWidth = `${length}ch`;
-    element.style.textAlign = 'right';
-    element.style.fontVariantNumeric = 'tabular-nums';
-  }
-
-  /**
-   * Updates the optional progress bar width based on the current animated value.
-   */
-  private _updateBar(value: number): void {
-    const bar = this.barElement$();
-
-    if (!bar) {
-      return;
-    }
-
-    const width = Math.max(0, Math.min(100, value * this.barMultiplier$()));
-    bar.style.width = `${width}%`;
-  }
-
-  /**
-   * Initiates an IntersectionObserver
-   */
-  private _initObserver(): void {
-    this._applyFixedWidth();
-
-    this._elementRef.nativeElement.textContent = this._formatValue(0);
-    this._updateBar(0);
-
-    this._observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting && !this._started) {
-        this._started = true;
-        this._animate(0);
-        this._observer?.disconnect();
-      }
-    });
-
-    this._observer.observe(this._elementRef.nativeElement);
-  }
+  public target$ = input.required<number>();
 
   /**
    * Starts the animation and updates number + optional bar on every animation frame.
@@ -170,10 +87,93 @@ export class CountUpDirective implements AfterViewInit, OnDestroy {
   }
 
   /**
+   * Reserve enough width for the final formatted value to prevent layout shifts.
+   */
+  private _applyFixedWidth(): void {
+    const targetText = this._formatValue(this.target$());
+    const length = targetText.length;
+
+    const element = this._elementRef.nativeElement;
+    element.style.display = 'inline-block';
+    element.style.minWidth = `${length}ch`;
+    element.style.textAlign = 'right';
+    element.style.fontVariantNumeric = 'tabular-nums';
+  }
+
+  /**
    * Ease-out easing function.
    */
   private _easeOutCubic(linearProgress: number): number {
     return 1 - Math.pow(1 - linearProgress, 5);
+  }
+
+  /**
+   * Formats a value using the same decimal precision as the target value.
+   */
+  private _formatValue(value: number): string {
+    const fractionDigits = this._getFractionDigits();
+
+    return value.toLocaleString(undefined, {
+      minimumFractionDigits: fractionDigits,
+      maximumFractionDigits: fractionDigits,
+      useGrouping: true,
+    });
+  }
+
+  /**
+   * Returns how many decimal places the target value has.
+   */
+  private _getFractionDigits(): number {
+    const value = this.target$();
+    const valueAsString = value.toString();
+
+    if (!valueAsString.includes('.')) {
+      return 0;
+    }
+
+    return valueAsString.split('.')[1]?.length ?? 0;
+  }
+
+  /**
+   * Initiates an IntersectionObserver
+   */
+  private _initObserver(): void {
+    this._applyFixedWidth();
+
+    this._elementRef.nativeElement.textContent = this._formatValue(0);
+    this._updateBar(0);
+
+    this._observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !this._started) {
+        this._started = true;
+        this._animate(0);
+        this._observer?.disconnect();
+      }
+    });
+
+    this._observer.observe(this._elementRef.nativeElement);
+  }
+
+  /**
+   * Rounds a number to the given decimal places.
+   */
+  private _roundToFractionDigits(value: number, fractionDigits: number): number {
+    const factor = Math.pow(10, fractionDigits);
+    return Math.round(value * factor) / factor;
+  }
+
+  /**
+   * Updates the optional progress bar width based on the current animated value.
+   */
+  private _updateBar(value: number): void {
+    const bar = this.barElement$();
+
+    if (!bar) {
+      return;
+    }
+
+    const width = Math.max(0, Math.min(100, value * this.barMultiplier$()));
+    bar.style.width = `${width}%`;
   }
 
   ngAfterViewInit(): void {

@@ -12,6 +12,11 @@ export class RatingComponent {
   @Input({ required: true })
   totalRating!: number;
 
+  protected get emptyStars(): number {
+    const roundedRatingOutOfTen = Math.round(this.totalRating);
+    return 5 - Math.round(roundedRatingOutOfTen / 2);
+  }
+
   protected get fullStars(): number {
     const roundedRatingOutOfTen = Math.round(this.totalRating);
     const halfStarDeduction = this.hasHalfStar ? 1 : 0;
@@ -21,10 +26,5 @@ export class RatingComponent {
   protected get hasHalfStar(): boolean {
     const roundedRatingOutOfTen = Math.round(this.totalRating);
     return roundedRatingOutOfTen % 2 === 1;
-  }
-
-  protected get emptyStars(): number {
-    const roundedRatingOutOfTen = Math.round(this.totalRating);
-    return 5 - Math.round(roundedRatingOutOfTen / 2);
   }
 }

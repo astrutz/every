@@ -12,24 +12,6 @@ import { EntryDto } from '../../../dataobjects/entry.dataobject';
   imports: [FormsModule, ReactiveFormsModule],
 })
 export class EntryFormComponent extends FormComponent implements OnInit {
-  get #formToEntry(): EntryDto {
-    const raw = this.form.getRawValue();
-    return {
-      country: this.getCountryIDByCode(raw.country),
-      contest: this.#getContestIDByYear(raw.year),
-      year: raw.year,
-      place: raw.place,
-      artist: raw.artist,
-      title: raw.title,
-      link: raw.link,
-      energyRating: raw.energyRating,
-      stagingRating: raw.stagingRating,
-      studioRating: raw.studioRating,
-      funRating: raw.funRating,
-      vocalsRating: raw.vocalsRating,
-    };
-  }
-
   protected override onSearch() {
     const id = this.form.controls['id'].value;
     if (id) {
@@ -68,6 +50,10 @@ export class EntryFormComponent extends FormComponent implements OnInit {
     }
   }
 
+  #getContestIDByYear(year: number): string | undefined {
+    return this.storeService.getContestByYear(year)?._id;
+  }
+
   protected get totalRanking(): number {
     const raw = this.form.getRawValue();
     const energy = raw.energyRating;
@@ -78,8 +64,22 @@ export class EntryFormComponent extends FormComponent implements OnInit {
     return (energy * 3 + staging * 3 + studio * 1.5 + fun * 1.5 + vocals) / 10;
   }
 
-  #getContestIDByYear(year: number): string | undefined {
-    return this.storeService.getContestByYear(year)?._id;
+  get #formToEntry(): EntryDto {
+    const raw = this.form.getRawValue();
+    return {
+      country: this.getCountryIDByCode(raw.country),
+      contest: this.#getContestIDByYear(raw.year),
+      year: raw.year,
+      place: raw.place,
+      artist: raw.artist,
+      title: raw.title,
+      link: raw.link,
+      energyRating: raw.energyRating,
+      stagingRating: raw.stagingRating,
+      studioRating: raw.studioRating,
+      funRating: raw.funRating,
+      vocalsRating: raw.vocalsRating,
+    };
   }
 
   ngOnInit(): void {
