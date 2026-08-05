@@ -17,6 +17,9 @@ import { LoadingComponent } from '../../components/loading/loading.component';
 import { LocationDropdownComponent } from './components/location-dropdown/location-dropdown.component';
 import { Location as PlantLocation } from './dataobjects/location.dataobject';
 import { Task } from './dataobjects/task.dataobject';
+import { DialogComponent } from '../../components/dialog/dialog.component';
+import { FormsModule } from '@angular/forms';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'plantu-home',
@@ -28,6 +31,8 @@ import { Task } from './dataobjects/task.dataobject';
     NgClass,
     LoadingComponent,
     LocationDropdownComponent,
+    DialogComponent,
+    FormsModule,
   ],
   providers: [
     provideIcons({
@@ -42,6 +47,7 @@ import { Task } from './dataobjects/task.dataobject';
 })
 export class HomeComponent {
   readonly #storeService = inject(PlantuStoreService);
+  readonly authService = inject(AuthService);
   protected readonly basketService = inject(BasketService);
 
   protected currentFilter = signal<PlantLocation>('Alle');
@@ -63,6 +69,8 @@ export class HomeComponent {
   protected requestIsPending$ = signal(false);
   protected showToast$: WritableSignal<undefined | 'success' | 'error'> = signal(undefined);
   protected showScrollToTop$ = signal(false);
+
+  protected passwordInput = '';
 
   #getFilteredTasks(): Task[] {
     const allTasks = this.#storeService.tasks$();
@@ -126,13 +134,15 @@ export class HomeComponent {
 
   protected async submit(): Promise<void> {
     try {
-      this.requestIsPending$.set(true);
-      await this.basketService.submit();
-      this.requestIsPending$.set(false);
-      this.showToast$.set('success');
-      setTimeout(() => {
-        this.showToast$.set(undefined);
-      }, 5000);
+      if (this.authService.isLoggedIn$()) {
+        this.requestIsPending$.set(true);
+        await this.basketService.submit();
+        this.requestIsPending$.set(false);
+        this.showToast$.set('success');
+        setTimeout(() => {
+          this.showToast$.set(undefined);
+        }, 5000);
+      }
     } catch (e) {
       console.warn(e);
       this.showToast$.set('error');
@@ -141,5 +151,13 @@ export class HomeComponent {
         this.showToast$.set(undefined);
       }, 5000);
     }
+  }
+
+  protected async sendPasswordAndSubmit(): Promise<void> {
+    const isLoggedIn = this.authService.login(this.passwordInput);
+    if (isLoggedIn) {
+      await this.submit();
+    }
+    this.passwordInput = '';
   }
 }

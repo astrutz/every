@@ -48,6 +48,8 @@
       </button>
       <button
         (click)="submit()"
+        [attr.command]="this.authService.isLoggedIn$() ? '' : 'show-modal'"
+        commandfor="password-dialog"
         type="button"
         class="relative flex items-center justify-center text-white shadow-gray-400 dark:shadow-black shadow-lg bg-sky-600 rounded-full w-12 h-12 md:w-16 md:h-16 hover:bg-sky-800 dark:bg-sky-600 dark:hover:bg-sky-700">
         @if (requestIsPending$()) {
@@ -117,3 +119,26 @@
 } @else {
   <every-loading></every-loading>
 }
+
+<every-dialog [dialogId$]="'password-dialog'">
+  <h3 i18n class="text-xl md:text-2xl">Please enter password</h3>
+  <div class="my-4 md:my-6 flex flex-col gap-2">
+    <label for="password" class="block font-medium text-gray-900 dark:text-white">Password</label>
+    <input
+      [(ngModel)]="passwordInput"
+      type="password"
+      id="password"
+      class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+      placeholder="•••••••••"
+      autocomplete="off"
+      required />
+    <button
+      type="button"
+      (click)="sendPasswordAndSubmit()"
+      command="close"
+      commandfor="password-dialog"
+      class="text-white bg-sky-600 hover:bg-sky-800 font-medium rounded-lg px-5 py-2.5 dark:bg-sky-600 dark:hover:bg-sky-700 mt-2 md:mt-4">
+      Send
+    </button>
+  </div>
+</every-dialog>
