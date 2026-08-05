@@ -12,7 +12,7 @@ import {
 import { RouterLink } from '@angular/router';
 import { apps } from '../../services/app/app.service';
 import { NgClass } from '@angular/common';
-import { HelpDialogComponent } from '../help-dialog/help-dialog.component';
+import { DialogComponent } from '../dialog/dialog.component';
 
 /**
  * Displays a mobile navigation, hidden on w > 768px
@@ -20,7 +20,7 @@ import { HelpDialogComponent } from '../help-dialog/help-dialog.component';
  */
 @Component({
   selector: 'every-mobile-navigation',
-  imports: [NgIcon, RouterLink, NgClass, HelpDialogComponent],
+  imports: [NgIcon, RouterLink, NgClass, DialogComponent],
   templateUrl: './mobile-navigation.component.html',
   viewProviders: [
     provideIcons({
