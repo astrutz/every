@@ -28,6 +28,14 @@ export class Util {
     return '';
   }
 
+  public static getTotalRankingOfEntry(entries: Entry[], entry?: Entry): number | undefined {
+    return entry ? Util.sortEntries(entries).indexOf(entry) + 1 : undefined;
+  }
+
+  public static isContest(entity: Entity | RatedEntity): entity is Contest {
+    return Object.prototype.hasOwnProperty.call(entity, 'hostCountry');
+  }
+
   public static isCountry(entity: Entity | RatedEntity): entity is Country {
     return (
       Object.prototype.hasOwnProperty.call(entity, 'code') &&
@@ -35,15 +43,8 @@ export class Util {
     );
   }
 
-  public static isRatedCountry(entity: Entity | RatedEntity): entity is Rated<Country> {
-    return (
-      Object.prototype.hasOwnProperty.call(entity, 'code') &&
-      Object.prototype.hasOwnProperty.call(entity, 'rating')
-    );
-  }
-
-  public static isContest(entity: Entity | RatedEntity): entity is Contest {
-    return Object.prototype.hasOwnProperty.call(entity, 'hostCountry');
+  public static isEntry(entity: Entity | RatedEntity): entity is Entry {
+    return Object.prototype.hasOwnProperty.call(entity, 'place');
   }
 
   public static isRatedContest(entity: Entity | RatedEntity): entity is Rated<Contest> {
@@ -53,8 +54,11 @@ export class Util {
     );
   }
 
-  public static isEntry(entity: Entity | RatedEntity): entity is Entry {
-    return Object.prototype.hasOwnProperty.call(entity, 'place');
+  public static isRatedCountry(entity: Entity | RatedEntity): entity is Rated<Country> {
+    return (
+      Object.prototype.hasOwnProperty.call(entity, 'code') &&
+      Object.prototype.hasOwnProperty.call(entity, 'rating')
+    );
   }
 
   public static roundRating(rating: number): string {
@@ -76,9 +80,5 @@ export class Util {
         b.vocalsRating - a.vocalsRating ||
         a.year - b.year,
     );
-  }
-
-  public static getTotalRankingOfEntry(entries: Entry[], entry?: Entry): number | undefined {
-    return entry ? Util.sortEntries(entries).indexOf(entry) + 1 : undefined;
   }
 }

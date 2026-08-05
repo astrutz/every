@@ -29,16 +29,10 @@ import { Util } from '../../services/util';
   ],
 })
 export class CountryComponent implements OnInit {
-  #countryCode = '';
   readonly #activatedRoute = inject(ActivatedRoute);
   readonly #storeService = inject(EurovisionStoreService);
   readonly #themeService = inject(ThemeService);
-
-  ngOnInit() {
-    this.#activatedRoute.params.subscribe((params: Params) => {
-      this.#countryCode = params['countryCode'] ?? '';
-    });
-  }
+  #countryCode = '';
 
   protected country$ = computed(() => {
     if (!this.#storeService.isLoading$()) {
@@ -53,11 +47,17 @@ export class CountryComponent implements OnInit {
 
   protected sortedEntries$ = computed<Entry[]>(() => Util.sortEntries(this.entries$()));
 
+  protected getCrest(code: string): string {
+    return `assets/eurovision/crests/${code}.svg`;
+  }
+
   protected getFlag(code: string): string {
     return `${code}-${this.#themeService.flagBackground}`;
   }
 
-  protected getCrest(code: string): string {
-    return `assets/eurovision/crests/${code}.svg`;
+  ngOnInit() {
+    this.#activatedRoute.params.subscribe((params: Params) => {
+      this.#countryCode = params['countryCode'] ?? '';
+    });
   }
 }

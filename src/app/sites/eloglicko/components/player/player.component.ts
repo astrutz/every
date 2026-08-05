@@ -35,12 +35,16 @@ import { SimulationService } from '../../services/simulation.service';
 export class PlayerComponent {
   protected _simulationService = inject(SimulationService);
 
-  protected _players: Player[] = [];
-
   protected _playerForm = new FormGroup({
     name: new FormControl('', Validators.required),
     strength: new FormControl(null, Validators.required),
   });
+
+  protected _players: Player[] = [];
+
+  protected _changePlayerColor(index: number): void {
+    this._simulationService.simulation.changePlayerColor(index);
+  }
 
   protected _createPlayer(): void {
     const name = this._playerForm.get('name')?.value;
@@ -49,10 +53,6 @@ export class PlayerComponent {
       this._simulationService.simulation.createPlayer(name ?? '', strength ?? 1);
       this._playerForm.reset();
     }
-  }
-
-  protected _changePlayerColor(index: number): void {
-    this._simulationService.simulation.changePlayerColor(index);
   }
 
   protected _deletePlayer(index: number): void {

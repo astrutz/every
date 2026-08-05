@@ -2,11 +2,6 @@ import { v4 as uuidv4 } from "uuid";
 import { PlayerRating } from './playerrating.dataobject';
 
 export class Match {
-  id = '';
-  opponents: [PlayerRating, PlayerRating | undefined];
-  winner: PlayerRating | undefined;
-  loser: PlayerRating | undefined | -1;
-
   constructor(playerRatingA: PlayerRating, playerRatingB: PlayerRating | undefined, useRandom = false) {
     this.id = uuidv4();
     this.opponents = [playerRatingA, playerRatingB];
@@ -27,4 +22,9 @@ export class Match {
       this.loser = -1;
     }
   }
+  id = '';
+  loser: PlayerRating | undefined | -1;
+  opponents: [PlayerRating, PlayerRating | undefined];
+
+  winner: PlayerRating | undefined;
 }

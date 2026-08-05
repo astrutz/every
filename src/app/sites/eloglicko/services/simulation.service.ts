@@ -10,86 +10,16 @@ import { PlayerRating } from '../dataobjects/playerrating.dataobject';
   providedIn: 'root',
 })
 export class SimulationService {
-  readonly simulation: Simulation;
-
   constructor() {
     this.simulation = new Simulation();
   }
 
-  simulate(): void {
-    if (this.simulation.configuration) {
-      const ranking = this._getInitialRanking();
-      const matchMaker = new MatchMaker(ranking, this.simulation.configuration.allowUnderdogWins);
-      for (let i = 0; i < this.simulation.configuration.count; i++) {
-        const matches = this._getMatches(matchMaker);
-        matchMaker.addMatch(matches);
-        this._setPlayerRatings(matches, ranking);
-      }
-      this.simulation.tournament = matchMaker;
-      console.log(matchMaker);
-    }
-  }
+  readonly simulation: Simulation;
 
   _getInitialRanking(): Ranking {
     const ranking = new Ranking();
     this.simulation.players.forEach((player) => ranking.addPlayer(player));
     return ranking;
-  }
-
-  private _getMatches(matchMaker: MatchMaker): Match[] {
-    let matches: Match[] = [];
-    switch (this.simulation.configuration?.matching) {
-      case 'random' as Matching:
-        matches = matchMaker.getRandomOpponentMatches();
-        break;
-      case 'seeding' as Matching:
-        matches = matchMaker.getSeedingMatches();
-        break;
-      case 'similar' as Matching:
-        matches = matchMaker.getCurrentRatingPairMatches();
-        break;
-    }
-    return matches;
-  }
-
-  private _setPlayerRatings(matches: Match[], ranking: Ranking): void {
-    switch (this.simulation.configuration?.ranking) {
-      case 'elo' as RankingSystem:
-        this._setPlayerRatingsElo(matches);
-        break;
-      case 'glicko' as RankingSystem:
-        this._setPlayerRatingsGlicko(matches, ranking);
-        break;
-      default:
-        console.error('Invalid Rating System');
-    }
-    ranking.sortPlayerRatingsByCurrentRatingDesc();
-  }
-
-  private _setPlayerRatingsElo(matches: Match[]): void {
-    matches.forEach((match) => {
-      if (match.winner && match.loser) {
-        // Sieg/Niederlage
-        // @ts-expect-error - todo
-        match.winner.calculateEloScore(match.loser, 1);
-        // @ts-expect-error - todo
-        match.loser.calculateEloScore(match.winner, -1);
-      } else if (match.opponents[1]) {
-        // Unentschieden
-        match.opponents[0].calculateEloScore(match.opponents[1], 0);
-        match.opponents[1].calculateEloScore(match.opponents[0], 0);
-      } else {
-        // Spielfrei
-        // Spielfrei am ersten Spieltag
-        if (match.opponents[0].ratings.length === 1) {
-          match.opponents[0].ratings.push(100);
-          match.opponents[0].ratings.push(100);
-        } else {
-          // eslint-disable-next-line no-self-assign
-          match.opponents[0].currentRating = match.opponents[0].currentRating;
-        }
-      }
-    });
   }
 
   _setPlayerRatingsGlicko(matches: Match[], ranking: Ranking): void {
@@ -156,6 +86,76 @@ export class SimulationService {
       if (!newRatings.has(playerRating)) {
         // eslint-disable-next-line no-self-assign
         playerRating.currentRating = playerRating.currentRating;
+      }
+    });
+  }
+
+  simulate(): void {
+    if (this.simulation.configuration) {
+      const ranking = this._getInitialRanking();
+      const matchMaker = new MatchMaker(ranking, this.simulation.configuration.allowUnderdogWins);
+      for (let i = 0; i < this.simulation.configuration.count; i++) {
+        const matches = this._getMatches(matchMaker);
+        matchMaker.addMatch(matches);
+        this._setPlayerRatings(matches, ranking);
+      }
+      this.simulation.tournament = matchMaker;
+      console.log(matchMaker);
+    }
+  }
+
+  private _getMatches(matchMaker: MatchMaker): Match[] {
+    let matches: Match[] = [];
+    switch (this.simulation.configuration?.matching) {
+      case 'random' as Matching:
+        matches = matchMaker.getRandomOpponentMatches();
+        break;
+      case 'seeding' as Matching:
+        matches = matchMaker.getSeedingMatches();
+        break;
+      case 'similar' as Matching:
+        matches = matchMaker.getCurrentRatingPairMatches();
+        break;
+    }
+    return matches;
+  }
+
+  private _setPlayerRatings(matches: Match[], ranking: Ranking): void {
+    switch (this.simulation.configuration?.ranking) {
+      case 'elo' as RankingSystem:
+        this._setPlayerRatingsElo(matches);
+        break;
+      case 'glicko' as RankingSystem:
+        this._setPlayerRatingsGlicko(matches, ranking);
+        break;
+      default:
+        console.error('Invalid Rating System');
+    }
+    ranking.sortPlayerRatingsByCurrentRatingDesc();
+  }
+
+  private _setPlayerRatingsElo(matches: Match[]): void {
+    matches.forEach((match) => {
+      if (match.winner && match.loser) {
+        // Sieg/Niederlage
+        // @ts-expect-error - todo
+        match.winner.calculateEloScore(match.loser, 1);
+        // @ts-expect-error - todo
+        match.loser.calculateEloScore(match.winner, -1);
+      } else if (match.opponents[1]) {
+        // Unentschieden
+        match.opponents[0].calculateEloScore(match.opponents[1], 0);
+        match.opponents[1].calculateEloScore(match.opponents[0], 0);
+      } else {
+        // Spielfrei
+        // Spielfrei am ersten Spieltag
+        if (match.opponents[0].ratings.length === 1) {
+          match.opponents[0].ratings.push(100);
+          match.opponents[0].ratings.push(100);
+        } else {
+          // eslint-disable-next-line no-self-assign
+          match.opponents[0].currentRating = match.opponents[0].currentRating;
+        }
       }
     });
   }

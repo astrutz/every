@@ -7,10 +7,6 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ColorschemeService {
-  public get colorscheme(): Colorscheme {
-    return localStorage['theme'];
-  }
-
   /**
    * Reads the initial color scheme from localStorage and sets it globally, only called once on app startup
    */
@@ -33,14 +29,18 @@ export class ColorschemeService {
     }
   }
 
+  #setDarkTheme(): void {
+    document.documentElement.classList.add('dark');
+    localStorage['theme'] = Colorscheme.dark;
+  }
+
   #setLightTheme(): void {
     document.documentElement.classList.remove('dark');
     localStorage['theme'] = Colorscheme.light;
   }
 
-  #setDarkTheme(): void {
-    document.documentElement.classList.add('dark');
-    localStorage['theme'] = Colorscheme.dark;
+  public get colorscheme(): Colorscheme {
+    return localStorage['theme'];
   }
 }
 

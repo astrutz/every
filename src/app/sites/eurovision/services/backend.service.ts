@@ -11,46 +11,27 @@ import { environment } from '../../../environment';
   providedIn: 'root',
 })
 export class BackendService {
-  #base = environment.apiUrl;
   #apiKey = environment.apiKey;
+  #base = environment.apiUrl;
 
-  get #headers() {
-    const headers: Record<string, string> = {
-      'Content-Type': 'application/json',
-    };
-    const key = this.#apiKey;
-    if (key) {
-      headers['x-api-key'] = key;
-    }
-    return headers;
+  public async createContest(contest: ContestDto) {
+    await this.#postJson<ContestDto>('/eurovision/contests', contest);
   }
 
-  async #fetchJson<T>(path: string): Promise<T> {
-    const res = await fetch(`${this.#base}${path}`, {
-      headers: this.#headers,
-      credentials: 'omit',
-    });
-    if (!res.ok) {
-      const text = await res.text().catch(() => '');
-      throw new Error(`HTTP ${res.status} ${res.statusText} - ${text}`);
-    }
-    return (await res.json()) as T;
-  }
-
-  public async getCountries(): Promise<Country[]> {
-    return this.#fetchJson<Country[]>('/eurovision/countries');
-  }
-
-  public async getContests(): Promise<Contest[]> {
-    return this.#fetchJson<Contest[]>('/eurovision/contests');
+  public async createEntry(entry: EntryDto) {
+    await this.#postJson<EntryDto>('/eurovision/entries', entry);
   }
 
   public async getContestByYear(year: number): Promise<Contest> {
     return this.#fetchJson<Contest>(`/eurovision/contests?year=${year}`);
   }
 
-  public async getTopEntries(year: number, limit = 10): Promise<Contest> {
-    return this.#fetchJson<Contest>(`/eurovision/contests/${year}/top?limit=${limit}`);
+  public async getContests(): Promise<Contest[]> {
+    return this.#fetchJson<Contest[]>('/eurovision/contests');
+  }
+
+  public async getCountries(): Promise<Country[]> {
+    return this.#fetchJson<Country[]>('/eurovision/countries');
   }
 
   public async getEntries(year?: number, countryCode?: string): Promise<Entry[]> {
@@ -69,6 +50,30 @@ export class BackendService {
     return this.#fetchJson<Entry>(`/eurovision/entries/${id}`);
   }
 
+  public async getTopEntries(year: number, limit = 10): Promise<Contest> {
+    return this.#fetchJson<Contest>(`/eurovision/contests/${year}/top?limit=${limit}`);
+  }
+
+  public async updateContest(id: string, contest: ContestDto) {
+    await this.#putJson<ContestDto>(`/eurovision/contests/${id}`, contest);
+  }
+
+  public async updateEntry(id: string, entry: EntryDto) {
+    await this.#putJson<EntryDto>(`/eurovision/entries/${id}`, entry);
+  }
+
+  async #fetchJson<T>(path: string): Promise<T> {
+    const res = await fetch(`${this.#base}${path}`, {
+      headers: this.#headers,
+      credentials: 'omit',
+    });
+    if (!res.ok) {
+      const text = await res.text().catch(() => '');
+      throw new Error(`HTTP ${res.status} ${res.statusText} - ${text}`);
+    }
+    return (await res.json()) as T;
+  }
+
   async #postJson<T>(path: string, data: T) {
     const res = await fetch(`${this.#base}${path}`, {
       headers: this.#headers,
@@ -80,14 +85,6 @@ export class BackendService {
       const text = await res.text().catch(() => '');
       throw new Error(`HTTP ${res.status} ${res.statusText} - ${text}`);
     }
-  }
-
-  public async createEntry(entry: EntryDto) {
-    await this.#postJson<EntryDto>('/eurovision/entries', entry);
-  }
-
-  public async createContest(contest: ContestDto) {
-    await this.#postJson<ContestDto>('/eurovision/contests', contest);
   }
 
   async #putJson<T>(path: string, data: T) {
@@ -103,11 +100,14 @@ export class BackendService {
     }
   }
 
-  public async updateEntry(id: string, entry: EntryDto) {
-    await this.#putJson<EntryDto>(`/eurovision/entries/${id}`, entry);
-  }
-
-  public async updateContest(id: string, contest: ContestDto) {
-    await this.#putJson<ContestDto>(`/eurovision/contests/${id}`, contest);
+  get #headers() {
+    const headers: Record<string, string> = {
+      'Content-Type': 'application/json',
+    };
+    const key = this.#apiKey;
+    if (key) {
+      headers['x-api-key'] = key;
+    }
+    return headers;
   }
 }

@@ -12,23 +12,23 @@ export type State = 'idle' | 'saving' | 'success' | 'error';
   template: '',
 })
 export abstract class FormComponent {
-  protected readonly fb: FormBuilder = inject(FormBuilder);
   protected readonly backendService: BackendService = inject(BackendService);
+  protected readonly fb: FormBuilder = inject(FormBuilder);
   protected readonly storeService = inject(EurovisionStoreService);
 
-  protected form!: FormGroup;
   protected errorMessage = '';
+  protected form!: FormGroup;
   protected state: State = 'idle';
 
   protected getCountryIDByCode(countryCode: string): string {
     return this.storeService.getCountryByCode(countryCode.toUpperCase())?._id ?? '';
   }
 
-  protected onSubmit(): void {
+  protected onSearch(): void {
     throw 'NotImplementedError';
   }
 
-  protected onSearch(): void {
+  protected onSubmit(): void {
     throw 'NotImplementedError';
   }
 }

@@ -14,14 +14,14 @@ const CACHE_KEY_PREFIX = 'EVERY_CACHE';
   providedIn: 'root',
 })
 export class CacheService {
-  #isFresh = false;
-
   constructor() {
     const timestamp = localStorage.getItem(`${CACHE_KEY_PREFIX}_TIMESTAMP`);
     if (timestamp && +timestamp > Date.now() - CACHE_MAX_AGE) {
       this.#isFresh = true;
     }
   }
+
+  #isFresh = false;
 
   #readEntities<T extends Entity>(keySuffix: string): T[] | null {
     if (!this.#isFresh) {
@@ -45,29 +45,29 @@ export class CacheService {
     localStorage.setItem(`${CACHE_KEY_PREFIX}_TIMESTAMP`, Date.now().toString());
   }
 
+  public get contests(): Contest[] | null {
+    return this.#readEntities<Contest>('CONTESTS');
+  }
+
+   
+  public set contests(contests: Contest[]) {
+    this.#writeEntities<Contest>('CONTESTS', contests);
+  }
+
   public get countries(): Country[] | null {
     return this.#readEntities<Country>('COUNTRIES');
   }
 
-  public get contests(): Contest[] | null {
-    return this.#readEntities<Contest>('CONTESTS');
+   
+  public set countries(countries: Country[]) {
+    this.#writeEntities<Country>('COUNTRIES', countries);
   }
 
   public get entries(): Entry[] | null {
     return this.#readEntities<Entry>('ENTRIES');
   }
 
-  // eslint-disable-next-line @typescript-eslint/adjacent-overload-signatures
-  public set countries(countries: Country[]) {
-    this.#writeEntities<Country>('COUNTRIES', countries);
-  }
-
-  // eslint-disable-next-line @typescript-eslint/adjacent-overload-signatures
-  public set contests(contests: Contest[]) {
-    this.#writeEntities<Contest>('CONTESTS', contests);
-  }
-
-  // eslint-disable-next-line @typescript-eslint/adjacent-overload-signatures
+   
   public set entries(entries: Entry[]) {
     this.#writeEntities<Entry>('ENTRIES', entries);
   }

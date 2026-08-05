@@ -3,16 +3,16 @@ import { PlayerRating } from './playerrating.dataobject';
 import { Ranking } from './ranking.dataobject';
 
 export class MatchMaker {
-  matches: Match[] = [];
-  rounds: Match[][] = [[]];
-
-  ranking: Ranking;
-  useRandom: boolean;
-
   constructor(ranking: Ranking, useRandom = false) {
     this.ranking = ranking;
     this.useRandom = useRandom;
   }
+  matches: Match[] = [];
+
+  ranking: Ranking;
+  rounds: Match[][] = [[]];
+
+  useRandom: boolean;
   // @ts-expect-error - todo
   addMatch(...matches): void {
     this.matches.push(...matches);

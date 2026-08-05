@@ -27,18 +27,10 @@ import { Util } from '../../services/util';
   templateUrl: './contest.component.html',
 })
 export class ContestComponent implements OnInit {
-  #year = 0;
   readonly #activatedRoute = inject(ActivatedRoute);
   readonly #storeService = inject(EurovisionStoreService);
   protected readonly themeService = inject(ThemeService);
-
-  ngOnInit() {
-    this.#activatedRoute.params.subscribe((params: Params) => {
-      if (Number(params['year'])) {
-        this.#year = +(params['year'] ?? '');
-      }
-    });
-  }
+  #year = 0;
 
   protected contest$ = computed(() => {
     if (!this.#storeService.isLoading$()) {
@@ -52,4 +44,12 @@ export class ContestComponent implements OnInit {
   protected entries$ = computed<Entry[]>(() => this.contest$()?.entries ?? []);
 
   protected sortedEntries$ = computed<Entry[]>(() => Util.sortEntries(this.entries$()));
+
+  ngOnInit() {
+    this.#activatedRoute.params.subscribe((params: Params) => {
+      if (Number(params['year'])) {
+        this.#year = +(params['year'] ?? '');
+      }
+    });
+  }
 }

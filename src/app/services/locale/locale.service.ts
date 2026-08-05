@@ -8,12 +8,8 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class LocaleService {
-  public readonly activeLocale: string = inject(LOCALE_ID);
   readonly #router = inject(Router);
-
-  #isLanguageSwitcherOpen = false;
-
-  #isMobileLanguageSwitcherOpen = false;
+  public readonly activeLocale: string = inject(LOCALE_ID);
 
   public locales = [
     { code: 'bn', name: 'বাংলা' },
@@ -35,6 +31,14 @@ export class LocaleService {
     { code: 'uk', name: 'українська' },
     { code: 'vi', name: 'Tiếng Việt' },
   ];
+
+  #isLanguageSwitcherOpen = false;
+
+  #isMobileLanguageSwitcherOpen = false;
+
+  public getLanguageIconName(lang: string): string {
+    return `assets/flags/${lang}.svg`;
+  }
 
   public getLocaleUrl(locale: string): string {
     return `https://alexstrutz.dev/${locale}/${this.#router.url.substring(1)}`;
@@ -59,9 +63,5 @@ export class LocaleService {
 
   public set isMobileLanguageSwitcherOpen(newVal: boolean) {
     this.#isMobileLanguageSwitcherOpen = newVal;
-  }
-
-  public getLanguageIconName(lang: string): string {
-    return `assets/flags/${lang}.svg`;
   }
 }

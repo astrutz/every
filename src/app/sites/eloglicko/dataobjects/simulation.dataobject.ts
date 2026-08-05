@@ -3,17 +3,9 @@ import { Configuration  } from './primitives.types';
 import { MatchMaker } from './matchmaker.dataobject';
 
 export class Simulation {
-  private _players: Player[] = [];
   private _configuration: Configuration | null = null;
+  private _players: Player[] = [];
   private _tournament: MatchMaker | null = null;
-
-  get players(): Player[] {
-    return this._players ?? [];
-  }
-
-  createPlayer(name: string, strength: number): void {
-    this._players.push(new Player(name ?? '', strength ?? 0, this.randomColor));
-  }
 
   changePlayerColor(index: number): void {
     this._players.forEach((player, i) => {
@@ -24,12 +16,12 @@ export class Simulation {
     });
   }
 
-  deletePlayer(index: number): void {
-    this._players = this._players.filter((player, i) => i !== index);
+  createPlayer(name: string, strength: number): void {
+    this._players.push(new Player(name ?? '', strength ?? 0, this.randomColor));
   }
 
-  get randomColor(): string {
-    return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+  deletePlayer(index: number): void {
+    this._players = this._players.filter((player, i) => i !== index);
   }
 
   get configuration(): Configuration | null {
@@ -38,6 +30,14 @@ export class Simulation {
 
   set configuration(configuration: Configuration) {
     this._configuration = configuration;
+  }
+
+  get players(): Player[] {
+    return this._players ?? [];
+  }
+
+  get randomColor(): string {
+    return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
   }
 
   get tournament(): MatchMaker | null {

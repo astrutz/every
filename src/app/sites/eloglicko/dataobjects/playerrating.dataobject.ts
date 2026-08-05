@@ -1,19 +1,20 @@
 import { Player } from './player.dataobject';
 export class PlayerRating {
+  constructor(player: Player, initialRating = 0) {
+    this.player = player;
+    this.currentRating = initialRating;
+  }
+  ELO_INITIAL_RATING = 100;
   ELO_KENNETH_HARKNESS_MAGIC = 400;
   ELO_MAX_POSSIBLE_POINTSWITCH = 40;
-  ELO_INITIAL_RATING = 100;
-  GLICKO_MAX_RATING_DEVIATION = 350;
-  GLICKO_INITIAL_RATING = 1500;
   GLICKO_C = 34.64;
-
   GLICKO_DEFAULT_C = 20 * Math.sqrt(10);
-  GLICKO_Q = Math.log(10) / 400;
+
+  GLICKO_INITIAL_RATING = 1500;
+  GLICKO_MAX_RATING_DEVIATION = 350;
   GLICKO_INITIAL_RD = this.GLICKO_MAX_RATING_DEVIATION;
 
-  ratings: number[] = [];
-  player: Player;
-
+  GLICKO_Q = Math.log(10) / 400;
   glickoRDs: number[] = [];
 
   /**
@@ -21,60 +22,9 @@ export class PlayerRating {
    */
   glickoTimeSinceLastGame = 1;
 
-  constructor(player: Player, initialRating = 0) {
-    this.player = player;
-    this.currentRating = initialRating;
-  }
+  player: Player;
 
-  /**
-   * Sets the current rating for a player and automatically pushes that value to the ratings history
-   * @param {number} value new rating
-   */
-  set currentRating(value: number) {
-    this.ratings.push(value);
-  }
-
-  /**
-   * Returns the current rating of the player by using the last entry in the ratings history
-   * @returns {number} Last Rating
-   */
-  get currentRating(): number {
-    return this.ratings.slice(-1)[0];
-  }
-
-  /**
-   * Get the average rating for this palyer
-   * @returns {number} the total average rating
-   */
-  get averageRating(): number {
-    return this.getRollingAverageRating(this.ratings.length);
-  }
-
-  /**
-   * Calculates the rolling average for the rating
-   * @param {number} sampleCount Number of samples to include in the rolling average
-   * @returns {number} The rolling average
-   */
-  getRollingAverageRating(sampleCount = 10): number {
-    const samples = this.ratings.slice(-sampleCount);
-    return samples.reduce((acc, cur) => acc + cur, 0) / samples.length;
-  }
-
-  /**
-   * Gets the ratings as a suitable array for d3.js
-   * @returns {[Object]}
-   */
-  getGraphRating() {
-    const ratings = this.ratings.map((rating, i) => ({
-      name: this.player.name,
-      color: this.player.color,
-      rating,
-      round: i - 1,
-      title: `${this.player.name} (Rating: ${rating})`,
-    }));
-    ratings.shift();
-    return ratings;
-  }
+  ratings: number[] = [];
 
   calculateEloScore(opponent: PlayerRating, result: number): void {
     if (this.ratings.length === 1) {
@@ -137,48 +87,29 @@ export class PlayerRating {
   }
 
   /**
-   * Calculate the new player RD for the next Round
-   * @param {{opponent: PlayerRating, result: 0|0.5|1}[]} matchResults
-   * @returns {number} New RD
+   * Gets the ratings as a suitable array for d3.js
+   * @returns {[Object]}
    */
-  glickoNewPlayerRD(
-    matchResults: { opponent: PlayerRating | undefined; result: 0 | 0.5 | 1 }[],
-  ): number {
-    return Math.round(
-      Math.sqrt(1 / (1 / this.glickoRoundRD ** 2 + 1 / this.glickoD2(matchResults))),
-    );
+  getGraphRating() {
+    const ratings = this.ratings.map((rating, i) => ({
+      name: this.player.name,
+      color: this.player.color,
+      rating,
+      round: i - 1,
+      title: `${this.player.name} (Rating: ${rating})`,
+    }));
+    ratings.shift();
+    return ratings;
   }
 
   /**
-   * Sets the current glickoRD for a player and automatically pushes that value to the glickRDs history
-   * @param {number} value new glickoRD
+   * Calculates the rolling average for the rating
+   * @param {number} sampleCount Number of samples to include in the rolling average
+   * @returns {number} The rolling average
    */
-  set currentGlickoRD(value: number) {
-    this.glickoRDs.push(value);
-  }
-
-  /**
-   * Returns the current GlickoRD of the player by using the last entry in the GlickoRDs history
-   * @returns {number} Last GlickoRD
-   */
-  get currentGlickoRD(): number {
-    return this.glickoRDs.slice(-1)[0] || this.GLICKO_INITIAL_RD;
-  }
-
-  /**
-   * Calculates a round rating deviation for calculations of the new rating
-   * @param {number} currentRD current rating deviation of the player
-   * @param {number} t rounds since last match
-   * @param {number} [c] constant for scaling
-   * @returns {number} Round RD
-   */
-  get glickoRoundRD(): number {
-    return Math.min(
-      Math.sqrt(
-        this.currentGlickoRD ** 2 + this.GLICKO_DEFAULT_C ** 2 * this.glickoTimeSinceLastGame,
-      ),
-      350,
-    );
+  getRollingAverageRating(sampleCount = 10): number {
+    const samples = this.ratings.slice(-sampleCount);
+    return samples.reduce((acc, cur) => acc + cur, 0) / samples.length;
   }
 
   /**
@@ -202,6 +133,16 @@ export class PlayerRating {
   }
 
   /**
+   * Calculates win probability for glicko calcs
+   * @param {number} rd RD
+   * @param {number} deltaR difference in rating between opponents
+   * @returns {number} E
+   */
+  glickoE(rd: number, deltaR: number): number {
+    return 1 / (1 + 10 ** (-(this.glickoG(rd) * deltaR) / 400));
+  }
+
+  /**
    * Calculates glickos g(RD)
    * @param {number} rd RD
    * @returns {number} g
@@ -211,12 +152,71 @@ export class PlayerRating {
   }
 
   /**
-   * Calculates win probability for glicko calcs
-   * @param {number} rd RD
-   * @param {number} deltaR difference in rating between opponents
-   * @returns {number} E
+   * Calculate the new player RD for the next Round
+   * @param {{opponent: PlayerRating, result: 0|0.5|1}[]} matchResults
+   * @returns {number} New RD
    */
-  glickoE(rd: number, deltaR: number): number {
-    return 1 / (1 + 10 ** (-(this.glickoG(rd) * deltaR) / 400));
+  glickoNewPlayerRD(
+    matchResults: { opponent: PlayerRating | undefined; result: 0 | 0.5 | 1 }[],
+  ): number {
+    return Math.round(
+      Math.sqrt(1 / (1 / this.glickoRoundRD ** 2 + 1 / this.glickoD2(matchResults))),
+    );
+  }
+
+  /**
+   * Get the average rating for this palyer
+   * @returns {number} the total average rating
+   */
+  get averageRating(): number {
+    return this.getRollingAverageRating(this.ratings.length);
+  }
+
+  /**
+   * Sets the current glickoRD for a player and automatically pushes that value to the glickRDs history
+   * @param {number} value new glickoRD
+   */
+  set currentGlickoRD(value: number) {
+    this.glickoRDs.push(value);
+  }
+
+  /**
+   * Returns the current GlickoRD of the player by using the last entry in the GlickoRDs history
+   * @returns {number} Last GlickoRD
+   */
+  get currentGlickoRD(): number {
+    return this.glickoRDs.slice(-1)[0] || this.GLICKO_INITIAL_RD;
+  }
+
+  /**
+   * Sets the current rating for a player and automatically pushes that value to the ratings history
+   * @param {number} value new rating
+   */
+  set currentRating(value: number) {
+    this.ratings.push(value);
+  }
+
+  /**
+   * Returns the current rating of the player by using the last entry in the ratings history
+   * @returns {number} Last Rating
+   */
+  get currentRating(): number {
+    return this.ratings.slice(-1)[0];
+  }
+
+  /**
+   * Calculates a round rating deviation for calculations of the new rating
+   * @param {number} currentRD current rating deviation of the player
+   * @param {number} t rounds since last match
+   * @param {number} [c] constant for scaling
+   * @returns {number} Round RD
+   */
+  get glickoRoundRD(): number {
+    return Math.min(
+      Math.sqrt(
+        this.currentGlickoRD ** 2 + this.GLICKO_DEFAULT_C ** 2 * this.glickoTimeSinceLastGame,
+      ),
+      350,
+    );
   }
 }

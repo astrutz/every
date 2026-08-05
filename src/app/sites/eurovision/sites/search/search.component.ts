@@ -25,25 +25,25 @@ import { RatingComponent } from '../../components/rating/rating.component';
   templateUrl: './search.component.html',
 })
 export class SearchComponent implements OnDestroy {
-  protected readonly storeService = inject(EurovisionStoreService);
-  protected readonly searchService = inject(SearchService);
   readonly #themeService = inject(ThemeService);
+  protected readonly searchService = inject(SearchService);
+  protected readonly storeService = inject(EurovisionStoreService);
 
-  protected isLoading$ = computed<boolean>(() => this.storeService.isLoading$());
-  protected searchResults$ = computed<Entry[]>(() => this.searchService.searchResults$());
   searchTerm = '';
+  protected readonly Math = Math;
+  protected isLoading$ = computed<boolean>(() => this.storeService.isLoading$());
 
-  protected onSearch(term?: string) {
-    this.searchService.searchTerm$.set(term ?? this.searchTerm);
-  }
+  protected searchResults$ = computed<Entry[]>(() => this.searchService.searchResults$());
 
   protected getFlag(code: string): string {
     return `${code}-${this.#themeService.flagBackground}`;
   }
 
+  protected onSearch(term?: string) {
+    this.searchService.searchTerm$.set(term ?? this.searchTerm);
+  }
+
   ngOnDestroy() {
     this.onSearch('');
   }
-
-  protected readonly Math = Math;
 }

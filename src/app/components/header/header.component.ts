@@ -38,20 +38,18 @@ import { DialogComponent } from '../dialog/dialog.component';
 })
 export class HeaderComponent {
   readonly #colorschemeService: ColorschemeService = inject(ColorschemeService);
-  protected readonly navigationService: NavigationService = inject(NavigationService);
-  protected readonly localeService: LocaleService = inject(LocaleService);
   readonly #titleService: TitleService = inject(TitleService);
   protected readonly appService: AppService = inject(AppService);
+  protected readonly localeService: LocaleService = inject(LocaleService);
+  protected readonly navigationService: NavigationService = inject(NavigationService);
+
+  protected readonly apps = apps;
 
   protected isAppNavOpen = false;
 
   protected links$: Signal<HeaderLink[]> = computed(
     () => this.appService.currentApp$().headerLinks,
   );
-
-  protected get colorIconName(): string {
-    return this.#colorschemeService.colorscheme === Colorscheme.light ? 'lucideMoon' : 'lucideSun';
-  }
 
   protected openNavigation(): void {
     this.navigationService.isOpen = true;
@@ -61,9 +59,11 @@ export class HeaderComponent {
     this.#colorschemeService.toggleColorScheme();
   }
 
+  protected get colorIconName(): string {
+    return this.#colorschemeService.colorscheme === Colorscheme.light ? 'lucideMoon' : 'lucideSun';
+  }
+
   protected get title(): string {
     return this.#titleService.title;
   }
-
-  protected readonly apps = apps;
 }

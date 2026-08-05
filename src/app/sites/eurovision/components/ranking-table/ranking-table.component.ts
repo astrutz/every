@@ -18,27 +18,24 @@ import { Contest } from '../../dataobjects/contest.dataobject';
 })
 export class RankingTableComponent<T extends Entity | RatedEntity> {
   readonly #themeService = inject(ThemeService);
-  readonly #translationPipe = new TranslationPipe();
+  protected readonly Util = Util;
 
-  @Input({ required: true })
-  sortedEntities!: T[];
+  readonly #translationPipe = new TranslationPipe();
 
   @Input()
   colorScheme?: 'light' | 'dark' = undefined;
 
   @Input()
-  showFlag = true;
+  displayNameOptions: DisplayNameOptions | undefined = undefined;
 
   @Input()
-  displayNameOptions: DisplayNameOptions | undefined = undefined;
+  showFlag = true;
+
+  @Input({ required: true })
+  sortedEntities!: T[];
 
   protected getFlag(code: string): string {
     return `${code}-${this.colorScheme ?? this.#themeService.flagBackground}`;
-  }
-
-  protected getTranslatedCountry(country: Country) {
-    country.name = this.#translationPipe.transform(country.name);
-    return country;
   }
 
   protected getTranslatedContest(contest: Contest) {
@@ -46,5 +43,8 @@ export class RankingTableComponent<T extends Entity | RatedEntity> {
     return contest;
   }
 
-  protected readonly Util = Util;
+  protected getTranslatedCountry(country: Country) {
+    country.name = this.#translationPipe.transform(country.name);
+    return country;
+  }
 }

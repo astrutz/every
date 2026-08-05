@@ -20,22 +20,14 @@ import { AuthService } from '../../services/auth.service';
 export class SnoozeModalComponent implements AfterViewInit, OnDestroy {
   readonly authService = inject(AuthService);
 
+  initialDate$ = input<string>('');
   isOpen$ = input<boolean>(false);
   title$ = input<string>('');
-  initialDate$ = input<string>('');
 
-  protected snoozedDate$ = signal(new Date());
-  protected isLoading$ = signal(false);
   closed$ = output();
   snoozed$ = output<Date>();
-
-  ngAfterViewInit() {
-    this.snoozedDate$.set(new Date(this.initialDate$()));
-  }
-
-  ngOnDestroy() {
-    this.isLoading$.set(false);
-  }
+  protected isLoading$ = signal(false);
+  protected snoozedDate$ = signal(new Date());
 
   protected dateForInput$ = computed(() => {
     return this.snoozedDate$().toISOString().split('T')[0];
@@ -46,12 +38,6 @@ export class SnoozeModalComponent implements AfterViewInit, OnDestroy {
     if (inputElement.valueAsDate) {
       this.snoozedDate$.set(inputElement.valueAsDate);
     }
-  }
-
-  protected setToTomorrow(): void {
-    const date = new Date();
-    date.setDate(date.getDate() + 1);
-    this.snoozedDate$.set(date);
   }
 
   protected setToDayAfterTomorrow(): void {
@@ -78,5 +64,19 @@ export class SnoozeModalComponent implements AfterViewInit, OnDestroy {
     const diff = (8 - day) % 7;
     date.setDate(date.getDate() + diff);
     this.snoozedDate$.set(date);
+  }
+
+  protected setToTomorrow(): void {
+    const date = new Date();
+    date.setDate(date.getDate() + 1);
+    this.snoozedDate$.set(date);
+  }
+
+  ngAfterViewInit() {
+    this.snoozedDate$.set(new Date(this.initialDate$()));
+  }
+
+  ngOnDestroy() {
+    this.isLoading$.set(false);
   }
 }

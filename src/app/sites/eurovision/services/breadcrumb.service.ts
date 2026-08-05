@@ -16,8 +16,6 @@ export interface BreadcrumbItem {
 export class BreadcrumbService {
   readonly #router = inject(Router);
   readonly #store = inject(EurovisionStoreService);
-  readonly #translationPipe = new TranslationPipe();
-
   constructor() {
     this.#createBreadcrumbItems(this.#router.url);
     this.#router.events
@@ -32,9 +30,7 @@ export class BreadcrumbService {
 
   #breadcrumbItems: BreadcrumbItem[] = [];
 
-  public get breadcrumbItems(): BreadcrumbItem[] {
-    return this.#breadcrumbItems;
-  }
+  readonly #translationPipe = new TranslationPipe();
 
   #createBreadcrumbItems(url: string) {
     const urlSplit = url.split('/');
@@ -79,6 +75,10 @@ export class BreadcrumbService {
         link: '',
       };
     });
+  }
+
+  public get breadcrumbItems(): BreadcrumbItem[] {
+    return this.#breadcrumbItems;
   }
 }
 
