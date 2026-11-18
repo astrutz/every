@@ -50,7 +50,7 @@ export class EntryFormComponent extends FormComponent implements OnInit {
     }
   }
 
-  #getContestIDByYear(year: number): string | undefined {
+  #getContestIDByYear(year: string): string | undefined {
     return this.storeService.getContestByYear(year)?._id;
   }
 

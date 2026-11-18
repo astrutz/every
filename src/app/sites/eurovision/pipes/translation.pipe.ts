@@ -11,6 +11,10 @@ type LocaleKey = keyof typeof translations;
 })
 export class TranslationPipe implements PipeTransform {
   public transform(key: string): string {
+    // Translate ESC Asia year numbers like 2026.5 to 2026
+    if (!isNaN(+key)) {
+      return Math.floor(+key).toString();
+    }
     if (!this.#locale || this.#locale === 'en') {
       return key;
     }

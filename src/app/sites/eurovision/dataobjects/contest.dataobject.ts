@@ -3,14 +3,14 @@ import { Entry } from './entry.dataobject';
 
 export interface Contest {
   _id: string;
-  year: number;
+  year: string;
   entries: Entry[];
   hostCountry: Country;
   colours: string[];
 }
 
 export interface ContestDto {
-  year: number;
+  year: string;
   hostCountry: string;
   colours: string[];
 }

@@ -20,6 +20,10 @@ export class ContestOverviewComponent {
   readonly #storeService: EurovisionStoreService = inject(EurovisionStoreService);
   protected readonly themeService: ThemeService = inject(ThemeService);
 
+  protected readonly Math = Math;
+
+  protected readonly Util = Util;
+
   @Input({ required: true })
   public contest!: Contest | null;
 
@@ -37,7 +41,7 @@ export class ContestOverviewComponent {
     return Util.sortEntries(this.#storeService.getEntriesWithoutContest()).slice(0, 10);
   }
 
-  public get year(): number | undefined {
+  public get year(): string | undefined {
     return this.contest?.year;
   }
 }

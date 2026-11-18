@@ -1,15 +1,15 @@
 @let contest = contest$();
 <section
-  class="    {{ themeService.getBackgroundPrimary(contest?.year ?? 0) }}    {{
-    themeService.getTextPrimary(contest?.year ?? 0)
+  class="    {{ themeService.getBackgroundPrimary(contest?.year) }}    {{
+    themeService.getTextPrimary(contest?.year)
   }}">
   @if (contest) {
     <every-content-area>
       <eurovision-breadcrumb
         [textColor]="themeService.getTextPrimary(contest.year)"></eurovision-breadcrumb>
       <h1 class="text-3xl mt-8 mb-8">
-        @if (contest.year > 0) {
-          Eurovision {{ contest.year }} ({{ contest.hostCountry.name | translate }})
+        @if (contest.year !== '') {
+          Eurovision {{contest.year.toString().includes('.') ? 'Asia' : ''}} {{ contest.year | translate }} ({{ contest.hostCountry.name | translate }})
         } @else {
           Eurovision Oldies
         }
@@ -19,7 +19,7 @@
           <eurovision-ranking-table
             [sortedEntities]="sortedEntries$()"
             [colorScheme]="contest.colours[2].toLocaleLowerCase() === '#ffffff' ? 'light' : 'dark'"
-            [displayNameOptions]="{ hideYear: contest.year > 0 }"></eurovision-ranking-table>
+            [displayNameOptions]="{ hideYear: contest.year !== '' }"></eurovision-ranking-table>
         </div>
         <div class="order-1 md:order-2 flex justify-center md:justify-end h-fit">
           <div class="md:-mt-32 flex flex-col gap-8">

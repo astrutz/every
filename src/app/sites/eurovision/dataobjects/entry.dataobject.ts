@@ -5,7 +5,7 @@ export interface Entry {
   _id: string;
   country: Country;
   contest: Contest;
-  year: number;
+  year: string;
   place: number;
   artist: string;
   title: string;
@@ -21,7 +21,7 @@ export interface Entry {
 export interface EntryDto {
   country: string;
   contest?: string;
-  year: number;
+  year: string;
   place: number;
   artist: string;
   title: string;

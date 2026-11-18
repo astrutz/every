@@ -11,7 +11,7 @@
             alt="{{ entry.country.name | translate }}"
             class="h-6 w-6 hover:underline" />
         </a>
-        {{ entry.country.name | translate }} {{ entry.year }}
+        {{ entry.country.name | translate }} {{ entry.year | translate }}
       </h2>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
@@ -123,7 +123,7 @@
               <a
                 routerLink="/eurovision/contests/{{ entry.year }}"
                 class="flex font-light hover:underline"
-                >{{ entry.contest.hostCountry.name | translate }} {{ entry.year }}</a
+                >{{ entry.contest.hostCountry.name | translate }} {{ entry.year | translate }}</a
               >
             </div>
           </div>
