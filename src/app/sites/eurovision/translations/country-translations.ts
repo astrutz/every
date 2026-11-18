@@ -64,6 +64,17 @@ const de: CountryTranslation = {
   Turkey: 'Türkei',
   Ukraine: 'Ukraine',
   'United Kingdom': 'Vereinigtes Königreich',
+  Bangladesh: 'Bangladesch',
+  Bhutan: 'Bhutan',
+  Cambodia: 'Kambodscha',
+  Laos: 'Laos',
+  Malaysia: 'Malaysia',
+  Mongolia: 'Mongolei',
+  Nepal: 'Nepal',
+  Philippines: 'Philippinen',
+  'South Korea': 'Südkorea',
+  Thailand: 'Thailand',
+  Vietnam: 'Vietnam',
 };
 
 /* ---------------------------
@@ -120,6 +131,17 @@ const es: CountryTranslation = {
   Turkey: 'Turquía',
   Ukraine: 'Ucrania',
   'United Kingdom': 'Reino Unido',
+  Bangladesh: 'Bangladés',
+  Bhutan: 'Bután',
+  Cambodia: 'Camboya',
+  Laos: 'Laos',
+  Malaysia: 'Malasia',
+  Mongolia: 'Mongolia',
+  Nepal: 'Nepal',
+  Philippines: 'Filipinas',
+  'South Korea': 'Corea del Sur',
+  Thailand: 'Tailandia',
+  Vietnam: 'Vietnam',
 };
 
 /* ---------------------------
@@ -176,6 +198,17 @@ const fr: CountryTranslation = {
   Turkey: 'Turquie',
   Ukraine: 'Ukraine',
   'United Kingdom': 'Royaume-Uni',
+  Bangladesh: 'Bangladesh',
+  Bhutan: 'Bhoutan',
+  Cambodia: 'Cambodge',
+  Laos: 'Laos',
+  Malaysia: 'Malaisie',
+  Mongolia: 'Mongolie',
+  Nepal: 'Népal',
+  Philippines: 'Philippines',
+  'South Korea': 'Corée du Sud',
+  Thailand: 'Thaïlande',
+  Vietnam: 'Vietnam',
 };
 
 /* ---------------------------
@@ -232,6 +265,17 @@ const it: CountryTranslation = {
   Turkey: 'Turchia',
   Ukraine: 'Ucraina',
   'United Kingdom': 'Regno Unito',
+  Bangladesh: 'Bangladesh',
+  Bhutan: 'Bhutan',
+  Cambodia: 'Cambogia',
+  Laos: 'Laos',
+  Malaysia: 'Malesia',
+  Mongolia: 'Mongolia',
+  Nepal: 'Nepal',
+  Philippines: 'Filippine',
+  'South Korea': 'Corea del Sud',
+  Thailand: 'Thailandia',
+  Vietnam: 'Vietnam',
 };
 
 /* ---------------------------
@@ -288,6 +332,17 @@ const pt: CountryTranslation = {
   Turkey: 'Turquia',
   Ukraine: 'Ucrânia',
   'United Kingdom': 'Reino Unido',
+  Bangladesh: 'Bangladesh',
+  Bhutan: 'Butão',
+  Cambodia: 'Camboja',
+  Laos: 'Laos',
+  Malaysia: 'Malásia',
+  Mongolia: 'Mongólia',
+  Nepal: 'Nepal',
+  Philippines: 'Filipinas',
+  'South Korea': 'Coreia do Sul',
+  Thailand: 'Tailândia',
+  Vietnam: 'Vietname',
 };
 
 /* ---------------------------
@@ -344,6 +399,17 @@ const pl: CountryTranslation = {
   Turkey: 'Turcja',
   Ukraine: 'Ukraina',
   'United Kingdom': 'Wielka Brytania',
+  Bangladesh: 'Bangladesz',
+  Bhutan: 'Bhutan',
+  Cambodia: 'Kambodża',
+  Laos: 'Laos',
+  Malaysia: 'Malezja',
+  Mongolia: 'Mongolia',
+  Nepal: 'Nepal',
+  Philippines: 'Filipiny',
+  'South Korea': 'Korea Południowa',
+  Thailand: 'Tajlandia',
+  Vietnam: 'Wietnam',
 };
 
 /* ---------------------------
@@ -400,6 +466,17 @@ const ro: CountryTranslation = {
   Turkey: 'Turcia',
   Ukraine: 'Ucraina',
   'United Kingdom': 'Regatul Unit',
+  Bangladesh: 'Bangladesh',
+  Bhutan: 'Bhutan',
+  Cambodia: 'Cambodgia',
+  Laos: 'Laos',
+  Malaysia: 'Malaezia',
+  Mongolia: 'Mongolia',
+  Nepal: 'Nepal',
+  Philippines: 'Filipine',
+  'South Korea': 'Coreea de Sud',
+  Thailand: 'Thailanda',
+  Vietnam: 'Vietnam',
 };
 
 /* ---------------------------
@@ -456,6 +533,17 @@ const ru: CountryTranslation = {
   Turkey: 'Турция',
   Ukraine: 'Украина',
   'United Kingdom': 'Великобритания',
+  Bangladesh: 'Бангладеш',
+  Bhutan: 'Бутан',
+  Cambodia: 'Камбоджа',
+  Laos: 'Лаос',
+  Malaysia: 'Малайзия',
+  Mongolia: 'Монголия',
+  Nepal: 'Непал',
+  Philippines: 'Филиппины',
+  'South Korea': 'Южная Корея',
+  Thailand: 'Таиланд',
+  Vietnam: 'Вьетнам',
 };
 
 /* ---------------------------
@@ -512,6 +600,17 @@ const tr: CountryTranslation = {
   Turkey: 'Türkiye',
   Ukraine: 'Ukrayna',
   'United Kingdom': 'Birleşik Krallık',
+  Bangladesh: 'Bangladeş',
+  Bhutan: 'Butan',
+  Cambodia: 'Kamboçya',
+  Laos: 'Laos',
+  Malaysia: 'Malezya',
+  Mongolia: 'Moğolistan',
+  Nepal: 'Nepal',
+  Philippines: 'Filipinler',
+  'South Korea': 'Güney Kore',
+  Thailand: 'Tayland',
+  Vietnam: 'Vietnam',
 };
 
 /* ---------------------------
@@ -568,6 +667,17 @@ const uk: CountryTranslation = {
   Turkey: 'Туреччина',
   Ukraine: 'Україна',
   'United Kingdom': 'Сполучене Королівство',
+  Bangladesh: 'Бангладеш',
+  Bhutan: 'Бутан',
+  Cambodia: 'Камбоджа',
+  Laos: 'Лаос',
+  Malaysia: 'Малайзія',
+  Mongolia: 'Монголія',
+  Nepal: 'Непал',
+  Philippines: 'Філіппіни',
+  'South Korea': 'Південна Корея',
+  Thailand: 'Таїланд',
+  Vietnam: 'Вʼєтнам',
 };
 
 /* ---------------------------
@@ -624,6 +734,17 @@ const vi: CountryTranslation = {
   Turkey: 'Thổ Nhĩ Kỳ',
   Ukraine: 'Ukraina',
   'United Kingdom': 'Vương quốc Anh',
+  Bangladesh: 'Bangladesh',
+  Bhutan: 'Bhutan',
+  Cambodia: 'Campuchia',
+  Laos: 'Lào',
+  Malaysia: 'Malaysia',
+  Mongolia: 'Mông Cổ',
+  Nepal: 'Nepal',
+  Philippines: 'Philippines',
+  'South Korea': 'Hàn Quốc',
+  Thailand: 'Thái Lan',
+  Vietnam: 'Việt Nam',
 };
 
 /* ---------------------------
@@ -680,6 +801,17 @@ const ja: CountryTranslation = {
   Turkey: 'トルコ',
   Ukraine: 'ウクライナ',
   'United Kingdom': 'イギリス',
+  Bangladesh: 'バングラデシュ',
+  Bhutan: 'ブータン',
+  Cambodia: 'カンボジア',
+  Laos: 'ラオス',
+  Malaysia: 'マレーシア',
+  Mongolia: 'モンゴル',
+  Nepal: 'ネパール',
+  Philippines: 'フィリピン',
+  'South Korea': '韓国',
+  Thailand: 'タイ',
+  Vietnam: 'ベトナム',
 };
 
 /* ---------------------------
@@ -736,6 +868,17 @@ const jv: CountryTranslation = {
   Turkey: 'Turki',
   Ukraine: 'Ukraina',
   'United Kingdom': 'Britania Raya',
+  Bangladesh: 'Bangladesh',
+  Bhutan: 'Bhutan',
+  Cambodia: 'Kamboja',
+  Laos: 'Laos',
+  Malaysia: 'Malaysia',
+  Mongolia: 'Mongolia',
+  Nepal: 'Nepal',
+  Philippines: 'Filipina',
+  'South Korea': 'Korea Kidul',
+  Thailand: 'Thailand',
+  Vietnam: 'Vietnam',
 };
 
 /* ---------------------------
@@ -792,6 +935,17 @@ const bn: CountryTranslation = {
   Turkey: 'তুরস্ক',
   Ukraine: 'ইউক্রেন',
   'United Kingdom': 'যুক্তরাজ্য',
+  Bangladesh: 'বাংলাদেশ',
+  Bhutan: 'ভুটান',
+  Cambodia: 'কম্বোডিয়া',
+  Laos: 'লাওস',
+  Malaysia: 'মালয়েশিয়া',
+  Mongolia: 'মঙ্গোলিয়া',
+  Nepal: 'নেপাল',
+  Philippines: 'ফিলিপাইন',
+  'South Korea': 'দক্ষিণ কোরিয়া',
+  Thailand: 'থাইল্যান্ড',
+  Vietnam: 'ভিয়েতনাম',
 };
 
 /* ---------------------------
@@ -848,6 +1002,17 @@ const hi: CountryTranslation = {
   Turkey: 'तुर्की',
   Ukraine: 'यूक्रेन',
   'United Kingdom': 'यूनाइटेड किंगडम',
+  Bangladesh: 'बांग्लादेश',
+  Bhutan: 'भूटान',
+  Cambodia: 'कंबोडिया',
+  Laos: 'लाओस',
+  Malaysia: 'मलेशिया',
+  Mongolia: 'मंगोलिया',
+  Nepal: 'नेपाल',
+  Philippines: 'फ़िलीपींस',
+  'South Korea': 'दक्षिण कोरिया',
+  Thailand: 'थाईलैंड',
+  Vietnam: 'वियतनाम',
 };
 
 /* ---------------------------
@@ -904,6 +1069,17 @@ const zh: CountryTranslation = {
   Turkey: '土耳其',
   Ukraine: '乌克兰',
   'United Kingdom': '英国',
+  Bangladesh: '孟加拉国',
+  Bhutan: '不丹',
+  Cambodia: '柬埔寨',
+  Laos: '老挝',
+  Malaysia: '马来西亚',
+  Mongolia: '蒙古',
+  Nepal: '尼泊尔',
+  Philippines: '菲律宾',
+  'South Korea': '韩国',
+  Thailand: '泰国',
+  Vietnam: '越南',
 };
 
 /* ---------------------------
@@ -960,6 +1136,17 @@ const fa: CountryTranslation = {
   Turkey: 'ترکیه',
   Ukraine: 'اوکراین',
   'United Kingdom': 'بریتانیا',
+  Bangladesh: 'بنگلادش',
+  Bhutan: 'بوتان',
+  Cambodia: 'کامبوج',
+  Laos: 'لائوس',
+  Malaysia: 'مالزی',
+  Mongolia: 'مغولستان',
+  Nepal: 'نپال',
+  Philippines: 'فیلیپین',
+  'South Korea': 'کره جنوبی',
+  Thailand: 'تایلند',
+  Vietnam: 'ویتنام',
 };
 
 /* ---------------------------
