@@ -49,4 +49,15 @@ export interface CountryTranslation {
   Turkey: string;
   Ukraine: string;
   'United Kingdom': string;
+  Bangladesh: string;
+  Bhutan: string;
+  Cambodia: string;
+  Laos: string;
+  Malaysia: string;
+  Mongolia: string;
+  Nepal: string;
+  Philippines: string;
+  'South Korea': string;
+  Thailand: string;
+  Vietnam: string;
 }
