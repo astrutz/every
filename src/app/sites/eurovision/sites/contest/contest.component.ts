@@ -30,11 +30,11 @@ export class ContestComponent implements OnInit {
   readonly #activatedRoute = inject(ActivatedRoute);
   readonly #storeService = inject(EurovisionStoreService);
   protected readonly themeService = inject(ThemeService);
-  #year = 0;
+  #year = '';
 
   protected contest$ = computed(() => {
     if (!this.#storeService.isLoading$()) {
-      return this.#year > 0
+      return this.#year !== ''
         ? this.#storeService.getContestByYear(this.#year)
         : this.#storeService.getOldiesContest();
     }
@@ -48,7 +48,7 @@ export class ContestComponent implements OnInit {
   ngOnInit() {
     this.#activatedRoute.params.subscribe((params: Params) => {
       if (Number(params['year'])) {
-        this.#year = +(params['year'] ?? '');
+        this.#year = params['year'] ?? '';
       }
     });
   }

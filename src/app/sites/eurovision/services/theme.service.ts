@@ -9,124 +9,32 @@ import { inject, Injectable, DOCUMENT } from '@angular/core';
 export class ThemeService {
   readonly #document = inject(DOCUMENT);
 
-  public getBackgroundPrimary(year?: number): string {
-    switch (year) {
-      case 2027:
-        return 'bg-contest2027-primary';
-      case 2026.5:
-        return 'bg-contest2026.5-primary';
-      case 2026:
-        return 'bg-contest2026-primary';
-      case 2025:
-        return 'bg-contest2025-primary';
-      case 2024:
-        return 'bg-contest2024-primary';
-      case 2023:
-        return 'bg-contest2023-primary';
-      case 2022:
-        return 'bg-contest2022-primary';
-      case 2021:
-        return 'bg-contest2021-primary';
-      case 2019:
-        return 'bg-contest2019-primary';
-      case 2018:
-        return 'bg-contest2018-primary';
-      case 2017:
-        return 'bg-contest2017-primary';
-      case 2016:
-        return 'bg-contest2016-primary';
+  public getBackgroundPrimary(year?: string): string {
+    if (!year) {
+      return 'bg-oldies-primary';
     }
-    return 'bg-oldies-primary';
+    return `bg-contest${year}-primary`;
   }
 
-  public getBackgroundSecondary(year: number): string {
-    switch (year) {
-      case 2027:
-        return 'bg-contest2027-secondary';
-      case 2026.5:
-        return 'bg-contest2026.5-secondary';
-      case 2026:
-        return 'bg-contest2026-secondary';
-      case 2025:
-        return 'bg-contest2025-secondary';
-      case 2024:
-        return 'bg-contest2024-secondary';
-      case 2023:
-        return 'bg-contest2023-secondary';
-      case 2022:
-        return 'bg-contest2022-secondary';
-      case 2021:
-        return 'bg-contest2021-secondary';
-      case 2019:
-        return 'bg-contest2019-secondary';
-      case 2018:
-        return 'bg-contest2018-secondary';
-      case 2017:
-        return 'bg-contest2017-secondary';
-      case 2016:
-        return 'bg-contest2016-secondary';
+  public getBackgroundSecondary(year: string): string {
+    if (!year) {
+      return 'bg-oldies-secondary';
     }
-    return 'bg-oldies-secondary';
+    return `bg-contest${year}-secondary`;
   }
 
-  public getTextPrimary(year?: number): string {
-    switch (year) {
-      case 2027:
-        return 'text-contest2027-primaryText';
-      case 2026.5:
-        return 'text-contest2026.5-primaryText';
-      case 2026:
-        return 'text-contest2026-primaryText';
-      case 2025:
-        return 'text-contest2025-primaryText';
-      case 2024:
-        return 'text-contest2024-primaryText';
-      case 2023:
-        return 'text-contest2023-primaryText';
-      case 2022:
-        return 'text-contest2022-primaryText';
-      case 2021:
-        return 'text-contest2021-primaryText';
-      case 2019:
-        return 'text-contest2019-primaryText';
-      case 2018:
-        return 'text-contest2018-primaryText';
-      case 2017:
-        return 'text-contest2017-primaryText';
-      case 2016:
-        return 'text-contest2016-primaryText';
+  public getTextPrimary(year?: string): string {
+    if (!year) {
+      return 'text-oldies-primaryText';
     }
-    return 'text-oldies-primaryText';
+    return `text-contest${year}-primaryText`;
   }
 
-  public getTextSecondary(year: number): string {
-    switch (year) {
-      case 2027:
-        return 'text-contest2027-secondaryText';
-      case 2026.5:
-        return 'text-contest2026.5-secondaryText';
-      case 2026:
-        return 'text-contest2026-secondaryText';
-      case 2025:
-        return 'text-contest2025-secondaryText';
-      case 2024:
-        return 'text-contest2024-secondaryText';
-      case 2023:
-        return 'text-contest2023-secondaryText';
-      case 2022:
-        return 'text-contest2022-secondaryText';
-      case 2021:
-        return 'text-contest2021-secondaryText';
-      case 2019:
-        return 'text-contest2019-secondaryText';
-      case 2018:
-        return 'text-contest2018-secondaryText';
-      case 2017:
-        return 'text-contest2017-secondaryText';
-      case 2016:
-        return 'text-contest2016-secondaryText';
+  public getTextSecondary(year: string): string {
+    if (!year) {
+      return 'text-oldies-secondaryText';
     }
-    return 'text-oldies-secondaryText';
+    return `text-contest${year}-secondaryText`;
   }
 
   public get flagBackground(): string {
