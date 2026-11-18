@@ -11,6 +11,10 @@ export class ThemeService {
 
   public getBackgroundPrimary(year?: number): string {
     switch (year) {
+      case 2027:
+        return 'bg-contest2027-primary';
+      case 2026.5:
+        return 'bg-contest2026.5-primary';
       case 2026:
         return 'bg-contest2026-primary';
       case 2025:
@@ -37,6 +41,10 @@ export class ThemeService {
 
   public getBackgroundSecondary(year: number): string {
     switch (year) {
+      case 2027:
+        return 'bg-contest2027-secondary';
+      case 2026.5:
+        return 'bg-contest2026.5-secondary';
       case 2026:
         return 'bg-contest2026-secondary';
       case 2025:
@@ -63,6 +71,10 @@ export class ThemeService {
 
   public getTextPrimary(year?: number): string {
     switch (year) {
+      case 2027:
+        return 'text-contest2027-primaryText';
+      case 2026.5:
+        return 'text-contest2026.5-primaryText';
       case 2026:
         return 'text-contest2026-primaryText';
       case 2025:
@@ -89,6 +101,10 @@ export class ThemeService {
 
   public getTextSecondary(year: number): string {
     switch (year) {
+      case 2027:
+        return 'text-contest2027-secondaryText';
+      case 2026.5:
+        return 'text-contest2026.5-secondaryText';
       case 2026:
         return 'text-contest2026-secondaryText';
       case 2025:
