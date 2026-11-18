@@ -32,6 +32,18 @@ module.exports = {
           primaryText: '#1e1c1c',
           secondaryText: '#ffffff',
         },
+        contest2027: {
+          primary: '#28b773',
+          secondary: '#001787',
+          primaryText: '#000000',
+          secondaryText: '#ffffff',
+        },
+        'contest2026.5': {
+          primary: '#001A8B',
+          secondary: '#FF055C',
+          primaryText: '#ffffff',
+          secondaryText: '#ffffff',
+        },
         contest2026: {
           primary: '#ad8a37',
           secondary: '#000000',

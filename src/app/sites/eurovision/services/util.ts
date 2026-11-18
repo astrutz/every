@@ -19,11 +19,11 @@ export class Util {
     } else if (Util.isCountry(entity)) {
       return entity.name;
     } else if (Util.isEntry(entity)) {
-      return `${entity.artist} - ${entity.title} ${options?.hideRating ? '' : `(${Util.roundRating(entity.totalRating)})`} ${options?.hideYear ? '' : ` - ${entity.year}`}`;
+      return `${entity.artist} - ${entity.title} ${options?.hideRating ? '' : `(${Util.roundRating(entity.totalRating)})`} ${options?.hideYear ? '' : ` - ${Util.roundYear(entity.year)}`}`;
     } else if (Util.isRatedContest(entity)) {
-      return `${entity.hostCountry.name} ${entity.year} - ${options?.hideRating ? '' : `${Util.roundRating(entity.rating)}`}`;
+      return `${entity.hostCountry.name} ${Util.roundYear(entity.year)} - ${options?.hideRating ? '' : `${Util.roundRating(entity.rating)}`}`;
     } else if (Util.isContest(entity)) {
-      return `${entity.hostCountry.name} (${entity.year})`;
+      return `${entity.hostCountry.name} (${Util.roundYear(entity.year)})`;
     }
     return '';
   }
@@ -69,6 +69,10 @@ export class Util {
     return Math.round(rating * 10) / 10;
   }
 
+  public static roundYear(year: string): string {
+    return year.split('.')[0];
+  }
+
   public static sortEntries(entries: Entry[]): Entry[] {
     return entries.sort(
       (a, b) =>
@@ -78,7 +82,7 @@ export class Util {
         b.stagingRating - a.stagingRating ||
         b.studioRating - a.studioRating ||
         b.vocalsRating - a.vocalsRating ||
-        a.year - b.year,
+        +a.year - +b.year,
     );
   }
 }

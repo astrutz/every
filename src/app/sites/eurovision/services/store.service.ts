@@ -40,7 +40,7 @@ export class StoreService {
       this.#entries$().length === 0,
   );
 
-  public getContestByYear(year: number): Contest | undefined {
+  public getContestByYear(year: string): Contest | undefined {
     return this.#contests$().find((contest) => contest.year === year);
   }
 
@@ -64,7 +64,7 @@ export class StoreService {
     return {
       _id: '',
       colours: ['#d1d5db', '#1e1c1c', '#d1d5db', '#1e1c1c'],
-      year: 0,
+      year: '',
       entries: this.getEntriesWithoutContest(),
       hostCountry: {
         _id: '',
