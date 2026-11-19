@@ -23,7 +23,7 @@ module.exports = {
         'remove',
       ],
     ],
-    'scope-enum': [2, 'always', ['eloglicko']],
+    'scope-enum': [2, 'always', ['eloglicko', 'plantu', 'eurovision', 'portfolio']],
     'subject-case': [2, 'always', ['sentence-case']],
   },
   prompt: {
