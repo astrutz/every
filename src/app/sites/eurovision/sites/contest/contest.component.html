@@ -26,7 +26,7 @@
             <img
               alt="{{ contest.hostCountry.name | translate}}"
               class="max-h-32"
-              src="assets/eurovision/contests/{{ contest.year }}.png" />
+              src="assets/eurovision/contests/{{ contest.year || 'oldies' }}.png" />
             <div
               class="{{ themeService.getBackgroundSecondary(contest.year) }} {{
                 themeService.getTextSecondary(contest.year)
